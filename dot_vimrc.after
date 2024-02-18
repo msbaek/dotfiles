@@ -1,0 +1,28 @@
+set wrap
+set smartcase
+
+let @q=':se ft=sql:%s/^.*rest"://g:g/jobScheduler/d:%s/\\[n|t]/ /g:g/baseParms: null/d:g/parmsList: null"/d:g/parmsList: \[\]/d:%s/"//g:%s/ queryID/queryID/g:%s/Query: //g:%s/}$//g:%s/\,stack_trace://g:%s/\\//g'
+
+let @s=':%s/ //g:sort u'
+let @t=':%s/\\t/	/g:%s/\\n//g'
+let @l=':se ft=sql'
+
+" colorscheme gruvbox
+" set bg=dark
+" set bg=light
+" highlight Normal ctermbg=black ctermfg=white
+
+let g:yadr_disable_solarized_enhancements = 1
+" colorscheme base16-twilight
+
+set relativenumber
+set cursorline
+" set termguicolors
+set background = "dark"
+set signcolumn = "yes"
+
+packadd! dracula
+syntax enable
+colorscheme dracula
+
+set gfn=Monaco:h16

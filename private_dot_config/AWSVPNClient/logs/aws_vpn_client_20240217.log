@@ -1,0 +1,380 @@
+Platform: MacOS
+App version: 3.9.0
+OS version: Unix 23.3.0.0
+OS description: Unix 23.3.0.0
+2024-02-17 18:34:57.484 +09:00 [INF] Logger initialized
+2024-02-17 18:34:57.945 +09:00 [INF] No local attributes file found. Creating a new attributes store
+2024-02-17 18:34:58.027 +09:00 [DBG] Metrics attributes saved to file: /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:34:58.027 +09:00 [DBG] Database path: /Users/msbaek/.config/AWSVPNClient/awsvpnclientmetrics.db
+2024-02-17 18:34:58.028 +09:00 [INF] No existing profile store. Create an empty one in /Users/msbaek/.config/AWSVPNClient/ConnectionProfiles
+2024-02-17 18:34:58.028 +09:00 [INF] Saving profile store to /Users/msbaek/.config/AWSVPNClient/ConnectionProfiles
+2024-02-17 18:34:58.045 +09:00 [DBG] Auto culture: ko-KR Auto UI culture: ko-KR
+2024-02-17 18:34:58.049 +09:00 [DBG] Can successfully read and write app data folder.
+2024-02-17 18:34:58.050 +09:00 [DBG] helperToolExePath: /Applications/AWS VPN Client/AWS VPN Client.app/Contents/Resources/AWS VPN Client/Contents/MacOS/ACVCHelperTool
+2024-02-17 18:34:58.284 +09:00 [DBG] macOS viewDidLoad
+2024-02-17 18:34:58.291 +09:00 [DBG] Connection state changed for CVPN endpoint id: 
+2024-02-17 18:34:58.292 +09:00 [INF] No local preferences file found. Creating a new preferences store
+2024-02-17 18:34:58.293 +09:00 [DBG] Preferences saved to file: /Users/msbaek/.config/AWSVPNClient/Preferences
+2024-02-17 18:34:58.381 +09:00 [ERR] Exception occurred while recording metric UI_APP_VPN_CONNECT_GENERAL_ERROR
+2024-02-17 18:34:58.381 +09:00 [ERR] Exception occurred while recording metric LOCAL_NETWORK_CIDR_EMPTY_ERROR
+2024-02-17 18:34:58.582 +09:00 [ERR] Exception occurred while recording metric APPLICATION_CRASH_DETECTED
+2024-02-17 18:34:58.584 +09:00 [DBG] Current preferences schema version is 1, which is less or equal to current supported version: 1. 
+2024-02-17 18:34:58.591 +09:00 [DBG] Creating table MetricsTable
+2024-02-17 18:34:58.593 +09:00 [DBG] Created table MetricsTable in sqlite database
+2024-02-17 18:34:58.595 +09:00 [DBG] Creating table AnalyticsTable
+2024-02-17 18:34:58.597 +09:00 [DBG] Created table AnalyticsTable in sqlite database
+2024-02-17 18:34:58.598 +09:00 [DBG] Metric agent started
+2024-02-17 18:34:58.600 +09:00 [DBG] Sending Metrics batches
+2024-02-17 18:34:58.603 +09:00 [DBG] Checking if table MetricsTable is empty
+2024-02-17 18:34:58.607 +09:00 [DBG] is empty: True
+2024-02-17 18:34:58.607 +09:00 [DBG] Finished sending batches of metrics to cloudwatch.
+2024-02-17 18:34:58.608 +09:00 [DBG] Sending Analytics Batches
+2024-02-17 18:34:58.611 +09:00 [DBG] Checking if table AnalyticsTable is empty
+2024-02-17 18:34:58.611 +09:00 [DBG] is empty: True
+2024-02-17 18:34:58.611 +09:00 [DBG] Finished sending batches of analytics to pinpoint.
+2024-02-17 18:34:58.622 +09:00 [DBG] Inserted event PROFILE_CONFIGURATION_VERSION 1 to AnalyticsTable
+2024-02-17 18:34:58.622 +09:00 [DBG] Current metadata schema version is 1, which is less or equal to current supported version: 1. 
+2024-02-17 18:34:58.624 +09:00 [DBG] Inserted event CLICK_LAUNCH_DESKTOP_APP 1 to AnalyticsTable
+2024-02-17 18:34:58.627 +09:00 [DBG] Updater checks started
+2024-02-17 18:34:58.632 +09:00 [DBG] AcvcHelperOutLog doesn't exist. Skipping
+2024-02-17 18:34:58.632 +09:00 [DBG] AcvcHelperErrLog doesn't exist. Skipping
+2024-02-17 18:34:58.634 +09:00 [DBG] Total logs size (MB): {0}0
+2024-02-17 18:34:58.637 +09:00 [DBG] Inserted event LOG_DISK_USAGE 0 to MetricsTable
+2024-02-17 18:34:58.638 +09:00 [DBG] Inserted event LOG_DISK_USAGE_INFO 0 to AnalyticsTable
+2024-02-17 18:35:03.478 +09:00 [DBG] Caught exception when getting connection status. Exception information: System.TimeoutException: The message did not respond within the expected timeframe or was cancelled
+  at ACVC.Core.OpenVpn.OvpnConnectionManager.SendMessage (System.String message, System.Int32 timeout, System.Threading.CancellationToken cancellationToken) [0x001ca] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.OpenVpn.OvpnConnectionManager.GetConnectionStatus () [0x0007c] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.Metrics.MetricsClient.RecordBytesMetricsAndAnalytics (ACVC.Core.IConnectionManager connectionManager) [0x00077] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+2024-02-17 18:35:03.480 +09:00 [DBG] Stopping DNS monitoring thread
+2024-02-17 18:35:03.480 +09:00 [DBG] Releasing DNS monitoring lock
+2024-02-17 18:35:03.480 +09:00 [DBG] Connection state changed for CVPN endpoint id: 
+2024-02-17 18:35:03.483 +09:00 [DBG] Inserted event UI_APP_VPN_CONNECT_GENERAL_ERROR 0 to MetricsTable
+2024-02-17 18:35:03.485 +09:00 [DBG] Inserted event LOCAL_NETWORK_CIDR_EMPTY_ERROR 0 to MetricsTable
+2024-02-17 18:35:03.487 +09:00 [INF] Terminating connection
+2024-02-17 18:35:03.487 +09:00 [DBG] 🏞 Ending connection details reporting.
+2024-02-17 18:35:03.487 +09:00 [WRN] We are calling GracefulKill in a method that is not supposed to change Connection state.
+2024-02-17 18:35:03.488 +09:00 [DBG] GracefulKill
+2024-02-17 18:35:03.490 +09:00 [DBG] Cancelling socket listen token
+2024-02-17 18:35:03.490 +09:00 [DBG] Dispose socket
+2024-02-17 18:35:03.490 +09:00 [DBG] Signal process kill with helper tool.
+2024-02-17 18:35:03.491 +09:00 [DBG] Starting process
+2024-02-17 18:35:03.501 +09:00 [DBG] Start to read process output
+2024-02-17 18:35:03.504 +09:00 [DBG] Shutting down metrics agent
+2024-02-17 18:35:03.505 +09:00 [DBG] Metrics agent shut down
+2024-02-17 18:35:06.740 +09:00 [INF] Logger initialized
+2024-02-17 18:35:07.076 +09:00 [INF] Loading attributes file from /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:35:07.136 +09:00 [DBG] Metrics attributes saved to file: /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:35:07.136 +09:00 [DBG] Database path: /Users/msbaek/.config/AWSVPNClient/awsvpnclientmetrics.db
+2024-02-17 18:35:07.136 +09:00 [INF] Loading profile store from /Users/msbaek/.config/AWSVPNClient/ConnectionProfiles
+2024-02-17 18:35:07.148 +09:00 [INF] Saving profile store to /Users/msbaek/.config/AWSVPNClient/ConnectionProfiles
+2024-02-17 18:35:07.156 +09:00 [DBG] Auto culture: ko-KR Auto UI culture: ko-KR
+2024-02-17 18:35:07.157 +09:00 [DBG] Can successfully read and write app data folder.
+2024-02-17 18:35:07.158 +09:00 [DBG] helperToolExePath: /Applications/AWS VPN Client/AWS VPN Client.app/Contents/Resources/AWS VPN Client/Contents/MacOS/ACVCHelperTool
+2024-02-17 18:35:07.320 +09:00 [DBG] macOS viewDidLoad
+2024-02-17 18:35:07.325 +09:00 [DBG] Connection state changed for CVPN endpoint id: 
+2024-02-17 18:35:07.326 +09:00 [INF] Loading preferences file from /Users/msbaek/.config/AWSVPNClient/Preferences
+2024-02-17 18:35:07.386 +09:00 [DBG] Inserted event UI_APP_VPN_CONNECT_GENERAL_ERROR 0 to MetricsTable
+2024-02-17 18:35:07.388 +09:00 [DBG] Inserted event LOCAL_NETWORK_CIDR_EMPTY_ERROR 0 to MetricsTable
+2024-02-17 18:35:07.505 +09:00 [DBG] Inserted event APPLICATION_CRASH_DETECTED 0 to MetricsTable
+2024-02-17 18:35:07.508 +09:00 [DBG] Current preferences schema version is 1, which is less or equal to current supported version: 1. 
+2024-02-17 18:35:07.513 +09:00 [DBG] Metric agent started
+2024-02-17 18:35:07.516 +09:00 [DBG] Sending Metrics batches
+2024-02-17 18:35:07.519 +09:00 [DBG] Checking if table MetricsTable is empty
+2024-02-17 18:35:07.523 +09:00 [DBG] is empty: False
+2024-02-17 18:35:07.537 +09:00 [DBG] Metrics event batch successfully created, sending metrics
+2024-02-17 18:35:07.566 +09:00 [DBG] Inserted event PROFILE_CONFIGURATION_VERSION 1 to AnalyticsTable
+2024-02-17 18:35:07.567 +09:00 [DBG] Current metadata schema version is 1, which is less or equal to current supported version: 1. 
+2024-02-17 18:35:07.568 +09:00 [DBG] Inserted event CLICK_LAUNCH_DESKTOP_APP 1 to AnalyticsTable
+2024-02-17 18:35:07.570 +09:00 [DBG] Updater checks started
+2024-02-17 18:35:07.575 +09:00 [DBG] AcvcHelperOutLog doesn't exist. Skipping
+2024-02-17 18:35:07.575 +09:00 [DBG] AcvcHelperErrLog doesn't exist. Skipping
+2024-02-17 18:35:07.577 +09:00 [DBG] Total logs size (MB): {0}0
+2024-02-17 18:35:07.579 +09:00 [DBG] Inserted event LOG_DISK_USAGE 0 to MetricsTable
+2024-02-17 18:35:07.580 +09:00 [DBG] Inserted event LOG_DISK_USAGE_INFO 0 to AnalyticsTable
+2024-02-17 18:35:07.629 +09:00 [DBG] /usr/bin/dig stdout: ; <<>> DiG 9.10.6 <<>> pinpoint.metrics-awsvpnclient.us-east-1.amazonaws.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31932
+;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;pinpoint.metrics-awsvpnclient.us-east-1.amazonaws.com. IN A
+;; ANSWER SECTION:
+pinpoint.metrics-awsvpnclient.us-east-1.amazonaws.com. 900 IN CNAME pinpoint.ap-northeast-2.amazonaws.com.
+pinpoint.ap-northeast-2.amazonaws.com. 60 IN A	54.192.175.25
+pinpoint.ap-northeast-2.amazonaws.com. 60 IN A	54.192.175.28
+pinpoint.ap-northeast-2.amazonaws.com. 60 IN A	54.192.175.32
+pinpoint.ap-northeast-2.amazonaws.com. 60 IN A	54.192.175.52
+;; Query time: 50 msec
+;; SERVER: 210.220.163.82#53(210.220.163.82)
+;; WHEN: Sat Feb 17 18:35:07 KST 2024
+;; MSG SIZE  rcvd: 197
+
+2024-02-17 18:35:07.629 +09:00 [DBG] /usr/bin/dig stderr: 
+2024-02-17 18:35:07.630 +09:00 [DBG] /usr/bin/dig exit code: 0
+2024-02-17 18:35:07.630 +09:00 [DBG] Error: 
+2024-02-17 18:35:07.631 +09:00 [DBG] dig command result: pinpoint.ap-northeast-2.amazonaws.com.
+2024-02-17 18:35:07.636 +09:00 [DBG] Storing metrics region ap-northeast-2 in app
+2024-02-17 18:35:07.636 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.636 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.636 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.636 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.766 +09:00 [DBG] Fetching cached identity id.
+2024-02-17 18:35:07.766 +09:00 [DBG] Looking up current region
+2024-02-17 18:35:07.767 +09:00 [DBG] Current region is: ap-northeast-2
+2024-02-17 18:35:07.767 +09:00 [DBG] Setting identityId and temporaryCredentials file paths.
+2024-02-17 18:35:07.767 +09:00 [DBG] Creating credentials storage folder.
+2024-02-17 18:35:07.769 +09:00 [DBG] Initializing credentials provider.
+2024-02-17 18:35:07.770 +09:00 [DBG] Sending metrics batch async
+2024-02-17 18:35:07.770 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:07.770 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:07.770 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:07.771 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:07.771 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:07.771 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:07.771 +09:00 [DBG] Metrics data request created
+2024-02-17 18:35:07.795 +09:00 [DBG] Fetching cached identity id.
+2024-02-17 18:35:07.796 +09:00 [DBG] Fetching cached identity id.
+2024-02-17 18:35:07.820 +09:00 [DBG] Sending Analytics Batches
+2024-02-17 18:35:07.822 +09:00 [DBG] Checking if table AnalyticsTable is empty
+2024-02-17 18:35:07.822 +09:00 [DBG] is empty: False
+2024-02-17 18:35:07.823 +09:00 [DBG] Analytics event batch successfully created, sending analytics
+2024-02-17 18:35:07.824 +09:00 [DBG] Sending analytics batch async
+2024-02-17 18:35:07.824 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.824 +09:00 [DBG] Pinpoint endpoint ID does not exist
+2024-02-17 18:35:07.824 +09:00 [DBG] Pinpoint endpoint info needs to be updated.
+2024-02-17 18:35:07.830 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.830 +09:00 [DBG] Fetching cached identity id.
+2024-02-17 18:35:07.831 +09:00 [DBG] Fetching cached identity id.
+2024-02-17 18:35:07.913 +09:00 [DBG] Caching identity id.
+2024-02-17 18:35:07.913 +09:00 [DBG] Caching identity id.
+2024-02-17 18:35:07.914 +09:00 [INF] Saving metrics attributes to /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:35:07.914 +09:00 [DBG] Metrics attributes saved to file: /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:35:07.914 +09:00 [DBG] Endpoint ID set: ap-northeast-2:0cf353c1-4635-c43a-ce1f-a58688484074
+2024-02-17 18:35:07.914 +09:00 [DBG] OSVersion: Unix 23.3.0.0
+2024-02-17 18:35:07.915 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:07.915 +09:00 [DBG] endpoint update request created
+2024-02-17 18:35:07.915 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.915 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.915 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:07.924 +09:00 [DBG] Create update available window
+2024-02-17 18:35:07.924 +09:00 [DBG] Create update available window
+2024-02-17 18:35:08.018 +09:00 [DBG] Caching credentials.
+2024-02-17 18:35:08.133 +09:00 [DBG] CloudWatch response received
+2024-02-17 18:35:08.134 +09:00 [DBG] CloudWatch response status code: OK
+2024-02-17 18:35:08.134 +09:00 [DBG] successfully put metrics to cloudwatch
+2024-02-17 18:35:08.134 +09:00 [DBG] Deleting successfully sent batch of metric events
+2024-02-17 18:35:08.138 +09:00 [DBG] Checking if table MetricsTable is empty
+2024-02-17 18:35:08.138 +09:00 [DBG] is empty: False
+2024-02-17 18:35:08.139 +09:00 [DBG] Metrics event batch successfully created, sending metrics
+2024-02-17 18:35:08.139 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:08.139 +09:00 [DBG] Sending metrics batch async
+2024-02-17 18:35:08.139 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:08.139 +09:00 [DBG] Metrics data request created
+2024-02-17 18:35:08.149 +09:00 [DBG] endpoint update completed with response status: Accepted
+2024-02-17 18:35:08.150 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:08.150 +09:00 [INF] Saving metrics attributes to /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:35:08.150 +09:00 [DBG] Metrics attributes saved to file: /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:35:08.151 +09:00 [INF] Saving metrics attributes to /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:35:08.151 +09:00 [DBG] Metrics attributes saved to file: /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:35:08.151 +09:00 [DBG] Endpoint ID: ap-northeast-2:0cf353c1-4635-c43a-ce1f-a58688484074
+2024-02-17 18:35:08.151 +09:00 [DBG] Pinpoint endpoint id: ap-northeast-2:0cf353c1-4635-c43a-ce1f-a58688484074
+2024-02-17 18:35:08.153 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:08.155 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:08.156 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:08.156 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:08.156 +09:00 [DBG] OS: MacOS
+2024-02-17 18:35:08.156 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:35:08.207 +09:00 [DBG] CloudWatch response received
+2024-02-17 18:35:08.207 +09:00 [DBG] CloudWatch response status code: OK
+2024-02-17 18:35:08.207 +09:00 [DBG] successfully put metrics to cloudwatch
+2024-02-17 18:35:08.207 +09:00 [DBG] Deleting successfully sent batch of metric events
+2024-02-17 18:35:08.211 +09:00 [DBG] Checking if table MetricsTable is empty
+2024-02-17 18:35:08.211 +09:00 [DBG] is empty: True
+2024-02-17 18:35:08.211 +09:00 [DBG] Finished sending batches of metrics to cloudwatch.
+2024-02-17 18:35:08.272 +09:00 [DBG] 2024-02-17 오후 6:35:08 Accepted
+2024-02-17 18:35:08.272 +09:00 [DBG] successfully put analytics to pinpoint
+2024-02-17 18:35:08.272 +09:00 [DBG] Events batch was accepted. Checking individual events for accepted status.
+2024-02-17 18:35:08.276 +09:00 [DBG] Checking if table AnalyticsTable is empty
+2024-02-17 18:35:08.276 +09:00 [DBG] is empty: True
+2024-02-17 18:35:08.277 +09:00 [DBG] Finished sending batches of analytics to pinpoint.
+2024-02-17 18:35:11.046 +09:00 [DBG] Create update progress window
+2024-02-17 18:35:12.196 +09:00 [DBG] Create download progress window
+2024-02-17 18:35:47.731 +09:00 [DBG] Inserted event CLICK_TRAY_ICON 1 to AnalyticsTable
+2024-02-17 18:36:17.170 +09:00 [INF] Adding profile with name: ktown4u, OpenVPN config file: /Users/msbaek/Documents/hminter-VPN/hmmall.ovpn
+2024-02-17 18:36:17.174 +09:00 [INF] Validating OpenVPN config /Users/msbaek/Documents/hminter-VPN/hmmall.ovpn
+2024-02-17 18:36:17.174 +09:00 [INF] File size of /Users/msbaek/Documents/hminter-VPN/hmmall.ovpn: 7647 bytes
+2024-02-17 18:36:17.174 +09:00 [INF] Validating schema for OpenVPN config: /Users/msbaek/Documents/hminter-VPN/hmmall.ovpn
+2024-02-17 18:36:18.826 +09:00 [ERR] UI handled exception
+ACVC.Core.OpenVpn.OvpnFlagNotSupportedException: comp-lzo in the OpenVPN config contains flags that are not supported. Fail the import
+  at ACVC.Core.OpenVpn.OvpnConfigParser.FailOnNonAllowlistedFlag (System.String line) [0x000fe] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.OpenVpn.OvpnConfigParser.ConfigSchemaCheckAndGetAuthTypes (System.String ovpnConfigFile) [0x00176] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.OpenVpn.OvpnConfigParser.ValidateConfig (System.String ovpnConfigFile) [0x00006] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.OpenVpn.OvpnConnectionProfileManager.AddProfile (System.String profileName, System.String ovpnConfigFile) [0x000b3] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.OSX.ViewControllers.AddProfileViewController.AddProfileButtonClicked (Foundation.NSObject sender) [0x00077] in <ab34827392074a43a0ba5367446efdcf>:0 
+2024-02-17 18:36:18.837 +09:00 [DBG] Inserted event PROFILE_CREATE_ERROR 1 to MetricsTable
+2024-02-17 18:36:18.838 +09:00 [DBG] Inserted event PROFILE_CREATE_ERROR 1 to AnalyticsTable
+2024-02-17 18:41:52.429 +09:00 [DBG] Caught exception when getting connection status. Exception information: System.TimeoutException: The message did not respond within the expected timeframe or was cancelled
+  at ACVC.Core.OpenVpn.OvpnConnectionManager.SendMessage (System.String message, System.Int32 timeout, System.Threading.CancellationToken cancellationToken) [0x001ca] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.OpenVpn.OvpnConnectionManager.GetConnectionStatus () [0x0007c] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.Metrics.MetricsClient.RecordBytesMetricsAndAnalytics (ACVC.Core.IConnectionManager connectionManager) [0x00077] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+2024-02-17 18:41:52.432 +09:00 [DBG] Stopping DNS monitoring thread
+2024-02-17 18:41:52.432 +09:00 [DBG] Releasing DNS monitoring lock
+2024-02-17 18:41:52.432 +09:00 [DBG] Connection state changed for CVPN endpoint id: 
+2024-02-17 18:41:52.435 +09:00 [DBG] Inserted event UI_APP_VPN_CONNECT_GENERAL_ERROR 0 to MetricsTable
+2024-02-17 18:41:52.438 +09:00 [DBG] Inserted event LOCAL_NETWORK_CIDR_EMPTY_ERROR 0 to MetricsTable
+2024-02-17 18:41:52.439 +09:00 [INF] Terminating connection
+2024-02-17 18:41:52.440 +09:00 [DBG] 🏞 Ending connection details reporting.
+2024-02-17 18:41:52.440 +09:00 [WRN] We are calling GracefulKill in a method that is not supposed to change Connection state.
+2024-02-17 18:41:52.440 +09:00 [DBG] GracefulKill
+2024-02-17 18:41:52.442 +09:00 [DBG] Cancelling socket listen token
+2024-02-17 18:41:52.442 +09:00 [DBG] Dispose socket
+2024-02-17 18:41:52.442 +09:00 [DBG] Signal process kill with helper tool.
+2024-02-17 18:41:52.443 +09:00 [DBG] Starting process
+2024-02-17 18:41:52.454 +09:00 [DBG] Start to read process output
+2024-02-17 18:41:52.455 +09:00 [DBG] Shutting down metrics agent
+2024-02-17 18:41:52.456 +09:00 [DBG] Metrics agent shut down
+2024-02-17 18:41:55.587 +09:00 [INF] Logger initialized
+2024-02-17 18:41:55.929 +09:00 [INF] Loading attributes file from /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:41:55.991 +09:00 [DBG] Metrics attributes saved to file: /Users/msbaek/.config/AWSVPNClient/MetricsAttributes
+2024-02-17 18:41:55.991 +09:00 [DBG] Database path: /Users/msbaek/.config/AWSVPNClient/awsvpnclientmetrics.db
+2024-02-17 18:41:55.991 +09:00 [INF] Loading profile store from /Users/msbaek/.config/AWSVPNClient/ConnectionProfiles
+2024-02-17 18:41:56.005 +09:00 [INF] Saving profile store to /Users/msbaek/.config/AWSVPNClient/ConnectionProfiles
+2024-02-17 18:41:56.013 +09:00 [DBG] Auto culture: ko-KR Auto UI culture: ko-KR
+2024-02-17 18:41:56.014 +09:00 [DBG] Can successfully read and write app data folder.
+2024-02-17 18:41:56.015 +09:00 [DBG] helperToolExePath: /Applications/AWS VPN Client/AWS VPN Client.app/Contents/Resources/AWS VPN Client/Contents/MacOS/ACVCHelperTool
+2024-02-17 18:41:56.183 +09:00 [DBG] macOS viewDidLoad
+2024-02-17 18:41:56.189 +09:00 [DBG] Connection state changed for CVPN endpoint id: 
+2024-02-17 18:41:56.190 +09:00 [INF] Loading preferences file from /Users/msbaek/.config/AWSVPNClient/Preferences
+2024-02-17 18:41:56.251 +09:00 [DBG] Inserted event UI_APP_VPN_CONNECT_GENERAL_ERROR 0 to MetricsTable
+2024-02-17 18:41:56.252 +09:00 [DBG] Inserted event LOCAL_NETWORK_CIDR_EMPTY_ERROR 0 to MetricsTable
+2024-02-17 18:41:56.371 +09:00 [DBG] Inserted event APPLICATION_CRASH_DETECTED 0 to MetricsTable
+2024-02-17 18:41:56.373 +09:00 [DBG] Current preferences schema version is 1, which is less or equal to current supported version: 1. 
+2024-02-17 18:41:56.379 +09:00 [DBG] Metric agent started
+2024-02-17 18:41:56.381 +09:00 [DBG] Sending Metrics batches
+2024-02-17 18:41:56.384 +09:00 [DBG] Checking if table MetricsTable is empty
+2024-02-17 18:41:56.388 +09:00 [DBG] is empty: False
+2024-02-17 18:41:56.403 +09:00 [DBG] Metrics event batch successfully created, sending metrics
+2024-02-17 18:41:56.477 +09:00 [DBG] Inserted event PROFILE_CONFIGURATION_VERSION 1 to AnalyticsTable
+2024-02-17 18:41:56.477 +09:00 [DBG] Current metadata schema version is 1, which is less or equal to current supported version: 1. 
+2024-02-17 18:41:56.480 +09:00 [DBG] Inserted event CLICK_LAUNCH_DESKTOP_APP 1 to AnalyticsTable
+2024-02-17 18:41:56.482 +09:00 [DBG] Updater checks started
+2024-02-17 18:41:56.487 +09:00 [DBG] AcvcHelperOutLog doesn't exist. Skipping
+2024-02-17 18:41:56.487 +09:00 [DBG] AcvcHelperErrLog doesn't exist. Skipping
+2024-02-17 18:41:56.489 +09:00 [DBG] Total logs size (MB): {0}0
+2024-02-17 18:41:56.492 +09:00 [DBG] Inserted event LOG_DISK_USAGE 0 to MetricsTable
+2024-02-17 18:41:56.494 +09:00 [DBG] Inserted event LOG_DISK_USAGE_INFO 0 to AnalyticsTable
+2024-02-17 18:41:56.825 +09:00 [DBG] Create update available window
+2024-02-17 18:41:56.825 +09:00 [DBG] Create update available window
+2024-02-17 18:41:57.318 +09:00 [DBG] /usr/bin/dig stdout: ; <<>> DiG 9.10.6 <<>> pinpoint.metrics-awsvpnclient.us-east-1.amazonaws.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 15910
+;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 1
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;pinpoint.metrics-awsvpnclient.us-east-1.amazonaws.com. IN A
+;; ANSWER SECTION:
+pinpoint.metrics-awsvpnclient.us-east-1.amazonaws.com. 900 IN CNAME pinpoint.ap-northeast-2.amazonaws.com.
+pinpoint.ap-northeast-2.amazonaws.com. 60 IN A	54.192.175.28
+pinpoint.ap-northeast-2.amazonaws.com. 60 IN A	54.192.175.52
+pinpoint.ap-northeast-2.amazonaws.com. 60 IN A	54.192.175.25
+pinpoint.ap-northeast-2.amazonaws.com. 60 IN A	54.192.175.32
+;; Query time: 893 msec
+;; SERVER: 210.220.163.82#53(210.220.163.82)
+;; WHEN: Sat Feb 17 18:41:57 KST 2024
+;; MSG SIZE  rcvd: 197
+
+2024-02-17 18:41:57.318 +09:00 [DBG] /usr/bin/dig stderr: 
+2024-02-17 18:41:57.319 +09:00 [DBG] /usr/bin/dig exit code: 0
+2024-02-17 18:41:57.319 +09:00 [DBG] Error: 
+2024-02-17 18:41:57.320 +09:00 [DBG] dig command result: pinpoint.ap-northeast-2.amazonaws.com.
+2024-02-17 18:41:57.324 +09:00 [DBG] Storing metrics region ap-northeast-2 in app
+2024-02-17 18:41:57.324 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.324 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.325 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.325 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.425 +09:00 [DBG] Fetching cached identity id.
+2024-02-17 18:41:57.425 +09:00 [DBG] Looking up current region
+2024-02-17 18:41:57.426 +09:00 [DBG] Current region is: ap-northeast-2
+2024-02-17 18:41:57.426 +09:00 [DBG] Setting identityId and temporaryCredentials file paths.
+2024-02-17 18:41:57.427 +09:00 [DBG] Caching identity id.
+2024-02-17 18:41:57.428 +09:00 [DBG] Fetching cached credentials.
+2024-02-17 18:41:57.428 +09:00 [DBG] Reading cached credentials file.
+2024-02-17 18:41:57.433 +09:00 [DBG] Initializing credentials provider.
+2024-02-17 18:41:57.434 +09:00 [DBG] Sending metrics batch async
+2024-02-17 18:41:57.434 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.434 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.434 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.434 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.434 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.434 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.434 +09:00 [DBG] Metrics data request created
+2024-02-17 18:41:57.490 +09:00 [DBG] Sending Analytics Batches
+2024-02-17 18:41:57.492 +09:00 [DBG] Checking if table AnalyticsTable is empty
+2024-02-17 18:41:57.492 +09:00 [DBG] is empty: False
+2024-02-17 18:41:57.493 +09:00 [DBG] Analytics event batch successfully created, sending analytics
+2024-02-17 18:41:57.494 +09:00 [DBG] Sending analytics batch async
+2024-02-17 18:41:57.494 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.494 +09:00 [DBG] Pinpoint endpoint ID already exists
+2024-02-17 18:41:57.494 +09:00 [DBG] OSVersion: Unix 23.3.0.0
+2024-02-17 18:41:57.494 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.495 +09:00 [DBG] Endpoint ID: ap-northeast-2:0cf353c1-4635-c43a-ce1f-a58688484074
+2024-02-17 18:41:57.495 +09:00 [DBG] Pinpoint endpoint id: ap-northeast-2:0cf353c1-4635-c43a-ce1f-a58688484074
+2024-02-17 18:41:57.497 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.500 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.500 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.500 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.500 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.500 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.500 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.500 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.500 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.500 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.500 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.582 +09:00 [DBG] CloudWatch response received
+2024-02-17 18:41:57.583 +09:00 [DBG] CloudWatch response status code: OK
+2024-02-17 18:41:57.583 +09:00 [DBG] successfully put metrics to cloudwatch
+2024-02-17 18:41:57.583 +09:00 [DBG] Deleting successfully sent batch of metric events
+2024-02-17 18:41:57.587 +09:00 [DBG] Checking if table MetricsTable is empty
+2024-02-17 18:41:57.587 +09:00 [DBG] is empty: False
+2024-02-17 18:41:57.588 +09:00 [DBG] Metrics event batch successfully created, sending metrics
+2024-02-17 18:41:57.588 +09:00 [DBG] metrics region already exists in app: ap-northeast-2
+2024-02-17 18:41:57.588 +09:00 [DBG] Sending metrics batch async
+2024-02-17 18:41:57.588 +09:00 [DBG] OS: MacOS
+2024-02-17 18:41:57.588 +09:00 [DBG] Metrics data request created
+2024-02-17 18:41:57.635 +09:00 [DBG] 2024-02-17 오후 6:41:57 Accepted
+2024-02-17 18:41:57.635 +09:00 [DBG] successfully put analytics to pinpoint
+2024-02-17 18:41:57.635 +09:00 [DBG] Events batch was accepted. Checking individual events for accepted status.
+2024-02-17 18:41:57.641 +09:00 [DBG] Checking if table AnalyticsTable is empty
+2024-02-17 18:41:57.641 +09:00 [DBG] is empty: True
+2024-02-17 18:41:57.641 +09:00 [DBG] Finished sending batches of analytics to pinpoint.
+2024-02-17 18:41:57.654 +09:00 [DBG] CloudWatch response received
+2024-02-17 18:41:57.654 +09:00 [DBG] CloudWatch response status code: OK
+2024-02-17 18:41:57.654 +09:00 [DBG] successfully put metrics to cloudwatch
+2024-02-17 18:41:57.654 +09:00 [DBG] Deleting successfully sent batch of metric events
+2024-02-17 18:41:57.657 +09:00 [DBG] Checking if table MetricsTable is empty
+2024-02-17 18:41:57.658 +09:00 [DBG] is empty: True
+2024-02-17 18:41:57.658 +09:00 [DBG] Finished sending batches of metrics to cloudwatch.
+2024-02-17 18:42:03.587 +09:00 [DBG] Caught exception when getting connection status. Exception information: System.TimeoutException: The message did not respond within the expected timeframe or was cancelled
+  at ACVC.Core.OpenVpn.OvpnConnectionManager.SendMessage (System.String message, System.Int32 timeout, System.Threading.CancellationToken cancellationToken) [0x001ca] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.OpenVpn.OvpnConnectionManager.GetConnectionStatus () [0x0007c] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+  at ACVC.Core.Metrics.MetricsClient.RecordBytesMetricsAndAnalytics (ACVC.Core.IConnectionManager connectionManager) [0x00077] in <aa51f92ef5dd4672897da646a5393ec3>:0 
+2024-02-17 18:42:03.589 +09:00 [DBG] Stopping DNS monitoring thread
+2024-02-17 18:42:03.589 +09:00 [DBG] Releasing DNS monitoring lock
+2024-02-17 18:42:03.589 +09:00 [DBG] Connection state changed for CVPN endpoint id: 
+2024-02-17 18:42:03.592 +09:00 [DBG] Inserted event UI_APP_VPN_CONNECT_GENERAL_ERROR 0 to MetricsTable
+2024-02-17 18:42:03.594 +09:00 [DBG] Inserted event LOCAL_NETWORK_CIDR_EMPTY_ERROR 0 to MetricsTable
+2024-02-17 18:42:03.596 +09:00 [INF] Terminating connection
+2024-02-17 18:42:03.596 +09:00 [DBG] 🏞 Ending connection details reporting.
+2024-02-17 18:42:03.596 +09:00 [WRN] We are calling GracefulKill in a method that is not supposed to change Connection state.
+2024-02-17 18:42:03.597 +09:00 [DBG] GracefulKill
+2024-02-17 18:42:03.598 +09:00 [DBG] Cancelling socket listen token
+2024-02-17 18:42:03.598 +09:00 [DBG] Dispose socket
+2024-02-17 18:42:03.598 +09:00 [DBG] Signal process kill with helper tool.
+2024-02-17 18:42:03.600 +09:00 [DBG] Starting process
+2024-02-17 18:42:03.608 +09:00 [DBG] Start to read process output
+2024-02-17 18:42:03.610 +09:00 [DBG] Shutting down metrics agent
+2024-02-17 18:42:03.610 +09:00 [DBG] Metrics agent shut down
