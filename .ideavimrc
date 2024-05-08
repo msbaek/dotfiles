@@ -1,0 +1,116 @@
+""" Editing and Reloading the Config
+" set clipboard+=unnamed
+" set clipboard+=ideaput
+
+" Use the OS clipboard by default
+set clipboard=unnamed,unnamedplus
+" Enable native idea paste action for put operations
+set clipboard+=ideaput
+set incsearch
+set smartcase
+set number 
+set relativenumber
+
+set idearefactormode=keep
+set ideajoin
+set surround
+set easymotion
+set cursorline
+
+set commentary
+""" The Escape button
+map <C-c> <Esc>
+""" The Leader Key
+let mapleader=" "
+
+
+nnoremap <Leader>l :action ReformatCode<CR>
+nnoremap <Leader>z :action RenameElement<CR>
+nnoremap se :action ShowErrorDescription<CR>
+" nnoremap qd :action QuickJavaDoc<CR>
+nnoremap qi :action QuickImplementations<CR>
+" nnoremap <Leader>1 :action QuickJavaDoc<CR>
+nnoremap qj :action QuickJavaDoc<CR>
+
+
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+""" Distraction Free Mode
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+""" Terminal
+nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+""" Navigation
+nnoremap <c-\> :action MoveTabRight<CR>
+nnoremap <c-0> :action SplitVertically<CR>
+nnoremap <c--> :action SplitHorizontally<CR>
+nnoremap <c-=> :action Unsplit<CR>
+nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <s-TAB> :action PreviousTab<CR>
+nnoremap <TAB> :action NextTab<CR>
+nnoremap <Leader>en :action EditSourceInNewWindow<CR>
+" nnoremap <Leader>n :action NextWindow<CR>
+nnoremap <Leader>q :action CloseContent<CR>
+nnoremap <Leader>qa :action CloseAllEditors<CR>
+""" Editing source code
+vnoremap < <gv
+vnoremap > >gv
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+" nnoremap <leader>c :action CommentByLineComment<CR>
+nnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+" nnoremap <c-r> :action RecentFiles<CR>
+nnoremap <leader>ll :action RecentLocations<CR>
+nnoremap <leader>lh  :action LocalHistory.ShowHistory<CR>
+nnoremap ne :action GotoNextError<CR>
+nnoremap nE :action GotoPreviousError<CR>
+" nnoremap <leader>s :write<CR>
+""" Searching and Source Code Navigation
+nnoremap <c-/> :action FindInPath<CR>
+nnoremap <c-a> :action GotoAction<CR>
+nnoremap <leader>u :action FindUsages<CR>
+nnoremap <leader>f :action GotoRelated<CR>
+nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+nnoremap <leader>s :action FileStructurePopup<CR>
+nnoremap gc :action GotoClass<CR>
+nnoremap gl :action GotoFile<CR>
+" nnoremap gs :action GotoSymbol<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap qd :action GotoDeclaration<CR>
+nnoremap gp :action GotToSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+""" Tool windows
+nnoremap <c-p> :action JumpToLastWindow<CR>
+nnoremap <c-x> :action HideAllWindows<CR>
+""" Running and Debugging
+nnoremap ,r :action Rerun<CR>
+nnoremap ,c :action ContextRun<CR>
+nnoremap ,u :action RunClass<CR>
+nnoremap ,f :action ChooseRunConfiguration<CR>
+nnoremap ,t :action ActivateRunToolWindow<CR>
+""" nnoremap ,f :action RerunFailedTests<CR>
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+nnoremap ,d :action ContextDebug<CR>
+nnoremap ,n :action ActivateDebugToolWindow<CR>
+
+nnoremap <c-o> :action CloseAllEditorsButActive<CR>
+
+set NERDTree
+noremap <leader>m :NERDTreeToggle<CR>
+noremap <leader>n :action SelectInProjectView<CR>
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
