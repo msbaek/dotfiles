@@ -43,6 +43,15 @@ return {
           -- map("n", "<leader>fs", "<cmd>set ft=sql<cr>")
           -- map("n", "<leader>fd", "<cmd>set ft=markdown<cr>")
           -- map("n", "<leader>fj", "<cmd>set ft=java<cr⌘ ⌥ ⇧>")
+          ["<leader>Bo"] = { "<cmd>ObsidianOpen<cr>", desc = "Open" },
+          ["<leader>Bp"] = { "<cmd>ObsidianPasteImg<cr>", desc = "PasteImg" },
+          ["<leader>Bd"] = { "<cmd>ObsidianDailies<cr>", desc = "Dailies" },
+          ["<leader>Bt"] = { "<cmd>ObsidianTags<cr>", desc = "Tags" },
+          ["<leader>Bb"] = { "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+          ["<leader>Bf"] = { "<cmd>ObsidianFollowLink<cr>", desc = "FollowLink" },
+          ["<leader>Bl"] = { "<cmd>ObsidianLinks<cr>", desc = "Links" },
+          ["<leader>Bq"] = { "<cmd>ObsidianQuickSwitch<cr>", desc = "QuickSwitch" },
+          ["<leader>Bm"] = { "<cmd>ObsidianTemplate<cr>", desc = "Template" },
         },
         t = {
           -- setting a mapping to false will disable it
