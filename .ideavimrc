@@ -23,6 +23,8 @@ map <C-c> <Esc>
 """ The Leader Key
 let mapleader=" "
 
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
 nnoremap <Leader>l :action ReformatCode<CR>
 nnoremap <Leader>z :action RenameElement<CR>
@@ -33,8 +35,6 @@ nnoremap qi :action QuickImplementations<CR>
 nnoremap qj :action QuickJavaDoc<CR>
 
 
-nnoremap \e :e ~/.ideavimrc<CR>
-nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 """ Distraction Free Mode
 nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
 """ Terminal
@@ -61,23 +61,26 @@ nnoremap <Leader>qa :action CloseAllEditors<CR>
 """ Editing source code
 vnoremap < <gv
 vnoremap > >gv
+
 nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
 nnoremap zc :action CollapseRegion<CR>
 nnoremap zo :action ExpandRegion<CR>
 nnoremap <leader>zc :action CollapseAllRegions<CR>
 nnoremap <leader>zo :action ExpandAllRegions<CR>
-" nnoremap <leader>c :action CommentByLineComment<CR>
 nnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
-nnoremap <leader>o :action OptimizeImports<CR>
-" nnoremap <c-r> :action RecentFiles<CR>
+" nnoremap <leader>o :action OptimizeImports<CR>
+nnoremap <leader>o :action SelectInProjectView<CR>
 nnoremap <leader>ll :action RecentLocations<CR>
 nnoremap <leader>lh  :action LocalHistory.ShowHistory<CR>
+nnoremap <c-/> :action FindInPath<CR>
+
+" nnoremap <leader>c :action CommentByLineComment<CR>
+" nnoremap <c-r> :action RecentFiles<CR>
 nnoremap ne :action GotoNextError<CR>
 nnoremap nE :action GotoPreviousError<CR>
 " nnoremap <leader>s :write<CR>
 """ Searching and Source Code Navigation
-nnoremap <c-/> :action FindInPath<CR>
 nnoremap <c-a> :action GotoAction<CR>
 nnoremap <leader>u :action FindUsages<CR>
 nnoremap <leader>f :action GotoRelated<CR>
@@ -111,6 +114,6 @@ nnoremap <c-o> :action CloseAllEditorsButActive<CR>
 
 set NERDTree
 noremap <leader>m :NERDTreeToggle<CR>
-noremap <leader>n :action SelectInProjectView<CR>
+" noremap <leader>n :action SelectInProjectView<CR>
 let g:NERDTreeMapActivateNode='l'
 let g:NERDTreeMapJumpParent='h'
