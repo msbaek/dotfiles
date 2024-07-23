@@ -175,3 +175,6 @@ alias ls="eza --color=always --icons=always -a -1 --git"
 
 export LANG=ko_KR.UTF-8
 export LC_ALL=ko_KR.UTF-8
+eval "$(rbenv init -)"
+
+alias jhkeycloakup='docker-compose -f src/main/docker/keycloak.yml up -d'

@@ -18,62 +18,6 @@
                 },
                 "rules": [
                     {
-                        "description": "left-control+backspace = delete",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^co\\.zeit\\.hyper$",
-                                            "^co\\.zeit\\.hyperterm$",
-                                            "^com\\.2X\\.Client\\.Mac$",
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.citrix\\.XenAppViewer$",
-                                            "^com\\.googlecode\\.iterm2$",
-                                            "^com\\.itap-mobile\\.qmote$",
-                                            "^com\\.microsoft\\.rdc$",
-                                            "^com\\.microsoft\\.rdc\\.mac$",
-                                            "^com\\.microsoft\\.rdc\\.macos$",
-                                            "^com\\.microsoft\\.rdc\\.osx\\.beta$",
-                                            "^com\\.nulana\\.remotixmac$",
-                                            "^com\\.p5sys\\.jump\\.mac\\.viewer$",
-                                            "^com\\.p5sys\\.jump\\.mac\\.viewer\\.web$",
-                                            "^com\\.parallels\\.desktop$",
-                                            "^com\\.parallels\\.desktop\\.console$",
-                                            "^com\\.parallels\\.vm$",
-                                            "^com\\.parallels\\.winapp\\.",
-                                            "^com\\.teamviewer\\.TeamViewer$",
-                                            "^com\\.thinomenon\\.RemoteDesktopConnection$",
-                                            "^com\\.vmware\\.fusion$",
-                                            "^com\\.vmware\\.horizon$",
-                                            "^com\\.vmware\\.proxyApp\\.",
-                                            "^com\\.vmware\\.view$",
-                                            "^io\\.alacritty$",
-                                            "^net\\.kovidgoyal\\.kitty$",
-                                            "^net\\.sf\\.cord$",
-                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$"
-                                        ],
-                                        "type": "frontmost_application_unless"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "delete_or_backspace",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_forward"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Change Won (₩) to backtick (`).",
                         "manipulators": [
                             {
@@ -448,18 +392,7 @@
                     "mouse_flip_y": false,
                     "mouse_swap_wheels": false,
                     "mouse_swap_xy": false,
-                    "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "right_command"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f18"
-                                }
-                            ]
-                        }
-                    ],
+                    "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
@@ -678,7 +611,7 @@
                     "simple_modifications": [
                         {
                             "from": {
-                                "key_code": "japanese_kana"
+                                "key_code": "delete_forward"
                             },
                             "to": [
                                 {
@@ -688,11 +621,11 @@
                         },
                         {
                             "from": {
-                                "key_code": "non_us_backslash"
+                                "key_code": "japanese_kana"
                             },
                             "to": [
                                 {
-                                    "key_code": "grave_accent_and_tilde"
+                                    "key_code": "f18"
                                 }
                             ]
                         }
@@ -710,7 +643,7 @@
                         "product_id": 64008,
                         "vendor_id": 13652
                     },
-                    "ignore": false,
+                    "ignore": true,
                     "manipulate_caps_lock_led": true,
                     "mouse_flip_horizontal_wheel": false,
                     "mouse_flip_vertical_wheel": false,
@@ -718,38 +651,7 @@
                     "mouse_flip_y": false,
                     "mouse_swap_wheels": false,
                     "mouse_swap_xy": false,
-                    "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "japanese_kana"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f18"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "non_us_backslash"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "grave_accent_and_tilde"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "right_control"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f18"
-                                }
-                            ]
-                        }
-                    ],
+                    "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
@@ -772,61 +674,6 @@
                     "mouse_swap_wheels": false,
                     "mouse_swap_xy": false,
                     "simple_modifications": [],
-                    "treat_as_built_in_keyboard": false
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
-                    "identifiers": {
-                        "is_game_pad": false,
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 268,
-                        "vendor_id": 9610
-                    },
-                    "ignore": true,
-                    "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
-                    "simple_modifications": [],
-                    "treat_as_built_in_keyboard": false
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": false,
-                    "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
-                    "identifiers": {
-                        "is_game_pad": false,
-                        "is_keyboard": true,
-                        "is_pointing_device": false,
-                        "product_id": 268,
-                        "vendor_id": 9610
-                    },
-                    "ignore": false,
-                    "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
-                    "simple_modifications": [
-                        {
-                            "from": {
-                                "key_code": "japanese_kana"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f18"
-                                }
-                            ]
-                        }
-                    ],
                     "treat_as_built_in_keyboard": false
                 }
             ],
@@ -965,6 +812,16 @@
                     "to": [
                         {
                             "key_code": "left_control"
+                        }
+                    ]
+                },
+                {
+                    "from": {
+                        "key_code": "grave_accent_and_tilde"
+                    },
+                    "to": [
+                        {
+                            "key_code": "non_us_backslash"
                         }
                     ]
                 }

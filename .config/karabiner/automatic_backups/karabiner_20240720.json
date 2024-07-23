@@ -721,16 +721,6 @@
                     "simple_modifications": [
                         {
                             "from": {
-                                "key_code": "japanese_kana"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "f18"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
                                 "key_code": "non_us_backslash"
                             },
                             "to": [
@@ -741,7 +731,7 @@
                         },
                         {
                             "from": {
-                                "key_code": "right_control"
+                                "key_code": "japanese_kana"
                             },
                             "to": [
                                 {

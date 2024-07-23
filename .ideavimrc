@@ -69,8 +69,8 @@ nnoremap zo :action ExpandRegion<CR>
 nnoremap <leader>zc :action CollapseAllRegions<CR>
 nnoremap <leader>zo :action ExpandAllRegions<CR>
 nnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
-" nnoremap <leader>o :action OptimizeImports<CR>
-nnoremap <leader>o :action SelectInProjectView<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+nnoremap <leader>e :action SelectInProjectView<CR>
 nnoremap <leader>ll :action RecentLocations<CR>
 nnoremap <leader>lh  :action LocalHistory.ShowHistory<CR>
 nnoremap <c-/> :action FindInPath<CR>
