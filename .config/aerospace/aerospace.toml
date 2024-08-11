@@ -52,12 +52,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.bottom =     10
-outer.top =        10
-outer.right =      10
+inner.horizontal = 5
+inner.vertical =   5
+outer.left =       5
+outer.bottom =     5
+outer.top =        5
+outer.right =      5
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -99,6 +99,15 @@ alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
+rsdklt-shift-r = 'mode resize'
+
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+b = 'balance-sizes'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
@@ -113,28 +122,12 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
-alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-alt-b = 'workspace B'
-alt-c = 'workspace C'
-alt-d = 'workspace D'
-alt-e = 'workspace E'
-alt-f = 'workspace F'
-alt-g = 'workspace G'
-alt-i = 'workspace I'
-alt-m = 'workspace M'
-alt-n = 'workspace N'
-alt-o = 'workspace O'
-alt-p = 'workspace P'
-alt-q = 'workspace Q'
-alt-r = 'workspace R'
-alt-s = 'workspace S'
-alt-t = 'workspace T'
-alt-u = 'workspace U'
-alt-v = 'workspace V'
-alt-w = 'workspace W'
-alt-x = 'workspace X'
-alt-y = 'workspace Y'
-alt-z = 'workspace Z'
+alt-b = 'workspace B' # browser
+alt-d = 'workspace D' # development
+alt-e = 'workspace E' # file explorer
+alt-n = 'workspace N' # notes
+alt-o = 'workspace O' # office
+alt-t = 'workspace T' # terminal
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -146,28 +139,12 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
-alt-shift-c = 'move-node-to-workspace C'
 alt-shift-d = 'move-node-to-workspace D'
 alt-shift-e = 'move-node-to-workspace E'
-alt-shift-f = 'move-node-to-workspace F'
-alt-shift-g = 'move-node-to-workspace G'
-alt-shift-i = 'move-node-to-workspace I'
-alt-shift-m = 'move-node-to-workspace M'
 alt-shift-n = 'move-node-to-workspace N'
 alt-shift-o = 'move-node-to-workspace O'
-alt-shift-p = 'move-node-to-workspace P'
-alt-shift-q = 'move-node-to-workspace Q'
-alt-shift-r = 'move-node-to-workspace R'
-alt-shift-s = 'move-node-to-workspace S'
 alt-shift-t = 'move-node-to-workspace T'
-alt-shift-u = 'move-node-to-workspace U'
-alt-shift-v = 'move-node-to-workspace V'
-alt-shift-w = 'move-node-to-workspace W'
-alt-shift-x = 'move-node-to-workspace X'
-alt-shift-y = 'move-node-to-workspace Y'
-alt-shift-z = 'move-node-to-workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -190,3 +167,44 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+# Setup Mouse Callbacks
+# I like moving the mouse to the center of the window when focus changes to it.
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Then add the following to move the mouse on window focus change:
+on-focus-changed = "move-mouse window-lazy-center"
+
+# Add keybind to fullscreen a window
+alt-shift-f = 'fullscreen'
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = "move-node-to-workspace T"
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = "move-node-to-workspace B" # Arc
+# 673   | com.microsoft.teams2             | Microsoft Teams
+# 678   | com.kakao.KakaoTalkMac           | 카카오톡
+# 683   | md.obsidian                      | Obsidian
+# 686   | com.apple.Safari                 | Safari
+# 687   | com.openai.chat                  | ChatGPT
+# 692   | com.linguee.DeepLCopyTranslator  | DeepL
+# 698   | QReader.MarginStudy.easy         | MarginNote 4
+# 699   | com.jetbrains.intellij           | IntelliJ IDEA
+# 703   | com.apple.mail                   | Mail
+# 711   | com.culturedcode.ThingsMac       | Things
+# 714   | com.devon-technologies.thinkpro2 | DEVONthink Pro
+# 719   | SwitchHosts                      | SwitchHosts
+# 721   | com.apple.Stickies               | 스티커
+# 723   | com.google.Chrome                | Google Chrome
+# 726   | com.devtoys                      | DevToys
+# 734   | com.apple.iCal                   | 캘린더
+# 739   | com.apple.Notes                  | 메모
+# 742   | com.amazonaws.acvc.osx           | AWS VPN Client
+# 747   | com.apple.finder                 | Finder
+# 2062  | com.renfei.SnippetsLab           | SnippetsLab
+# 23274 | com.apple.Preview                | 미리보기
+# 46099 | app.omnivore.app                 | Omnivore
+# 51045 | com.github.wez.wezterm           | WezTerm
