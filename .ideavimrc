@@ -31,6 +31,7 @@ nnoremap <Leader>z :action RenameElement<CR>
 nnoremap se :action ShowErrorDescription<CR>
 " nnoremap qd :action QuickJavaDoc<CR>
 nnoremap qi :action QuickImplementations<CR>
+nnoremap qr :action ToggleRenderedDocPresentation<CR>
 " nnoremap <Leader>1 :action QuickJavaDoc<CR>
 nnoremap qj :action QuickJavaDoc<CR>
 
