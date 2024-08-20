@@ -114,10 +114,13 @@ alt-b = 'workspace B' # browser
 alt-d = 'workspace D' # development
 alt-e = 'workspace E' # file explorer
 alt-i = 'workspace I' # office
+alt-m = 'workspace M' # music
 alt-n = 'workspace N' # notes
 alt-o = 'workspace O' # office
 alt-p = 'workspace P' # office
+alt-s = 'workspace S' # other development
 alt-t = 'workspace T' # terminal
+alt-w = 'workspace W' # weeky
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -133,10 +136,13 @@ alt-shift-b = 'move-node-to-workspace B'
 alt-shift-d = 'move-node-to-workspace D'
 alt-shift-e = 'move-node-to-workspace E'
 alt-shift-i = 'move-node-to-workspace I'
+alt-shift-m = 'move-node-to-workspace M'
 alt-shift-n = 'move-node-to-workspace N'
 alt-shift-o = 'move-node-to-workspace O'
 alt-shift-p = 'move-node-to-workspace P'
+alt-shift-s = 'move-node-to-workspace S'
 alt-shift-t = 'move-node-to-workspace T'
+alt-shift-w = 'move-node-to-workspace W'
 
 # Add keybind to fullscreen a window
 alt-shift-f = 'fullscreen'
