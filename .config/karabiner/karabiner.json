@@ -474,6 +474,10 @@
                     "ignore": false,
                     "simple_modifications": [
                         {
+                            "from": { "key_code": "f12" },
+                            "to": [{ "key_code": "grave_accent_and_tilde" }]
+                        },
+                        {
                             "from": { "key_code": "japanese_kana" },
                             "to": [{ "key_code": "f18" }]
                         },
@@ -484,10 +488,6 @@
                         {
                             "from": { "key_code": "left_option" },
                             "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "non_us_backslash" },
-                            "to": [{ "key_code": "grave_accent_and_tilde" }]
                         },
                         {
                             "from": { "key_code": "right_control" },

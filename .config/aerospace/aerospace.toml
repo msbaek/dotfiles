@@ -184,6 +184,63 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+# aerospace list-apps
+[[on-window-detected]]
+if.app-id = 'com.kakao.KakaoTalkMac'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.culturedcode.ThingsMac'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.amazonaws.acvc.osx'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = "move-node-to-workspace B"
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = "move-node-to-workspace B"
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.intellij'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = "move-node-to-workspace I"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = "move-node-to-workspace I"
+
+[[on-window-detected]]
+if.app-id = 'com.devon-technologies.thinkpro2'
+run = "move-node-to-workspace N"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = "move-node-to-workspace N"
+
+[[on-window-detected]]
+if.app-id = 'QReader.MarginStudy.easy'
+run = "move-node-to-workspace N"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = "move-node-to-workspace O"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = "move-node-to-workspace O"
+
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace T"
@@ -191,6 +248,14 @@ run = "move-node-to-workspace T"
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
 run = "move-node-to-workspace B" # Arc
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = "move-node-to-workspace W"
+
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = "move-node-to-workspace W" # Arc
 
 # 678   | com.kakao.KakaoTalkMac           | 카카오톡
 # 683   | md.obsidian                      | Obsidian
@@ -213,3 +278,5 @@ run = "move-node-to-workspace B" # Arc
 # 2062  | com.renfei.SnippetsLab           | SnippetsLab
 # 23274 | com.apple.Preview                | 미리보기
 # 51045 | com.github.wez.wezterm           | WezTerm
+# 682  | com.google.Chrome                | Google Chrome
+# 4884 | net.kovidgoyal.kitty             | kitty

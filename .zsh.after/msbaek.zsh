@@ -178,3 +178,6 @@ export LC_ALL=ko_KR.UTF-8
 eval "$(rbenv init -)"
 
 alias jhkeycloakup='docker-compose -f src/main/docker/keycloak.yml up -d'
+
+export PATH="/opt/homebrew/Caskroom/flutter/3.7.9/flutter/bin:$PATH"
+
