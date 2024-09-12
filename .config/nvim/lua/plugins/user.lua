@@ -82,4 +82,13 @@ return {
       )
     end,
   },
+  {
+    "github/copilot.vim",
+    event = "VeryLazy",
+    version = "*",
+  },
+  -- <Tab>: 제안 수락
+  -- <C-]>: 다음 제안으로 이동
+  -- <C-[>: 이전 제안으로 이동
+  -- <C-x>: 제안 거부
 }

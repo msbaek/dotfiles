@@ -194,12 +194,28 @@ if.app-id = 'com.culturedcode.ThingsMac'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
 if.app-id = 'com.amazonaws.acvc.osx'
 run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'net.xmind.vana.app'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iWork.Numbers'
+run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iWork.Keynote'
+run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Excel'
+run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
