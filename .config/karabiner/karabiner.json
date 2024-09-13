@@ -5,6 +5,7 @@
                 "rules": [
                     {
                         "description": "shift + 스페이스 를 사용하여 입력 소스 변경",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -44,7 +45,7 @@
                                 ],
                                 "from": {
                                     "key_code": "spacebar",
-                                    "modifiers": { "mandatory": ["shift"] }
+                                    "modifiers": { "mandatory": ["left_shift"] }
                                 },
                                 "to": [
                                     {
@@ -513,6 +514,10 @@
                         {
                             "from": { "key_code": "left_option" },
                             "to": [{ "key_code": "left_command" }]
+                        },
+                        {
+                            "from": { "key_code": "right_control" },
+                            "to": [{ "key_code": "f18" }]
                         }
                     ]
                 }

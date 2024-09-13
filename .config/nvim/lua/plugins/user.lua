@@ -86,9 +86,16 @@ return {
     "github/copilot.vim",
     event = "VeryLazy",
     version = "*",
+    -- keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+    --   expr = true,
+    --   replace_keycodes = false
+    -- }),
+    -- g.copilot_no_tab_map = true,
   },
-  -- <Tab>: 제안 수락
-  -- <C-]>: 다음 제안으로 이동
-  -- <C-[>: 이전 제안으로 이동
-  -- <C-x>: 제안 거부
+-- :imap
+-- i  <M-Right>     <Plug>(copilot-accept-word)
+-- i  <M-C-Right>   <Plug>(copilot-accept-line)
+-- i  <M-Bslash>    <Plug>(copilot-suggest)
+-- i  <M-[>         <Plug>(copilot-previous)
+-- i  <M-]>         <Plug>(copilot-next)
 }
