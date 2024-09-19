@@ -57,6 +57,9 @@ return {
           -- setting a mapping to false will disable it
           -- ["<esc>"] = false,
         },
+        i = {
+          ["<C-q>"] = { "<C-o>X", desc = "Delete previous character" },
+        }
       },
     },
   },
