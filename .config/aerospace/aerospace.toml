@@ -111,6 +111,7 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-b = 'workspace B' # browser
+alt-c = 'workspace C' # datagrip
 alt-d = 'workspace D' # development
 alt-e = 'workspace E' # file explorer
 alt-i = 'workspace I' # office
@@ -133,6 +134,7 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-b = 'move-node-to-workspace B'
+alt-shift-c = 'move-node-to-workspace C'
 alt-shift-d = 'move-node-to-workspace D'
 alt-shift-e = 'move-node-to-workspace E'
 alt-shift-i = 'move-node-to-workspace I'
@@ -224,6 +226,10 @@ run = "move-node-to-workspace B"
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace B"
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.datagrip'
+run = "move-node-to-workspace C"
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
