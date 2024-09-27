@@ -26,8 +26,10 @@ let mapleader=" "
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
+nnoremap <c-m> :action MaximizeEditorInSplit<CR>
 nnoremap <Leader>l :action ReformatCode<CR>
 nnoremap <Leader>z :action RenameElement<CR>
+nnoremap <Leader>th :action TypeHierarchy<CR>
 nnoremap se :action ShowErrorDescription<CR>
 " nnoremap qd :action QuickJavaDoc<CR>
 nnoremap qi :action QuickImplementations<CR>
@@ -38,6 +40,7 @@ nnoremap qj :action QuickJavaDoc<CR>
 
 """ Distraction Free Mode
 nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+nnoremap <c-p> :action TogglePresentationMode<CR>
 """ Terminal
 nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
@@ -46,9 +49,10 @@ nnoremap <c-\> :action MoveTabRight<CR>
 nnoremap <c-0> :action SplitVertically<CR>
 nnoremap <c--> :action SplitHorizontally<CR>
 nnoremap <c-=> :action Unsplit<CR>
-nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+" nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
 sethandler <c-j> a:vim
 sethandler <c-k> a:vim
+sethandler <c-h> a:vim
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
@@ -98,7 +102,6 @@ nnoremap gt :action GotoTest<CR>
 nnoremap gb :action Back<CR>
 nnoremap gf :action Forward<CR>
 """ Tool windows
-nnoremap <c-p> :action JumpToLastWindow<CR>
 nnoremap <c-x> :action HideAllWindows<CR>
 """ Running and Debugging
 nnoremap ,r :action Rerun<CR>

@@ -52,6 +52,7 @@ return {
           ["<leader>Bl"] = { "<cmd>ObsidianLinks<cr>", desc = "Links" },
           ["<leader>Bq"] = { "<cmd>ObsidianQuickSwitch<cr>", desc = "QuickSwitch" },
           ["<leader>Bm"] = { "<cmd>ObsidianTemplate<cr>", desc = "Template" },
+          ["<leader>gm"] = { "<cmd>LivedownToggle<cr>", desc = "LivedownToggle" },
         },
         t = {
           -- setting a mapping to false will disable it
