@@ -104,12 +104,16 @@ nnoremap gf :action Forward<CR>
 """ Tool windows
 nnoremap <c-x> :action HideAllWindows<CR>
 """ Running and Debugging
+""" nnoremap ,a :action RunAnything<CR>
+nnoremap <leader>ss :action SearchEverywhere<CR>
+nnoremap <leader>cc :action RunAnything<CR>
+
 nnoremap ,r :action Rerun<CR>
-nnoremap ,c :action ContextRun<CR>
+nnoremap ,c :action ChooseRunConfiguration<CR>
+""" nnoremap ,c :action ContextRun<CR>
 nnoremap ,u :action RunClass<CR>
-nnoremap ,f :action ChooseRunConfiguration<CR>
 nnoremap ,t :action ActivateRunToolWindow<CR>
-""" nnoremap ,f :action RerunFailedTests<CR>
+nnoremap ,f :action RerunFailedTests<CR>
 nnoremap ,b :action ToggleLineBreakpoint<CR>
 nnoremap ,d :action ContextDebug<CR>
 nnoremap ,n :action ActivateDebugToolWindow<CR>
