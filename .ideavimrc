@@ -113,7 +113,8 @@ nnoremap ,c :action ChooseRunConfiguration<CR>
 """ nnoremap ,c :action ContextRun<CR>
 nnoremap ,u :action RunClass<CR>
 nnoremap ,t :action ActivateRunToolWindow<CR>
-nnoremap ,f :action RerunFailedTests<CR>
+""" nnoremap ,f :action RerunFailedTests<CR>
+nnoremap ,f :action ChooseRunConfiguration<CR>                                                                                        │
 nnoremap ,b :action ToggleLineBreakpoint<CR>
 nnoremap ,d :action ContextDebug<CR>
 nnoremap ,n :action ActivateDebugToolWindow<CR>
