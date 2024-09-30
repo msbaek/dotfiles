@@ -9,20 +9,17 @@
               {
                 "description": "left_command -> Hyper Key",
                 "from": {
-                  "simultaneous": [
-                    {
-                      "key_code": "left_command"
-                    },
-                    {
-                      "key_code": "left_option"
-                    }
-                  ],
-                  "simultaneous_options": {
-                    "detect_key_down_uninterruptedly": true,
-                    "key_down_order": "strict",
-                    "key_up_order": "strict_inverse"
+                  "key_code": "left_command",
+                  "modifiers": {
+                    "optional": ["any"]
                   }
                 },
+                "to": [
+                  {
+                    "key_code": "right_command",
+                    "lazy": true
+                  }
+                ],
                 "to_if_alone": [
                   {
                     "key_code": "6",
@@ -37,13 +34,11 @@
                 "to_if_held_down": [
                   {
                     "key_code": "left_command"
-                  },
-                  {
-                    "key_code": "left_option"
                   }
                 ],
                 "parameters": {
-                  "basic.simultaneous_threshold_milliseconds": 50
+                  "basic.to_if_alone_timeout_milliseconds": 200,
+                  "basic.to_if_held_down_threshold_milliseconds": 20
                 },
                 "type": "basic"
               }
@@ -64,10 +59,7 @@
                 "to_if_alone": [
                   {
                     "key_code": "spacebar",
-                    "modifiers": [
-                      "left_command",
-                      "left_option"
-                    ]
+                    "modifiers": ["left_command", "left_option"]
                   }
                 ],
                 "type": "basic"
@@ -89,10 +81,7 @@
                 "to_if_alone": [
                   {
                     "key_code": "delete_or_backspace",
-                    "modifiers": [
-                      "left_command",
-                      "left_option"
-                    ]
+                    "modifiers": ["left_command", "left_option"]
                   }
                 ],
                 "type": "basic"
@@ -163,17 +152,13 @@
                 "from": {
                   "key_code": "spacebar",
                   "modifiers": {
-                    "mandatory": [
-                      "left_shift"
-                    ]
+                    "mandatory": ["left_shift"]
                   }
                 },
                 "to": [
                   {
                     "key_code": "spacebar",
-                    "modifiers": [
-                      "left_control"
-                    ]
+                    "modifiers": ["left_control"]
                   }
                 ],
                 "type": "basic"
@@ -222,9 +207,7 @@
                 "from": {
                   "key_code": "delete_or_backspace",
                   "modifiers": {
-                    "mandatory": [
-                      "left_control"
-                    ]
+                    "mandatory": ["left_control"]
                   }
                 },
                 "to": [
@@ -256,10 +239,7 @@
                 "to": [
                   {
                     "key_code": "grave_accent_and_tilde",
-                    "modifiers": [
-                      "left_option",
-                      "right_option"
-                    ]
+                    "modifiers": ["left_option", "right_option"]
                   }
                 ],
                 "type": "basic"
@@ -357,9 +337,7 @@
                 "from": {
                   "key_code": "left_option",
                   "modifiers": {
-                    "optional": [
-                      "any"
-                    ]
+                    "optional": ["any"]
                   }
                 },
                 "to": [
@@ -554,9 +532,7 @@
                 "from": {
                   "key_code": "g",
                   "modifiers": {
-                    "mandatory": [
-                      "shift"
-                    ]
+                    "mandatory": ["shift"]
                   }
                 },
                 "to": [
