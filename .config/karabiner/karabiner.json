@@ -45,28 +45,6 @@
             ]
           },
           {
-            "description": "homerow search",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "left_shift"
-                },
-                "to": [
-                  {
-                    "key_code": "left_shift"
-                  }
-                ],
-                "to_if_alone": [
-                  {
-                    "key_code": "spacebar",
-                    "modifiers": ["left_command", "left_option"]
-                  }
-                ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
             "description": "homerow click",
             "manipulators": [
               {
@@ -89,7 +67,7 @@
             ]
           },
           {
-            "description": "left_control -> F18",
+            "description": "homerow search",
             "manipulators": [
               {
                 "from": {
@@ -98,6 +76,28 @@
                 "to": [
                   {
                     "key_code": "left_control"
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "spacebar",
+                    "modifiers": ["left_command", "left_option"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "left_shift -> F18",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "left_shift"
+                },
+                "to": [
+                  {
+                    "key_code": "left_shift"
                   }
                 ],
                 "to_if_alone": [
