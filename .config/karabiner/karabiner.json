@@ -71,11 +71,11 @@
             "manipulators": [
               {
                 "from": {
-                  "key_code": "left_control"
+                  "key_code": "left_shift"
                 },
                 "to": [
                   {
-                    "key_code": "left_control"
+                    "key_code": "left_shift"
                   }
                 ],
                 "to_if_alone": [
@@ -89,15 +89,15 @@
             ]
           },
           {
-            "description": "left_shift -> F18",
+            "description": "left_control -> F18",
             "manipulators": [
               {
                 "from": {
-                  "key_code": "left_shift"
+                  "key_code": "left_control"
                 },
                 "to": [
                   {
-                    "key_code": "left_shift"
+                    "key_code": "left_control"
                   }
                 ],
                 "to_if_alone": [
