@@ -10,8 +10,8 @@ return {
     enabled = true,
     keys = {
       -- I'm using these 2 keyamps already with mini.files, so avoiding conflict
-      -- { "<leader>e", false },
-      -- { "<leader>E", false },
+      { "<leader>e", false },
+      { "<leader>E", false },
       -- -- I swapped these 2
       -- { "<leader>e", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
       -- { "<leader>E", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
