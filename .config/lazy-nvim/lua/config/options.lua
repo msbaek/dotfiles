@@ -13,6 +13,10 @@
 --
 -- Using different colors, defining the colors in this file
 local colors = require("config.colors").load_colors()
+
+-- LazyVim auto format
+-- vim.g.autoformat = true
+
 vim.cmd(string.format([[highlight WinBar1 guifg=%s]], colors["linkarzu_color03"]))
 vim.cmd(string.format([[highlight WinBar2 guifg=%s]], colors["linkarzu_color02"]))
 -- Function to get the full path and replace the home directory with ~
