@@ -21,13 +21,26 @@ return {
   -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/138#issuecomment-2295422741
   init = function()
     -- Define color variables
-    local color1_bg = "#ee99a0" -- colors["linkarzu_color01"]
-    local color2_bg = "#8aadf4" -- colors["linkarzu_color02"]
-    local color3_bg = "#a6da95" -- colors["linkarzu_color03"]
-    local color4_bg = "#c6a0f6" -- colors["linkarzu_color04"]
-    local color5_bg = "#b7bdf8" -- colors["linkarzu_color05"]
-    local color6_bg = "#7dc4e4" -- colors["linkarzu_color06"]
-    local color_fg = colors["linkarzu_color10"]
+    -- 전경색: #E0E0E0 (밝은 회색)
+    -- Heading 1: #4A148C (진한 보라)
+    -- Heading 2: #1A237E (진한 남색)
+    -- Heading 3: #01579B (진한 파랑)
+    -- Heading 4: #004D40 (진한 청록)
+    -- Heading 5: #1B5E20 (진한 초록)
+    -- Heading 6: #3E2723 (진한 갈색)
+    local color1_bg = "#7E57C2"
+    local color2_bg = "#5C6BC0"
+    local color3_bg = "#29B6F6"
+    local color4_bg = "#26A69A"
+    local color5_bg = "#66BB6A"
+    local color6_bg = "#8D6E63"
+    -- local color1_bg = "#4A148C" -- colors["linkarzu_color01"]
+    -- local color2_bg = "#1A237E" -- colors["linkarzu_color02"]
+    -- local color3_bg = "#01579B" -- colors["linkarzu_color03"]
+    -- local color4_bg = "#004D40" -- colors["linkarzu_color04"]
+    -- local color5_bg = "#1B5E20" -- colors["linkarzu_color05"]
+    -- local color6_bg = "#3E2723" -- colors["linkarzu_color06"]
+    local color_fg = "#E0E0E0" -- colors["linkarzu_color10"]
     -- local color_sign = "#ebfafa"
 
     -- Heading colors (when not hovered over), extends through the entire line
