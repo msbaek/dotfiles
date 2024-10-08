@@ -76,11 +76,11 @@
             "manipulators": [
               {
                 "from": {
-                  "key_code": "left_control"
+                  "key_code": "left_control1"
                 },
                 "to": [
                   {
-                    "key_code": "left_control"
+                    "key_code": "left_control1"
                   }
                 ],
                 "to_if_alone": [
