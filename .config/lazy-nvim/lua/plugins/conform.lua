@@ -17,7 +17,7 @@ return {
       -- are formatted correctly and :ConformInfo shows:
       -- "LSP: html, templ"
       -- "templ ready (templ) /Users/linkarzu/.local/share/neobean/mason/bin/templ"
-      markdown = { "prettier" },
+      -- markdown = { "prettier" },
       templ = { "templ" },
       -- php = { nil },
     },
