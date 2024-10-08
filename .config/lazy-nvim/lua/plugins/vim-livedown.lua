@@ -1,5 +1,0 @@
-return {
-  {
-    "shime/vim-livedown",
-  },
-}
