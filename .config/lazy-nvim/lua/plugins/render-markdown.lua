@@ -14,18 +14,19 @@ local colors = require("config.colors").load_colors()
 
 return {
   "MeanderingProgrammer/render-markdown.nvim",
+  -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" },
   -- Moved highlight creation out of opts as suggested by plugin maintainer
   -- There was no issue, but it was creating unnecessary noise when ran
   -- :checkhealth render-markdown
   -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/138#issuecomment-2295422741
   init = function()
     -- Define color variables
-    local color1_bg = colors["linkarzu_color18"]
-    local color2_bg = colors["linkarzu_color19"]
-    local color3_bg = colors["linkarzu_color20"]
-    local color4_bg = colors["linkarzu_color21"]
-    local color5_bg = colors["linkarzu_color22"]
-    local color6_bg = colors["linkarzu_color23"]
+    local color1_bg = "#ee99a0" -- colors["linkarzu_color01"]
+    local color2_bg = "#8aadf4" -- colors["linkarzu_color02"]
+    local color3_bg = "#a6da95" -- colors["linkarzu_color03"]
+    local color4_bg = "#c6a0f6" -- colors["linkarzu_color04"]
+    local color5_bg = "#b7bdf8" -- colors["linkarzu_color05"]
+    local color6_bg = "#7dc4e4" -- colors["linkarzu_color06"]
     local color_fg = colors["linkarzu_color10"]
     -- local color_sign = "#ebfafa"
 
