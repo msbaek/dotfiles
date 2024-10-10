@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
 -- If set to 0 it shows all the symbols in a file, like bulletpoints and
 -- codeblock languages, obsidian.nvim works better with 1 or 2
 -- Set it to 2 if using kitty or codeblocks will look weird
-vim.opt.conceallevel = 0
+vim.opt.conceallevel = 2
 
 -- Enable autochdir to automatically change the working directory to the current file's directory
 -- If you go inside a subdir, neotree will open that dir as the root
