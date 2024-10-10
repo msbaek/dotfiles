@@ -28,20 +28,28 @@ return {
     -- Heading 4: #004D40 (진한 청록)
     -- Heading 5: #1B5E20 (진한 초록)
     -- Heading 6: #3E2723 (진한 갈색)
-    local color1_bg = "#7E57C2"
-    local color2_bg = "#5C6BC0"
-    local color3_bg = "#29B6F6"
-    local color4_bg = "#26A69A"
-    local color5_bg = "#66BB6A"
-    local color6_bg = "#8D6E63"
-    -- local color1_bg = "#4A148C" -- colors["linkarzu_color01"]
-    -- local color2_bg = "#1A237E" -- colors["linkarzu_color02"]
-    -- local color3_bg = "#01579B" -- colors["linkarzu_color03"]
-    -- local color4_bg = "#004D40" -- colors["linkarzu_color04"]
-    -- local color5_bg = "#1B5E20" -- colors["linkarzu_color05"]
-    -- local color6_bg = "#3E2723" -- colors["linkarzu_color06"]
+    -- local color1_bg = "#7E57C2"
+    -- local color2_bg = "#5C6BC0"
+    -- local color3_bg = "#29B6F6"
+    -- local color4_bg = "#26A69A"
+    -- local color5_bg = "#66BB6A"
+    -- local color6_bg = "#8D6E63"
+    local color_fg = "#E0E0E0"
+    local color1_bg = "#4A148C" -- colors["linkarzu_color01"]
+    local color2_bg = "#1A237E" -- colors["linkarzu_color02"]
+    local color3_bg = "#01579B" -- colors["linkarzu_color03"]
+    local color4_bg = "#004D40" -- colors["linkarzu_color04"]
+    local color5_bg = "#1B5E20" -- colors["linkarzu_color05"]
+    local color6_bg = "#3E2723" -- colors["linkarzu_color06"]
     local color_fg = "#E0E0E0" -- colors["linkarzu_color10"]
     -- local color_sign = "#ebfafa"
+    -- local color_sign = "#D0D0D0" -- (약간 어두운 회색)
+    -- local color1_bg = "#3D3D5C" -- (부드러운 남색)
+    -- local color2_bg = "#445566" -- (부드러운 청회색)
+    -- local color3_bg = "#3D5A6C" -- (부드러운 청록)
+    -- local color4_bg = "#4D5D53" -- (부드러운 초록회색)
+    -- local color5_bg = "#5D4D53" -- (부드러운 자주회색)
+    -- local color6_bg = "#5D5D4D" -- (부드러운 갈회색)
 
     -- Heading colors (when not hovered over), extends through the entire line
     vim.cmd(string.format([[highlight Headline1Bg guifg=%s guibg=%s]], color_fg, color1_bg))
