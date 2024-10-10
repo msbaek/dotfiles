@@ -1831,3 +1831,23 @@ end, { desc = "[P]source ~/.zshrc" })
 vim.keymap.set({ "n", "x" }, "<Tab>", "<cmd>bn<cr>", { desc = "New tab", silent = true })
 vim.keymap.set({ "n", "x" }, "<S-Tab>", "<cmd>bp<cr>", { desc = "Previous tab", silent = true })
 vim.keymap.set({ "n" }, "<leader>a", "ggVG", { desc = "select all", remap = true })
+vim.keymap.set({ "n" }, "<leader>On", "<cmd>ObsidianNewFromTemplate<CR>", { desc = "new from template", remap = true })
+vim.keymap.set({ "n" }, "<leader>Oo", "<cmd>ObsidianOpen<CR>", { desc = "open in obsidian", remap = true })
+vim.keymap.set({ "n" }, "<leader>Of", "<cmd>ObsidianFollowLink<CR>", { desc = "follow link", remap = true })
+vim.keymap.set({ "n" }, "<leader>Ob", "<cmd>ObsidianBacklinks<CR>", { desc = "back links", remap = true })
+vim.keymap.set({ "n" }, "<leader>Ot", "<cmd>ObsidianTags<CR>", { desc = "tags", remap = true })
+-- ObsidianLink
+-- ObsidianLinkNew
+-- ObsidianLinks
+-- ObsidianNew
+-- ObsidianPasteImg
+-- ObsidianExtractNote
+-- ObsidianCheck
+-- ObsidianDailies
+-- ObsidianDebug
+-- ObsidianTOC
+-- ObsidianToggleCheckbox
+-- ObsidianToday
+-- ObsidianTomorrow
+-- ObsidianYesterday
+-- ObsidianWorkspace
