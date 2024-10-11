@@ -837,6 +837,11 @@ end, { desc = "[P]Toggle bullet point (dash)" })
 -- Keymap to switch spelling language to English lamw25wmal
 -- To save the language settings configured on each buffer, you need to add
 -- "localoptions" to vim.opt.sessionoptions in the `lua/config/options.lua` file
+vim.keymap.set("n", "<leader>mslk", function()
+  vim.opt.spelllang = "ko"
+  vim.cmd("echo 'Spell language set to Korean'")
+end, { desc = "[P]Spelling language Korean" })
+
 vim.keymap.set("n", "<leader>msle", function()
   vim.opt.spelllang = "en"
   vim.cmd("echo 'Spell language set to English'")
@@ -847,6 +852,12 @@ vim.keymap.set("n", "<leader>msls", function()
   vim.opt.spelllang = "es"
   vim.cmd("echo 'Spell language set to Spanish'")
 end, { desc = "[P]Spelling language Spanish" })
+
+-- Keymap to switch spelling language to both spanish and english lamw25wmal
+vim.keymap.set("n", "<leader>mslc", function()
+  vim.opt.spelllang = "en,ko"
+  vim.cmd("echo 'Spell language set to Korean and English'")
+end, { desc = "[P]Spelling language Spanish and English" })
 
 -- Keymap to switch spelling language to both spanish and english lamw25wmal
 vim.keymap.set("n", "<leader>mslb", function()
