@@ -184,3 +184,11 @@ export PATH="/opt/homebrew/Caskroom/flutter/3.7.9/flutter/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Starship
+# Not sure if counts a CLI tool, because it only makes my prompt more useful
+# https://starship.rs/config/#prompt
+if command -v starship &>/dev/null; then
+  export STARSHIP_CONFIG=$HOME/github/dotfiles-latest/starship-config/active-config.toml
+  eval "$(starship init zsh)" >/dev/null 2>&1
+fi
