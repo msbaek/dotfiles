@@ -27,7 +27,8 @@ return {
     local color4_bg = colors["linkarzu_color21"]
     local color5_bg = colors["linkarzu_color22"]
     local color6_bg = colors["linkarzu_color23"]
-    local color_fg = colors["linkarzu_color10"]
+    -- local color_fg = colors["linkarzu_color10"]
+    local color_fg = colors["#FFE599"]
     -- local color_sign = "#ebfafa"
 
     -- Heading colors (when not hovered over), extends through the entire line
