@@ -489,7 +489,7 @@ end, { desc = "[P]Write current file" })
 -- I use a Ctrl keymap so that I can paste images in insert mode
 -- I tried using <C-v> but duh, that's used for visual block mode
 -- so don't do it
-vim.keymap.set({ "n", "v", "i" }, "<C-a>", function()
+vim.keymap.set({ "n", "v", "i" }, "<C-e>", function()
   -- Call the paste_image function from the Lua API
   -- Using the plugin's Lua API (require("img-clip").paste_image()) instead of the
   -- PasteImage command because the Lua API returns a boolean value indicating
