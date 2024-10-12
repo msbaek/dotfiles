@@ -19,8 +19,10 @@ return {
   opts = {
     paths = {
       "~/git",
+      "~/github",
       -- os.getenv("HOME") .. "/Library/Mobile Documents/com~apple~CloudDocs",
-      "~/Library/Mobile Documents/com~apple~CloudDocs/",
+      -- "~/Library/Mobile Documents/com~apple~CloudDocs/",
+      "~/icloud",
       "~/temp",
     }, --custom paths set by user
     newProjectPath = "~/git", --custom path for new projects
