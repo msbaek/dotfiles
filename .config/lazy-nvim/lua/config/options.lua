@@ -133,8 +133,9 @@ vim.opt.sessionoptions = {
 -- I mainly type in english, if I set it to both above, files in English get a
 -- bit confused and recognize words in spanish, just for spanish files I need to
 -- set it to both
-vim.opt.spelllang = { "en" }
+-- vim.opt.spelllang = { "en" }
 -- vim.opt.spelllang = { "en,ko" }
+vim.opt.spell = false
 
 -- My cursor was working fine, not  sure why it stopped working in wezterm, so this fixed it
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
