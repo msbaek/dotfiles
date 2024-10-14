@@ -25,44 +25,45 @@ return {
     },
     -- Optional, if you keep notes in a specific subdirectory of your vault.
     -- notes_subdir = "notes",
-    completion = {
-      nvim_cmp = true,
-      min_chars = 2,
-      -- new_notes_location = "current_dir",
-      -- prepend_note_id = true,
-      -- prepend_note_path = false,
-      -- use_path_only = false,
-    },
-    -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
-    -- way then set 'mappings = {}'.
-    mappings = {
-      -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-      ["gf"] = {
-        action = function()
-          return require("obsidian").util.gf_passthrough()
-        end,
-        opts = { noremap = false, expr = true, buffer = true },
-      },
-      -- Toggle check-boxes.
-      ["<leader>ch"] = {
-        action = function()
-          return require("obsidian").util.toggle_checkbox()
-        end,
-        opts = { buffer = true },
-      },
-      -- Smart action depending on context, either follow link or toggle checkbox.
-      -- ["<cr>"] = {
-      --   action = function()
-      --     return require("obsidian").util.smart_action()
-      --   end,
-      --   opts = { buffer = true, expr = true },
-      -- },
-    },
+    -- completion = {
+    --   nvim_cmp = true,
+    --   min_chars = 2,
+    --   -- new_notes_location = "current_dir",
+    --   -- prepend_note_id = true,
+    --   -- prepend_note_path = false,
+    --   -- use_path_only = false,
+    -- },
+    -- -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
+    -- -- way then set 'mappings = {}'.
+    -- mappings = {
+    --   -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+    --   ["gf"] = {
+    --     action = function()
+    --       return require("obsidian").util.gf_passthrough()
+    --     end,
+    --     opts = { noremap = false, expr = true, buffer = true },
+    --   },
+    --   -- Toggle check-boxes.
+    --   ["<leader>ch"] = {
+    --     action = function()
+    --       return require("obsidian").util.toggle_checkbox()
+    --     end,
+    --     opts = { buffer = true },
+    --   },
+    -- Smart action depending on context, either follow link or toggle checkbox.
+    -- ["<cr>"] = {
+    --   action = function()
+    --     return require("obsidian").util.smart_action()
+    --   end,
+    --   opts = { buffer = true, expr = true },
+    -- },
+    -- },
 
     -- Where to put new notes. Valid options are
     --  * "current_dir" - put new notes in same directory as the current buffer.
     --  * "notes_subdir" - put new notes in the default notes subdirectory.
-    new_notes_location = "current_dir",
+    -- new_notes_location = "current_dir",
+    new_notes_location = "notes_subdir",
 
     -- Optional, customize how note IDs are generated given an optional title.
     ---@param title string|?
@@ -225,7 +226,7 @@ return {
     -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
     conceallevel = 1,
     ui = {
-      enable = true, -- set to false to disable all additional syntax features
+      enable = false, -- set to false to disable all additional syntax features
       update_debounce = 200, -- update delay after a text change (in milliseconds)
       -- Define how various check-boxes are displayed
       checkboxes = {
