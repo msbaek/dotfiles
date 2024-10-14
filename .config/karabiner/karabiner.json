@@ -201,6 +201,7 @@
                     },
                     {
                         "description": "left_option twice toggle to get into vim-like hjkl arrows in specified apps",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -547,7 +548,7 @@
                         },
                         {
                             "from": { "key_code": "japanese_kana" },
-                            "to": [{ "key_code": "f18" }]
+                            "to": [{ "key_code": "right_command" }]
                         },
                         {
                             "from": { "key_code": "left_command" },
@@ -556,10 +557,6 @@
                         {
                             "from": { "key_code": "left_option" },
                             "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "right_control" },
-                            "to": [{ "key_code": "f18" }]
                         }
                     ]
                 },
