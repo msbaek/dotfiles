@@ -20,7 +20,7 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "/Users/msbaek/DocumentsLocal/obsidian",
+        path = "/Users/msbaek/DocumentsLocal/obsidian/ctemplate",
       },
     },
     -- Optional, if you keep notes in a specific subdirectory of your vault.

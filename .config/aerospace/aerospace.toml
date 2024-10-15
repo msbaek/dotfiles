@@ -279,7 +279,7 @@ run = "move-node-to-workspace W"
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = "move-node-to-workspace T"   # Arc
+run = "move-node-to-workspace B"   # Arc
 
 # aerospace list-apps
 # 678   | com.kakao.KakaoTalkMac           | 카카오톡
