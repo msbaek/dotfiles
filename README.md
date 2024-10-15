@@ -10,6 +10,13 @@ Ensure you have the following installed on your system
 
 `brew install git`
 
+## LayVim
+
+```sh
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf .config/nvim/.git
+```
+
 ## Stow
 
 `brew install stow`
@@ -18,8 +25,6 @@ Ensure you have the following installed on your system
 
 First, check out the dotfiles repo in your $HOME directory using git
 
-`git clone git@github.com/msbaek/dotfiles.git ~/dotfiles`
-`$ cd dotfiles`
+`git clone git@github.com/msbaek/dotfiles.git ~/dotfiles` `$ cd dotfiles`
 
-then use GNU stow to create symlinks
-`$ stow .`
+then use GNU stow to create symlinks `$ stow .`
