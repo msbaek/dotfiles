@@ -195,7 +195,7 @@ run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.culturedcode.ThingsMac'
-run = "move-node-to-workspace 1"
+run = "move-node-to-workspace o"
 
 [[on-window-detected]]
 if.app-id = 'com.amazonaws.acvc.osx'
@@ -267,7 +267,7 @@ run = "move-node-to-workspace O"
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace T"
+run = "move-node-to-workspace B"
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
@@ -279,7 +279,7 @@ run = "move-node-to-workspace W"
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = "move-node-to-workspace B"   # Arc
+run = "move-node-to-workspace W"   # Arc
 
 # aerospace list-apps
 # 678   | com.kakao.KakaoTalkMac           | 카카오톡
