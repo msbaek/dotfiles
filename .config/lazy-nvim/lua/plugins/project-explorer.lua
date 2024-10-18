@@ -20,6 +20,7 @@ return {
     paths = {
       "~/git",
       "~/github",
+      "~/github/presentations",
       -- os.getenv("HOME") .. "/Library/Mobile Documents/com~apple~CloudDocs",
       -- "~/Library/Mobile Documents/com~apple~CloudDocs/",
       "~/icloud",
