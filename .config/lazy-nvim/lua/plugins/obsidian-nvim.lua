@@ -20,7 +20,7 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "/Users/msbaek/DocumentsLocal/obsidian/ctemplate",
+        path = "/Users/msbaek/DocumentsLocal/msbaek_vault",
       },
     },
     use_default_keymaps = false,
@@ -64,8 +64,8 @@ return {
     -- Where to put new notes. Valid options are
     --  * "current_dir" - put new notes in same directory as the current buffer.
     --  * "notes_subdir" - put new notes in the default notes subdirectory.
-    -- new_notes_location = "current_dir",
-    new_notes_location = "notes_subdir",
+    new_notes_location = "current_dir",
+    -- new_notes_location = "notes_subdir",
 
     -- Optional, customize how note IDs are generated given an optional title.
     ---@param title string|?
@@ -149,7 +149,7 @@ return {
     -- Optional, for templates (see below).
     templates = {
       -- folder = "Template",
-      folder = "/Users/msbaek/DocumentsLocal/obsidian/ctemplate/Template",
+      folder = "/Users/msbaek/DocumentsLocal/msbaek_vault/Template",
       -- date_format = "%Y-%m-%d",
       -- time_format = "%H:%M",
       -- -- A map for custom variables, the key should be the variable and the value a function
@@ -272,7 +272,8 @@ return {
       -- The default folder to place images in via `:ObsidianPasteImg`.
       -- If this is a relative path it will be interpreted as relative to the vault root.
       -- You can always override this per image by passing a full path to the command instead of just a filename.
-      img_folder = "assets/imgs", -- This is the default
+      -- img_folder = "assets/imgs", -- This is the default
+      img_folder = "ATTACHMENTS", -- This is the default
       -- A function that determines the text to insert in the note when pasting an image.
       -- It takes two arguments, the `obsidian.Client` and an `obsidian.Path` to the image file.
       -- This is the default implementation.
