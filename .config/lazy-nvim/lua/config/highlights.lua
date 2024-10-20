@@ -3,12 +3,13 @@
 
 local colors = require("config.colors").load_colors()
 
-local color1_bg = colors["linkarzu_color04"]
-local color2_bg = colors["linkarzu_color02"]
-local color3_bg = colors["linkarzu_color03"]
-local color4_bg = colors["linkarzu_color01"]
-local color5_bg = colors["linkarzu_color05"]
-local color6_bg = colors["linkarzu_color08"]
+local color1_bg = colors["linkarzu_color18"]
+local color2_bg = colors["linkarzu_color19"]
+local color3_bg = colors["linkarzu_color20"]
+local color4_bg = colors["linkarzu_color21"]
+local color5_bg = colors["linkarzu_color22"]
+local color6_bg = colors["linkarzu_color23"]
+
 local color_fg = colors["linkarzu_color07"]
 
 vim.cmd(

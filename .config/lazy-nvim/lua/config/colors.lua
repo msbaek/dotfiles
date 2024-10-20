@@ -3,8 +3,9 @@
 local function load_colors()
   local colors = {}
   local home = os.getenv("HOME")
-  local active_folder = home .. "/github/dotfiles-latest/colorscheme/active"
-  local active_file = active_folder .. "/active-colorscheme.sh"
+  -- local active_folder = home .. "/github/dotfiles-latest/colorscheme/active"
+  -- local active_file = active_folder .. "/active-colorscheme.sh"
+  local active_file = home .. "/dotfiles/active-colorscheme.sh"
 
   -- Check if the active colorscheme file exists
   local file = io.open(active_file, "r")
