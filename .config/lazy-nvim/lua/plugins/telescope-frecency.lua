@@ -45,7 +45,8 @@ return {
           -- I declare a workspace which I will use when calling frecency if I
           -- want to search for files in a specific path
           workspaces = {
-            ["neobean_plugins"] = "$HOME/github/dotfiles-latest/neovim/neobean/lua/plugins",
+            -- ["neobean_plugins"] = "$HOME/github/dotfiles-latest/neovim/neobean/lua/plugins",
+            ["neobean_plugins"] = "$HOME/dotfiles/.config/lazy-nvim/lua/plugins",
           },
         },
       },
