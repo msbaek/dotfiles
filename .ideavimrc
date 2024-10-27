@@ -26,9 +26,28 @@ let mapleader=" "
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
+nnoremap <leader>e :action SelectInProjectView<CR>
+nnoremap <Leader>cr :action RenameElement<CR>
+nnoremap <Leader>sg :action SearchEverywhere<CR>
+nnoremap <leader>cs :action GotoSymbol<CR>
+nnoremap <leader>gg :action Vcs.Show.Log<CR>
+nnoremap <Leader>, :action RecentFiles<CR>
+nnoremap <Leader>bd :action CloseContent<CR>
+nnoremap <Leader>zz :action CloseAllEditors<CR>
+nnoremap <leader>zu :action ExpandAllRegions<CR>
+nnoremap <leader>zk :action CollapseAllRegions<CR>
+nnoremap zu :action ExpandRegion<CR>
+nnoremap zk :action CollapseRegion<CR>
+nnoremap K :action MoveStatementUp<CR>
+nnoremap J :action MoveStatementDown<CR>
+" Visual mode에서 선택한 블록 이동
+vnoremap K :action MoveStatementUp<CR>
+vnoremap J :action MoveStatementDown<CR>
+nnoremap K :action ShowHoverInfo<CR>
+
+
 nnoremap <c-m> :action MaximizeEditorInSplit<CR>
 nnoremap <Leader>l :action ReformatCode<CR>
-nnoremap <Leader>z :action RenameElement<CR>
 nnoremap <Leader>th :action TypeHierarchy<CR>
 nnoremap se :action ShowErrorDescription<CR>
 " nnoremap qd :action QuickJavaDoc<CR>
@@ -50,6 +69,7 @@ nnoremap <c-0> :action SplitVertically<CR>
 nnoremap <c--> :action SplitHorizontally<CR>
 nnoremap <c-=> :action Unsplit<CR>
 " nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+sethandler <c-l> a:vim
 sethandler <c-j> a:vim
 sethandler <c-k> a:vim
 sethandler <c-h> a:vim
@@ -61,21 +81,14 @@ nnoremap <s-TAB> :action PreviousTab<CR>
 nnoremap <TAB> :action NextTab<CR>
 nnoremap <Leader>en :action EditSourceInNewWindow<CR>
 " nnoremap <Leader>n :action NextWindow<CR>
-nnoremap <Leader>q :action CloseContent<CR>
-nnoremap <Leader>qa :action CloseAllEditors<CR>
 """ Editing source code
 vnoremap < <gv
 vnoremap > >gv
 
 nnoremap [[ :action MethodUp<CR>
 nnoremap ]] :action MethodDown<CR>
-nnoremap zc :action CollapseRegion<CR>
-nnoremap zo :action ExpandRegion<CR>
-nnoremap <leader>zc :action CollapseAllRegions<CR>
-nnoremap <leader>zo :action ExpandAllRegions<CR>
 nnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
 nnoremap <leader>o :action OptimizeImports<CR>
-nnoremap <leader>e :action SelectInProjectView<CR>
 nnoremap <leader>ll :action RecentLocations<CR>
 nnoremap <leader>lh  :action LocalHistory.ShowHistory<CR>
 nnoremap <c-/> :action FindInPath<CR>
@@ -86,7 +99,8 @@ nnoremap ne :action GotoNextError<CR>
 nnoremap nE :action GotoPreviousError<CR>
 " nnoremap <leader>s :write<CR>
 """ Searching and Source Code Navigation
-nnoremap <c-a> :action GotoAction<CR>
+"nnoremap <c-a> :action GotoAction<CR>
+nnoremap <leader>ca :action GotoAction<CR>
 nnoremap <leader>u :action FindUsages<CR>
 nnoremap <leader>f :action GotoRelated<CR>
 nnoremap <leader>h :action CallHierarchy<CR>
@@ -94,7 +108,6 @@ nnoremap <leader>b :action ShowNavBar<CR>
 nnoremap <leader>s :action FileStructurePopup<CR>
 nnoremap gc :action GotoClass<CR>
 nnoremap gl :action GotoFile<CR>
-" nnoremap gs :action GotoSymbol<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap qd :action GotoDeclaration<CR>
 nnoremap gp :action GotToSuperMethod<CR>
@@ -105,7 +118,6 @@ nnoremap gf :action Forward<CR>
 nnoremap <c-x> :action HideAllWindows<CR>
 """ Running and Debugging
 """ nnoremap ,a :action RunAnything<CR>
-nnoremap <leader>ss :action SearchEverywhere<CR>
 nnoremap <leader>cc :action RunAnything<CR>
 
 nnoremap ,r :action Rerun<CR>
