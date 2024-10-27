@@ -99,8 +99,8 @@ nnoremap ne :action GotoNextError<CR>
 nnoremap nE :action GotoPreviousError<CR>
 " nnoremap <leader>s :write<CR>
 """ Searching and Source Code Navigation
-"nnoremap <c-a> :action GotoAction<CR>
-nnoremap <leader>ca :action GotoAction<CR>
+nnoremap <c-a> :action GotoAction<CR>
+# nnoremap <leader>ca :action GotoAction<CR>
 nnoremap <leader>u :action FindUsages<CR>
 nnoremap <leader>f :action GotoRelated<CR>
 nnoremap <leader>h :action CallHierarchy<CR>
