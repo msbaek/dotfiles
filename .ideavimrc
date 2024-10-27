@@ -25,8 +25,8 @@ let mapleader=" "
 
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
-
 nnoremap <leader>e :action SelectInProjectView<CR>
+nnoremap ca :action ShowIntentionActions<CR>
 nnoremap <Leader>cr :action RenameElement<CR>
 nnoremap <Leader>sg :action SearchEverywhere<CR>
 nnoremap <leader>cs :action GotoSymbol<CR>
