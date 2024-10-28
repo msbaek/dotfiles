@@ -26,6 +26,7 @@ let mapleader=" "
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
+nnoremap <leader>ff :action GotoFile<CR>
 nnoremap ca :action ShowIntentionActions<CR>
 nnoremap <Leader>cr :action RenameElement<CR>
 nnoremap <Leader>sg :action SearchEverywhere<CR>
@@ -97,6 +98,9 @@ nnoremap <c-/> :action FindInPath<CR>
 " nnoremap <c-r> :action RecentFiles<CR>
 nnoremap ne :action GotoNextError<CR>
 nnoremap nE :action GotoPreviousError<CR>
+nnoremap nd :action NextDiff<CR>
+nnoremap nD :action PreviousDiff<CR>
+
 " nnoremap <leader>s :write<CR>
 """ Searching and Source Code Navigation
 nnoremap <c-a> :action GotoAction<CR>
