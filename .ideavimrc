@@ -26,7 +26,7 @@ let mapleader=" "
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
-nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>ff :action SearchEverywhere<CR>
 nnoremap ca :action ShowIntentionActions<CR>
 nnoremap <Leader>cr :action RenameElement<CR>
 nnoremap <Leader>sg :action SearchEverywhere<CR>
@@ -66,8 +66,8 @@ nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 """ Navigation
 nnoremap <c-\> :action MoveTabRight<CR>
-nnoremap <c-0> :action SplitVertically<CR>
-nnoremap <c--> :action SplitHorizontally<CR>
+nnoremap <leader>\ :action SplitVertically<CR>
+nnoremap <leader>- :action SplitHorizontally<CR>
 nnoremap <c-=> :action Unsplit<CR>
 " nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
 sethandler <c-l> a:vim
