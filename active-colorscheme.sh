@@ -30,16 +30,17 @@ linkarzu_color15="#013e4a"
 linkarzu_color16="#e9b3fd"
 # Lualine across
 linkarzu_color17="#141b22"
+#
 # Lighter markdown headings
 # Markdown heading 1 - color04
-linkarzu_color18="#FFD1DC"
+linkarzu_color18="#bbf7d0"
 # Markdown heading 2 - color02
-linkarzu_color19="#FFFACD"
+linkarzu_color19="#d9f99d"
 # Markdown heading 3 - color03
-linkarzu_color20="#E0FFFF"
+linkarzu_color20="#fef08a"
 # Markdown heading 4 - color01
-linkarzu_color21="#FFF0F5"
+linkarzu_color21="#fde68a"
 # Markdown heading 5 - color05
-linkarzu_color22="#F0FFF0"
+linkarzu_color22="#fed7aa"
 # Markdown heading 6 - color08
-linkarzu_color23="#E6E6FA"
+linkarzu_color23="#fecaca"
