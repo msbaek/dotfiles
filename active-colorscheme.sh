@@ -11,7 +11,7 @@ linkarzu_color05="#19dfcf"
 linkarzu_color06="#1682ef"
 #Markdown codeblock
 linkarzu_color07="#1c242f"
-linkarzu_color08="#5fa9f4"
+linkarzu_color08="#a5f3fc"
 # Comments
 linkarzu_color09="#a5afc2"
 # Terminal and neovim background
