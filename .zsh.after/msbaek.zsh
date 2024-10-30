@@ -142,7 +142,8 @@ export BAT_THEME=tokyonight_night
 # alias ll='exa -l -a -s modified -r --git'
 alias ll='lsd -aFlht'
 alias ls='eza --color=always --long --git --icons=always --no-user --no-permissions -s modified'
-
+alias fdm='fd --hidden --no-ignore'
+alias rgm='rg --no-ignore --hidden'
 # ---- TheFuck ---- 
 # thefuck alias
 eval $(thefuck --alias)
