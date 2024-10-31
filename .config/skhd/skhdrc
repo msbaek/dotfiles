@@ -1,0 +1,28 @@
+# App shortcuts
+alt - a: open -a 'Arc'
+alt - b : open -a 'Obsidian'
+alt - c: open -a 'Calendar'
+alt - d: open -a 'DataGrip'
+alt - f: open -a 'Finder'
+alt - g: open -a 'Google Chrome'
+alt - h: open -a 'Things3'
+alt - i: open -a 'IntelliJ IDEA Ultimate'
+alt - k: open -a 'KakaoTalk'
+alt - m : open -a 'Mail'
+alt - s : open -a 'Slack'
+alt - t : open -a 'Microsoft Teams'
+alt - w : open -a 'WezTerm'
+alt - x : open -a 'Xmind'
+
+# focus window
+shift + alt - h : yabai -m window --focus west
+shift + alt - j : yabai -m window --focus south
+shift + alt - k : yabai -m window --focus north
+shift + alt - l : yabai -m window --focus east
+
+# toggle window zoom
+shift + alt - g : yabai -m window --toggle windowed-fullscreen
+shift + alt - f : yabai -m window --toggle zoom-fullscreen
+
+# toggle window split type
+shift + alt - e : yabai -m window --toggle split
