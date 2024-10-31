@@ -1,0 +1,20 @@
+#!/bin/bash
+
+options=(
+  style=round
+  width=6.0
+  hidpi=on
+  blur_radius=5.0
+  # active_color=0xffe2e2e3
+  # inactive_color=#94a3b8
+  # active_color=0xffFF7F50   # 밝은 주황색
+  # inactive_color=0xff2C3E50 # 깊은 회색
+  active_color=0xff2ECC71   # 선명한 초록색
+  inactive_color=0xff1E8449 # 어두운 초록색
+  # active_color=0xffFFFFFF   # 순수 흰색
+  # inactive_color=0xff2C3E50 # 깊은 회색
+  # active_color=0xff9B59B6   # 밝은 보라색
+  # inactive_color=0xff693B7B # 어두운 보라색
+)
+
+borders "${options[@]}"
