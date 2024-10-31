@@ -15,14 +15,14 @@ alt - w : open -a 'WezTerm'
 alt - x : open -a 'Xmind'
 
 # focus window
-shift + alt - h : yabai -m window --focus west
-shift + alt - j : yabai -m window --focus south
-shift + alt - k : yabai -m window --focus north
-shift + alt - l : yabai -m window --focus east
+# shift + alt - h : yabai -m window --focus west
+# shift + alt - j : yabai -m window --focus south
+# shift + alt - k : yabai -m window --focus north
+# shift + alt - l : yabai -m window --focus east
 
 # toggle window zoom
-shift + alt - g : yabai -m window --toggle windowed-fullscreen
-shift + alt - f : yabai -m window --toggle zoom-fullscreen
+# shift + alt - g : yabai -m window --toggle windowed-fullscreen
+# shift + alt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
-shift + alt - e : yabai -m window --toggle split
+# shift + alt - e : yabai -m window --toggle split
