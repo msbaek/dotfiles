@@ -28,7 +28,9 @@ nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
 nnoremap <leader>ff :action SearchEverywhere<CR>
 nnoremap ca :action ShowIntentionActions<CR>
+
 nnoremap <Leader>cr :action RenameElement<CR>
+
 nnoremap <Leader>sg :action SearchEverywhere<CR>
 nnoremap <leader>cs :action GotoSymbol<CR>
 nnoremap <leader>gg :action Vcs.Show.Log<CR>
@@ -45,7 +47,6 @@ nnoremap J :action MoveStatementDown<CR>
 vnoremap K :action MoveStatementUp<CR>
 vnoremap J :action MoveStatementDown<CR>
 nnoremap K :action ShowHoverInfo<CR>
-
 
 nnoremap <c-m> :action MaximizeEditorInSplit<CR>
 nnoremap <Leader>l :action ReformatCode<CR>
