@@ -1,3 +1,9 @@
+# Left command + Opt + hjkl을 화살표 키로 매핑
+lcmd + lalt - h : skhd -k "left"
+lcmd + lalt - j : skhd -k "down"  
+lcmd + lalt - k : skhd -k "up"
+lcmd + lalt - l : skhd -k "right"
+
 # App shortcuts
 ctrl + cmd - a: open -a 'Arc'
 ctrl + cmd - o : open -a 'Obsidian'
