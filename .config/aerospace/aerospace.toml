@@ -53,12 +53,12 @@ on-focus-changed = "move-mouse window-lazy-center"
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 0
-inner.vertical = 0
-outer.left = 0
-outer.bottom = 0
-outer.top = 0
-outer.right = 0
+inner.horizontal = 4
+inner.vertical = 4
+outer.left = 4
+outer.bottom = 4
+outer.top = 4
+outer.right = 4
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -283,9 +283,12 @@ run = "move-node-to-workspace W"
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = "move-node-to-workspace W"   # Arc
+run = "move-node-to-workspace W"   # Ar↓c
 
-# aerospace list-apps
+# exclude_from_tiling [
+# "com.linguee.DeepLCopyTranslator"
+# ]
+# # aerospace list-apps
 # 678   | com.kakao.KakaoTalkMac           | 카카오톡
 # 683   | md.obsidian                      | Obsidian
 # 686   | com.apple.Safari                 | Safari
