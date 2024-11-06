@@ -193,3 +193,8 @@ if command -v starship &>/dev/null; then
   export STARSHIP_CONFIG=$HOME/github/dotfiles-latest/starship-config/active-config.toml
   eval "$(starship init zsh)" >/dev/null 2>&1
 fi
+
+# Golang environment variables
+export GOROOT=$(brew --prefix go)/libexec
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH

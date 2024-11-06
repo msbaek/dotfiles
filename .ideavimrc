@@ -10,7 +10,6 @@ set incsearch
 set smartcase
 set number 
 set relativenumber
-
 set idearefactormode=keep
 set ideajoin
 set surround
@@ -30,6 +29,8 @@ nnoremap <leader>ff :action SearchEverywhere<CR>
 nnoremap ca :action ShowIntentionActions<CR>
 
 nnoremap <Leader>cr :action RenameElement<CR>
+nnoremap <Leader>mp :action ManageRecentProjects<CR>
+nnoremap <Leader>cp :action CloseProject<CR>
 
 nnoremap <Leader>sg :action SearchEverywhere<CR>
 nnoremap <leader>cs :action GotoSymbol<CR>
