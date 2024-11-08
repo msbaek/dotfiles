@@ -3,12 +3,12 @@
 # Filename: ~/github/dotfiles-latest/colorscheme/list/linkarzu-colors.sh
 # ~/github/dotfiles-latest/colorscheme/list/linkarzu-colors.sh
 
-linkarzu_color01="#949ae5"
-linkarzu_color02="#37f499"
-linkarzu_color03="#04d1f9"
-linkarzu_color04="#987afb"
-linkarzu_color05="#19dfcf"
-linkarzu_color06="#1682ef"
+linkarzu_color01="#fda4af"
+linkarzu_color02="#fbcfe8"
+linkarzu_color03="#ddd6fe"
+linkarzu_color04="#bfdbfe"
+linkarzu_color05="#a5f3fc"
+linkarzu_color06="#99f6e4"
 #Markdown codeblock
 linkarzu_color07="#1c242f"
 linkarzu_color08="#a5f3fc"
@@ -33,14 +33,14 @@ linkarzu_color17="#141b22"
 #
 # Lighter markdown headings
 # Markdown heading 1 - color04
-linkarzu_color18="#bbf7d0"
+linkarzu_color18="#fecaca"
 # Markdown heading 2 - color02
-linkarzu_color19="#d9f99d"
+linkarzu_color19="#fed7aa"
 # Markdown heading 3 - color03
 linkarzu_color20="#fef08a"
 # Markdown heading 4 - color01
-linkarzu_color21="#fde68a"
+linkarzu_color21="#bbf7d0"
 # Markdown heading 5 - color05
-linkarzu_color22="#fed7aa"
+linkarzu_color22="#a7f3d0"
 # Markdown heading 6 - color08
-linkarzu_color23="#fecaca"
+linkarzu_color23="#99f6e4"
