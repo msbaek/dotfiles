@@ -4,6 +4,7 @@ return {
 	color_scheme = "Catppuccin Mocha",
 	enable_tab_bar = false,
 	font_size = 16.0,
+	max_fps = 120,
 	font = wezterm.font("JetBrains Mono"),
 	-- macos_window_background_blur = 40,
 	macos_window_background_blur = 30,
@@ -35,8 +36,21 @@ return {
 		-- Ctrl-click will open the link under the mouse cursor
 		{
 			event = { Up = { streak = 1, button = "Left" } },
-			mods = "CTRL",
+			mods = "SUPER",
 			action = wezterm.action.OpenLinkAtMouseCursor,
+		},
+	},
+	-- URL 감지 활성화
+	hyperlink_rules = {
+		-- URL 패턴
+		{
+			regex = "\\b\\w+://[\\w.-]+\\.[a-z]{2,15}\\S*\\b",
+			format = "$0",
+		},
+		-- 파일 경로 패턴
+		{
+			regex = [[\b[a-zA-Z]:[/\\][^/\\:\*\?"<>\|\r\n]+\b]],
+			format = "$0",
 		},
 	},
 }
