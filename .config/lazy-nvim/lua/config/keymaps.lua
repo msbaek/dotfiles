@@ -239,8 +239,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<c-u>", "<c-u>zz")
 
 -- Move lines up and down in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "[P]Move line down in visual mode" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "[P]Move line up in visual mode" })
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "[P]Move line down in visual mode" })
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "[P]Move line up in visual mode" })
 
 -- When you do joins with J it will keep your cursor at the beginning instead of at the end
 vim.keymap.set("n", "J", "mzJ`z")

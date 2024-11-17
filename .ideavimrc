@@ -1,7 +1,3 @@
-""" Editing and Reloading the Config
-" set clipboard+=unnamed
-" set clipboard+=ideaput
-
 " Use the OS clipboard by default
 set clipboard=unnamed,unnamedplus
 " Enable native idea paste action for put operations
@@ -27,8 +23,9 @@ nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
 nnoremap <leader>ff :action SearchEverywhere<CR>
 nnoremap ca :action ShowIntentionActions<CR>
+nnoremap <leader>a :action $SelectAll<CR>
 
-nnoremap <Leader>cr :action RenameElement<CR>
+nnoremap <Leader>z :action RenameElement<CR>
 nnoremap <Leader>mp :action ManageRecentProjects<CR>
 nnoremap <Leader>cp :action CloseProject<CR>
 
@@ -42,15 +39,16 @@ nnoremap <leader>zu :action ExpandAllRegions<CR>
 nnoremap <leader>zk :action CollapseAllRegions<CR>
 nnoremap zu :action ExpandRegion<CR>
 nnoremap zk :action CollapseRegion<CR>
-nnoremap K :action MoveStatementUp<CR>
-nnoremap J :action MoveStatementDown<CR>
+" nnoremap K :action MoveStatementUp<CR>
+" nnoremap J :action MoveStatementDown<CR>
 " Visual mode에서 선택한 블록 이동
-vnoremap K :action MoveStatementUp<CR>
-vnoremap J :action MoveStatementDown<CR>
+" vnoremap K :action MoveStatementUp<CR>
+" vnoremap J :action MoveStatementDown<CR>
 nnoremap K :action ShowHoverInfo<CR>
 
-nnoremap <c-m> :action MaximizeEditorInSplit<CR>
-nnoremap <Leader>l :action ReformatCode<CR>
+nnoremap <c-m> :action MaximizeEditorInSplit<↓CR>
+vnoremap <c-r> :action ReformatCode<CR>
+nnoremap <c-r> :action ReformatCode<CR>
 nnoremap <Leader>th :action TypeHierarchy<CR>
 nnoremap se :action ShowErrorDescription<CR>
 " nnoremap qd :action QuickJavaDoc<CR>
