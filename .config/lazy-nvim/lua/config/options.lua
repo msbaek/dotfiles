@@ -133,7 +133,7 @@ vim.opt.sessionoptions = {
 -- I mainly type in english, if I set it to both above, files in English get a
 -- bit confused and recognize words in spanish, just for spanish files I need to
 -- set it to both
-vim.opt.spelllang = { "en" }
+-- vim.opt.spelllang = { "en" }
 -- vim.opt.spelllang = { "en,ko" }
 -- vim.opt.spell = true
 
