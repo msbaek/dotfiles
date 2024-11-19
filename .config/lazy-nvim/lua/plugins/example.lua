@@ -18,6 +18,10 @@ return {
     opts = {
       colorscheme = "gruvbox",
     },
+    config = function()
+      vim.opt.spell = false -- 맞춤법 검사 비활성화
+      -- 다른 옵션 설정들...
+    end,
   },
 
   -- change trouble config
