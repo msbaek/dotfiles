@@ -93,7 +93,7 @@ nnoremap <leader>o :action OptimizeImports<CR>
 nnoremap <leader>ll :action RecentLocations<CR>
 nnoremap <leader>lh  :action LocalHistory.ShowHistory<CR>
 nnoremap <c-/> :action FindInPath<CR>
-
+nnoremap <c-m> :action MaximizeEditorInSplit<CR>
 " nnoremap <leader>c :action CommentByLineComment<CR>
 " nnoremap <c-r> :action RecentFiles<CR>
 nnoremap ne :action GotoNextError<CR>
