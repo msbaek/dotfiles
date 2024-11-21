@@ -110,18 +110,18 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
-alt-b = 'workspace B' # browser
-alt-c = 'workspace C' # datagrip
-alt-d = 'workspace D' # development
-alt-e = 'workspace E' # file explorer
-alt-i = 'workspace I' # office
-alt-m = 'workspace M' # music
-alt-n = 'workspace N' # notes
-alt-o = 'workspace O' # office
-alt-p = 'workspace P' # office
-alt-s = 'workspace S' # other development
-alt-t = 'workspace T' # terminal
-alt-w = 'workspace W' # weeky
+# alt-b = 'workspace B' # browser
+# alt-c = 'workspace C' # datagrip
+# alt-d = 'workspace D' # development
+# alt-e = 'workspace E' # file explorer
+# alt-i = 'workspace I' # office
+# alt-m = 'workspace M' # music
+# alt-n = 'workspace N' # notes
+# alt-o = 'workspace O' # office
+# alt-p = 'workspace P' # office
+# alt-s = 'workspace S' # other development
+# alt-t = 'workspace T' # terminal
+# alt-w = 'workspace W' # weeky
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -195,7 +195,7 @@ run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = 'com.culturedcode.ThingsMac'
-run = "move-node-to-workspace o"
+run = "move-node-to-workspace O"
 
 [[on-window-detected]]
 if.app-id = 'com.amazonaws.acvc.osx'
@@ -247,7 +247,7 @@ run = "move-node-to-workspace I"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
-run = "move-node-to-workspace I"
+run = "move-node-to-workspace O"
 
 [[on-window-detected]]
 if.app-id = 'com.devon-technologies.thinkpro2'
