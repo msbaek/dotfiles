@@ -24,7 +24,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 5
+accordion-padding = 100
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -53,12 +53,12 @@ on-focus-changed = "move-mouse window-lazy-center"
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 4
-inner.vertical = 4
-outer.left = 4
-outer.bottom = 4
-outer.top = 4
-outer.right = 4
+inner.horizontal = 20
+inner.vertical = 20
+outer.left = 20
+outer.bottom = 20
+outer.top = 20
+outer.right = 20
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -147,7 +147,7 @@ alt-shift-t = 'move-node-to-workspace T'
 alt-shift-w = 'move-node-to-workspace W'
 
 # Add keybind to fullscreen a window
-alt-shift-f = 'fullscreen'
+# alt-shift-f = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -188,6 +188,18 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+[[on-window-detected]]
+if.app-id = 'com.kakao.KakaoTalkMac'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Stickies'
+run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.kakao.KakaoTalkMac'
@@ -286,8 +298,9 @@ if.app-id = 'net.kovidgoyal.kitty'
 run = "move-node-to-workspace W"   # Ar↓c
 
 # exclude_from_tiling [
-# "com.linguee.DeepLCopyTranslator"
+# "com.kakao.KakaoTalkMac"
 # ]
+
 # # aerospace list-apps
 # 678   | com.kakao.KakaoTalkMac           | 카카오톡
 # 683   | md.obsidian                      | Obsidian
