@@ -19,7 +19,7 @@ return {
   opts = {
     workspaces = {
       {
-        name = "personal",
+        name = "msbaek_vault",
         path = "/Users/msbaek/DocumentsLocal/msbaek_vault",
       },
     },
