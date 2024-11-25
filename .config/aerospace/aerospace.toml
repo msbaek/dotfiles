@@ -57,7 +57,7 @@ inner.horizontal = 20
 inner.vertical = 20
 outer.left = 20
 outer.bottom = 20
-outer.top = 20
+outer.top = 50
 outer.right = 20
 
 # 'main' binding mode declaration
@@ -110,6 +110,7 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-0 = 'workspace a'
 # alt-b = 'workspace B' # browser
 # alt-c = 'workspace C' # datagrip
 # alt-d = 'workspace D' # development
@@ -133,21 +134,10 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-b = 'move-node-to-workspace B'
-alt-shift-c = 'move-node-to-workspace C'
-alt-shift-d = 'move-node-to-workspace D'
-alt-shift-e = 'move-node-to-workspace E'
-alt-shift-i = 'move-node-to-workspace I'
-alt-shift-m = 'move-node-to-workspace M'
-alt-shift-n = 'move-node-to-workspace N'
-alt-shift-o = 'move-node-to-workspace O'
-alt-shift-p = 'move-node-to-workspace P'
-alt-shift-s = 'move-node-to-workspace S'
-alt-shift-t = 'move-node-to-workspace T'
-alt-shift-w = 'move-node-to-workspace W'
+alt-shift-0 = 'move-node-to-workspace a'
 
 # Add keybind to fullscreen a window
-# alt-shift-f = 'fullscreen'
+alt-shift-f = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -189,6 +179,20 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+############
+#
+[[on-window-detected]]
+if.app-id = 'com.daisydiskapp.DaisyDiskStandAlone'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.linguee.DeepLCopyTranslator'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = 'layout floating'
+
 [[on-window-detected]]
 if.app-id = 'com.kakao.KakaoTalkMac'
 run = 'layout floating'
@@ -202,100 +206,99 @@ if.app-id = 'com.apple.Stickies'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.kakao.KakaoTalkMac'
+if.app-id = 'com.apple.Notes'
+run = 'layout floating'
+#
+############
+#
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = "move-node-to-workspace 1"         # Arc
+
+[[on-window-detected]]
+if.app-id = 'net.xmind.vana.app'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
 if.app-id = 'com.culturedcode.ThingsMac'
-run = "move-node-to-workspace O"
+run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = 'com.amazonaws.acvc.osx'
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
-if.app-id = 'net.xmind.vana.app'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
+if.app-id = 'com.apple.iWork.Numbers'
 run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
-if.app-id = 'com.apple.iWork.Numbers'
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
 if.app-id = 'com.apple.iWork.Keynote'
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Excel'
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
-run = "move-node-to-workspace B"
-
-[[on-window-detected]]
-if.app-id = 'md.obsidian'
-run = "move-node-to-workspace B"
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'
-run = "move-node-to-workspace C"
+run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
-run = "move-node-to-workspace C"
+run = "move-node-to-workspace 4"            ## cursro
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
-run = "move-node-to-workspace D"
+run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace I"
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
-run = "move-node-to-workspace O"
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'com.devon-technologies.thinkpro2'
-run = "move-node-to-workspace N"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Notes'
-run = "move-node-to-workspace N"
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'QReader.MarginStudy.easy'
-run = "move-node-to-workspace N"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
-run = "move-node-to-workspace O"
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace O"
-
-[[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace B"
-
-[[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
-run = "move-node-to-workspace B"         # Arc
+run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace W"
+run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = "move-node-to-workspace W"   # Ar↓c
+run = "move-node-to-workspace 6"   # Ar↓c
+
+[[on-window-detected]]
+if.app-id = 'com.kakao.KakaoTalkMac'
+run = "move-node-to-workspace a"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = "move-node-to-workspace a"
 
 # exclude_from_tiling [
 # "com.kakao.KakaoTalkMac"
