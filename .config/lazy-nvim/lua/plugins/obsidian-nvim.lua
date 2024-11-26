@@ -24,6 +24,9 @@ return {
       },
     },
     use_default_keymaps = false,
+    vim.keymap.set("n", "<leader>wo", ":ObsidianOpen<CR>"),
+    vim.keymap.set("n", "<leader>wn", ":ObsidianNewFromTemplate<CR>"),
+    vim.keymap.set("n", "<leader>wp", ":ObsidianPasteImg<CR>"),
     -- Optional, if you keep notes in a specific subdirectory of your vault.
     -- notes_subdir = "notes",
     -- completion = {
