@@ -111,18 +111,6 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-0 = 'workspace a'
-# alt-b = 'workspace B' # browser
-# alt-c = 'workspace C' # datagrip
-# alt-d = 'workspace D' # development
-# alt-e = 'workspace E' # file explorer
-# alt-i = 'workspace I' # office
-# alt-m = 'workspace M' # music
-# alt-n = 'workspace N' # notes
-# alt-o = 'workspace O' # office
-# alt-p = 'workspace P' # office
-# alt-s = 'workspace S' # other development
-# alt-t = 'workspace T' # terminal
-# alt-w = 'workspace W' # weeky
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -208,6 +196,26 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.apple.Notes'
 run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iWork.Numbers'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iWork.Keynote'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Excel'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.devon-technologies.thinkpro2'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'QReader.MarginStudy.easy'
+run = 'layout floating'
 #
 ############
 #
@@ -244,61 +252,34 @@ run = "move-node-to-workspace 2"
 if.app-id = 'com.amazonaws.acvc.osx'
 run = "move-node-to-workspace 2"
 
-[[on-window-detected]]
-if.app-id = 'com.apple.iWork.Numbers'
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.iWork.Keynote'
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.Excel'
-run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
-run = "move-node-to-workspace 4"            ## cursro
+run = "move-node-to-workspace 3"            ## cursro
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace 5"
+run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
-run = "move-node-to-workspace 5"
-
-[[on-window-detected]]
-if.app-id = 'com.devon-technologies.thinkpro2'
-run = "move-node-to-workspace 5"
-
-[[on-window-detected]]
-if.app-id = 'QReader.MarginStudy.easy'
-run = "move-node-to-workspace 6"
+run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace 6"
+run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = "move-node-to-workspace 6"   # Ar↓c
-
-[[on-window-detected]]
-if.app-id = 'com.kakao.KakaoTalkMac'
-run = "move-node-to-workspace a"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = "move-node-to-workspace a"
+run = "move-node-to-workspace 5"   # Ar↓c
 
 # exclude_from_tiling [
 # "com.kakao.KakaoTalkMac"
