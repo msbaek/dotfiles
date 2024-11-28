@@ -1847,6 +1847,17 @@ vim.keymap.set({ "n" }, "<leader>Oo", "<cmd>ObsidianOpen<CR>", { desc = "open in
 vim.keymap.set({ "n" }, "<leader>Of", "<cmd>ObsidianFollowLink<CR>", { desc = "follow link", remap = true })
 vim.keymap.set({ "n" }, "<leader>Ob", "<cmd>ObsidianBacklinks<CR>", { desc = "back links", remap = true })
 vim.keymap.set({ "n" }, "<leader>Ot", "<cmd>ObsidianTags<CR>", { desc = "tags", remap = true })
+vim.keymap.set({ "n" }, "<leader>Op", "<cmd>ObsidianPasteImg<CR>", { desc = "page image", remap = true })
+vim.keymap.set({ "n" }, "<leader>Oq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "quick switch", remap = true })
+vim.keymap.set({ "n" }, "<leader>Oe", "<cmd>ObsidianExtractNote<CR>", { desc = "extract note", remap = true })
+vim.keymap.set({ "n" }, "<leader>Or", "<cmd>ObsidianRename<CR>", { desc = "rename", remap = true })
+vim.keymap.set({ "n" }, "<leader>Os", "<cmd>ObsidianSearch<CR>", { desc = "search", remap = true })
+vim.keymap.set({ "n" }, "<leader>Oc", "<cmd>ObsidianTOC<CR>", { desc = "TOC", remap = true })
+vim.keymap.set({ "n" }, "<leader>Ox", "<cmd>ObsidianToggleCheckbox<CR>", { desc = "toggle checkbox", remap = true })
+vim.keymap.set({ "n" }, "<leader>mp", "<cmd>MarkdownPreview<CR>", { desc = "preview", remap = true })
+vim.keymap.set("n", "gp", "`[v`]", { noremap = true, desc = "Select last pasted text" })
+vim.keymap.set("n", "<leader>v", "gv", { noremap = true, desc = "Reselect previous visual selection" })
+
 -- ObsidianLink
 -- ObsidianLinkNew
 -- ObsidianLinks
