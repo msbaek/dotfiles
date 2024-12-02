@@ -6,20 +6,24 @@ lcmd + lalt - l : skhd -k "right"
 
 # App shortcuts
 alt - a: open -a 'Arc'
-alt - o : open -a 'Obsidian'
+alt - b: open -a 'Things3'
 alt - c: open -a 'Calendar'
 alt - d: open -a 'DataGrip'
 alt - f: open -a 'Finder'
 alt - g: open -a 'Google Chrome'
 alt - i: open -a 'IntelliJ IDEA Ultimate'
 alt - m : open -a 'Mail'
-alt - b: open -a 'Things3'
+alt - o : open -a 'Obsidian'
 alt - s : open -a 'Slack'
 alt - t : open -a 'Microsoft Teams'
 alt - v : open -a 'Cursor'
 alt - w : open -a 'WezTerm'
 alt - x : open -a 'Xmind'
-
+alt - y : open -a 'KakaoTalk'
+alt - z : open -a 'Flow'
+#
+# skhd --restart-service 
+#
 # focus window
 # shift + alt - h : yabai -m window --focus west
 # shift + alt - j : yabai -m window --focus south
