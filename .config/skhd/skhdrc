@@ -1,26 +1,30 @@
 # Left command + Opt + hjkl을 화살표 키로 매핑
-lcmd + lalt - h : skhd -k "left"
-lcmd + lalt - j : skhd -k "down"  
-lcmd + lalt - k : skhd -k "up"
-lcmd + lalt - l : skhd -k "right"
+lcmd - h : skhd -k "left"
+lcmd - j : skhd -k "down"  
+lcmd - k : skhd -k "up"
+lcmd - l : skhd -k "right"
+# lcmd + lalt - h : skhd -k "left"
+# lcmd + lalt - j : skhd -k "down"  
+# lcmd + lalt - k : skhd -k "up"
+# lcmd + lalt - l : skhd -k "right"
 
 # App shortcuts
-alt - a: open -a 'Arc'
-alt - b: open -a 'Things3'
-alt - c: open -a 'Calendar'
-alt - d: open -a 'DataGrip'
-alt - f: open -a 'Finder'
-alt - g: open -a 'Google Chrome'
-alt - i: open -a 'IntelliJ IDEA Ultimate'
-alt - m : open -a 'Mail'
-alt - o : open -a 'Obsidian'
-alt - s : open -a 'Slack'
-alt - t : open -a 'Microsoft Teams'
-alt - v : open -a 'Cursor'
-alt - w : open -a 'WezTerm'
-alt - x : open -a 'Xmind'
-alt - y : open -a 'KakaoTalk'
-alt - z : open -a 'Flow'
+rshift - a: open -a 'Arc'
+rshift - b: open -a 'Things3'
+rshift - c: open -a 'Calendar'
+rshift - d: open -a 'DataGrip'
+rshift - f: open -a 'Finder'
+rshift - g: open -a 'Google Chrome'
+rshift - i: open -a 'IntelliJ IDEA Ultimate'
+rshift - m : open -a 'Mail'
+rshift - o : open -a 'Obsidian'
+rshift - s : open -a 'Slack'
+rshift - t : open -a 'Microsoft Teams'
+rshift - v : open -a 'Cursor'
+rshift - w : open -a 'WezTerm'
+rshift - x : open -a 'Xmind'
+rshift - y : open -a 'KakaoTalk'
+rshift - z : open -a 'Flow'
 #
 # skhd --restart-service 
 #
