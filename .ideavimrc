@@ -6,7 +6,7 @@ set incsearch
 set smartcase
 set number 
 set relativenumber
-set idearefactormode=keep
+" set idearefactormode=keep
 set ideajoin
 set surround
 set easymotion
