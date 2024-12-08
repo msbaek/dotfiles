@@ -14,10 +14,11 @@ set cursorline
 
 set commentary
 """ The Escape button
-map <C-c> <Esc>
+" map <C-c> <Esc>
 """ The Leader Key
 let mapleader=" "
 
+inoremap jk <ESC>
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
