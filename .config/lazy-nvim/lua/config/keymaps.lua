@@ -1857,7 +1857,7 @@ vim.keymap.set({ "n" }, "<leader>Ox", "<cmd>ObsidianToggleCheckbox<CR>", { desc 
 vim.keymap.set({ "n" }, "<leader>mp", "<cmd>MarkdownPreview<CR>", { desc = "preview", remap = true })
 vim.keymap.set("n", "gp", "`[v`]", { noremap = true, desc = "Select last pasted text" })
 vim.keymap.set("n", "<leader>v", "gv", { noremap = true, desc = "Reselect previous visual selection" })
-
+vim.keymap.set("i", "jk", "<ESC>")
 -- ObsidianLink
 -- ObsidianLinkNew
 -- ObsidianLinks
