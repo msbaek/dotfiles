@@ -4,12 +4,32 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "hh to f18",
+            "description": "Shift + Space to F18",
             "manipulators": [
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "h",
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": ["shift"],
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "f18"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "ff to f18",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "f",
                   "modifiers": {
                     "optional": ["any"]
                   }
@@ -22,7 +42,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "h_pressed",
+                    "name": "f_pressed",
                     "value": 1
                   }
                 ]
@@ -30,7 +50,7 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "h",
+                  "key_code": "f",
                   "modifiers": {
                     "optional": ["any"]
                   }
@@ -38,19 +58,19 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "h_pressed",
+                      "name": "f_pressed",
                       "value": 1
                     }
                   },
                   {
-                    "key_code": "h"
+                    "key_code": "f"
                   }
                 ],
                 "to_delayed_action": {
                   "to_if_canceled": [
                     {
                       "set_variable": {
-                        "name": "h_pressed",
+                        "name": "f_pressed",
                         "value": 0
                       }
                     }
@@ -58,7 +78,7 @@
                   "to_if_invoked": [
                     {
                       "set_variable": {
-                        "name": "h_pressed",
+                        "name": "f_pressed",
                         "value": 0
                       }
                     }
