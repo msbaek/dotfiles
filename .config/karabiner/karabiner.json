@@ -4,6 +4,25 @@
       "complex_modifications": {
         "rules": [
           {
+            "description": "Right Command to F18",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "right_command",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "f18"
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "Shift + Space to F18",
             "manipulators": [
               {
@@ -20,73 +39,6 @@
                     "key_code": "f18"
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "description": "ff to f18",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "f",
-                  "modifiers": {
-                    "optional": ["any"]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "f18"
-                  }
-                ],
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "f_pressed",
-                    "value": 1
-                  }
-                ]
-              },
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "f",
-                  "modifiers": {
-                    "optional": ["any"]
-                  }
-                },
-                "to": [
-                  {
-                    "set_variable": {
-                      "name": "f_pressed",
-                      "value": 1
-                    }
-                  },
-                  {
-                    "key_code": "f"
-                  }
-                ],
-                "to_delayed_action": {
-                  "to_if_canceled": [
-                    {
-                      "set_variable": {
-                        "name": "f_pressed",
-                        "value": 0
-                      }
-                    }
-                  ],
-                  "to_if_invoked": [
-                    {
-                      "set_variable": {
-                        "name": "f_pressed",
-                        "value": 0
-                      }
-                    }
-                  ]
-                },
-                "parameters": {
-                  "basic.to_delayed_action_delay_milliseconds": 200
-                }
               }
             ]
           },
@@ -154,17 +106,6 @@
                     "modifiers": ["left_command", "left_option"]
                   }
                 ],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "right_command -> F18",
-            "manipulators": [
-              {
-                "to": [{ "key_code": "right_command" }],
-                "from": { "key_code": "right_command" },
-                "to_if_alone": [{ "key_code": "f18" }],
                 "type": "basic"
               }
             ]
@@ -259,10 +200,6 @@
             "vendor_id": 2131
           },
           "simple_modifications": [
-            {
-              "from": { "key_code": "right_command" },
-              "to": [{ "key_code": "f18" }]
-            },
             {
               "from": { "key_code": "right_option" },
               "to": [{ "key_code": "right_control" }]
@@ -384,13 +321,7 @@
             "is_keyboard": true,
             "product_id": 835,
             "vendor_id": 1452
-          },
-          "simple_modifications": [
-            {
-              "from": { "key_code": "right_command" },
-              "to": [{ "key_code": "f18" }]
-            }
-          ]
+          }
         }
       ],
       "name": "Default profile",
@@ -405,4 +336,3 @@
     }
   ]
 }
-
