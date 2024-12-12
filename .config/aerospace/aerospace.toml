@@ -172,6 +172,10 @@ if.app-id = 'com.daisydiskapp.DaisyDiskStandAlone'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-id = 'net.xmind.vana.app'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-id = 'com.linguee.DeepLCopyTranslator'
 run = 'layout floating'
 
