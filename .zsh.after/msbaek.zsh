@@ -199,4 +199,6 @@ export GOROOT=$(brew --prefix go)/libexec
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 
+alias gdum='gdu -h -d 1'
+
 FUNCNEST=100
