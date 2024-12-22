@@ -21,6 +21,8 @@ let mapleader=" "
 inoremap jk <ESC>
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+nnoremap <c-e> :action ReformatCode<CR>
+inoremap <c-e> :action ReformatCode<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
 nnoremap <leader>ff :action SearchEverywhere<CR>
 nnoremap ca :action ShowIntentionActions<CR>
@@ -47,7 +49,7 @@ nnoremap zk :action CollapseRegion<CR>
 " vnoremap J :action MoveStatementDown<CR>
 nnoremap K :action ShowHoverInfo<CR>
 
-nnoremap <c-m> :action MaximizeEditorInSplit<↓CR>
+nnoremap <c-m> :action MaximizeEditorInSplit<CR>
 vnoremap <c-r> :action ReformatCode<CR>
 nnoremap <c-r> :action ReformatCode<CR>
 nnoremap <Leader>th :action TypeHierarchy<CR>
