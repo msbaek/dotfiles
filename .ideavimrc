@@ -21,6 +21,7 @@ let mapleader=" "
 inoremap jk <ESC>
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+nnoremap H :action RecentFiles<CR>
 nnoremap <c-e> :action ReformatCode<CR>
 inoremap <c-e> :action ReformatCode<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
