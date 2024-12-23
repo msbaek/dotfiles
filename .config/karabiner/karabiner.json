@@ -4,25 +4,6 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "Right Command to F18",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "right_command",
-                  "modifiers": {
-                    "optional": ["any"]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "f18"
-                  }
-                ]
-              }
-            ]
-          },
-          {
             "description": "Shift + Space to F18",
             "manipulators": [
               {

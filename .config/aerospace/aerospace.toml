@@ -101,26 +101,28 @@ alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
+alt-q = 'workspace q'
+alt-w = 'workspace w'
+alt-e = 'workspace e'
+# alt-r = 'workspace r'
+alt-t = 'workspace t'
+alt-y = 'workspace y'
+alt-u = 'workspace u'
+alt-i = 'workspace i'
+alt-o = 'workspace o'
+alt-p = 'workspace p'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
-alt-shift-3 = 'move-node-to-workspace 3'
-alt-shift-4 = 'move-node-to-workspace 4'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-q = 'move-node-to-workspace q'
+alt-shift-w = 'move-node-to-workspace w'
+alt-shift-e = 'move-node-to-workspace e'
+# alt-shift-r = 'move-node-to-workspace r'
+alt-shift-t = 'move-node-to-workspace t'
+alt-shift-y = 'move-node-to-workspace y'
+alt-shift-u = 'move-node-to-workspace u'
+alt-shift-i = 'move-node-to-workspace i'
+alt-shift-o = 'move-node-to-workspace o'
+alt-shift-p = 'move-node-to-workspace p'
 
 # Add keybind to fullscreen a window
 alt-shift-f = 'fullscreen'
@@ -179,9 +181,9 @@ run = 'layout floating'
 if.app-id = 'com.linguee.DeepLCopyTranslator'
 run = 'layout floating'
 
-[[on-window-detected]]
-if.app-id = 'com.apple.Preview'
-run = 'layout floating'
+# [[on-window-detected]]
+# if.app-id = 'com.apple.Preview'
+# run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.kakao.KakaoTalkMac'
@@ -224,68 +226,68 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace 1"
+run = "move-node-to-workspace q"
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
-run = "move-node-to-workspace 1"         # Arc
+run = "move-node-to-workspace q"         # Arc
 
 [[on-window-detected]]
 if.app-id = 'net.xmind.vana.app'
-run = "move-node-to-workspace 1"
+run = "move-node-to-workspace q"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = "move-node-to-workspace 1"
+run = "move-node-to-workspace q"
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace w"
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace w"
 
 [[on-window-detected]]
 if.app-id = 'com.culturedcode.ThingsMac'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace w"
 
 [[on-window-detected]]
 if.app-id = 'com.amazonaws.acvc.osx'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace w"
 
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.datagrip'
-run = "move-node-to-workspace 3"
+run = "move-node-to-workspace e"
 
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
-run = "move-node-to-workspace 3"            ## cursro
+run = "move-node-to-workspace e"            ## cursro
 
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
-run = "move-node-to-workspace 3"
+run = "move-node-to-workspace e"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace t"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
-run = "move-node-to-workspace 4"
+run = "move-node-to-workspace t"
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace 5"
+run = "move-node-to-workspace t"
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = "move-node-to-workspace 5"
+run = "move-node-to-workspace t"
 
 [[on-window-detected]]
 if.app-id = 'com.amazonaws.acvc.osx'
-run = "move-node-to-workspace 9"
+run = "move-node-to-workspace y"
 
 # exclude_from_tiling [
 # "com.kakao.KakaoTalkMac"
