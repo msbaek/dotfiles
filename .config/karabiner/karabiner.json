@@ -4,10 +4,34 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "Shift + Space to F18",
+            "description": "Right Command to Hyper Key (⌘+⌃+⌥+⇧)",
             "manipulators": [
               {
                 "type": "basic",
+                "from": {
+                  "key_code": "right_command",
+                  "modifiers": {
+                    "optional": ["any"]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_control", "left_option"]
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "right_command"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Shift + Space to F18",
+            "manipulators": [
+              {
                 "from": {
                   "key_code": "spacebar",
                   "modifiers": {
@@ -15,11 +39,8 @@
                     "optional": ["any"]
                   }
                 },
-                "to": [
-                  {
-                    "key_code": "f18"
-                  }
-                ]
+                "to": [{ "key_code": "f18" }],
+                "type": "basic"
               }
             ]
           },
@@ -179,13 +200,7 @@
             "is_keyboard": true,
             "product_id": 256,
             "vendor_id": 2131
-          },
-          "simple_modifications": [
-            {
-              "from": { "key_code": "right_option" },
-              "to": [{ "key_code": "right_control" }]
-            }
-          ]
+          }
         },
         {
           "disable_built_in_keyboard_if_exists": true,
@@ -296,13 +311,6 @@
               "to": [{ "key_code": "f18" }]
             }
           ]
-        },
-        {
-          "identifiers": {
-            "is_keyboard": true,
-            "product_id": 835,
-            "vendor_id": 1452
-          }
         }
       ],
       "name": "Default profile",
