@@ -279,11 +279,11 @@ run = "move-node-to-workspace t"
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace t"
+run = "move-node-to-workspace y"
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = "move-node-to-workspace t"
+run = "move-node-to-workspace y"
 
 [[on-window-detected]]
 if.app-id = 'com.amazonaws.acvc.osx'
