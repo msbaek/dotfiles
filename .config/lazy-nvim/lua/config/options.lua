@@ -69,7 +69,7 @@ vim.opt.conceallevel = 2
 
 -- Keeps my cursor in the middle whenever possible
 -- This didn't work as expected, but the `stay-centered.lua` plugin did the trick
--- vim.opt.scrolloff = 999
+vim.opt.scrolloff = 999
 
 -- When text reaches this limit, it automatically wraps to the next line.
 -- This WILL NOT auto wrap existing lines, or if you paste a long line into a
