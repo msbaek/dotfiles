@@ -1,0 +1,33 @@
+font-family = JetBrains Mono
+font-size = 18
+theme = GruvboxDarkHard
+# Dracula
+# Afterglow arcoiris Arthur Desert Earthsong
+# Ayu Mirage
+shell-integration-features = no-cursor, sudo,no-title
+cursor-style = block
+adjust-cell-height = 35%
+# Hide the mouse immediately when typing. The mouse becomes visible again
+# may dictate other scenarios where the mouse is shown. For example on macOS,3
+# the mouse is shown again when a new window, tab, or split is created.
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+window-padding-balance = true
+window-save-state = always
+macos-titlebar-style=transparent
+window-colorspace = "display-p3"
+background = 1C2021
+# foreground = d4be98
+
+# The opacity level (opposite of transparency) of the background. A value of
+# 1 is fully opaque and a value of 0 is fully transparent. A value less than 0
+# or greater than 1 will be clamped to the nearest valid value.
+background-opacity = 0.9
+
+# keybindings
+keybind = cmd+s>r=reload_config
+keybind = cmd+s>x=close_surface
+keybind = cmd+s>n=new_window
+# tabs
+keybind = cmd+s>c=new_tab
+keybind = cmd+s>shift+l=next_tab
