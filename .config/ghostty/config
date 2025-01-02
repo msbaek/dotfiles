@@ -1,12 +1,13 @@
 font-family = JetBrains Mono
-font-size = 18
+font-size = 16
 theme = GruvboxDarkHard
 # Dracula
 # Afterglow arcoiris Arthur Desert Earthsong
 # Ayu Mirage
 shell-integration-features = no-cursor, sudo,no-title
 cursor-style = block
-adjust-cell-height = 35%
+adjust-cell-height = 10%
+
 # Hide the mouse immediately when typing. The mouse becomes visible again
 # may dictate other scenarios where the mouse is shown. For example on macOS,3
 # the mouse is shown again when a new window, tab, or split is created.
