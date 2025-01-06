@@ -226,11 +226,11 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace q"
+run = "move-node-to-workspace p"
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = "move-node-to-workspace q"
+run = "move-node-to-workspace p"
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
