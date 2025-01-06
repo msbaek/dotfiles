@@ -1846,7 +1846,7 @@ vim.keymap.set({ "n" }, "<leader>zn", "<cmd>ObsidianNewFromTemplate<CR>", { desc
 vim.keymap.set({ "n" }, "<leader>zo", "<cmd>ObsidianOpen<CR>", { desc = "open in obsidian", remap = true })
 vim.keymap.set({ "n" }, "<leader>zf", "<cmd>ObsidianFollowLink<CR>", { desc = "follow link", remap = true })
 vim.keymap.set({ "n" }, "<leader>zb", "<cmd>ObsidianBacklinks<CR>", { desc = "back links", remap = true })
-vim.keymap.set({ "n" }, "<leader>zt", "<cmd>ObsidianTags<CR>", { desc = "tags", remap = true })
+vim.keymap.set({ "n" }, "<leader>zt", "<cmd>ObsidianTemplate<CR>", { desc = "tags", remap = true })
 vim.keymap.set({ "n" }, "<leader>zp", "<cmd>ObsidianPasteImg<CR>", { desc = "page image", remap = true })
 vim.keymap.set({ "n" }, "<leader>zq", "<cmd>ObsidianQuickSwitch<CR>", { desc = "quick switch", remap = true })
 vim.keymap.set({ "n" }, "<leader>ze", "<cmd>ObsidianExtractNote<CR>", { desc = "extract note", remap = true })
