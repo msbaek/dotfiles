@@ -51,8 +51,6 @@ nnoremap zk :action CollapseRegion<CR>
 nnoremap K :action ShowHoverInfo<CR>
 
 nnoremap <c-m> :action MaximizeEditorInSplit<CR>
-vnoremap <c-r> :action ReformatCode<CR>
-nnoremap <c-r> :action ReformatCode<CR>
 nnoremap <Leader>th :action TypeHierarchy<CR>
 nnoremap se :action ShowErrorDescription<CR>
 " nnoremap qd :action QuickJavaDoc<CR>
