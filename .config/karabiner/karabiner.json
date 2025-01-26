@@ -23,14 +23,14 @@
             ]
           },
           {
-            "description": "Option+Space to F18",
+            "description": "Shift+Space to F18",
             "manipulators": [
               {
                 "type": "basic",
                 "from": {
                   "key_code": "spacebar",
                   "modifiers": {
-                    "mandatory": ["option"]
+                    "mandatory": ["shift"]
                   }
                 },
                 "to": [
