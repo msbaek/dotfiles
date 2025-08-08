@@ -32,7 +32,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.claude/hooks/UserPromptSubmit/user_prompt_submit.py"
+            "command": "python3 ~/.claude/hooks/UserPromptSubmit/append_ultrathink.py"
           }
         ]
       }
