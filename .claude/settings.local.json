@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(mv:*)",
+      "Bash(find:*)",
+      "Bash(ghostty:*)",
+      "Bash(ls:*)",
+      "Bash(echo:*)",
+      "Bash(luarocks:*)",
+      "Bash(lua:*)",
+      "Bash(brew list:*)",
+      "Bash(magick:*)",
+      "Bash(pkg-config:*)",
+      "Bash(pip3 install:*)",
+      "Bash(claude auth logout)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:valentjn.github.io)",
+      "WebSearch",
+      "Bash(env)",
+      "Read(//$HOME/**)",
+      "Bash(ps:*)",
+      "Bash(git log:*)",
+      "Bash(git check-ignore:*)",
+      "mcp__sequential-thinking__sequentialthinking"
+    ]
+  },
+  "enableAllProjectMcpServers": true
+}

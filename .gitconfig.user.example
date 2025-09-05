@@ -1,0 +1,32 @@
+# Git 사용자 설정 템플릿
+# 이 파일을 .gitconfig.user로 복사하고 실제 정보로 교체하세요.
+
+[user]
+	name = "Your Name Here"
+	email = your.email@company.com
+
+[delta]
+	navigate = true
+	side-by-side = true
+	# use n and N to move between diff sections
+	# delta detects terminal colors automatically; set one of these to disable auto-detection
+	# dark = true
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default

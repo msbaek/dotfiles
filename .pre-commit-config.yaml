@@ -1,0 +1,47 @@
+repos:
+  # Detect Secrets
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: .*\.lock$|package-lock\.json$|\.pre-commit-config\.yaml$
+
+  # Pre-commit hooks for common issues
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: check-case-conflict
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-json
+        exclude: \.vscode/.*\.json$
+      - id: check-toml
+
+  # Local hooks for dotfiles-specific checks
+  - repo: local
+    hooks:
+      # Check for hardcoded personal paths
+      - id: check-hardcoded-paths
+        name: Check for hardcoded personal paths
+        entry: .claude/hooks/check-hardcoded-paths.sh
+        language: script
+        pass_filenames: false
+
+      # Check for sensitive file extensions
+      - id: check-sensitive-extensions
+        name: Check for sensitive file extensions
+        entry: .claude/hooks/check-sensitive-files.sh
+        language: script
+        pass_filenames: false
+
+      # Check for API keys in env files (non-example)
+      - id: check-env-files
+        name: Check for actual env files
+        entry: .claude/hooks/check-env-files.sh
+        language: script
+        pass_filenames: false

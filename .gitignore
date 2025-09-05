@@ -1,0 +1,84 @@
+# ======================
+# 환경 변수 파일들 (민감한 정보)
+# ======================
+.env.*
+!.env.*.example
+
+# ======================
+# 개인 설정 파일들
+# ======================
+.gitconfig.user
+.ssh/config
+
+# ======================
+# Claude 관련 디렉토리
+# ======================
+.claude/backups
+.claude/claude_desktop_config.json
+.claude/removed_claude_desktop_config.json
+.claude/ide
+.claude/local
+.claude/logs
+.claude/projects
+.claude/shell-snapshots
+.claude/statsig
+.claude/todos
+.claude/plugins
+.claude/commands
+.claude/agents
+
+# ======================
+# Serena 관련
+# ======================
+.serena/logs
+.serena/language_servers
+.serena/prompt_templates
+
+# ======================
+# 설정 파일들
+# ======================
+.config/fabric/.env
+.config/karabiner/automatic_backups
+.config/lazy-nvim/.gitignore
+.config/lazy-nvim/.neoconf.json
+.config/nbean/
+
+# ======================
+# 무시할 디렉토리
+# ======================
+.gemini/
+.idea/
+Library/
+ignored/
+
+# ======================
+# macOS 시스템 파일
+# ======================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# ======================
+# 편집기 관련
+# ======================
+*.swp
+*.swo
+*~
+.vscode/
+
+# ======================
+# 로그 및 임시 파일
+# ======================
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+
+# ======================
+# Node.js
+# ======================
+node_modules/

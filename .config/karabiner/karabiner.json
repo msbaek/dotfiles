@@ -1,0 +1,341 @@
+{
+  "profiles": [
+    {
+      "complex_modifications": {
+        "rules": [
+          {
+            "description": "Switch to English when Ctrl+H/J/K/L is pressed",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "a",
+                  "modifiers": {
+                    "mandatory": ["control"]
+                  }
+                },
+                "to": [
+                  {
+                    "select_input_source": {
+                      "language": "en"
+                    }
+                  },
+                  {
+                    "key_code": "a",
+                    "modifiers": ["control"]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": ["control"]
+                  }
+                },
+                "to": [
+                  {
+                    "select_input_source": {
+                      "language": "en"
+                    }
+                  },
+                  {
+                    "key_code": "h",
+                    "modifiers": ["control"]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": ["control"]
+                  }
+                },
+                "to": [
+                  {
+                    "select_input_source": {
+                      "language": "en"
+                    }
+                  },
+                  {
+                    "key_code": "j",
+                    "modifiers": ["control"]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": ["control"]
+                  }
+                },
+                "to": [
+                  {
+                    "select_input_source": {
+                      "language": "en"
+                    }
+                  },
+                  {
+                    "key_code": "k",
+                    "modifiers": ["control"]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": ["control"]
+                  }
+                },
+                "to": [
+                  {
+                    "select_input_source": {
+                      "language": "en"
+                    }
+                  },
+                  {
+                    "key_code": "l",
+                    "modifiers": ["control"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "shift+space to f18",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": { "mandatory": ["left_shift"] }
+                },
+                "to": [{ "key_code": "f18" }],
+                "type": "basic"
+              },
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": { "mandatory": ["right_shift"] }
+                },
+                "to": [{ "key_code": "f18" }],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Right Option to Hyper Key on Internal Keyboard",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "right_command",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_shift", "left_command", "left_option"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Right Option to Hyper Key on Internal Keyboard",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "right_option",
+                  "modifiers": { "optional": ["any"] }
+                },
+                "to": [
+                  {
+                    "key_code": "left_control",
+                    "modifiers": ["left_shift", "left_command", "left_option"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Change Won (₩) to backtick (`).",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "input_sources": [{ "language": "ko" }],
+                    "type": "input_source_if"
+                  }
+                ],
+                "from": { "key_code": "grave_accent_and_tilde" },
+                "to": [
+                  {
+                    "key_code": "grave_accent_and_tilde",
+                    "modifiers": ["left_option", "right_option"]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          }
+        ]
+      },
+      "devices": [
+        {
+          "disable_built_in_keyboard_if_exists": true,
+          "fn_function_keys": [
+            {
+              "from": { "key_code": "f1" },
+              "to": [{ "consumer_key_code": "display_brightness_decrement" }]
+            },
+            {
+              "from": { "key_code": "f2" },
+              "to": [{ "consumer_key_code": "display_brightness_increment" }]
+            }
+          ],
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 256,
+            "vendor_id": 2131
+          }
+        },
+        {
+          "disable_built_in_keyboard_if_exists": true,
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 615,
+            "vendor_id": 76
+          }
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 4137,
+            "vendor_id": 39658
+          },
+          "simple_modifications": [
+            {
+              "from": { "key_code": "home" },
+              "to": [{ "key_code": "non_us_backslash" }]
+            },
+            {
+              "from": { "key_code": "left_command" },
+              "to": [{ "key_code": "left_option" }]
+            },
+            {
+              "from": { "key_code": "left_option" },
+              "to": [{ "key_code": "left_command" }]
+            }
+          ]
+        },
+        {
+          "disable_built_in_keyboard_if_exists": true,
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 64007,
+            "vendor_id": 13652
+          },
+          "ignore": false,
+          "simple_modifications": [
+            {
+              "from": { "key_code": "japanese_kana" },
+              "to": [{ "key_code": "f18" }]
+            },
+            {
+              "from": { "key_code": "non_us_backslash" },
+              "to": [{ "key_code": "grave_accent_and_tilde" }]
+            }
+          ]
+        },
+        {
+          "disable_built_in_keyboard_if_exists": true,
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 64008,
+            "vendor_id": 13652
+          },
+          "ignore": false,
+          "simple_modifications": [
+            {
+              "from": { "key_code": "f12" },
+              "to": [{ "key_code": "grave_accent_and_tilde" }]
+            },
+            {
+              "from": { "key_code": "japanese_kana" },
+              "to": [{ "key_code": "right_command" }]
+            },
+            {
+              "from": { "key_code": "left_command" },
+              "to": [{ "key_code": "left_option" }]
+            },
+            {
+              "from": { "key_code": "left_option" },
+              "to": [{ "key_code": "left_command" }]
+            }
+          ]
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 268,
+            "vendor_id": 9610
+          },
+          "simple_modifications": [
+            {
+              "from": { "key_code": "japanese_kana" },
+              "to": [{ "key_code": "f18" }]
+            },
+            {
+              "from": { "key_code": "left_command" },
+              "to": [{ "key_code": "left_option" }]
+            },
+            {
+              "from": { "key_code": "left_option" },
+              "to": [{ "key_code": "left_command" }]
+            },
+            {
+              "from": { "key_code": "right_control" },
+              "to": [{ "key_code": "f18" }]
+            }
+          ]
+        },
+        {
+          "disable_built_in_keyboard_if_exists": true,
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 4,
+            "vendor_id": 18003
+          }
+        },
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "product_id": 4,
+            "vendor_id": 18003
+          },
+          "ignore": true
+        }
+      ],
+      "name": "Default profile",
+      "selected": true,
+      "simple_modifications": [
+        {
+          "from": { "key_code": "caps_lock" },
+          "to": [{ "key_code": "right_control" }]
+        }
+      ],
+      "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+    }
+  ]
+}

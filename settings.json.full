@@ -1,0 +1,84 @@
+{
+  "env": {},
+  "permissions": {
+    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)"],
+    "deny": []
+  },
+  "model": "opus",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code - PreToolUse\" -message \"💄🥷🏻💄🥷🏻 도구 실행 준비 중: $CLAUDE_TOOL_NAME 💄🥷🏻💄🥷🏻\" -sound default"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code - PostToolUse\" -message \"도구 실행 완료: $CLAUDE_TOOL_NAME\" -sound default"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code - UserPromptSubmit\" -message \"사용자 요청이 제출되었습니다\" -sound default"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code - Notification\" -message \"$CLAUDE_NOTIFICATION\" -sound default"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code - Stop\" -message \"💄🥷🏻💄🥷🏻✅ Claude 응답이 완료되었습니다\ 💄🥷🏻💄🥷🏻✅" -sound default -timeout 30"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code - SubagentStop\" -message \"하위 에이전트 작업이 완료되었습니다\" -sound default"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code - PreCompact\" -message \"컨텍스트 압축이 시작됩니다\" -sound default"
+          }
+        ]
+      }
+    ]
+  }
+}

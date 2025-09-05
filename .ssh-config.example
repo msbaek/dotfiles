@@ -1,0 +1,26 @@
+# SSH 설정 템플릿
+# 이 파일의 내용을 ~/.ssh/config에 추가하고 실제 정보로 교체하세요.
+
+# Zeppelin 서버 (예시)
+Host zeppelin
+    HostName your.server.ip.here
+    User your-username
+    IdentityFile ~/path/to/your/key.pem
+
+# 회사 서버 (예시)
+Host company-server
+    HostName your.company.server.ip.here
+    User your-company-username
+    IdentityFile ~/path/to/your/company-key.pem
+
+# GitHub (예시)
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa
+
+# 일반 설정
+Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentitiesOnly yes

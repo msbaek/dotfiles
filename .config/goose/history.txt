@@ -1,0 +1,58 @@
+#V2
+이 프로젝트에 대한 개요를 알려줘
+ hmmall 스키마에서 bank 입출력 내역을 추출하는 쿼리를 작성해줘 \n
+Write a query to extract bank input/output history from the hmmall schema
+jetbrains ide tool(특히 database)를 이용해서 SELL_DADDR_ID로 주문, 배송 정보를 구하는 쿼리를 작성해줘
+Using jetbrains ide tools (especially database), write a query to get order and shipping information by SELL_DADDR_ID
+using the JetBrains IDE tools, upgrade this project to use the latest Java LTS version and refactor the codebase to use newer Java features where beneficial.\n
+SELL_DELIY_ADDR 테이블의 SELL_DADDR_ID 값을 이용해서 주문, 주문상품, 배송, 배송상품을 구하는 쿼리를 작성해줘 \n
+SELL, SELL_GOODS, SELL_DELIY_ADDR , SELL_DELIY_ADDR_GOODS 이 네 테이블을 죠인하는 방법을 알려줘 \n
+GOODS 테이블에서 GOODS_ID로 최근 10건을 조회하는 쿼리를 작성해줘
+Write a query to retrieve the last 10 sales by GOODS_ID from the GOODS table\n\n
+SELL_DELIY_ADDR 테이블의 SELL_DADDR_ID 값을 이용해서 주문, 주문상품, 배송, 배송상품을 구하는 쿼리를 작성해줘 \n
+GOODS 테이블의 스키마를 알려줘
+어떤 db username과 password를 사용했어 ?
+GOODS table의 ddl를 추출해줘
+ktown4u-db에 접속하기 위해 사용할 username과 password를 알려줘
+GOOODS 테이블의 ddl을 알려줘
+SELL_DELIY_ADDR 테이블의 SELL_DADDR_ID 값을 이용해서 주문, 주문상품, 배송, 배송상품을 구하는 쿼리를 작성해줘 \n
+open www.google.com in browser
+open https://levelup.gitconnected.com/why-im-finally-letting-go-of-the-repository-pattern-f0f6c20f88b3 in arc browser
+translate this page into korean
+just summarize this page in english
+ListShippingMethodRequestFactory를 intellij 의 refactoring기능을
+ListShippingMethodRequestFactory를 intellij의 refactoring 기능을 활용해서 가독성을 높여줘
+open medium.com with arc browser
+모든 아티클의 링크를 리스트 해줘
+arc 브라우저에서 https://medium.com/itnext/will-github-copilot-agent-mode-kill-cursor-and-windsurf-f378597b79c1?source=home_for_you---------0-1--------------------4bb021c3_1408_405c_b79f_ac2d25e4f8b9-------15------- 이 글을 열어줘
+https://medium.com/itnext/will-github-copilot-agent-mode-kill-cursor-and-windsurf-f378597b79c1 이 링크를 arc 브라우저에서 열어줘
+ https://medium.com/itnext/will-github-copilot-agent-mode-kill-cursor-and-windsurf-f378597b79c1 이 링크를 arc 브라우저에서 열어줘
+이 기사에서 중요한 점을 정리해줘
+지금 변겨에 대해 commit 메시지를 영어로 작성해줘
+ListShippingMethodRequestFactory 파일을 변경했어
+NaverSearchApiTest의 print 메소드에서 STL을 사용해서 개선해줘
+arc browser로 https://refactoring.guru/ko/refactoring/smells/bloaters 를 열어
+이 페이지에 있는 각 항목들을 markdown 형식으로 자세히 정리해줘
+각 항목을 링크를 클릭해서 조사해서 좀 더 자세히 정리해줘
+https://refactoring.guru/ko/refactoring/smells/oo-abusers
+https://refactoring.guru/ko/refactoring/smells/oo-abusers 이 페이지을 각각의 링크를 방문해서 마크다운 형식으로 자세히 정리해줘
+https://refactoring.guru/ko/refactoring/smells/change-preventers 도 동일하게 자세히 정리해줘
+https://refactoring.guru/ko/refactoring/smells/change-preventers 하위 페이지를 포함해서 이 페이지의 내용을 markdown으로 자세히 정리해줘
+https://refactoring.guru/ko/refactoring/smells/change-preventers 이 페이지의 내용을 링크에 있는 하위 페이지들을 포함해서 자세히 마크다운으로 정리해줘
+https://refactoring.guru/ko/refactoring/smells/change-preventers 이 페이지을 각각의 링크를 방문해서 마크다운 형식으로 자세히 정리 해줘
+https://refactoring.guru/ko/refactoring/smells/change-preventers 이 페이지을 각각의 링크를 방문해서 마크다운 형식으로 자세 히 정리 해줘
+https://refactoring.guru/ko/refactoring/smells/dispensables  이 페이지을 각각의 링크를 방문해서 마크다운 형식으로 자세히 정리 해줘
+https://refactoring.guru/ko/refactoring/smells/couplers 이 페이지을 각각의 링크를 방문해서 마크다운 형식으로 자세 히 정리 해줘
+https://refactoring.guru/ko/refactoring/smells/couplers 이 페이지을 각각의 링크를 방문해서 마크다운 형식으로 자세 히 정리  해줘\n
+https://refactoring.guru/ko/refactoring/smells/other 이 페이지을 각각의 링크를 방문해서 마크다운 형식으로 자세 히 정리 해줘
+다음과 같은 정보를 얻을 수 있는 쿼리를 작성해줘
+\n\nifnull(GOODS_LANG_DAT.GOODS_NM, GOODS.DEF_GOODS_NM) as GOODS_NM, -- 상품명(한글)\nGOODS.DEF_GOODS_NM, -- 상품명(영문)\nGOODS.GOODS_ID -- 상품ID\nGOODS.BARCODE, -- 바코드\nGOODS.PROD_ID, -- 제조사코드\nGOODS.REL_DT, -- 입고일\nGOODS.RELEASE_DT, -- 출시일\nGOODS.COST, -- 단가\nGOODS.VAT, -- 부가세\nGOODS.PRICE, -- 가격\nGOODS.ACT_YN, -- 활성\nGOODS.FORCE_END_YN, -- 강종\nGOODS.TEMP_END_YN, -- 일시품절\nGOODS.QTY, -- 재고\n(select cast(ifnull(sum(EOQ), 0) as signed)\n from SHOP_GOODS_DAT\n where GOODS_NO = BUY_GOODS.GOODS_NO\n   and DEL_YN = 'N')                                                                                           as EOQ, -- 적정재고\n(select cast(ifnull(sum(KEEP_QTY), 0) as signed)\n from SHOP_GOODS_DAT\n where GOODS_NO = BUY_GOODS.GOODS_NO\n   and DEL_YN = 'N')                                                                                           as KEEP_QTY, -- 예비수량\n(select cast(ifnull(sum(B.QTY), 0) as signed)\n from SELL_GOODS A\n          inner join SELL_DELIY_ADDR_GOODS B on A.SELL_NO = B.SELL_NO and A.SELL_GOODS_NO = B.SELL_GOODS_NO\n where A.OPT_REF_GOODS_NO = GOODS.GOODS_NO\n   and B.STATUS_CD in ('goods_ready', 'delivery_ready'))                                                       as SAVE_REQUEST_QTY, -- 미발송(재고확보)\n(select cast(ifnull(sum(B.ZERO_QTY), 0) as signed)\n from SELL_GOODS A\n          inner join SELL_DELIY_ADDR_GOODS B on A.SELL_NO = B.SELL_NO and A.SELL_GOODS_NO = B.SELL_GOODS_NO\nwhere A.OPT_REF_GOODS_NO = GOODS.GOODS_NO\n  and B.STATUS_CD in ('goods_ready', 'delivery_ready'))                                                       as SAVE_ZERO_QTY -- 미발송(재고없음)\n      BUY_GOODS.BUY_QTY, -- 구매수량\n      buy.BUY_NM -- 발주서명\n
+쿼리를 다시 보여줘. 안 보여
+BUY 테이블의 스키마를 보여줘
+SELL, SELL_DELIY_ADDR, SELL_GOODS, SELL_DELIY_ADDR_GOODS 를 죠인해서 주문번호로 주문한 상품의 목록을 보여주는 쿼리를 작성해줘
+arc browser로 http://localhost:8080/orderdtl?sell_no=40276007&&currentPage=1&startDate=2025-04-08&endDate=2025-05-08 이 페이지를 열고, 동일한 요청을 curl로 할 수 있도록 header를 포함해서 명령문을 만들어줘
+arc browser로 http://localhost:8080/orderdtl?sell_no=40276007&&currentPage=1&startDate=2025-04-08&endDate=2025-05-08 이 페이지를 열고, 동일한 요청을 curl로 할 수 있도록 header를 포함해서 명령문을\n 만들어줘
+cookie도 포함시켜줘. 인증 정보가 들어있어
+arc browser로 http://localhost:8080/orderdtl?sell_no=40276007&&currentPage=1&startDate=2025-04-08&endDate=2025-05-08 이 페이지를 열고, 동일한 요청을 curl로 할 수 있도록 header를 포함해서 명령문을\n 만들어줘
+cache 정보도 추가해줘. 인증 정보가 들어 있어
+things app에서 keyboard 타이핑 연습하는 사이트가 기록된 메모를 찾아줘
