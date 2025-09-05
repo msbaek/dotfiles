@@ -1,0 +1,6 @@
+direct_prompt: |
+  Review the PR for:
+    - Potential bugs or security issues
+      - ex. null pointer, number format, divide by zero exception
+    - Consistency with project conventions
+  Output findings in a structured list.

@@ -1,0 +1,10 @@
+/* ~/.config/nvim/md-custom.css */
+strong {
+  color: #ff0000; /* bold 텍스트를 빨간색으로 */
+  font-weight: 600;
+}
+
+em {
+  color: #0000ff; /* italic 텍스트를 파란색으로 */
+  font-style: normal;
+}
