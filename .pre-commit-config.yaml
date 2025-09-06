@@ -25,6 +25,14 @@ repos:
   # Local hooks for dotfiles-specific checks
   - repo: local
     hooks:
+      # Update Brewfile before commit
+      - id: update-brewfile
+        name: Update Brewfile with current packages
+        entry: .claude/hooks/update-brewfile.sh
+        language: script
+        pass_filenames: false
+        always_run: true
+
       # Check for hardcoded personal paths
       - id: check-hardcoded-paths
         name: Check for hardcoded personal paths
