@@ -169,7 +169,3 @@ function y() {
 }
 
 export EDITOR="nvim"
-
-opencode() {
-      (unset AWS_PROFILE AWS_REGION; command opencode "$@")
-}

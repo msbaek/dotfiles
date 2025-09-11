@@ -4,11 +4,7 @@
     "MAX_MCP_OUTPUT_TOKENS": "100000"
   },
   "permissions": {
-    "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm run test:*)",
-      "WebFetch"
-    ],
+    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)", "WebFetch"],
     "deny": []
   },
   "hooks": {

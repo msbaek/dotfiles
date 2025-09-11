@@ -23,7 +23,8 @@
       "Bash(ps:*)",
       "Bash(git log:*)",
       "Bash(git check-ignore:*)",
-      "mcp__sequential-thinking__sequentialthinking"
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(npx:*)"
     ]
   },
   "enableAllProjectMcpServers": true
