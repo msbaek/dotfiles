@@ -5,7 +5,7 @@ repos:
     hooks:
       - id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
-        exclude: .*\.lock$|package-lock\.json$|\.pre-commit-config\.yaml$
+        exclude: .*\.lock$|package-lock\.json$|lazy-lock\.json$|\.pre-commit-config\.yaml$
 
   # Pre-commit hooks for common issues
   - repo: https://github.com/pre-commit/pre-commit-hooks
