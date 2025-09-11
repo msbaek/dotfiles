@@ -41,7 +41,6 @@
 .config/karabiner/automatic_backups
 .config/lazy-nvim/.gitignore
 .config/lazy-nvim/.neoconf.json
-.config/lazy-nvim/lazy-lock.json
 .config/nbean/
 
 # ======================
