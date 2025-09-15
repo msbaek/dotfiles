@@ -50,6 +50,11 @@
   - tmux-orchestator - <https://github.com/Jedward23/Tmux-Orchestrator>
     - tmux-orchestator는 ~/git/lib/Tmux-Orchestrator/ 에 clone 되어
       있음
+- java-guide: 라고 프롬프트를 시작하면 ~/.claude/docs/JAVA-APP-GUIDE.md에 정의된
+  내용을 참고해서 내 요청을 처리해줘
+  정의되어 있음
+- snippet: 으로 프롬프트를 시작하면 ~/.claude/docs/snippets.md에 정의된 config,
+  code 등의 snippet을 참고해서 내 요청을 처리해줘
 
 ## LEARNING
 
