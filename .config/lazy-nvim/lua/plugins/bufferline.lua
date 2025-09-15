@@ -61,7 +61,7 @@ return {
       vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
         callback = function()
           vim.schedule(function()
-            pcall(require("bufferline.api").nvim_bufferline)
+            pcall(vim.cmd, "redrawtabline")
           end)
         end,
       })
