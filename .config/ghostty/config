@@ -1,13 +1,22 @@
 font-family = Google Sans Code
+font-family = Sarasa Term K
 # font-family = JetBrains Mono
 font-size = 16
-theme = GruvboxDarkHard
+theme = Gruvbox Dark Hard
 # Dracula
 # Afterglow arcoiris Arthur Desert Earthsong
 # Ayu Mirage
 shell-integration-features = no-cursor, sudo,no-title
 cursor-style = block
-# adjust-cell-height = 5%
+
+# Font and cell adjustments for Korean text
+adjust-cell-height = 15%
+adjust-cell-width = 0%
+adjust-font-baseline = -2%
+grapheme-width-method = unicode
+
+# Font variations for better Korean rendering
+font-synthetic-style = bold,italic,bold-italic
 
 # Hide the mouse immediately when typing. The mouse becomes visible again
 # may dictate other scenarios where the mouse is shown. For example on macOS,3
