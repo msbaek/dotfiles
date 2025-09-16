@@ -30,7 +30,7 @@ inoremap <c-e> :action ReformatCode<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
 nnoremap <leader>a :action $SelectAll<CR>
 
-nnoremap <leader-x> :action Console.Jdbc.Execute<CR>
+nnoremap <leader>x :action Console.Jdbc.Execute<CR>
 " nnoremap <c-q> :action ActivateProjectToolWindow<CR>
 
 vnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
