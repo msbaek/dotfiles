@@ -79,9 +79,20 @@
                         ]
                     },
                     {
-                        "description": "shift+space to f18",
+                        "description": "shift+space to f18 (Apple Internal Keyboard only)",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "vendor_id": 1452,
+                                                "product_id": 835
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "spacebar",
                                     "modifiers": { "mandatory": ["left_shift"] }
@@ -90,6 +101,17 @@
                                 "type": "basic"
                             },
                             {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "vendor_id": 1452,
+                                                "product_id": 835
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "spacebar",
                                     "modifiers": { "mandatory": ["right_shift"] }
