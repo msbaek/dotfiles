@@ -210,3 +210,4 @@ FUNCNEST=100
 alias cl='claude'
 alias cld='claude --dangerously-skip-permissions'
 alias vis='python -m src --vault-path $HOME/DocumentsLocal/msbaek_vault '
+alias bedrock='claude --settings ~/.claude/settings.bedrock.json --dangerously-skip-permissions'
