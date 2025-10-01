@@ -82,3 +82,7 @@ Icon
 # Node.js
 # ======================
 node_modules/
+
+.claude/removed-mcp-servers.json
+.claude/file-history
+.claude/history.jsonl

@@ -4,7 +4,12 @@
     "MAX_MCP_OUTPUT_TOKENS": "100000"
   },
   "permissions": {
-    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)", "WebFetch", "mcp__sequential-thinking__*"],
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test:*)",
+      "WebFetch",
+      "mcp__sequential-thinking__*"
+    ],
     "deny": []
   },
   "hooks": {
@@ -54,8 +59,8 @@
     "command": "npx -y ccstatusline@latest",
     "padding": 0
   },
+  "alwaysThinkingEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
-  },
-  "model": "opusplan"
+  }
 }
