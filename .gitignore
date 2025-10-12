@@ -86,3 +86,5 @@ node_modules/
 .claude/removed-mcp-servers.json
 .claude/file-history
 .claude/history.jsonl
+.claude/debug
+.claude/downloads

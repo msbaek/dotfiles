@@ -59,7 +59,7 @@
     "command": "npx -y ccstatusline@latest",
     "padding": 0
   },
-  "alwaysThinkingEnabled": true,
+  "alwaysThinkingEnabled": false,
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   }
