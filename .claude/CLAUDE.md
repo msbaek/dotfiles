@@ -75,6 +75,45 @@ and faster
 - 파일 분석 시 중복 파일("사본"), 빈 폴더, 임시 파일 체크
 - vault-analysis/ 폴더에 분석 결과 저장
 
+## Vault Intelligence 사용 시
+
+사용자의 요청 처리를 위해 vault 검색이 필요한 경우:
+
+### 시스템 위치
+- vault-intelligence: `~/git/vault-intelligence/`
+- vault 경로: `~/DocumentsLocal/msbaek_vault/`
+
+### CLI 사용법
+**⚠️ 중요: ~/git/vault-intelligence/CLAUDE.md의 "CLI 빠른 참조" 섹션을 반드시 참조하세요!**
+
+```bash
+# 기본 검색 (올바른 옵션 사용)
+cd ~/git/vault-intelligence
+python -m src search --query "검색어" --search-method hybrid --top-k 10
+
+# 자주 실수하는 옵션들 주의:
+# ❌ --method (X)      → ✅ --search-method (O)
+# ❌ --k (X)           → ✅ --top-k (O)
+# ❌ --output-file (X) → ✅ --output (O)
+# ❌ --reranking (X)   → ✅ --rerank (O)
+```
+
+### 검색 방법 선택
+- `--search-method semantic`: 의미적 검색 (개념 기반)
+- `--search-method keyword`: 키워드 검색 (정확한 매칭)
+- `--search-method hybrid`: 하이브리드 검색 (기본값, 권장)
+- `--search-method colbert`: ColBERT 토큰 검색 (정밀 매칭)
+
+### 고급 옵션
+- `--rerank`: 재순위화 (정확도 향상)
+- `--expand`: 쿼리 확장 (동의어 + HyDE, 포괄성 향상)
+- `--with-centrality`: 중심성 점수 반영
+
+### 상세 가이드
+- CLI 빠른 참조: `~/git/vault-intelligence/CLAUDE.md`
+- 사용자 가이드: `~/git/vault-intelligence/docs/USER_GUIDE.md`
+- 실전 예제: `~/git/vault-intelligence/docs/EXAMPLES.md`
+
 ## Vault 태그 체계
 
 - vault_root vault-analysus/improved-hierarchical-tags-guide.md 참조
