@@ -132,6 +132,7 @@ nnoremap <leader>vn :action ShowNavBar<CR>
 nnoremap <leader>vz :action ToggleDistractionFreeMode<CR>
 nnoremap <leader>vp :action TogglePresentationMode<CR>
 nnoremap <leader>vh :action HideAllWindows<CR>
+nnoremap <c-x> :action HideAllWindows<CR>
 
 " Git & VCS (<leader>g)
 nnoremap <leader>gg :action Vcs.Show.Log<CR>
