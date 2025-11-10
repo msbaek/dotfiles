@@ -89,3 +89,6 @@ node_modules/
 .claude/history.jsonl
 .claude/debug
 .claude/downloads
+.claude/.claude/skills
+
+**/__pycache__
