@@ -153,9 +153,11 @@
 	navigate = true
 	side-by-side = true
 	# use n and N to move between diff sections
-	# delta detects terminal colors automatically; set one of these to disable auto-detection
+	# GitHub Light theme for better readability
+	syntax-theme = GitHub
+	light = true
+	# Previous: auto-detect mode
 	# dark = true
-	# light = true
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
