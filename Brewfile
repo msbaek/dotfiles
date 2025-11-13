@@ -135,6 +135,7 @@ brew "truncate", link: false
 brew "unar"
 brew "up"
 brew "uv"
+brew "vivid"
 brew "walk"
 brew "wget"
 brew "xclip"
