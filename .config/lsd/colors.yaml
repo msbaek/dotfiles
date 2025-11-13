@@ -1,0 +1,47 @@
+# lsd color configuration for GitHub Light theme
+# Optimized for better visibility on light backgrounds
+
+user: 22    # dark green
+group: 58   # dark orange
+permission:
+  read: 28        # dark green
+  write: 130      # dark orange
+  exec: 21        # dark blue
+  exec-sticky: 165    # purple
+  no-access: 245      # gray
+  octal: 241          # dark gray
+  acl: 246            # gray
+  context: 246        # gray
+
+date:
+  hour-old: 130   # orange (recently modified)
+  day-old: 28     # green (modified today)
+  older: 240      # gray (older files)
+
+size:
+  none: 245       # gray
+  small: 22       # dark green
+  medium: 58      # orange
+  large: 160      # red
+
+inode:
+  valid: 241      # dark gray
+  invalid: 245    # gray
+
+links:
+  valid: 28       # dark green
+  invalid: 160    # red
+
+tree-edge: 241    # dark gray
+
+git-status:
+  default: 241    # gray
+  unmodified: 241 # gray
+  ignored: 245    # light gray
+  new-in-index: 28      # green
+  new-in-workdir: 28    # green
+  typechange: 130       # orange
+  deleted: 160          # red
+  renamed: 58           # orange
+  modified: 130         # orange
+  conflicted: 160       # red

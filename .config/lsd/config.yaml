@@ -1,0 +1,56 @@
+# lsd configuration file
+# https://github.com/lsd-rs/lsd
+
+# Color theme
+color:
+  when: auto
+  theme: custom  # Use custom colors.yaml
+
+# Icons
+icons:
+  when: auto
+  theme: fancy
+  separator: " "
+
+# Display
+indicators: true
+dereference: false
+
+# Layout
+layout: grid
+blocks:
+  - permission
+  - user
+  - group
+  - size
+  - date
+  - name
+  - inode
+  - links
+
+# Date format
+date: relative
+
+# Sorting
+sorting:
+  column: name
+  reverse: false
+  dir-grouping: first
+
+# Size format
+size: default
+
+# Symlink arrow
+symlink-arrow: "⇒"
+
+# Ignore globs
+ignore-globs: []
+
+# No symlink (dereference)
+no-symlink: false
+
+# Total size
+total-size: false
+
+# Hyperlink
+hyperlink: auto
