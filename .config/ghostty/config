@@ -3,7 +3,15 @@ font-family = Sarasa Term K
 # font-family = Noto Sans CJK KR
 # font-family = JetBrains Mono
 font-size = 16
-theme = Gruvbox Dark Hard
+theme = Catppuccin Latte
+
+# Warning/Error 색상 개선 - 대비 강화
+# palette 3, 11: Warning (Yellow) - 더 진한 황금색으로 변경
+# palette 1, 9: Error (Red) - 더 진한 빨강으로 변경
+palette = 3=#b8860b
+palette = 11=#996700
+palette = 1=#b01030
+palette = 9=#901020
 # Dracula
 # Afterglow arcoiris Arthur Desert Earthsong
 # Ayu Mirage
@@ -30,13 +38,13 @@ window-colorspace = "display-p3"
 window-decoration = false
 macos-titlebar-style = hidden
 # macos-titlebar-style=transparekt
-background = 1C2021
+# background = 1C2021
 # foreground = d4be98
 
 # The opacity level (opposite of transparency) of the background. A value of
 # 1 is fully opaque and a value of 0 is fully transparent. A value less than 0
 # or greater than 1 will be clamped to the nearest valid value.
-background-opacity = 0.95
+background-opacity = 1
 
 # keybindings
 keybind = cmd+s>r=reload_config

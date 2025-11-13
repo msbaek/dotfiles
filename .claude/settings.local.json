@@ -22,7 +22,11 @@
       "mcp__sequential-thinking__sequentialthinking",
       "Bash(npx:*)",
       "WebFetch",
-      "mcp__sequential-thinking__*"
+      "mcp__sequential-thinking__*",
+      "Bash(curl:*)",
+      "Bash(for theme in 'Gruvbox Light' 'GitHub Light Default' 'Ayu Light' 'One Half Light' 'Selenized Light')",
+      "Bash(do echo '=== $theme ===')",
+      "Bash(done)"
     ]
   },
   "enableAllProjectMcpServers": true,
