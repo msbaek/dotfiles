@@ -7,7 +7,7 @@
 -- http://www.lazyvim.org/extras/editor/mini-files
 
 return {
-  "echasnovski/mini.files",
+  "nvim-mini/mini.files",
   opts = {
     -- I didn't like the default mappings, so I modified them
     -- Module mappings created only inside explorer.
