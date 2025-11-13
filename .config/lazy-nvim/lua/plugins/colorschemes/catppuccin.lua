@@ -27,7 +27,10 @@ return {
         Visual = { bg = "#7ec9d8", fg = "white" },
 
         -- horizontal line that goes across where cursor is
-        CursorLine = { bg = "#3f404f" },
+        -- For latte (light theme), use a lighter background
+        -- For dark themes, use the darker background
+        CursorLine = { bg = colors.surface0 },
+        -- CursorLine = { bg = "#3f404f" },  -- old dark theme color
         -- CursorLine = { bg = "#ff2800" },
 
         -- Color of repeated words

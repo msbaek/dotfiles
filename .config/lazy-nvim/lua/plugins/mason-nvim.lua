@@ -6,7 +6,7 @@
 -- :help mason.nvim
 -- https://github.com/jonschlinkert/markdown-toc
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   opts = {
     ensure_installed = {
       -- I installed "templ" and other LSPS, these requirements can be found in
