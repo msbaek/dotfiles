@@ -3,15 +3,21 @@ font-family = Sarasa Term K
 # font-family = Noto Sans CJK KR
 # font-family = JetBrains Mono
 font-size = 16
-theme = Catppuccin Latte
+theme = GitHub Light Default
 
-# Warning/Error 색상 개선 - 대비 강화
+# GitHub Light Default theme provides good contrast for terminal tools
+# Other GitHub Light variants: GitHub Light Colorblind, GitHub Light High Contrast
+# Previous: Catppuccin Latte
+# theme = Catppuccin Latte
+
+# Warning/Error 색상 개선 - GitHub Light는 기본 색상 사용
+# Catppuccin Latte에서 사용했던 커스텀 palette (참고용으로 보존)
 # palette 3, 11: Warning (Yellow) - 더 진한 황금색으로 변경
 # palette 1, 9: Error (Red) - 더 진한 빨강으로 변경
-palette = 3=#b8860b
-palette = 11=#996700
-palette = 1=#b01030
-palette = 9=#901020
+# palette = 3=#b8860b
+# palette = 11=#996700
+# palette = 1=#b01030
+# palette = 9=#901020
 # Dracula
 # Afterglow arcoiris Arthur Desert Earthsong
 # Ayu Mirage

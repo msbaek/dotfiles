@@ -26,7 +26,9 @@
       "Bash(curl:*)",
       "Bash(for theme in 'Gruvbox Light' 'GitHub Light Default' 'Ayu Light' 'One Half Light' 'Selenized Light')",
       "Bash(do echo '=== $theme ===')",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(lsd:*)",
+      "Bash(cat:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
