@@ -86,8 +86,8 @@
                                     {
                                         "identifiers": [
                                             {
-                                                "vendor_id": 1452,
-                                                "product_id": 835
+                                                "product_id": 835,
+                                                "vendor_id": 1452
                                             }
                                         ],
                                         "type": "device_if"
@@ -105,8 +105,8 @@
                                     {
                                         "identifiers": [
                                             {
-                                                "vendor_id": 1452,
-                                                "product_id": 835
+                                                "product_id": 835,
+                                                "vendor_id": 1452
                                             }
                                         ],
                                         "type": "device_if"
@@ -317,13 +317,6 @@
                         "vendor_id": 18003
                     },
                     "ignore": true
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": true,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "vendor_id": 65261
-                    }
                 }
             ],
             "name": "Default profile",

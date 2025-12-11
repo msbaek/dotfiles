@@ -9,7 +9,7 @@
 # ======================
 .gitconfig.user
 .ssh/config
-.zsh.after/msbaek.zsh
+# .zsh.after/msbaek.zsh
 
 # ======================
 # Claude 관련 디렉토리
@@ -27,6 +27,7 @@
 .claude/plugins
 .claude/commands
 .claude/agents
+.claude/plans
 
 # ======================
 # Serena 관련

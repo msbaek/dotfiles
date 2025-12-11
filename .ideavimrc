@@ -1,201 +1,154 @@
-" =============================================================================
-" IdeaVim Configuration
-" =============================================================================
-
-" -----------------------------------------------------------------------------
-" Basic Settings
-" -----------------------------------------------------------------------------
-set clipboard=unnamed,unnamedplus    " Use OS clipboard
-set clipboard+=ideaput               " Enable native idea paste action
-set incsearch                        " Incremental search
-set smartcase                        " Smart case search
-set number                           " Show line numbers
-set relativenumber                   " Show relative line numbers
-set cursorline                       " Highlight current line
-
-" IdeaVim specific settings
+" Use the OS clipboard by default
+set clipboard=unnamed,unnamedplus
+" Enable native idea paste action for put operations
+set clipboard+=ideaput
+set incsearch
+set smartcase
+set number
+set relativenumber
 set idearefactormode=visual
 set ideajoin
+set surround
+set easymotion
+set cursorline
 
-" Plugins
-set surround                         " vim-surround emulation
-set easymotion                       " easymotion emulation
-set commentary                       " vim-commentary emulation
-set NERDTree                         " NERDTree emulation
-
-" NERDTree settings
-let g:NERDTreeMapActivateNode='l'
-let g:NERDTreeMapJumpParent='h'
-
-" -----------------------------------------------------------------------------
-" Leader Key Configuration
-" -----------------------------------------------------------------------------
+set commentary
+""" The Escape button
+" map <C-c> <Esc>
+""" The Leader Key
 let mapleader=" "
 
-" -----------------------------------------------------------------------------
-" Insert Mode Mappings
-" -----------------------------------------------------------------------------
-inoremap jk <ESC>
+inoremap sa :action ShowIntentionActions<CR>
+nnoremap sa :action ShowIntentionActions<CR>
 
-" -----------------------------------------------------------------------------
-" Config Management
-" -----------------------------------------------------------------------------
+inoremap jk <ESC>
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
-
-" -----------------------------------------------------------------------------
-" Navigation - Go to (g prefix)
-" -----------------------------------------------------------------------------
-nnoremap gc :action GotoClass<CR>
-nnoremap gl :action GotoFile<CR>
-nnoremap gi :action GotoImplementation<CR>
-nnoremap gd :action GotoDeclaration<CR>
-nnoremap gu :action FindUsages<CR>
-nnoremap gp :action GotToSuperMethod<CR>
-nnoremap gt :action GotoTest<CR>
-nnoremap gr :action GotoRelated<CR>
-nnoremap gb :action Back<CR>
-nnoremap gf :action Forward<CR>
-nnoremap gj :action MethodDown<CR>
-nnoremap gk :action MethodUp<CR>
-
-" -----------------------------------------------------------------------------
-" Quick Actions (Optimized for Iris keyboard thumb cluster)
-" -----------------------------------------------------------------------------
-" Primary: Double-tap Space (오른쪽 엄지의 Alt/Space를 빠르게 두 번)
-nnoremap <Space><Space> :action ShowIntentionActions<CR>
-inoremap <Space><Space> <Esc>:action ShowIntentionActions<CR>
-
-" Alternative: Semicolon prefix (홈 로우, 오른손 편함)
-nnoremap ;a :action ShowIntentionActions<CR>
-nnoremap ;d :action QuickJavaDoc<CR>
-nnoremap ;i :action QuickImplementations<CR>
-nnoremap ;r :action ToggleRenderedDocPresentation<CR>
-nnoremap ;e :action ShowErrorDescription<CR>
-
-" Restore semicolon functionality
-nnoremap ;; ;
-
-" -----------------------------------------------------------------------------
-" Code Folding (z prefix)
-" -----------------------------------------------------------------------------
-nnoremap zu :action ExpandRegion<CR>
-nnoremap zk :action CollapseRegion<CR>
-nnoremap zU :action ExpandAllRegions<CR>
-nnoremap zK :action CollapseAllRegions<CR>
-
-" -----------------------------------------------------------------------------
-" Leader-based Commands
-" -----------------------------------------------------------------------------
-
-" File & Project Management (<leader>f)
-nnoremap <leader>ff :action GotoFile<CR>
-nnoremap <leader>fr :action RecentFiles<CR>
-nnoremap <leader>fl :action RecentLocations<CR>
-nnoremap <leader>fh :action LocalHistory.ShowHistory<CR>
-nnoremap <leader>fs :action FileStructurePopup<CR>
-nnoremap <leader>fp :action ManageRecentProjects<CR>
-
-" Code Actions (<leader>c)
-nnoremap <leader>ca :action GotoAction<CR>
-nnoremap <leader>cc :action RunAnything<CR>
-nnoremap <leader>cf :action ReformatCode<CR>
-nnoremap <leader>co :action OptimizeImports<CR>
-nnoremap <leader>ch :action CallHierarchy<CR>
-nnoremap <leader>ct :action TypeHierarchy<CR>
-nnoremap <leader>cs :action GotoSymbol<CR>
-
-" Refactoring (<leader>r)
-nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
-vnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
-nnoremap <leader>rn :action RenameElement<CR>
-nnoremap <leader>rm :action ExtractMethod<CR>
-vnoremap <leader>rm :action ExtractMethod<CR>
-nnoremap <leader>rv :action IntroduceVariable<CR>
-nnoremap <leader>rf :action IntroduceField<CR>
-nnoremap <leader>rp :action IntroduceParameter<CR>
-
-" Window & Tab Management (<leader>w)
-nnoremap <leader>wv :action SplitVertically<CR>
-nnoremap <leader>wh :action SplitHorizontally<CR>
-nnoremap <leader>wu :action Unsplit<CR>
-nnoremap <leader>wm :action MaximizeEditorInSplit<CR>
-nnoremap <leader>wc :action CloseContent<CR>
-nnoremap <leader>wa :action CloseAllEditors<CR>
-nnoremap <leader>wo :action CloseAllEditorsButActive<CR>
-nnoremap <leader>we :action EditSourceInNewWindow<CR>
-nnoremap <leader>wn :action MoveTabRight<CR>
-
-" View & UI (<leader>v)
-nnoremap <leader>ve :action SelectInProjectView<CR>
-nnoremap <leader>vn :action ShowNavBar<CR>
-nnoremap <leader>vz :action ToggleDistractionFreeMode<CR>
-nnoremap <leader>vp :action TogglePresentationMode<CR>
-nnoremap <leader>vh :action HideAllWindows<CR>
-nnoremap <c-x> :action HideAllWindows<CR>
-
-" Git & VCS (<leader>g)
-nnoremap <leader>gg :action Vcs.Show.Log<CR>
-
-" Test & Terminal (<leader>t)
-nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
-nnoremap <leader>to :action Terminal.OpenInTerminal<CR>
-
-" Debug (<leader>d)
-nnoremap <leader>db :action ToggleLineBreakpoint<CR>
-nnoremap <leader>dd :action ContextDebug<CR>
-nnoremap <leader>dr :action Rerun<CR>
-nnoremap <leader>dc :action ChooseRunConfiguration<CR>
-nnoremap <leader>du :action RunClass<CR>
-nnoremap <leader>dt :action ActivateRunToolWindow<CR>
-nnoremap <leader>dn :action ActivateDebugToolWindow<CR>
-
-" Other leader commands
-nnoremap <leader>x :action Console.Jdbc.Execute<CR>
+nnoremap H :action RecentFiles<CR>
+nnoremap <c-f> :action ReformatCode<CR>
+inoremap <c-f> :action ReformatCode<CR>
+nnoremap <leader>e :action SelectInProjectView<CR>
 nnoremap <leader>a :action $SelectAll<CR>
 
-" -----------------------------------------------------------------------------
-" Window Navigation (Ctrl+hjkl)
-" -----------------------------------------------------------------------------
-sethandler <c-h> a:vim
+nnoremap <leader>x :action Console.Jdbc.Execute<CR>
+" nnoremap <c-q> :action ActivateProjectToolWindow<CR>
+
+vnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>r :action Refactorings.QuickListPopupAction<CR>
+vnoremap <Leader>m :action ExtractMethod<CR>
+nnoremap <Leader>m :action ExtractMethod<CR>
+nnoremap <Leader>v :action IntroduceVariable<CR>
+nnoremap <Leader>f :action IntroduceField<CR>
+nnoremap <Leader>p :action IntroduceParameter<CR>
+nnoremap <leader>g :action GotoRelated<CR>
+nnoremap <Leader>z :action RenameElement<CR>
+nnoremap <Leader>mp :action ManageRecentProjects<CR>
+nnoremap <Leader>cp :action CloseProject<CR>
+
+" nnoremap <leader>cs :action GotoSymbol<CR>
+nnoremap <leader>gg :action Vcs.Show.Log<CR>
+nnoremap <Leader>, :action RecentFiles<CR>
+nnoremap <Leader>bd :action CloseContent<CR>
+nnoremap <Leader>zz :action CloseAllEditors<CR>
+nnoremap <leader>zu :action ExpandAllRegions<CR>
+nnoremap <leader>zk :action CollapseAllRegions<CR>
+nnoremap zu :action ExpandRegion<CR>
+nnoremap zk :action CollapseRegion<CR>
+" nnoremap K :action MoveStatementUp<CR>
+" nnoremap J :action MoveStatementDown<CR>
+" Visual mode에서 선택한 블록 이동
+" vnoremap K :action MoveStatementUp<CR>
+" vnoremap J :action MoveStatementDown<CR>
+nnoremap K :action ShowHoverInfo<CR>
+
+nnoremap <Leader>th :action TypeHierarchy<CR>
+nnoremap se :action ShowErrorDescription<CR>
+" nnoremap qd :action QuickJavaDoc<CR>
+nnoremap qi :action QuickImplementations<CR>
+nnoremap qr :action ToggleRenderedDocPresentation<CR>
+" nnoremap <Leader>1 :action QuickJavaDoc<CR>
+nnoremap qj :action QuickJavaDoc<CR>
+nnoremap gk :action MethodUp<CR>
+nnoremap gj :action MethodDown<CR>
+
+""" Distraction Free Mode
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+nnoremap <c-p> :action TogglePresentationMode<CR>
+""" Terminal
+nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+""" Navigation
+nnoremap <c-\> :action MoveTabRight<CR>
+nnoremap <leader>| :action SplitVertically<CR>
+nnoremap <leader>- :action SplitHorizontally<CR>
+nnoremap <c-=> :action Unsplit<CR>
+" nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+sethandler <c-l> a:vim
 sethandler <c-j> a:vim
 sethandler <c-k> a:vim
-sethandler <c-l> a:vim
+sethandler <c-h> a:vim
 nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-
-" -----------------------------------------------------------------------------
-" Tab Navigation
-" -----------------------------------------------------------------------------
+nnoremap <s-TAB> :action PreviousTab<CR>
 nnoremap <TAB> :action NextTab<CR>
-nnoremap <S-TAB> :action PreviousTab<CR>
-
-" -----------------------------------------------------------------------------
-" Error Navigation
-" -----------------------------------------------------------------------------
-nnoremap ]e :action GotoNextError<CR>
-nnoremap [e :action GotoPreviousError<CR>
-nnoremap ]d :action NextDiff<CR>
-nnoremap [d :action PreviousDiff<CR>
-
-" -----------------------------------------------------------------------------
-" Visual Mode Enhancements
-" -----------------------------------------------------------------------------
+nnoremap <Leader>en :action EditSourceInNewWindow<CR>
+" nnoremap <Leader>n :action NextWindow<CR>
+""" Editing source code
 vnoremap < <gv
 vnoremap > >gv
 
-" -----------------------------------------------------------------------------
-" Special Keys
-" -----------------------------------------------------------------------------
-nnoremap K :action ShowHoverInfo<CR>
-
-" -----------------------------------------------------------------------------
-" Global Shortcuts (Ctrl+key)
-" -----------------------------------------------------------------------------
-nnoremap <c-a> :action GotoAction<CR>
-nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+nnoremap <leader>ll :action RecentLocations<CR>
+nnoremap <leader>lh  :action LocalHistory.ShowHistory<CR>
 nnoremap <c-/> :action FindInPath<CR>
-nnoremap <c-p> :action TogglePresentationMode<CR>
-nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+nnoremap <c-m> :action MaximizeEditorInSplit<CR>
+" nnoremap <leader>c :action CommentByLineComment<CR>
+" nnoremap <c-r> :action RecentFiles<CR>
+nnoremap ne :action GotoNextError<CR>
+nnoremap nE :action GotoPreviousError<CR>
+nnoremap nd :action NextDiff<CR>
+nnoremap nD :action PreviousDiff<CR>
+
+" nnoremap <leader>s :write<CR>
+""" Searching and Source Code Navigation
+nnoremap <c-a> :action GotoAction<CR>
+" nnoremap <leader>ca :action GotoAction<CR>
+nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+nnoremap <leader>s :action FileStructurePopup<CR>
+nnoremap gc :action GotoClass<CR>
+nnoremap gl :action GotoFile<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap qd :action GotoDeclaration<CR>
+" nnoremap <leader>u :action FindUsages<CR>
+nnoremap gu :action FindUsages<CR>
+nnoremap gp :action GotToSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+""" Tool windows
+nnoremap <c-x> :action HideAllWindows<CR>
+""" Running and Debugging
+""" nnoremap ,a :action RunAnything<CR>
+nnoremap <leader>cc :action RunAnything<CR>
+
+nnoremap ,r :action Rerun<CR>
+nnoremap ,c :action ChooseRunConfiguration<CR>
+""" nnoremap ,c :action ContextRun<CR>
+nnoremap ,u :action RunClass<CR>
+nnoremap ,t :action ActivateRunToolWindow<CR>
+""" nnoremap ,f :action RerunFailedTests<CR>
+nnoremap ,f :action ChooseRunConfiguration<CR>                                                                                        │
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+nnoremap ,d :action ContextDebug<CR>
+nnoremap ,n :action ActivateDebugToolWindow<CR>
+
+nnoremap <c-o> :action CloseAllEditorsButActive<CR>
+
+set NERDTree
+" noremap <leader>m :NERDTreeToggle<CR>
+" noremap <leader>n :action SelectInProjectView<CR>
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapJumpParent='h'
