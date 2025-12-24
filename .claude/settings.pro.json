@@ -61,9 +61,10 @@
   },
   "enabledPlugins": {
     "document-skills@anthropic-agent-skills": true,
-    "example-skills@anthropic-agent-skills": true
+    "example-skills@anthropic-agent-skills": true,
+    "frontend-for-opus-4-5@xavierchoi-skills-marketplace": true,
+    "ccc-skills@ccc": true
   },
-  "alwaysThinkingEnabled": false,
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   }
