@@ -133,7 +133,7 @@
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
 [user]
-	name = "Myeongseok Baek"
+	name = Myeongseok Baek
 	email = codetemplate@hanmail.net
 [pull]
 	rebase = true
