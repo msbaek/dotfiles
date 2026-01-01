@@ -63,7 +63,12 @@
     "document-skills@anthropic-agent-skills": true,
     "example-skills@anthropic-agent-skills": true,
     "frontend-for-opus-4-5@xavierchoi-skills-marketplace": true,
-    "ccc-skills@ccc": true
+    "ccc-skills@ccc": true,
+    "lua-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "csharp-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192

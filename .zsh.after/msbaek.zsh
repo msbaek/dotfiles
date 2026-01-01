@@ -225,3 +225,14 @@ alias bedrock='claude --settings ~/.claude/settings.bedrock.json --dangerously-s
 alias plugins-cc='npx claude-code-templates@latest --plugins'
 alias chats-cc='npx claude-code-templates@latest --chats'
 alias clean-mac='npx mac-cleaner-cli'
+
+export ENABLE_LSP_TOOLS=1
+# 클로드 코드에서 MCP를 설정만 하더라도 토큰을 잡아먹어
+# 실제 일하는데 필요한 컨텍스트 용량을 잠식한다는 문제가 있습니다.
+# 예를들면, playwright, next-devtools, serena 정도만 설정해도 4만 토큰정도 사용하게 되는데
+# 시스템 프롬프트가 4.5k토큰을 쓴다는걸 감안하면 꽤 큰 용량입니다.
+# 이에, 클로드 코드에서 동적으로 MCP를 로딩하는 기능을 잠수함 출시했네요.
+# 환경변수에 `ENABLE_TOOL_SEARCH=true`를 설정하는 것으로 관련 기능이 활성화 되며,
+# 활성화 이후 `/context`로 확인해 보면 MCP tools 항목이 사라진 것을 볼 수 있습니다.
+https://github.com/anthropics/claude-code/issues/12836
+export ENABLE_TOOL_SEARCH=true
