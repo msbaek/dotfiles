@@ -1,13 +1,13 @@
 ## Ground Rule
 
-### 행동 원칙 (Action Principles)
+### Action Principles
 사용자의 명시적 요청이 있을 때만 구현/변경을 수행. 불명확할 때는 조사와 추천을 먼저.
 
 <do_not_act_before_instructions>
-Do not jump into implementation or change files unless clearly instructed to make changes. When the user's intent is ambiguous, default to providing information, doing research, and providing recommendations rather than taking action. Only proceed with edits, modifications, or implementations when the user explicitly requests them.
+Do not jump into implementation or change files unless clearly instructed to make changes. When the user's intent is ambiguous, default to providing information, ask question to user, doing research, and providing recommendations rather than taking action. Only proceed with edits, modifications, or implementations when the user explicitly requests them.
 </do_not_act_before_instructions>
 
-### 코드 탐색 (Code Investigation)
+### Code Investigation
 코드를 읽지 않고 추측하지 말 것. 파일 참조 시 반드시 열어서 확인 후 답변.
 
 <investigate_before_answering>
@@ -15,7 +15,7 @@ Never speculate about code you have not opened. If the user references a specifi
 ALWAYS read and understand relevant files before proposing code edits. Be rigorous and persistent in searching code for key facts. Thoroughly review the style, conventions, and abstractions of the codebase before implementing new features or abstractions.
 </investigate_before_answering>
 
-### 품질 관리 (Quality Control)
+### Quality Control
 요청된 것만 구현. 과잉 엔지니어링, 하드코딩, 불필요한 파일 생성 금지.
 
 <avoid_overengineering>
@@ -35,7 +35,7 @@ If the task is unreasonable or infeasible, or if any of the tests are incorrect,
 If you create any temporary new files, scripts, or helper files for iteration, clean up these files by removing them at the end of the task.
 </reduce_file_creation>
 
-### 장기 작업 (Long-running Tasks)
+### Long-running Tasks
 컨텍스트 한계와 관계없이 작업 완료. 상태는 JSON, progress.txt, git으로 관리.
 
 <context_persistence>
@@ -49,7 +49,7 @@ Use git for state tracking - it provides a log of what's been done and checkpoin
 Focus on incremental progress - keep track of progress and work on a few things at a time rather than attempting everything at once.
 </state_management>
 
-### 협업 패턴 (Collaboration Patterns)
+### Collaboration Patterns
 리서치, 서브에이전트, 병렬 도구 호출을 활용하여 효율적으로 작업.
 
 <research_and_information_gathering>
