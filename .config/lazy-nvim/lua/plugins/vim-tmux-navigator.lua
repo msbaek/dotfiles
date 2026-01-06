@@ -10,19 +10,13 @@
 return {
   {
     "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
-    },
+    lazy = false, -- 즉시 로드하여 안정적인 동작 보장
     keys = {
-      { "<c-h>", "<cmd>TmuxNavigateLeft<cr>", desc = "Navigate Left" },
-      { "<c-j>", "<cmd>TmuxNavigateDown<cr>", desc = "Navigate Down" },
-      { "<c-k>", "<cmd>TmuxNavigateUp<cr>", desc = "Navigate Up" },
-      { "<c-l>", "<cmd>TmuxNavigateRight<cr>", desc = "Navigate Right" },
-      { "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>", desc = "Navigate Previous" },
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>", desc = "Navigate Left" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>", desc = "Navigate Down" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>", desc = "Navigate Up" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>", desc = "Navigate Right" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>", desc = "Navigate Previous" },
     },
   },
 }

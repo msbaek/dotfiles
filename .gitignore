@@ -28,6 +28,9 @@
 .claude/commands
 .claude/agents
 .claude/plans
+.claude/stats-cache.json
+.claude/bash-command-log.txt
+.claude/transcripts/
 
 # ======================
 # Serena 관련
