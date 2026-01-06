@@ -29,15 +29,6 @@
 - 충분한 정보가 없으면 먼저 질문
 - API/SDK/라이브러리 사용 시 CONTEXT7 MCP 도구로 확인
 
-### 프롬프트 prefix
-
-| Prefix | 동작 |
-|--------|------|
-| `EP:` | ~/.claude/Prompt-Enhancer.md 참조하여 프롬프트 개선 |
-| `EP2:` | ~/.claude/Prompt-Enhancer2.md 참조하여 프롬프트 개선 |
-| `java-guide:` | ~/.claude/docs/JAVA-APP-GUIDE.md 참조 |
-| `snippet:` | ~/.claude/docs/snippets.md 참조 |
-
 ### 키워드별 참조 URL
 
 | 키워드 | URL |
