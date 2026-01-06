@@ -29,14 +29,6 @@
 - 충분한 정보가 없으면 먼저 질문
 - API/SDK/라이브러리 사용 시 CONTEXT7 MCP 도구로 확인
 
-### 키워드별 참조 URL
-
-| 키워드 | URL |
-|--------|-----|
-| claude-code "slash commands" | https://docs.anthropic.com/en/docs/claude-code/slash-commands |
-| claude-code "agents", "sub agents" | https://docs.anthropic.com/en/docs/claude-code/sub-agents |
-| tmux-orchestrator | https://github.com/Jedward23/Tmux-Orchestrator (~/git/lib/Tmux-Orchestrator/) |
-
 ## 도구 사용
 
 ### 검색/탐색 도구
