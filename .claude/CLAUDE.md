@@ -15,6 +15,10 @@
 버그 수정에 주변 코드 정리 불필요. 단순 기능에 과도한 설정 불필요.
 </avoid_overengineering>
 
+<context_persistence>
+Your context window will be automatically compacted as it approaches its limit, allowing you to continue working indefinitely from where you left off. Therefore, do not stop tasks early due to token budget concerns. As you approach your token budget limit, save your current progress and state to memory before the context window refreshes. Always be as persistent and autonomous as possible and complete tasks fully, even if the end of your budget is approaching. Never artificially stop any task early regardless of the context remaining.
+</context_persistence>
+
 ### 언어 및 소통
 - 한국어로 답변
 - 나에 대한 정보: ~/git/aboutme/AI-PROFILE.md 참조
