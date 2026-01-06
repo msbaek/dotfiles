@@ -234,5 +234,5 @@ export ENABLE_LSP_TOOLS=1
 # 이에, 클로드 코드에서 동적으로 MCP를 로딩하는 기능을 잠수함 출시했네요.
 # 환경변수에 `ENABLE_TOOL_SEARCH=true`를 설정하는 것으로 관련 기능이 활성화 되며,
 # 활성화 이후 `/context`로 확인해 보면 MCP tools 항목이 사라진 것을 볼 수 있습니다.
-https://github.com/anthropics/claude-code/issues/12836
+# https://github.com/anthropics/claude-code/issues/12836
 export ENABLE_TOOL_SEARCH=true
