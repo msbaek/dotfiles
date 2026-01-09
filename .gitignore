@@ -31,6 +31,9 @@
 .claude/stats-cache.json
 .claude/bash-command-log.txt
 .claude/transcripts/
+.claude/cache
+.claude/paste-cache
+.claude/telemetry
 
 # ======================
 # Serena 관련
