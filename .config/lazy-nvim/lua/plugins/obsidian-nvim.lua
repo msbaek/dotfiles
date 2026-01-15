@@ -37,7 +37,7 @@ return {
       -- Optional, default tags to add to each new daily note created.
       default_tags = { "daily-notes" },
       -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-      template = nil,
+      template = "DailyNote.md",
     },
 
     completion = {
