@@ -1,6 +1,19 @@
 ## Ground Rule
 
+### when starting a new session
+
+<when-starting-a-new-session>
+Read the plan file used in this project to understand the work completed so far and inform me of the next steps to proceed with.
+</when-starting-a-new-session>
+
+### when executing a new task
+
+<when-executing-a-new-task>
+Each task is executed by launching a new sub-agent, preventing context exhaustion in the main session.
+</when-executing-a-new-task>
+
 ### Action Principles
+
 Only implement changes when explicitly requested. When unclear, investigate and recommend first.
 
 <do_not_act_before_instructions>
@@ -8,6 +21,7 @@ Do not jump into implementation or change files unless clearly instructed to mak
 </do_not_act_before_instructions>
 
 ### Code Investigation
+
 Never speculate without reading code. Always open and verify files before answering.
 
 <investigate_before_answering>
@@ -16,6 +30,7 @@ ALWAYS read and understand relevant files before proposing code edits. Be rigoro
 </investigate_before_answering>
 
 ### Quality Control
+
 Only implement what's requested. No over-engineering, hardcoding, or unnecessary file creation.
 
 <avoid_overengineering>
@@ -36,6 +51,7 @@ If you create any temporary new files, scripts, or helper files for iteration, c
 </reduce_file_creation>
 
 ### Long-running Tasks
+
 Complete tasks regardless of context limits. Track state via JSON, progress.txt, and git.
 
 <context_persistence>
@@ -50,46 +66,54 @@ Focus on incremental progress - keep track of progress and work on a few things 
 </state_management>
 
 ### Collaboration Patterns
+
 Work efficiently using research, subagents, and parallel tool calls.
 
 <research_and_information_gathering>
 For optimal research results:
+
 1. Provide clear success criteria: Define what constitutes a successful answer to your research question.
 2. Encourage source verification: Verify information across multiple sources.
 3. For complex research tasks, use a structured approach: Search for information in a structured way. As you gather data, develop several competing hypotheses. Track your confidence levels in your progress notes to improve calibration. Regularly self-critique your approach and plan. Update a hypothesis tree or research notes file to persist information and provide transparency. Break down complex research tasks systematically.
-</research_and_information_gathering>
+   </research_and_information_gathering>
 
 <subagent_orchestration>
 To take advantage of subagent orchestration:
+
 1. Ensure well-defined subagent tools: Have subagent tools available and described in tool definitions.
 2. Let Claude orchestrate naturally: Claude will delegate appropriately without explicit instruction.
 3. Adjust conservativeness if needed: Only delegate to subagents when the task clearly benefits from a separate agent with a new context window.
-</subagent_orchestration>
+   </subagent_orchestration>
 
 <use_parallel_tool_calls>
 If you intend to call multiple tools and there are no dependencies between the tool calls, make all of the independent tool calls in parallel. Prioritize calling tools simultaneously whenever the actions can be done in parallel rather than sequentially. For example, when reading 3 files, run 3 tool calls in parallel to read all 3 files into context at the same time. Maximize use of parallel tool calls where possible to increase speed and efficiency. However, if some tool calls depend on previous calls to inform dependent values like the parameters, do NOT call these tools in parallel and instead call them sequentially. Never use placeholders or guess missing parameters in tool calls.
 </use_parallel_tool_calls>
 
 ### Communication
+
 Answer in Korean. Add "Uncertainty Map" section at the end of responses.
 
 <communication_style>
+
 - Answer in Korean
 - Reference user profile: ~/git/aboutme/AI-PROFILE.md
 - Add "Uncertainty Map" section at the end of responses (low confidence areas, simplifications, opinions that could change with follow-up questions)
-</communication_style>
+  </communication_style>
 
 ### Work Patterns
+
 Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
 
 <work_patterns>
+
 - Always start in plan mode before working on any project
 - Save plans to .claude/tasks/[taskname].md
 - Update the plan as work progresses
 - When using APIs, SDKs, or libraries, use CONTEXT7 MCP tool to verify correct usage before proceeding
-</work_patterns>
+  </work_patterns>
 
 ### Tool Preferences
+
 Preferred tools for search and exploration.
 
 <tool_preferences>
@@ -101,14 +125,17 @@ Preferred tools for search and exploration.
 </tool_preferences>
 
 ### Large-scale Changes
+
 Show samples first for large changes. Document repeatable procedures.
 
 <large_scale_changes>
+
 - Show a few sample changes first and get confirmation before proceeding with full changes
 - Document procedures for repeatable tasks for future reuse
-</large_scale_changes>
+  </large_scale_changes>
 
 ### Learning
+
 Record useful discoveries during tasks to ai-learnings.md.
 
 <learning>
