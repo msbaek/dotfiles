@@ -137,6 +137,33 @@ If stow reports conflicts:
 stow --adopt .  # Adopt existing files
 ```
 
+## Usage with dotfiles-private
+
+This repository works together with a private companion repository for sensitive data.
+
+### New Machine Setup
+
+```bash
+# 1. Clone public dotfiles
+git clone https://github.com/msbaek/dotfiles ~/dotfiles
+cd ~/dotfiles && stow .
+brew bundle
+
+# 2. Clone private dotfiles (optional - for personal machines)
+git clone git@github.com:msbaek/dotfiles-private ~/dotfiles-private
+cd ~/dotfiles-private && stow .
+```
+
+### Graceful Degradation
+
+The public dotfiles work standalone. Private repo adds credentials:
+
+| File | Behavior without private repo |
+|------|-------------------------------|
+| `.gitconfig.user` | Git `[include]` ignores missing files |
+| `.claude/claude_desktop_config.json` | Claude Desktop uses default settings |
+| `.env.ktown4u` | Already conditional: `[[ -f ]] && source` |
+
 ## License
 
 Feel free to use any part of these configurations for your own setup.
