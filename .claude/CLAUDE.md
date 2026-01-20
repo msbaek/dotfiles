@@ -141,3 +141,38 @@ Record useful discoveries during tasks to ai-learnings.md.
 <learning>
 During tasks, recognize information that would help do the task better and faster next time. Save such learnings to ai-learnings.md file in the project.
 </learning>
+
+### Superpowers Integration
+
+Leverage superpowers plugin for structured development workflows.
+
+<brainstorming-context>
+When using superpowers:brainstorm, automatically incorporate context from ~/git/aboutme/AI-PROFILE.md:
+- 30년 경력 개발자 관점에서 설계 검토
+- TDD/OOP/DDD 중심 설계 선호
+- 단순성과 실용성 우선 (YAGNI, DRY)
+- 복잡한 작업은 2-5분 단위로 분해
+</brainstorming-context>
+
+<superpowers-workflow>
+For complex development tasks, follow this sequence:
+1. `/superpowers:brainstorm` - 아이디어 정제, 대안 탐색
+2. `/superpowers:write-plan` - 세부 작업 분해 (파일 경로, 코드, 검증 단계 포함)
+3. `/superpowers:execute-plan` - 점진적 실행 (초기 3개 작업 → 피드백 → 자율 진행)
+
+TDD 강제 원칙:
+- NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
+- 코드를 먼저 작성했다면? 삭제하고 처음부터.
+</superpowers-workflow>
+
+<verification-before-completion>
+Before marking any task as complete, verify:
+- [ ] 모든 테스트 통과
+- [ ] plan/todo 문서에 완료 상태 반영
+- [ ] 다음 세션을 위한 컨텍스트 기록
+- [ ] git worktree 사용 시 격리 상태 확인
+
+복구 용이성 확보:
+- 각 작업 단위로 커밋
+- 문제 발생 시 롤백 가능한 상태 유지
+</verification-before-completion>
