@@ -68,7 +68,8 @@
     "pyright-lsp@claude-plugins-official": true,
     "csharp-lsp@claude-plugins-official": true,
     "jdtls-lsp@claude-plugins-official": true,
-    "claude-hud@claude-hud": true
+    "claude-hud@claude-hud": true,
+    "superpowers@claude-plugins-official": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
