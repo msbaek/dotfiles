@@ -225,6 +225,7 @@ alias bedrock='claude --settings ~/.claude/settings.bedrock.json --dangerously-s
 alias plugins-cc='npx claude-code-templates@latest --plugins'
 alias chats-cc='npx claude-code-templates@latest --chats'
 alias clean-mac='npx mac-cleaner-cli'
+alias rm='trash'
 
 export ENABLE_LSP_TOOLS=1
 # 클로드 코드에서 MCP를 설정만 하더라도 토큰을 잡아먹어

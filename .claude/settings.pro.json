@@ -67,9 +67,13 @@
     "typescript-lsp@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "csharp-lsp@claude-plugins-official": true,
-    "jdtls-lsp@claude-plugins-official": true,
     "claude-hud@claude-hud": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "yaml-language-server@claude-code-lsps": true,
+    "jdtls@claude-code-lsps": true,
+    "pyright@claude-code-lsps": true,
+    "superpowers@superpowers-marketplace": true,
+    "jdtls-lsp@claude-plugins-official": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
