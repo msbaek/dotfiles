@@ -73,7 +73,9 @@
     "jdtls@claude-code-lsps": true,
     "pyright@claude-code-lsps": true,
     "superpowers@superpowers-marketplace": true,
-    "jdtls-lsp@claude-plugins-official": true
+    "jdtls-lsp@claude-plugins-official": true,
+    "obsidian@obsidian-skills": true,
+    "context7@claude-plugins-official": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192

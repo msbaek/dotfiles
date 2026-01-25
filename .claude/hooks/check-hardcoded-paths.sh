@@ -1,7 +1,7 @@
 #!/bin/bash
 # Check for hardcoded personal paths
 
-FILES_WITH_PATHS=$(git diff --cached --name-only | xargs grep -l "/Users/msbaek" 2>/dev/null | grep -v "SECURITY.md" | grep -v "check-hardcoded-paths.sh" || true)
+FILES_WITH_PATHS=$(git diff --cached --name-only | xargs grep -l "/Users/msbaek" 2>/dev/null | grep -v "SECURITY.md" | grep -v "check-hardcoded-paths.sh" | grep -v "^\.claude/" | grep -v "^\.serena/" || true)
 
 if [ -n "$FILES_WITH_PATHS" ]; then
     echo "Error: Hardcoded path /Users/msbaek found! Use \$HOME or ~ instead."

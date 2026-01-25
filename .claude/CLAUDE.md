@@ -6,6 +6,14 @@
 Read the plan file used in this project to understand the work completed so far and inform me of the next steps to proceed with.
 </when-starting-a-new-session>
 
+<session-start-hook>
+  <EXTREMELY_IMPORTANT>
+  You have Superpowers.
+
+**RIGHT NOW, go read**: @/Users/msbaek/.claude/plugins/cache/superpowers-marketplace/superpowers/4.1.1/skills/using-superpowers/SKILL.md
+</EXTREMELY_IMPORTANT>
+</session-start-hook>
+
 ### when executing a new task
 
 <when-executing-a-new-task>
@@ -107,7 +115,7 @@ Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
 <work_patterns>
 
 - Always start in plan mode before working on any project
-- Save plans to .claude/tasks/[taskname].md
+- Save plans to PROJECT_ROOT/.claude/plans/[planname].md
 - Update the plan as work progresses
 - When using APIs, SDKs, or libraries, use CONTEXT7 MCP tool to verify correct usage before proceeding
   </work_patterns>
@@ -161,9 +169,10 @@ For complex development tasks, follow this sequence:
 3. `/superpowers:execute-plan` - 점진적 실행 (초기 3개 작업 → 피드백 → 자율 진행)
 
 TDD 강제 원칙:
+
 - NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 - 코드를 먼저 작성했다면? 삭제하고 처음부터.
-</superpowers-workflow>
+  </superpowers-workflow>
 
 <verification-before-completion>
 Before marking any task as complete, verify:
@@ -173,6 +182,7 @@ Before marking any task as complete, verify:
 - [ ] git worktree 사용 시 격리 상태 확인
 
 복구 용이성 확보:
+
 - 각 작업 단위로 커밋
 - 문제 발생 시 롤백 가능한 상태 유지
-</verification-before-completion>
+  </verification-before-completion>
