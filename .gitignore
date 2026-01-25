@@ -15,19 +15,11 @@
 # Claude 관련 디렉토리
 # ======================
 .claude/backups
-.claude/claude_desktop_config.json
-.claude/removed_claude_desktop_config.json
 .claude/ide
-.claude/local
 .claude/logs
-.claude/projects
+.claude/plugins
 .claude/shell-snapshots
 .claude/statsig
-.claude/todos
-.claude/plugins
-.claude/commands
-.claude/agents
-.claude/plans
 .claude/stats-cache.json
 .claude/bash-command-log.txt
 .claude/transcripts/
@@ -99,3 +91,7 @@ node_modules/
 .claude/.claude/skills
 
 **/__pycache__
+.claude/todos
+.claude/projects
+.claude/tasks
+.claude/claude_desktop_config.json

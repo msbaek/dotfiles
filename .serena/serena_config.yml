@@ -61,13 +61,9 @@ token_count_estimator: TIKTOKEN_GPT4O
 # instruct Serena to activate the project by its path for first-time activation.
 # NOTE: Make sure there are no name collisions in the names of registered projects.
 projects:
-- ~/DocumentsLocal/msbaek_vault
-- ~/dotfiles
-- ~/git/kt4u/BO-query
-- ~/git/kt4u/capybara
-- ~/git/kt4u/ktown4u-masking
-- ~/git/kt4u/plan-docs
-- ~/git/vault-intelligence
+- /Users/msbaek/DocumentsLocal/msbaek_vault
+- /Users/msbaek/dotfiles
+- /Users/msbaek/git/vault-intelligence
 fixed_tools: []
 web_dashboard_listen_address: 127.0.0.1
 jetbrains_plugin_server_address: 127.0.0.1
