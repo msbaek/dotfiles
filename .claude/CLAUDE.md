@@ -83,7 +83,8 @@ For optimal research results:
 1. Provide clear success criteria: Define what constitutes a successful answer to your research question.
 2. Encourage source verification: Verify information across multiple sources.
 3. For complex research tasks, use a structured approach: Search for information in a structured way. As you gather data, develop several competing hypotheses. Track your confidence levels in your progress notes to improve calibration. Regularly self-critique your approach and plan. Update a hypothesis tree or research notes file to persist information and provide transparency. Break down complex research tasks systematically.
-   </research_and_information_gathering>
+
+</research_and_information_gathering>
 
 <subagent_orchestration>
 To take advantage of subagent orchestration:
