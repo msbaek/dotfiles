@@ -24,16 +24,16 @@ description: |
 │  - 결과 수집 및 Daily Note 반영 (Phase 3)                      │
 └─────────────────────────────────────────────────────────────┘
                               │
-        ┌─────────────┬───────┼───────┬─────────────┐
-        │             │       │       │             │
-        ▼             ▼       ▼       ▼             ▼
-┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-│ SubAgent 1  │ │ SubAgent 2  │ │ SubAgent 3  │ │ SubAgent 4  │
-│ Vault Files │ │ CC Sessions │ │ Meeting     │ │ Learning    │
-│ Analyzer    │ │ Analyzer    │ │ Notes       │ │ Extractor   │
-└─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
-        │             │       │       │             │
-        └─────────────┴───────┼───────┴─────────────┘
+   ┌───────────┬───────┬──────┼──────┬───────────┐
+   │           │       │      │      │           │
+   ▼           ▼       ▼      ▼      ▼           ▼
+┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
+│ Sub 1  │ │ Sub 2  │ │ Sub 3  │ │ Sub 4  │ │ Sub 5  │
+│ Vault  │ │ CC     │ │ Meetng │ │ Learn  │ │ Things │
+│ Files  │ │ Sessns │ │ Notes  │ │ Extrcr │ │ Analzr │
+└────────┘ └────────┘ └────────┘ └────────┘ └────────┘
+   │           │       │      │      │           │
+   └───────────┴───────┴──────┼──────┴───────────┘
                               ▼
                    ┌─────────────────┐
                    │ Daily Note 반영  │
@@ -83,7 +83,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ### Phase 2: 서브 에이전트 병렬 실행 ★
 
-> **중요**: 아래 4개의 Task를 **단일 메시지에서 동시에 호출**하여 병렬 실행합니다.
+> **중요**: 아래 5개의 Task를 **단일 메시지에서 동시에 호출**하여 병렬 실행합니다.
 > 각 서브 에이전트는 분석 결과를 **마크다운 형식의 텍스트**로 반환합니다.
 > 비용/속도 최적화를 위해 **haiku 모델**을 사용합니다.
 
@@ -277,9 +277,62 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ---
 
+#### SubAgent 5: Things Analyzer
+
+**Task 호출 파라미터:**
+| 파라미터 | 값 |
+|---------|-----|
+| description | "Things 활동 분석" |
+| subagent_type | "general-purpose" |
+| model | "haiku" |
+
+**프롬프트 (TARGET_DATE 치환 필요):**
+
+```
+당신은 Things 3 작업 관리 분석 전문가입니다. 코드를 작성하지 말고 분석만 수행하세요.
+
+## 작업
+{TARGET_DATE} 날짜의 Things 활동 내역(완료된 작업, 새로 추가된 작업)을 분석합니다.
+
+## 실행 단계
+1. ToolSearch 도구로 "things" 검색하여 Things MCP 도구를 로드합니다.
+   - 도구가 발견되지 않으면 "Things MCP 서버 미설정 - 건너뜀" 반환
+
+2. 완료된 작업 수집:
+   Things MCP의 get_logbook 도구를 호출합니다 (period="1d").
+   반환된 결과에서 각 작업의 제목, 프로젝트명, 영역명을 추출합니다.
+
+3. 새로 추가된 작업 수집:
+   Things MCP의 get_recent 도구를 호출합니다 (period="1d").
+   반환된 결과에서 각 작업의 제목, 할당된 리스트/프로젝트를 추출합니다.
+
+4. 결과를 아래 형식으로 정리합니다.
+
+## 에러 처리
+- Things MCP 도구 로드 실패 → "Things MCP 서버 미설정 - 건너뜀" 반환
+- Things 앱 접근 불가 → "Things 데이터 접근 불가" 반환
+- 항목 없음 → 해당 섹션에 "없음" 표시
+
+## 출력 형식 (마크다운으로 반환)
+### Things 활동
+
+#### 완료된 작업
+- **[작업 제목]** (프로젝트명 | 영역명)
+- **[작업 제목]** (프로젝트명)
+
+#### 새로 추가된 작업
+- **[작업 제목]** → [할당된 리스트/프로젝트]
+- **[작업 제목]** → Inbox
+
+(각각 해당 항목이 없으면 "없음" 표시)
+(Things MCP 미설정 시 "Things MCP 서버 미설정 - 건너뜀" 반환)
+```
+
+---
+
 ### Phase 3: 결과 통합 및 Daily Note 반영 (메인 에이전트)
 
-1. **4개 서브 에이전트 결과 수집**
+1. **5개 서브 에이전트 결과 수집**
    - 각 Task 도구의 반환값을 수집
 
 2. **Daily Note 확인**
@@ -299,6 +352,8 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 {SubAgent 3 결과 - 미팅}
 
+{SubAgent 5 결과 - Things 활동}
+
 {SubAgent 4 결과 - 학습 기록}
 ```
 
@@ -311,7 +366,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ## 병렬 실행 핵심 원칙
 
-1. **단일 응답에서 4개 Task 동시 호출**: 메인 에이전트는 Phase 2에서 하나의 응답에 4개의 Task 도구 호출을 포함해야 합니다.
+1. **단일 응답에서 5개 Task 동시 호출**: 메인 에이전트는 Phase 2에서 하나의 응답에 5개의 Task 도구 호출을 포함해야 합니다.
 
 2. **haiku 모델 사용**: 비용과 속도 최적화를 위해 서브 에이전트는 haiku 모델을 사용합니다.
 
@@ -329,7 +384,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 | 구분 | 기존 방식 | 서브 에이전트 방식 |
 |------|----------|-------------------|
 | 메인 에이전트 컨텍스트 | 모든 파일 내용 로드 | 최종 결과만 수신 |
-| 병렬 처리 | 불가 | 4개 작업 동시 실행 |
+| 병렬 처리 | 불가 | 5개 작업 동시 실행 |
 | 실패 격리 | 전체 실패 | 개별 서브 에이전트만 재시도 |
 
 ---
@@ -339,6 +394,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 - 서브 에이전트 실패 시: 해당 섹션을 "분석 실패"로 표시하고 나머지 결과는 반영
 - Daily Note 없음: 기본 템플릿으로 새로 생성
 - 파일 없음: "해당 날짜에 [항목] 없음"으로 표시
+- Things MCP 미설정: SubAgent 5가 "Things MCP 서버 미설정 - 건너뜀" 반환, 나머지 서브 에이전트 정상 동작
 
 ---
 
@@ -349,3 +405,11 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 - `project-time-tracker`: 프로젝트별 시간 추적
 - `usage-pattern-analyzer`: 도구 사용 패턴 분석
 - `obsidian-vault`: vault 작업 기본 가이드
+
+## 필수 MCP 서버
+
+| MCP 서버 | 용도 | 등록 명령 |
+|----------|------|----------|
+| Things MCP | SubAgent 5에서 Things 활동 분석 | `claude mcp add-json -s user things '{"command":"uvx","args":["things-mcp"]}'` |
+
+> **참고**: Things MCP 서버가 등록되어 있지 않아도 스킬은 정상 동작합니다. SubAgent 5만 "건너뜀" 처리됩니다.

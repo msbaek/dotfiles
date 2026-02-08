@@ -219,7 +219,7 @@ FUNCNEST=100
 
 # Add to ~/.zshrc or ~/.bashrc
 alias cl='claude'
-alias cld='claude --dangerously-skip-permissions'
+alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
 alias vis='python -m src --vault-path $HOME/DocumentsLocal/msbaek_vault '
 alias bedrock='claude --settings ~/.claude/settings.bedrock.json --dangerously-skip-permissions'
 alias plugins-cc='npx claude-code-templates@latest --plugins'

@@ -1,0 +1,17 @@
+{
+  "underlying_goal": "Convert a raw meeting transcript (Korean, about FBK OMS) into a structured, formatted meeting minutes markdown document",
+  "goal_categories": {
+    "document_generation": 1
+  },
+  "outcome": "mostly_achieved",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "very_helpful",
+  "session_type": "single_task",
+  "friction_counts": {
+    "misunderstood_request": 1
+  },
+  "friction_detail": "Claude initially did not receive the transcript content and had to ask the user to paste it again, despite the user saying 'the following transcript'.",
+  "primary_success": "proactive_help",
+  "brief_summary": "User wanted a messy Korean meeting transcript about FBK OMS converted into a structured meeting minutes document, and Claude successfully generated it after receiving the transcript content.",
+  "session_id": "e6362468-ed2d-4cf7-9db1-56f41f8e080a"
+}

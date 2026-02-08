@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Automatically extract work-related content from yesterday's documents and reflect it in the daily note for 2026-02-04",
+  "goal_categories": {
+    "automated_daily_logging": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "very_helpful",
+  "session_type": "single_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "multi_file_changes",
+  "brief_summary": "User triggered the daily-work-logger skill to auto-generate a work summary in their daily note, and it completed successfully with a comprehensive summary.",
+  "session_id": "27d18e54-de15-4658-adcb-9efcda520916"
+}

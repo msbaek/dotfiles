@@ -1,0 +1,23 @@
+{
+  "underlying_goal": "Analyze a year's worth of weekly meeting notes and generate a structured self-evaluation report matching a specific PPT template format, referencing last year's evaluation as a style guide",
+  "goal_categories": {
+    "document_analysis_and_generation": 1,
+    "content_refinement": 1,
+    "factual_lookup": 1,
+    "document_edit": 1
+  },
+  "outcome": "mostly_achieved",
+  "user_satisfaction_counts": {
+    "likely_satisfied": 3,
+    "satisfied": 1
+  },
+  "claude_helpfulness": "very_helpful",
+  "session_type": "iterative_refinement",
+  "friction_counts": {
+    "wrong_approach": 1
+  },
+  "friction_detail": "Initial evaluation draft was not detailed enough compared to the previous year's format, requiring user to explicitly request more detail and volume matching the 2024 style.",
+  "primary_success": "multi_file_changes",
+  "brief_summary": "User wanted a 2025 performance self-evaluation generated from weekly meeting notes matching a specific PPT template, and after iterative refinement got a detailed markdown draft they could transfer to PPT.",
+  "session_id": "2696104b-93ff-44f1-8dba-ebb7aa9fab5d"
+}

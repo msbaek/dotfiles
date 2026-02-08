@@ -1,0 +1,18 @@
+{
+  "underlying_goal": "Write a YouTube video script (Episode 1 of 4) for the 'AI가 내 두 번째 뇌를 읽다' series by running 4 WOW queries against the vault-intelligence CLI and incorporating real search results into the script",
+  "goal_categories": {
+    "content_writing": 1,
+    "code_execution": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {
+    "satisfied": 1
+  },
+  "claude_helpfulness": "essential",
+  "session_type": "single_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "multi_file_changes",
+  "brief_summary": "User (via team lead) requested a YouTube script based on real CLI search results from a vault-intelligence tool; Claude executed all 4 queries, analyzed results, and delivered a complete script, which was approved.",
+  "session_id": "c746739b-0060-4454-9233-977a13da2a68"
+}

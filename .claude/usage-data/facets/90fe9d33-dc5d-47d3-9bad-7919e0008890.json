@@ -1,0 +1,18 @@
+{
+  "underlying_goal": "Commit current changes and then add compelling search/ask examples to README.md to convince executives to re-enable Teams API access",
+  "goal_categories": {
+    "commit_and_push": 1,
+    "documentation_writing": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {
+    "likely_satisfied": 2
+  },
+  "claude_helpfulness": "very_helpful",
+  "session_type": "multi_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "multi_file_changes",
+  "brief_summary": "User asked to commit changes and then add persuasive search/ask examples to README for an executive presentation; both tasks were completed and pushed successfully.",
+  "session_id": "90fe9d33-dc5d-47d3-9bad-7919e0008890"
+}

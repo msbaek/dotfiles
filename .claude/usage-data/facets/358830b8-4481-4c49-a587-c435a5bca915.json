@@ -1,0 +1,19 @@
+{
+  "underlying_goal": "Run daily work logger to summarize yesterday's work into a daily note, then summarize and save a specific evaluation interview document",
+  "goal_categories": {
+    "document_summarization": 1,
+    "file_save": 1,
+    "automated_workflow_execution": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {
+    "likely_satisfied": 3
+  },
+  "claude_helpfulness": "very_helpful",
+  "session_type": "multi_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "correct_code_edits",
+  "brief_summary": "User ran a daily work logger skill, then asked Claude to summarize an evaluation interview document to half a page and save it, which was completed successfully.",
+  "session_id": "358830b8-4481-4c49-a587-c435a5bca915"
+}

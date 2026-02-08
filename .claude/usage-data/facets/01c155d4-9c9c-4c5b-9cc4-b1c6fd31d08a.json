@@ -1,0 +1,24 @@
+{
+  "underlying_goal": "Fix a Spring Boot application startup error caused by AWS Bedrock credentials/authorization issue",
+  "goal_categories": {
+    "debugging": 1,
+    "configuration_fix": 1,
+    "explanation_request": 1,
+    "commit": 1
+  },
+  "outcome": "partially_achieved",
+  "user_satisfaction_counts": {
+    "dissatisfied": 1,
+    "likely_satisfied": 2
+  },
+  "claude_helpfulness": "moderately_helpful",
+  "session_type": "iterative_refinement",
+  "friction_counts": {
+    "wrong_approach": 1,
+    "buggy_code": 1
+  },
+  "friction_detail": "Initial AWS config fix (adding sso_session to bedrock profile) did not resolve the issue; the app still used the wrong credentials after the change, and Claude also incorrectly proposed changing the region before user caught it.",
+  "primary_success": "good_debugging",
+  "brief_summary": "User needed to fix an AWS Bedrock AccessDeniedException in their Spring Boot app; Claude correctly identified the root cause (wrong AWS profile being used) but the config fix alone didn't resolve it, and the session ended mid-investigation with a commit.",
+  "session_id": "01c155d4-9c9c-4c5b-9cc4-b1c6fd31d08a"
+}

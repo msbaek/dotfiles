@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Run a daily work logger skill to automatically extract and summarize yesterday's work activities into a Daily Note",
+  "goal_categories": {
+    "automated_workflow_execution": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "very_helpful",
+  "session_type": "single_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "multi_file_changes",
+  "brief_summary": "User triggered the daily-work-logger skill to auto-summarize yesterday's work into a Daily Note, and Claude successfully executed the multi-phase pipeline and updated the note.",
+  "session_id": "c54668ab-a3b9-45ba-a20c-ca5f5a826a32"
+}

@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Reapply the 'Things' section to yesterday's daily note using the learning-tracker skill",
+  "goal_categories": {
+    "note_modification": 1
+  },
+  "outcome": "unclear_from_transcript",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "slightly_helpful",
+  "session_type": "single_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "none",
+  "brief_summary": "User asked to reapply the Things section to yesterday's daily note, but the session ended before completion could be confirmed.",
+  "session_id": "5c020aec-7331-48a0-979d-3ed729d54920"
+}

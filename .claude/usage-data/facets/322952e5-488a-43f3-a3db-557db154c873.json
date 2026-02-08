@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Get advice on how to create an impactful YouTube demo showcasing Claude Code with Vault Intelligence",
+  "goal_categories": {
+    "brainstorming_advice": 1
+  },
+  "outcome": "partially_achieved",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "moderately_helpful",
+  "session_type": "exploration",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "good_explanations",
+  "brief_summary": "User asked for advice on creating an impactful YouTube demo for Vault Intelligence with Claude Code; Claude began exploring the vault and asked a clarifying question but the session ended before completing the brainstorm.",
+  "session_id": "322952e5-488a-43f3-a3db-557db154c873"
+}

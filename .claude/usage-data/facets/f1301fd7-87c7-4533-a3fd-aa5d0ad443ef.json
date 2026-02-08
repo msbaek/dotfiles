@@ -1,0 +1,17 @@
+{
+  "underlying_goal": "Find specific documents in a personal vault/knowledge base by describing their content from memory",
+  "goal_categories": {
+    "document_search": 4
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {
+    "likely_satisfied": 4
+  },
+  "claude_helpfulness": "essential",
+  "session_type": "multi_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "fast_accurate_search",
+  "brief_summary": "User asked Claude to find four specific documents in their Obsidian vault based on content descriptions, and Claude successfully located all of them.",
+  "session_id": "f1301fd7-87c7-4533-a3fd-aa5d0ad443ef"
+}

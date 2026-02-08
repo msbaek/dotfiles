@@ -1,0 +1,20 @@
+{
+  "underlying_goal": "Analyze 2025 weekly meeting notes and create a C-Level performance evaluation PPT based on a provided template and last year's evaluation as reference",
+  "goal_categories": {
+    "document_generation": 1,
+    "process_refinement": 1
+  },
+  "outcome": "not_achieved",
+  "user_satisfaction_counts": {
+    "dissatisfied": 1
+  },
+  "claude_helpfulness": "slightly_helpful",
+  "session_type": "iterative_refinement",
+  "friction_counts": {
+    "wrong_approach": 2
+  },
+  "friction_detail": "Claude struggled to generate a proper PPT, first trying LibreOffice then falling back to markdown which user rejected, then user had to interrupt again when the revised approach also stalled.",
+  "primary_success": "none",
+  "brief_summary": "User wanted a 2025 performance evaluation PPT generated from weekly meeting notes using a template, but Claude couldn't produce the final deliverable after multiple approach failures and user interruptions.",
+  "session_id": "2dfc2c3b-f772-42a1-9b4b-ad27c70a7678"
+}

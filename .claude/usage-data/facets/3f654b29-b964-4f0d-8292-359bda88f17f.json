@@ -1,0 +1,17 @@
+{
+  "underlying_goal": "Fix broken MCP server connections (things and markdown-oxide) in Claude Code",
+  "goal_categories": {
+    "debugging_and_fixing": 2
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {
+    "likely_satisfied": 2
+  },
+  "claude_helpfulness": "essential",
+  "session_type": "multi_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "good_debugging",
+  "brief_summary": "User asked to fix two broken MCP server connections (things and markdown-oxide); Claude diagnosed root causes (wrong entry point and protocol mismatch) and successfully fixed both.",
+  "session_id": "3f654b29-b964-4f0d-8292-359bda88f17f"
+}

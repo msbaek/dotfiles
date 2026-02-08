@@ -1,0 +1,19 @@
+{
+  "underlying_goal": "Create a 2025 C-Level performance evaluation PPT based on monthly notes and weekly meeting minutes, referencing the previous year's PPT format",
+  "goal_categories": {
+    "document_creation": 2
+  },
+  "outcome": "partially_achieved",
+  "user_satisfaction_counts": {
+    "likely_satisfied": 1
+  },
+  "claude_helpfulness": "moderately_helpful",
+  "session_type": "iterative_refinement",
+  "friction_counts": {
+    "wrong_approach": 1
+  },
+  "friction_detail": "Claude could not properly edit the PPT table contents and instead produced a markdown summary file and only updated the evaluator name, rather than fully populating the PPT.",
+  "primary_success": "multi_file_changes",
+  "brief_summary": "User wanted a 2025 performance evaluation PPT created from monthly notes and meeting minutes; Claude gathered the data and produced a markdown summary but only partially edited the actual PPT file.",
+  "session_id": "29ddf0f7-c119-4098-b455-d430332108a1"
+}

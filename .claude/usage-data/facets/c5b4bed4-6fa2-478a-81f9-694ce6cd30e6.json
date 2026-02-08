@@ -1,0 +1,15 @@
+{
+  "underlying_goal": "Summarize a YouTube video about Claude Code Teams into a Korean Obsidian markdown document",
+  "goal_categories": {
+    "content_summarization": 1
+  },
+  "outcome": "fully_achieved",
+  "user_satisfaction_counts": {},
+  "claude_helpfulness": "essential",
+  "session_type": "single_task",
+  "friction_counts": {},
+  "friction_detail": "",
+  "primary_success": "proactive_help",
+  "brief_summary": "User requested a Korean-language Obsidian summary of a YouTube video about Claude Code Agent Teams, and Claude successfully generated a well-structured markdown document after handling subtitle language fallbacks.",
+  "session_id": "c5b4bed4-6fa2-478a-81f9-694ce6cd30e6"
+}
