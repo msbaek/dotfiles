@@ -10,7 +10,7 @@ Read the plan file used in this project to understand the work completed so far 
   <EXTREMELY_IMPORTANT>
   You have Superpowers.
 
-**RIGHT NOW, go read**: @/Users/msbaek/.claude/plugins/cache/superpowers-marketplace/superpowers/4.1.1/skills/using-superpowers/SKILL.md
+**RIGHT NOW, go read**: @/Users/msbaek/.claude/plugins/cache/claude-plugins-official/superpowers/4.2.0/skills/using-superpowers/SKILL.md
 </EXTREMELY_IMPORTANT>
 </session-start-hook>
 
@@ -121,6 +121,40 @@ Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
 - When using APIs, SDKs, or libraries, use CONTEXT7 MCP tool to verify correct usage before proceeding
   </work_patterns>
 
+### Git Workflow
+
+Handle Korean commit messages properly to avoid encoding issues.
+
+<git_commit_messages>
+When creating git commits with Korean (or any non-ASCII) messages:
+
+1. ALWAYS use a temporary file for commit messages to prevent encoding issues
+2. Write the commit message to a temporary file (e.g., `/tmp/commit-msg.txt`)
+3. Use `git commit -F <file>` to read the message from the file
+4. Clean up the temporary file after committing
+
+Example workflow:
+```bash
+# Write commit message to temp file
+cat > /tmp/commit-msg.txt << 'EOF'
+feat: 한글 커밋 메시지 예제
+
+- 첫 번째 변경사항
+- 두 번째 변경사항
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
+EOF
+
+# Commit using the file
+git commit -F /tmp/commit-msg.txt
+
+# Clean up
+rm /tmp/commit-msg.txt
+```
+
+This ensures proper UTF-8 encoding for Korean characters in commit messages.
+</git_commit_messages>
+
 ### Tool Preferences
 
 Preferred tools for search and exploration.
@@ -156,7 +190,7 @@ During tasks, recognize information that would help do the task better and faste
 Leverage superpowers plugin for structured development workflows.
 
 <brainstorming-context>
-When using superpowers:brainstorm, automatically incorporate context from ~/git/aboutme/AI-PROFILE.md:
+When using superpowers:brainstorming, automatically incorporate context from ~/git/aboutme/AI-PROFILE.md:
 - 30년 경력 개발자 관점에서 설계 검토
 - TDD/OOP/DDD 중심 설계 선호
 - 단순성과 실용성 우선 (YAGNI, DRY)
@@ -165,9 +199,9 @@ When using superpowers:brainstorm, automatically incorporate context from ~/git/
 
 <superpowers-workflow>
 For complex development tasks, follow this sequence:
-1. `/superpowers:brainstorm` - 아이디어 정제, 대안 탐색
-2. `/superpowers:write-plan` - 세부 작업 분해 (파일 경로, 코드, 검증 단계 포함)
-3. `/superpowers:execute-plan` - 점진적 실행 (초기 3개 작업 → 피드백 → 자율 진행)
+1. `/superpowers:brainstorming` - 아이디어 정제, 대안 탐색
+2. `/superpowers:writing-plans` - 세부 작업 분해 (파일 경로, 코드, 검증 단계 포함)
+3. `/superpowers:executing-plans` - 점진적 실행 (초기 3개 작업 → 피드백 → 자율 진행)
 
 TDD 강제 원칙:
 

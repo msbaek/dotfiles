@@ -284,6 +284,10 @@ run = 'layout floating'
 #
 
 [[on-window-detected]]
+if.app-id = 'design.yugen.Flow'
+run = "move-node-to-workspace y"
+
+[[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
 run = "move-node-to-workspace q"         # Arc
 

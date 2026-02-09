@@ -4,9 +4,14 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "permissions": {
-    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)", "WebFetch"],
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test:*)",
+      "WebFetch"
+    ],
     "deny": []
   },
+  "model": "opusplan",
   "hooks": {
     "PreToolUse": [
       {
@@ -57,5 +62,7 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   },
-  "model": "opusplan"
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  }
 }
