@@ -1,17 +1,22 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "ENABLE_LSP_TOOL": "1",
+    "MAX_THINKING_TOKENS": "16000",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16384",
+    "BASH_MAX_OUTPUT_LENGTH": "1000000",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-5-20250929",
+    "BASH_DEFAULT_TIMEOUT_MS": "120000",
+    "BASH_MAX_TIMEOUT_MS": "600000",
+    "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
   "permissions": {
-    "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm run test:*)",
-      "WebFetch"
-    ],
+    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)", "WebFetch"],
     "deny": []
   },
-  "model": "opusplan",
   "hooks": {
     "PreToolUse": [
       {
@@ -59,10 +64,10 @@
     "command": "npx -y ccstatusline@latest",
     "padding": 0
   },
-  "feedbackSurveyState": {
-    "lastShownTime": 1754086039192
-  },
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1754086039192
   }
 }

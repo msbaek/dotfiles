@@ -128,31 +128,40 @@ Handle Korean commit messages properly to avoid encoding issues.
 <git_commit_messages>
 When creating git commits with Korean (or any non-ASCII) messages:
 
-1. ALWAYS use a temporary file for commit messages to prevent encoding issues
-2. Write the commit message to a temporary file (e.g., `/tmp/commit-msg.txt`)
-3. Use `git commit -F <file>` to read the message from the file
-4. Clean up the temporary file after committing
+1. ALWAYS use the Write tool to create a temporary file for commit messages
+2. Use `git commit -F <file>` to read the message from the file
+3. Clean up the temporary file after committing
+
+**CRITICAL**: Use the Write tool, NOT bash heredoc (`cat << EOF`), to ensure proper UTF-8 encoding.
 
 Example workflow:
-```bash
-# Write commit message to temp file
-cat > /tmp/commit-msg.txt << 'EOF'
+```
+Step 1: Use Write tool to create temp file
+- Tool: Write
+- file_path: /tmp/commit-msg-unique.txt
+- content: [Your commit message with Korean]
+
+Step 2: Commit using the file
+- bash: git add <files> && git commit -F /tmp/commit-msg-unique.txt
+
+Step 3: Clean up
+- bash: rm /tmp/commit-msg-unique.txt
+```
+
+Example commit message format:
+```
 feat: 한글 커밋 메시지 예제
 
 - 첫 번째 변경사항
 - 두 번째 변경사항
 
 Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
-EOF
-
-# Commit using the file
-git commit -F /tmp/commit-msg.txt
-
-# Clean up
-rm /tmp/commit-msg.txt
 ```
 
-This ensures proper UTF-8 encoding for Korean characters in commit messages.
+**Why Write tool works better:**
+- Write tool preserves UTF-8 encoding natively
+- Bash heredoc can cause Unicode escape sequences for non-ASCII characters
+- Write tool is more reliable across different shell configurations
 </git_commit_messages>
 
 ### Tool Preferences
