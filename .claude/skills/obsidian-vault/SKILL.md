@@ -76,7 +76,7 @@ markdown-oxide MCP 서버가 연결되어 있으면 다음 기능을 활용할 �
 
 ```bash
 # vis 명령어는 어디서든 사용 가능 (pipx 전역 설치)
-vis search --query "검색어" --search-method hybrid --top-k 10
+vis search "검색어" --search-method hybrid --top-k 10
 ```
 
 ### 주요 옵션
@@ -90,12 +90,16 @@ vis search --query "검색어" --search-method hybrid --top-k 10
 
 ### 자주 실수하는 옵션
 
-| ❌ 잘못된 옵션 | ✅ 올바른 옵션 |
+| ❌ 잘못된 사용 | ✅ 올바른 사용 |
 |---------------|---------------|
 | `--method` | `--search-method` |
 | `--k` | `--top-k` |
 | `--output-file` | `--output` |
 | `--reranking` | `--rerank` |
+| `vis search --query "TDD"` | `vis search "TDD"` (positional) |
+| `vis collect --topic "TDD"` | `vis collect "TDD"` (positional) |
+| `vis related --file "문서.md"` | `vis related "문서.md"` (positional) |
+| `vis tag --target "문서.md"` | `vis tag "문서.md"` (positional) |
 
 ### 상세 가이드
 

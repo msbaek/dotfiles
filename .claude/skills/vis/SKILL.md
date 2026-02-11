@@ -63,19 +63,19 @@ vis는 BGE-M3 기반 시맨틱 검색 엔진으로 Obsidian vault의 지식 관�
 
 ```bash
 # 기본 검색
-vis search --query "검색어"
+vis search "검색어"
 
 # 고품질 검색 (정확도 중요)
-vis search --query "검색어" --rerank
+vis search "검색어" --rerank
 
 # 포괄적 검색 (놓치지 않기)
-vis search --query "검색어" --expand
+vis search "검색어" --expand
 
 # 최고 품질 (정확 + 포괄)
-vis search --query "검색어" --rerank --expand
+vis search "검색어" --rerank --expand
 
 # 결과 저장
-vis search --query "검색어" --output results.md
+vis search "검색어" --output results.md
 ```
 
 ## 주요 명령어 사용 패턴
@@ -83,37 +83,37 @@ vis search --query "검색어" --output results.md
 ### 주제별 문서 수집 (collect)
 사용자가 특정 주제의 문서를 모으려 할 때 사용.
 ```bash
-vis collect --topic "주제" --output collection.md
-vis collect --topic "주제" --top-k 30 --expand    # 포괄적 수집
+vis collect "주제" --output collection.md
+vis collect "주제" --top-k 30 --expand    # 포괄적 수집
 ```
 
 ### 관련 문서 찾기 (related)
 특정 문서와 유사한 문서를 찾을 때 사용.
 ```bash
-vis related --file "문서명.md" --top-k 10
+vis related "문서명.md" --top-k 10
 ```
 
 ### MOC 자동 생성 (generate-moc)
 주제별 Map of Content를 자동으로 생성할 때 사용.
 ```bash
-vis generate-moc --topic "주제" --top-k 50
-vis generate-moc --topic "주제" --output "MOC-주제.md" --include-orphans
+vis generate-moc "주제" --top-k 50
+vis generate-moc "주제" --output "MOC-주제.md" --include-orphans
 ```
 
 ### 자동 태깅 (tag)
 문서에 hierarchical tag를 자동으로 부여.
 ```bash
-vis tag --target "문서명.md"                    # 단일 문서
-vis tag --target "폴더명/" --recursive          # 폴더 전체
-vis tag --target "문서명.md" --dry-run          # 미리보기
-vis tag --target "문서명.md" --tag-force        # 기존 태그 무시하고 재생성
+vis tag "문서명.md"                    # 단일 문서
+vis tag "폴더명/" --recursive          # 폴더 전체
+vis tag "문서명.md" --dry-run          # 미리보기
+vis tag "문서명.md" --tag-force        # 기존 태그 무시하고 재생성
 ```
 
 ### 관련 문서 섹션 추가 (add-related-docs)
 문서에 "관련 문서" 섹션을 자동으로 추가.
 ```bash
-vis add-related-docs --file "문서명.md"
-vis add-related-docs --file "문서명.md" --dry-run           # 미리보기
+vis add-related-docs "문서명.md"
+vis add-related-docs "문서명.md" --dry-run           # 미리보기
 vis add-related-docs --batch --pattern "000-SLIPBOX/*.md"   # 배치 처리
 ```
 
@@ -199,12 +199,16 @@ vis reindex --include-folders 000-SLIPBOX 003-RESOURCES   # 특정 폴더만
 
 ## 자주 실수하는 옵션
 
-| 잘못된 옵션 | 올바른 옵션 |
+| 잘못된 옵션 | 올바른 사용법 |
 |---|---|
 | `--method` | `--search-method` |
 | `--k` | `--top-k` |
 | `--top` | `--top-k` |
 | `--output-file` | `--output` |
 | `--reranking` | `--rerank` |
+| `--query "TDD"` | positional: `vis search "TDD"` |
+| `--topic "TDD"` | positional: `vis collect "TDD"` |
+| `--file "문서.md"` | positional: `vis related "문서.md"` |
+| `--target "문서.md"` | positional: `vis tag "문서.md"` |
 
 상세 CLI 레퍼런스는 `references/cli-reference.md` 참조.
