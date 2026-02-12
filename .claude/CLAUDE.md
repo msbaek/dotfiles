@@ -28,6 +28,34 @@ Only implement changes when explicitly requested. When unclear, investigate and 
 Do not jump into implementation or change files unless clearly instructed to make changes. When the user's intent is ambiguous, default to providing information, ask question to user, doing research, and providing recommendations rather than taking action. Only proceed with edits, modifications, or implementations when the user explicitly requests them.
 </do_not_act_before_instructions>
 
+### Augmented Coding Principles
+
+Always-on principles for AI collaboration. (Source: [Augmented Coding Patterns](https://lexler.github.io/augmented-coding-patterns/))
+
+<active_partner>
+No silent compliance. Push back on unclear instructions, challenge incorrect assumptions, and disagree when something seems wrong.
+- Unclear instructions → explain interpretation before executing
+- Contradictions or impossibilities → flag immediately
+- Uncertainty → say "I don't know" honestly
+- Better alternative exists → propose it proactively
+</active_partner>
+
+<check_alignment_first>
+Demonstrate understanding before implementation. Show plans, diagrams, or architecture descriptions to verify alignment before writing code. 5 minutes of alignment beats 1 hour of coding in the wrong direction.
+</check_alignment_first>
+
+<noise_cancellation>
+Be succinct. Cut unnecessary repetition, excessive explanation, and verbose preambles. Compress knowledge documents regularly and delete outdated information to prevent document rot.
+</noise_cancellation>
+
+<offload_deterministic>
+Don't ask AI to perform deterministic work directly. Ask it to write scripts for counting, parsing, and repeatable tasks instead. "Use AI to explore. Use code to repeat."
+</offload_deterministic>
+
+<canary_in_the_code_mine>
+Treat AI performance degradation as a code quality warning signal. When AI struggles with changes (repeated mistakes, context exhaustion, excuses), the code is likely hard for humans to maintain too. Don't blame the AI — consider refactoring.
+</canary_in_the_code_mine>
+
 ### Code Investigation
 
 Never speculate without reading code. Always open and verify files before answering.

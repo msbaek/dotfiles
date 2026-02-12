@@ -257,6 +257,14 @@ API 영역을 깊이 있게 분석하여 상세한 보고서를 생성합니다.
 - 패키지 매니저 캐시 디렉토리
 - 일반적인 제외 패턴: `node_modules/`, `dist/`, `build/`, `.git/`
 
+<semantic_zoom>
+Dynamically control abstraction level during analysis:
+- **Zoom Out**: architecture overviews, component summaries, interaction diagrams
+- **Zoom In**: specific implementation details, workflow breakdowns, edge cases
+
+Shift between levels based on user-requested depth. Explain code in plain English first, then iteratively adjust abstraction level for optimal understanding.
+</semantic_zoom>
+
 ## 관련 명령어
 
 - `/analyze`: 특정 코드나 기능에 대한 심층 분석

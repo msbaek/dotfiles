@@ -28,4 +28,14 @@ argument-hint: "[plan doc]"
 
 **구현 코드는 절대 작성하지 않습니다!**
 
+<approved_fixtures>
+Design tests using domain-specific approval files combining input and expected output. Validation happens once; adding test cases requires only reviewing fixtures rather than writing complex assertions.
+- Fixture file = input + expected output in domain-specific format
+- Adding test case = adding fixture file (no complex assertions needed)
+</approved_fixtures>
+
+<constrained_tests>
+Create domain-specific DSLs for testing that make writing tests without sufficient assertions structurally impossible. Prefer external DSLs over internal ones — external DSLs enforce required components through parsing.
+</constrained_tests>
+
 완료 후 사용자 검토를 기다립니다.

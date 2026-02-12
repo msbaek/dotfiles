@@ -104,6 +104,14 @@ $ARGUMENTS가 제공되지 않은 경우, 세션 내용을 자동으로 분석�
 [관련 문서나 링크]
 ```
 
+<knowledge_checkpoint>
+"Protect your time, not the code." — checkpoint planning knowledge before session ends.
+1. Update plan file with current state if work is in progress
+2. Extract context to files for next session continuity
+3. Git commit as checkpoint
+4. On implementation failure → git reset and retry cheaply from saved plan
+</knowledge_checkpoint>
+
 ## 주의사항
 
 - cc-logs 폴더는 프로젝트 루트에 생성됩니다

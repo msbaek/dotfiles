@@ -31,6 +31,14 @@ argument-hint: "[test-description] (선택사항)"
 ## 마이크로 사이클
 각 단계는 2-3분 이내 작업으로 빠른 피드백을 받습니다.
 
+<chain_of_small_steps>
+Decompose complex goals into small, focused, verifiable steps executed sequentially. Verify and commit after each step before proceeding. Narrow-focus tasks play to AI's strengths; early verification prevents complexity from compounding.
+</chain_of_small_steps>
+
+<feedback_loop>
+Define clear success signals (tests passing, build succeeding). Grant AI explicit permission to iterate autonomously until goals are reached. Human role shifts from tactical execution to strategic oversight.
+</feedback_loop>
+
 ## 참조 문서
 @/Users/msbaek/git/LLM/prompts/claude/commands/tdd/web-usecase-tdd.md
 

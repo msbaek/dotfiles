@@ -137,4 +137,8 @@ suggestion (non-blocking): 함수 복잡도 개선
 - 구체적인 분리 방법을 제시하면 더 도움이 될 것
 ```
 
+<feedback_flip>
+Flip to evaluation mode when reviewing. Focus on quality and problem-finding rather than feature completeness. Different AI perspectives (implementation vs. review) yield more effective results.
+</feedback_flip>
+
 Now analyze the provided comment: $ARGUMENTS
