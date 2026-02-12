@@ -3,7 +3,9 @@
 ### when starting a new session
 
 <when-starting-a-new-session>
-Read the plan file used in this project to understand the work completed so far and inform me of the next steps to proceed with.
+1. If `PROJECT_ROOT/.claude/plans/INDEX.md` exists, read it first and resume from the "resume point" of the active entry.
+2. Otherwise, read plan files in the plans directory to determine progress.
+3. Report overall progress and next steps to the user.
 </when-starting-a-new-session>
 
 <session-start-hook>
@@ -147,6 +149,25 @@ Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
 - Save plans to PROJECT_ROOT/.claude/plans/[planname].md
 - Update the plan as work progresses
 - When using APIs, SDKs, or libraries, use CONTEXT7 MCP tool to verify correct usage before proceeding
+
+Plan Index:
+- When 2+ plan/todo files exist, maintain `PROJECT_ROOT/.claude/plans/INDEX.md`
+- Structure:
+  ```
+  # Plans Index
+  Last updated: YYYY-MM-DD
+
+  ## Active
+  - [plan-name.md](plan-name.md) — summary | progress: X/Y tasks | **resume point**: step N description
+
+  ## Completed
+  - [old-plan.md](old-plan.md) — summary | completed: YYYY-MM-DD
+
+  ## Paused
+  - [paused-plan.md](paused-plan.md) — summary | reason | resume condition
+  ```
+- Update INDEX.md whenever a plan is created, completed, or paused
+- "resume point" must be specific enough to continue immediately in a new session (file name, step number, remaining work)
   </work_patterns>
 
 ### Git Workflow
@@ -248,13 +269,13 @@ TDD 강제 원칙:
 
 <verification-before-completion>
 Before marking any task as complete, verify:
-- [ ] 모든 테스트 통과
-- [ ] plan/todo 문서에 완료 상태 반영
-- [ ] 다음 세션을 위한 컨텍스트 기록
-- [ ] git worktree 사용 시 격리 상태 확인
+- [ ] All tests pass
+- [ ] Plan/todo documents reflect completed status
+- [ ] Update INDEX.md progress (resume point, task counts) if it exists
+- [ ] Context recorded for next session
+- [ ] Git worktree isolation confirmed (if applicable)
 
-복구 용이성 확보:
-
-- 각 작업 단위로 커밋
-- 문제 발생 시 롤백 가능한 상태 유지
+Recoverability:
+- Commit after each meaningful unit of work
+- Keep state rollback-friendly at all times
   </verification-before-completion>
