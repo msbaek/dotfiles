@@ -14,7 +14,11 @@
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
   "permissions": {
-    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)", "WebFetch"],
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test:*)",
+      "WebFetch"
+    ],
     "deny": []
   },
   "hooks": {
@@ -65,7 +69,12 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "jdtls@claude-code-lsps": true,
+    "kotlin-lsp@claude-code-lsps": true,
+    "omnisharp@claude-code-lsps": true,
+    "rust-analyzer@claude-code-lsps": true,
+    "vtsls@claude-code-lsps": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
