@@ -170,5 +170,8 @@ function y() {
 
 export EDITOR="nvim"
 
+# Claude Code max output tokens
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=128000
+
 # rm-safely - Safe rm command
 source "~/.rm-safely" >/dev/null 2>&1
