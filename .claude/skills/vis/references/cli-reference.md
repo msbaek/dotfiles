@@ -17,14 +17,14 @@
 
 ### 기본 사용법
 ```bash
-vis search --query "검색어"
+vis search "검색어"
 ```
 
 ### 옵션
 
 | 옵션 | 설명 | 기본값 |
 |---|---|---|
-| `--query` | 검색 쿼리 (필수) | - |
+| `query` (positional) | 검색 쿼리 (필수) | - |
 | `--search-method` | semantic, keyword, hybrid, colbert | hybrid |
 | `--top-k` | 반환 결과 수 | 10 |
 | `--threshold` | 유사도 임계값 (0.0-1.0) | 0.3 |
@@ -34,27 +34,31 @@ vis search --query "검색어"
 | `--no-hyde` | HyDE 확장 비활성화 (--expand와 함께) | off |
 | `--with-centrality` | 중심성 점수 반영 | off |
 | `--centrality-weight` | 중심성 가중치 (0.0-1.0) | 0.2 |
+| `--sample-size` | 샘플링할 문서 수 (대규모 vault 성능 최적화용) | - |
 | `--output` | 결과 파일 저장 (인자 없으면 기본 파일명) | - |
 
 ### 예제
 ```bash
 # 기본 하이브리드 검색
-vis search --query "TDD"
+vis search "TDD"
 
 # 시맨틱 검색 + 재순위화
-vis search --query "테스트 주도 개발" --search-method semantic --rerank
+vis search "테스트 주도 개발" --search-method semantic --rerank
 
 # 포괄적 검색 (쿼리 확장)
-vis search --query "리팩토링" --expand --top-k 20
+vis search "리팩토링" --expand --top-k 20
 
 # 최고 품질 검색
-vis search --query "클린코드" --rerank --expand --output results.md
+vis search "클린코드" --rerank --expand --output results.md
 
 # ColBERT 검색 (긴 문장, 복합 개념)
-vis search --query "단위 테스트와 통합 테스트의 차이점" --search-method colbert
+vis search "단위 테스트와 통합 테스트의 차이점" --search-method colbert
 
 # 중심성 점수 반영
-vis search --query "디자인 패턴" --with-centrality --centrality-weight 0.3
+vis search "디자인 패턴" --with-centrality --centrality-weight 0.3
+
+# 대규모 vault 샘플링
+vis search "아키텍처" --sample-size 500
 ```
 
 ## collect - 주제별 문서 수집
@@ -63,14 +67,14 @@ vis search --query "디자인 패턴" --with-centrality --centrality-weight 0.3
 
 ### 기본 사용법
 ```bash
-vis collect --topic "주제" --output collection.md
+vis collect "주제" --output collection.md
 ```
 
 ### 옵션
 
 | 옵션 | 설명 | 기본값 |
 |---|---|---|
-| `--topic` | 수집할 주제 (필수) | - |
+| `topic` (positional) | 수집할 주제 (필수) | - |
 | `--top-k` | 수집 문서 수 | 10 |
 | `--threshold` | 유사도 임계값 | 0.3 |
 | `--expand` | 쿼리 확장 | off |
@@ -81,13 +85,13 @@ vis collect --topic "주제" --output collection.md
 ### 예제
 ```bash
 # 기본 수집
-vis collect --topic "TDD" --output tdd-collection.md
+vis collect "TDD" --output tdd-collection.md
 
 # 포괄적 수집 (많은 문서 + 쿼리 확장)
-vis collect --topic "클린코드" --top-k 30 --expand
+vis collect "클린코드" --top-k 30 --expand
 
 # 높은 정확도로 수집
-vis collect --topic "리팩토링" --threshold 0.5 --top-k 15
+vis collect "리팩토링" --threshold 0.5 --top-k 15
 ```
 
 ## related - 관련 문서 찾기
@@ -96,23 +100,27 @@ vis collect --topic "리팩토링" --threshold 0.5 --top-k 15
 
 ### 기본 사용법
 ```bash
-vis related --file "문서명.md"
+vis related "문서명.md"
 ```
 
 ### 옵션
 
 | 옵션 | 설명 | 기본값 |
 |---|---|---|
-| `--file` | 기준 파일 (필수) | - |
+| `file` (positional) | 기준 파일 (필수) | - |
 | `--top-k` | 결과 수 | 10 |
+| `--similarity-threshold` | 유사도 임계값 | 0.3 |
 
 ### 예제
 ```bash
 # 기본 사용
-vis related --file "TDD-기초.md"
+vis related "TDD-기초.md"
 
 # 더 많은 관련 문서 찾기
-vis related --file "디자인패턴-전략패턴.md" --top-k 20
+vis related "디자인패턴-전략패턴.md" --top-k 20
+
+# 높은 유사도만 필터링
+vis related "클린코드.md" --similarity-threshold 0.5
 ```
 
 ## generate-moc - MOC 자동 생성
@@ -121,28 +129,33 @@ vis related --file "디자인패턴-전략패턴.md" --top-k 20
 
 ### 기본 사용법
 ```bash
-vis generate-moc --topic "주제"
+vis generate-moc "주제"
 ```
 
 ### 옵션
 
 | 옵션 | 설명 | 기본값 |
 |---|---|---|
-| `--topic` | MOC 주제 (필수) | - |
-| `--top-k` | 포함 문서 수 | 50 |
+| `topic` (positional) | MOC 주제 (필수) | - |
+| `--top-k` | 포함 문서 수 | 10 |
+| `--threshold` | 유사도 임계값 | 0.3 |
 | `--output` | 출력 파일 | - |
 | `--include-orphans` | 연결되지 않은 문서도 포함 | off |
+| `--expand` | 쿼리 확장 활성화 | off |
 
 ### 예제
 ```bash
 # 기본 MOC 생성
-vis generate-moc --topic "TDD"
+vis generate-moc "TDD"
 
 # 많은 문서 포함
-vis generate-moc --topic "디자인패턴" --top-k 100
+vis generate-moc "디자인패턴" --top-k 100
 
 # 파일로 저장 + 고립 문서 포함
-vis generate-moc --topic "클린코드" --output "MOC-클린코드.md" --include-orphans
+vis generate-moc "클린코드" --output "MOC-클린코드.md" --include-orphans
+
+# 쿼리 확장으로 포괄적 MOC 생성
+vis generate-moc "리팩토링" --expand --top-k 50
 ```
 
 ## tag - 자동 태깅
@@ -151,14 +164,14 @@ vis generate-moc --topic "클린코드" --output "MOC-클린코드.md" --include
 
 ### 기본 사용법
 ```bash
-vis tag --target "문서명.md"
+vis tag "문서명.md"
 ```
 
 ### 옵션
 
 | 옵션 | 설명 | 기본값 |
 |---|---|---|
-| `--target` | 대상 파일 또는 폴더 (필수) | - |
+| `target` (positional) | 대상 파일 또는 폴더 (필수) | - |
 | `--recursive` | 하위 폴더 포함 | off |
 | `--dry-run` | 실제 변경 없이 미리보기 | off |
 | `--tag-force` | 기존 태그 무시하고 재생성 | off |
@@ -167,19 +180,19 @@ vis tag --target "문서명.md"
 ### 예제
 ```bash
 # 단일 문서 태깅
-vis tag --target "문서명.md"
+vis tag "문서명.md"
 
 # 폴더 전체 태깅
-vis tag --target "000-SLIPBOX/" --recursive
+vis tag "000-SLIPBOX/" --recursive
 
 # 미리보기 (변경 사항 확인)
-vis tag --target "문서명.md" --dry-run
+vis tag "문서명.md" --dry-run
 
 # 기존 태그 무시하고 재생성
-vis tag --target "문서명.md" --tag-force
+vis tag "문서명.md" --tag-force
 
 # 배치 크기 조정
-vis tag --target "폴더/" --recursive --batch-size 20
+vis tag "폴더/" --recursive --batch-size 20
 ```
 
 ## add-related-docs - 관련 문서 섹션 추가
@@ -188,40 +201,40 @@ vis tag --target "폴더/" --recursive --batch-size 20
 
 ### 기본 사용법
 ```bash
-vis add-related-docs --file "문서명.md"
+vis add-related-docs "문서명.md"
 ```
 
 ### 옵션
 
 | 옵션 | 설명 | 기본값 |
 |---|---|---|
-| `--file` | 대상 파일 | - |
+| `file` (positional) | 대상 파일 (배치 모드에서는 생략) | - |
 | `--batch` | 배치 처리 모드 | off |
 | `--pattern` | 배치 파일 패턴 (예: '*.md') | - |
 | `--dry-run` | 미리보기 | off |
 | `--backup` | 원본 백업 | off |
-| `--update-existing` | 기존 섹션 업데이트 | off |
+| `--update-existing` | 기존 섹션 업데이트 (기본값) | on |
 | `--no-update-existing` | 기존 섹션 있으면 스킵 | off |
 | `--format-style` | simple 또는 detailed | - |
-| `--similarity-threshold` | 유사도 임계값 | 0.3 |
+| `--threshold` | 유사도 임계값 | 0.3 |
 | `--top-k` | 관련 문서 수 | 10 |
 
 ### 예제
 ```bash
 # 기본 사용
-vis add-related-docs --file "문서명.md"
+vis add-related-docs "문서명.md"
 
 # 미리보기
-vis add-related-docs --file "문서명.md" --dry-run
+vis add-related-docs "문서명.md" --dry-run
 
 # 배치 처리
 vis add-related-docs --batch --pattern "000-SLIPBOX/*.md"
 
 # 원본 백업 + 기존 섹션 업데이트
-vis add-related-docs --file "문서명.md" --backup --update-existing
+vis add-related-docs "문서명.md" --backup --update-existing
 
 # 더 많은 관련 문서 + 높은 유사도
-vis add-related-docs --file "문서명.md" --top-k 15 --similarity-threshold 0.5
+vis add-related-docs "문서명.md" --top-k 15 --threshold 0.5
 ```
 
 ## analyze-gaps - 지식 공백 분석
@@ -382,6 +395,7 @@ vis clean-tags
 | 옵션 | 설명 | 기본값 |
 |---|---|---|
 | `--dry-run` | 미리보기 | off |
+| `--top-k` | 상위 K개 결과 | 10 |
 
 ### 예제
 ```bash
@@ -390,6 +404,9 @@ vis clean-tags
 
 # 미리보기 (변경 사항 확인)
 vis clean-tags --dry-run
+
+# 더 많은 결과 표시
+vis clean-tags --top-k 30
 ```
 
 ## reindex - 인덱스 재구축
@@ -492,6 +509,102 @@ vis info
 vis info
 ```
 
+## list-tags - 태그 목록 및 통계
+
+Vault의 태그 목록과 사용 통계를 확인.
+
+### 기본 사용법
+```bash
+vis list-tags
+```
+
+### 옵션
+
+| 옵션 | 설명 | 기본값 |
+|---|---|---|
+| `--depth` | 태그 계층 깊이 (0=전체, 1=최상위만, 2=2단계까지) | 0 |
+| `--min-count` | 최소 문서 수 | 1 |
+| `--output` | 출력 파일 저장 | - |
+
+### 예제
+```bash
+# 전체 태그 목록
+vis list-tags
+
+# 최상위 태그만
+vis list-tags --depth 1
+
+# 5개 이상 문서에 사용된 태그만
+vis list-tags --min-count 5
+
+# 파일로 저장
+vis list-tags --output tags.md
+```
+
+## connect-topic - 주제별 문서 연결
+
+주제(태그)를 기준으로 MOC 생성 + 관련 문서 링크를 한 번에 처리.
+
+### 기본 사용법
+```bash
+vis connect-topic "주제"
+```
+
+### 옵션
+
+| 옵션 | 설명 | 기본값 |
+|---|---|---|
+| `topic` (positional) | 연결할 주제/태그명 (필수) | - |
+| `--top-k` | MOC에 포함할 문서 수 | 50 |
+| `--related-k` | 문서당 관련 링크 수 | 3 |
+| `--threshold` | 유사도 임계값 | 0.3 |
+| `--skip-moc` | MOC 생성 건너뛰기 | off |
+| `--skip-related` | 관련 문서 링크 건너뛰기 | off |
+| `--backup` | 원본 파일 백업 생성 | off |
+| `--dry-run` | 실제 변경 없이 미리보기 | off |
+
+### 예제
+```bash
+# MOC + 관련 문서 링크 한 번에
+vis connect-topic "TDD"
+
+# 미리보기
+vis connect-topic "TDD" --dry-run
+
+# MOC 없이 관련 문서 링크만
+vis connect-topic "TDD" --skip-moc
+
+# 관련 문서 링크 없이 MOC만
+vis connect-topic "TDD" --skip-related
+
+# 관련 링크 5개 + 백업
+vis connect-topic "TDD" --related-k 5 --backup
+```
+
+## connect-status - 연결 진행 상황
+
+주제별 문서 연결 작업의 진행 상황을 확인.
+
+### 기본 사용법
+```bash
+vis connect-status
+```
+
+### 옵션
+
+| 옵션 | 설명 | 기본값 |
+|---|---|---|
+| `--detailed` | 전체 주제 상세 현황 표시 | off |
+
+### 예제
+```bash
+# 요약
+vis connect-status
+
+# 전체 주제 상세 현황
+vis connect-status --detailed
+```
+
 ## 검색 방법 선택 가이드
 
 | 검색 방법 | 사용 상황 | 속도 | 정확도 |
@@ -544,19 +657,19 @@ vis info
 ### 새 주제 학습 시작
 ```bash
 # 1. 관련 문서 검색
-vis search --query "새로운 주제" --rerank --expand
+vis search "새로운 주제" --rerank --expand
 
 # 2. 주제별 문서 수집
-vis collect --topic "새로운 주제" --output collection.md
+vis collect "새로운 주제" --output collection.md
 
 # 3. MOC 생성
-vis generate-moc --topic "새로운 주제" --output "MOC-새로운주제.md"
+vis generate-moc "새로운 주제" --output "MOC-새로운주제.md"
 ```
 
 ### 문서 정리 및 연결
 ```bash
 # 1. 자동 태깅
-vis tag --target "000-SLIPBOX/" --recursive
+vis tag "000-SLIPBOX/" --recursive
 
 # 2. 관련 문서 링크 추가
 vis add-related-docs --batch --pattern "000-SLIPBOX/*.md"
@@ -578,4 +691,17 @@ vis analyze-gaps --top-k 20
 
 # 3. 주제 분포 확인
 vis analyze --output analysis.md
+```
+
+### 주제별 문서 연결 (Graph View 활용)
+```bash
+# 1. 태그 분포 확인
+vis list-tags --depth 1 --min-count 5
+
+# 2. 주제별 문서 연결 (미리보기 → 실행)
+vis connect-topic "주제명" --dry-run
+vis connect-topic "주제명"
+
+# 3. 진행 상황 확인
+vis connect-status
 ```

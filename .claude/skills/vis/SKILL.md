@@ -2,10 +2,10 @@
 name: vis
 description: |
   Vault Intelligence System (vis) CLI를 활용한 Obsidian vault 시맨틱 검색, 자동 태깅,
-  MOC 생성, 관련 문서 연결, 주제 수집, 지식 공백 분석, 중복 감지, 학습 리뷰 등
-  vault 지식 관리 전반을 지원하는 skill.
+  MOC 생성, 관련 문서 연결, 주제별 문서 연결, 주제 수집, 태그 통계, 지식 공백 분석,
+  중복 감지, 학습 리뷰 등 vault 지식 관리 전반을 지원하는 skill.
   vault 검색, 문서 정리, 태그, MOC, 관련 문서, 주제 수집, 중복 검사, 학습 리뷰,
-  지식 공백, 클러스터링, 인덱싱 관련 작업 시 자동 적용.
+  지식 공백, 클러스터링, 인덱싱, 주제별 문서 연결, 태그 통계 관련 작업 시 자동 적용.
 ---
 
 # Vault Intelligence System (vis) Skill
@@ -34,6 +34,9 @@ vis는 BGE-M3 기반 시맨틱 검색 엔진으로 Obsidian vault의 지식 관�
 | 학습 리뷰 | `vis review` | "이번 주 학습 정리해줘", "월간 리뷰 만들어줘" |
 | 고립 태그 정리 | `vis clean-tags` | "안 쓰는 태그 정리해줘", "태그 정리" |
 | 인덱스 갱신 | `vis reindex` | "인덱스 다시 만들어줘", "새 문서 반영해줘" |
+| 태그 목록/통계 | `vis list-tags` | "태그 분포 보여줘", "어떤 태그가 많아?" |
+| 주제별 문서 연결 | `vis connect-topic` | "TDD 주제 문서 연결해줘", "그래프 연결 작업" |
+| 연결 진행 상황 | `vis connect-status` | "연결 작업 얼마나 됐어?", "진행 상황 확인" |
 | 시스템 상태 확인 | `vis info` | "vis 상태 어때?", "캐시 상태 확인" |
 
 ## 검색 전략 자동 선택
@@ -152,6 +155,32 @@ vis review --from 2024-08-01 --to 2024-08-31
 vis review --topic TDD --period quarterly
 ```
 
+### 태그 목록 및 통계 (list-tags)
+vault의 태그 목록과 사용 통계를 확인.
+```bash
+vis list-tags                        # 전체 태그 목록
+vis list-tags --depth 1              # 최상위 태그만
+vis list-tags --min-count 5          # 5개 이상 문서에 사용된 태그
+vis list-tags --output tags.md       # 파일로 저장
+```
+
+### 주제별 문서 연결 (connect-topic)
+주제(태그)를 기준으로 MOC 생성 + 관련 문서 링크를 한 번에 처리.
+```bash
+vis connect-topic "TDD"                           # MOC + 관련 문서 링크
+vis connect-topic "TDD" --dry-run                  # 미리보기
+vis connect-topic "TDD" --skip-moc                 # 관련 문서 링크만
+vis connect-topic "TDD" --skip-related             # MOC만
+vis connect-topic "TDD" --related-k 5 --backup     # 관련 링크 5개 + 백업
+```
+
+### 연결 진행 상황 (connect-status)
+주제별 문서 연결 작업의 진행 상황을 확인.
+```bash
+vis connect-status                   # 요약
+vis connect-status --detailed        # 전체 주제 상세 현황
+```
+
 ### 고립 태그 정리 (clean-tags)
 1개 이하 문서에서만 사용되는 고립 태그를 감지하고 정리.
 ```bash
@@ -172,7 +201,7 @@ vis reindex --include-folders 000-SLIPBOX 003-RESOURCES   # 특정 폴더만
 
 사용자가 "vis로 뭘 할 수 있어?", "vis 기능 알려줘" 등으로 질문하면 아래 내용을 기반으로 상세히 안내.
 
-### 16개 명령어 전체 목록
+### 19개 명령어 전체 목록
 
 1. **search** - 시맨틱/키워드/하이브리드/ColBERT 검색 (4가지 방법 + rerank + expand)
 2. **collect** - 주제별 문서 수집 및 정리
@@ -190,6 +219,9 @@ vis reindex --include-folders 000-SLIPBOX 003-RESOURCES   # 특정 폴더만
 14. **init** - 시스템 초기화 (최초 설정)
 15. **test** - 시스템 테스트
 16. **info** - 시스템 상태 및 캐시 정보 확인
+17. **list-tags** - Vault 태그 목록 및 통계 (계층별, 문서 수)
+18. **connect-topic** - 주제별 문서 연결 (MOC 생성 + 관련 문서 링크 삽입)
+19. **connect-status** - 그래프 연결 진행 상황 확인
 
 ### 검색 엔진 특징
 - BGE-M3 모델 기반 Dense + Sparse + ColBERT 3가지 임베딩
@@ -210,5 +242,8 @@ vis reindex --include-folders 000-SLIPBOX 003-RESOURCES   # 특정 폴더만
 | `--topic "TDD"` | positional: `vis collect "TDD"` |
 | `--file "문서.md"` | positional: `vis related "문서.md"` |
 | `--target "문서.md"` | positional: `vis tag "문서.md"` |
+| `--topic "TDD"` (moc) | positional: `vis generate-moc "TDD"` |
+| `--file "문서.md"` (add) | positional: `vis add-related-docs "문서.md"` |
+| `--similarity-threshold` | `--threshold` (add-related-docs) |
 
 상세 CLI 레퍼런스는 `references/cli-reference.md` 참조.
