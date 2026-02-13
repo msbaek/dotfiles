@@ -14,11 +14,7 @@
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
   "permissions": {
-    "allow": [
-      "Bash(npm run lint)",
-      "Bash(npm run test:*)",
-      "WebFetch"
-    ],
+    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)", "WebFetch"],
     "deny": []
   },
   "hooks": {
@@ -65,7 +61,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bash ~/.claude/statusline-command.sh",
+    "command": "npx -y ccstatusline@latest",
     "padding": 0
   },
   "enabledPlugins": {
