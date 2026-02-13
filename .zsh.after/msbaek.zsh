@@ -220,6 +220,9 @@ FUNCNEST=100
 # Add to ~/.zshrc or ~/.bashrc
 alias cl='claude'
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
+# Headless mode aliases
+alias cc-commit='claude -p "analyze staged changes, generate conventional commit message in Korean, commit and push" --allowedTools "Bash,Read,Grep"'
+alias cc-dailylog='claude -p "run the daily-work-logger skill for today" --allowedTools "Bash,Read,Write,Glob,Grep"'
 alias plugins-cc='npx claude-code-templates@latest --plugins'
 alias chats-cc='npx claude-code-templates@latest --chats'
 alias clean-mac='npx mac-cleaner-cli'

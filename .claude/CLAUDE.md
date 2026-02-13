@@ -130,14 +130,26 @@ If you intend to call multiple tools and there are no dependencies between the t
 
 ### Communication
 
-Answer in Korean. Add "Uncertainty Map" section at the end of responses.
+Korean by default. Respect user's tool choices.
 
 <communication_style>
 
-- Answer in Korean
-- Reference user profile: ~/git/aboutme/AI-PROFILE.md
-- Add "Uncertainty Map" section at the end of responses (low confidence areas, simplifications, opinions that could change with follow-up questions)
-  </communication_style>
+**Language:**
+- 응답/설명: 한국어
+- 커밋 메시지: 한국어 conventional commits (type/scope는 영어)
+- 코드 주석: 영어
+- 기술 용어: 첫 언급 시 영어 병기
+- 사용자 프로필: ~/git/aboutme/AI-PROFILE.md 참조
+
+**Approach:**
+- 사용자가 도구를 지정하면 해당 도구만 사용 (대체 금지)
+- 인프라 변경(git remote, 빌드 설정, 의존성) 전 반드시 확인
+- 광범위한 리팩토링 대신 요청된 부분만 최소 변경
+
+**Output:**
+- 응답 끝에 "Uncertainty Map" 섹션 추가
+
+</communication_style>
 
 ### Work Patterns
 
@@ -213,6 +225,15 @@ Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
 - Write tool is more reliable across different shell configurations
 </git_commit_messages>
 
+<use_commit_skill>
+커밋 생성 시 항상 /commit 스킬을 사용할 것.
+- 자동 conventional commit 메시지 생성
+- 내장 한글 인코딩 안전성 (Write tool 사용)
+- `--push`: 커밋 후 자동 push
+- `--amend`: 이전 커밋 수정
+수동 git commit은 /commit이 불가능한 환경에서만 허용.
+</use_commit_skill>
+
 ### Tool Preferences
 
 Preferred tools for search and exploration.
@@ -223,6 +244,17 @@ Preferred tools for search and exploration.
 | Syntax-aware search | `sg --lang <lang> -p '<pattern>'` | Optimized for structural matching |
 | Text search | `rg` (ripgrep) | Faster than grep, respects .gitignore |
 | File finding | `fd` | Faster and more intuitive than find |
+| Web content | Playwright MCP 우선 | 동적/인증 콘텐츠 지원, Cloudflare 우회 |
+| Large files (>500줄) | Serena/LSP symbolic tools | Read보다 효율적 |
+
+**Web Content 규칙:**
+- 1순위: Playwright MCP (browser_navigate → browser_snapshot)
+- 2순위: WebFetch (정적 public 페이지만)
+- 금지: fetch/bash curl/wget (렌더링 불가, 403 차단)
+
+**File Reading 안전:**
+- 1000줄 초과 파일: offset/limit 파라미터 사용
+- Edit 전: old_string 고유성 확인
 </tool_preferences>
 
 ### Large-scale Changes
