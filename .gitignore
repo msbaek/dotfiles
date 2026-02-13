@@ -95,3 +95,4 @@ node_modules/
 .claude/projects
 .claude/tasks
 .claude/claude_desktop_config.json
+.claude/usage-data/
