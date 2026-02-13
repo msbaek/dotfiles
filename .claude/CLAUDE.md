@@ -3,9 +3,13 @@
 ### when starting a new session
 
 <when-starting-a-new-session>
-1. If `PROJECT_ROOT/.claude/plans/INDEX.md` exists, read it first and resume from the "resume point" of the active entry.
-2. Otherwise, read plan files in the plans directory to determine progress.
-3. Report overall progress and next steps to the user.
+1. `PROJECT_ROOT/.claude/plans/` 하위에 날짜 폴더(`YYYY-MM-DD-*`)가 있는지 탐색한다.
+2. 날짜 폴더가 있으면:
+   a. 각 폴더의 `INDEX.md`에서 `Status: active`인 항목을 찾는다.
+   b. Active 폴더의 resume point에서 작업을 재개한다.
+   c. 글로벌 `INDEX.md`가 있으면 참고하되, 폴더별 `INDEX.md`를 우선한다.
+3. 날짜 폴더가 없으면 루트의 기존 plan 파일들로 fallback한다.
+4. 사용자에게 현재 상태와 다음 단계를 보고한다.
 </when-starting-a-new-session>
 
 <session-start-hook>
@@ -158,29 +162,58 @@ Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
 <work_patterns>
 
 - Always start in plan mode before working on any project
-- Save plans to PROJECT_ROOT/.claude/plans/[planname].md
-- Update the plan as work progresses
 - When using APIs, SDKs, or libraries, use CONTEXT7 MCP tool to verify correct usage before proceeding
 
-Plan Index:
-- When 2+ plan/todo files exist, maintain `PROJECT_ROOT/.claude/plans/INDEX.md`
+Plan Folder Structure:
+- 새 작업 시작 시 `PROJECT_ROOT/.claude/plans/YYYY-MM-DD-kebab-case-topic/` 폴더를 생성한다.
+  - 날짜: 작업 시작일
+  - topic: Claude가 작업 내용에서 3~5단어 kebab-case 이름을 자동 생성
+  - 예: `.claude/plans/2026-02-14-plan-folder-isolation/`
+- 폴더 안에 plan 파일과 `INDEX.md`를 저장한다.
+- Update the plan as work progresses.
+
+폴더별 INDEX.md:
+- 해당 작업의 상태를 관리하는 파일. 세션 시작 시 이 파일로 resume.
+- Structure:
+  ```
+  # Plan: 작업 제목
+  Created: YYYY-MM-DD
+  Status: active|completed|paused
+
+  ## Progress
+  - [x] 완료된 작업
+  - [ ] 미완료 작업
+
+  ## Resume Point
+  구체적인 재개 지점 (파일명, 단계 번호, 남은 작업)
+
+  ## Files
+  - plan-file.md — 설명
+  ```
+- "resume point" must be specific enough to continue immediately in a new session
+
+글로벌 INDEX.md (`PROJECT_ROOT/.claude/plans/INDEX.md`):
+- 폴더 목록과 한줄 요약만 관리 (참고용)
 - Structure:
   ```
   # Plans Index
   Last updated: YYYY-MM-DD
 
   ## Active
-  - [plan-name.md](plan-name.md) — summary | progress: X/Y tasks | **resume point**: step N description
+  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — 요약
 
   ## Completed
-  - [old-plan.md](old-plan.md) — summary | completed: YYYY-MM-DD
+  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — 요약 | completed: YYYY-MM-DD
 
   ## Paused
-  - [paused-plan.md](paused-plan.md) — summary | reason | resume condition
+  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — 요약 | reason
   ```
-- Update INDEX.md whenever a plan is created, completed, or paused
-- "resume point" must be specific enough to continue immediately in a new session (file name, step number, remaining work)
-  </work_patterns>
+- Update whenever a plan folder is created, completed, or paused
+
+하위 호환:
+- 기존 루트의 랜덤 이름 plan 파일(.claude/plans/*.md)은 그대로 유지
+- 날짜 폴더가 없는 프로젝트에서는 기존 방식으로 동작
+</work_patterns>
 
 ### Git Workflow
 
@@ -303,7 +336,8 @@ TDD 강제 원칙:
 Before marking any task as complete, verify:
 - [ ] All tests pass
 - [ ] Plan/todo documents reflect completed status
-- [ ] Update INDEX.md progress (resume point, task counts) if it exists
+- [ ] Update 폴더별 INDEX.md progress (resume point, status, task counts)
+- [ ] Update 글로벌 INDEX.md 상태 (active/completed/paused) if it exists
 - [ ] Context recorded for next session
 - [ ] Git worktree isolation confirmed (if applicable)
 
