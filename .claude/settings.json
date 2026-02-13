@@ -74,9 +74,11 @@
     "kotlin-lsp@claude-code-lsps": true,
     "omnisharp@claude-code-lsps": true,
     "rust-analyzer@claude-code-lsps": true,
-    "vtsls@claude-code-lsps": true
+    "vtsls@claude-code-lsps": true,
+    "msbaek-tdd@msbaek-claude-plugins": true
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }
