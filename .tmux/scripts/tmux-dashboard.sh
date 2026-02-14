@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # tmux-dashboard.sh - Monitor all tmux windows at a glance
 # Usage: bound to prefix+D via display-popup in .tmux.conf
+# Keys: j/k scroll, gg top, G bottom, r refresh, q quit
 
 set -euo pipefail
 
 SESSION=$(tmux display-message -p '#{session_name}')
-REFRESH=2
-LINES_PER_WIN=12
+REFRESH=5
+SCROLL=0
 
 draw() {
-    clear
     local cols rows col_w
     cols=$(tput cols)
     rows=$(tput lines)
@@ -24,12 +24,46 @@ draw() {
     done < <(tmux list-windows -t "$SESSION" -F '#{window_index}|#{window_name}|#{window_active}')
 
     local total=${#win_indices[@]}
+    local total_rows=$(( (total + 1) / 2 ))
 
-    printf "\033[1;34m tmux dashboard — %s — %d windows — [q]uit [r]efresh\033[0m\n\n" \
-        "$SESSION" "$total"
+    # Adaptive lines per window: fit as many rows as possible
+    local header_lines=2
+    local border_lines=2  # top + bottom border per row
+    local avail=$(( rows - header_lines ))
+    local lpw=$(( (avail / total_rows) - border_lines ))
+    (( lpw < 3 )) && lpw=3
+    (( lpw > 10 )) && lpw=10
 
-    local i=0
-    while (( i < total )); do
+    # Calculate visible rows
+    local row_height=$(( lpw + border_lines ))
+    local max_visible=$(( avail / row_height ))
+    (( max_visible < 1 )) && max_visible=1
+
+    # Clamp scroll
+    local max_scroll=$(( total_rows - max_visible ))
+    (( max_scroll < 0 )) && max_scroll=0
+    (( SCROLL > max_scroll )) && SCROLL=$max_scroll
+    (( SCROLL < 0 )) && SCROLL=0
+
+    # Clear and draw
+    printf "\033[H\033[2J"
+
+    local end_row=$(( SCROLL + max_visible ))
+    (( end_row > total_rows )) && end_row=$total_rows
+    local scroll_info=""
+    if (( max_scroll > 0 )); then
+        scroll_info=$(printf " [%d-%d/%d]" "$((SCROLL+1))" "$end_row" "$total_rows")
+    fi
+    printf "\033[1;34m %s — %d wins%s — j/k:scroll r:refresh q:quit\033[0m\n\n" \
+        "$SESSION" "$total" "$scroll_info"
+
+    # Draw only visible rows
+    local start_idx=$(( SCROLL * 2 ))
+    local end_idx=$(( (SCROLL + max_visible) * 2 ))
+    (( end_idx > total )) && end_idx=$total
+
+    local i=$start_idx
+    while (( i < end_idx )); do
         local l_idx="${win_indices[$i]}"
         local l_name="${win_names[$i]}"
         local l_active="${win_actives[$i]}"
@@ -38,7 +72,7 @@ draw() {
         # Right window (if exists)
         local has_right=0
         local r_idx="" r_name="" r_active="" r_marker=" "
-        if (( i + 1 < total )); then
+        if (( i + 1 < total )) && (( i + 1 < end_idx )); then
             has_right=1
             r_idx="${win_indices[$((i+1))]}"
             r_name="${win_names[$((i+1))]}"
@@ -64,16 +98,16 @@ draw() {
             printf "┐\033[0m\n"
         fi
 
-        # Capture pane content (plain text, no ANSI)
+        # Capture pane content (last N lines, plain text)
         local l_content r_content=""
-        l_content=$(tmux capture-pane -t "${SESSION}:${l_idx}" -p -S -${LINES_PER_WIN} 2>/dev/null | tail -${LINES_PER_WIN})
+        l_content=$(tmux capture-pane -t "${SESSION}:${l_idx}" -p -S -${lpw} 2>/dev/null | tail -${lpw})
         if (( has_right )); then
-            r_content=$(tmux capture-pane -t "${SESSION}:${r_idx}" -p -S -${LINES_PER_WIN} 2>/dev/null | tail -${LINES_PER_WIN})
+            r_content=$(tmux capture-pane -t "${SESSION}:${r_idx}" -p -S -${lpw} 2>/dev/null | tail -${lpw})
         fi
 
         # Print content side by side
         local content_w=$(( col_w - 2 ))
-        for (( line=1; line<=LINES_PER_WIN; line++ )); do
+        for (( line=1; line<=lpw; line++ )); do
             local ll
             ll=$(printf '%s' "$l_content" | sed -n "${line}p" | cut -c1-${content_w})
             printf "│ %-${content_w}s" "$ll"
@@ -100,16 +134,26 @@ draw() {
     done
 }
 
-# Main loop
+# Main loop - event driven with vim navigation
 trap 'tput cnorm; exit 0' EXIT INT TERM
-tput civis  # hide cursor
+tput civis
 
+draw
 while true; do
-    draw
     if read -rsn1 -t "$REFRESH" key 2>/dev/null; then
         case "$key" in
             q|Q) break ;;
-            r|R) continue ;;
+            r|R) draw ;;
+            j|J) (( SCROLL++ )); draw ;;
+            k|K) (( SCROLL > 0 )) && (( SCROLL-- )); draw ;;
+            G) SCROLL=999999; draw ;;
+            g)
+                if read -rsn1 -t 0.3 key2 2>/dev/null && [[ "$key2" == "g" ]]; then
+                    SCROLL=0; draw
+                fi
+                ;;
         esac
+    else
+        draw  # auto-refresh on timeout
     fi
 done
