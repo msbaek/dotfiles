@@ -10,6 +10,10 @@ theme = GitHub Light Default
 # Previous: Catppuccin Latte
 # theme = Catppuccin Latte
 
+# Claude Code highlight visibility fix for light theme
+# ANSI black as bg is too dark (#24292f) → light blue for readable highlights
+palette = 0=#dbe9f6
+
 # Warning/Error 색상 개선 - GitHub Light는 기본 색상 사용
 # Catppuccin Latte에서 사용했던 커스텀 palette (참고용으로 보존)
 # palette 3, 11: Warning (Yellow) - 더 진한 황금색으로 변경
