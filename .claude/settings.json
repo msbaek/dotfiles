@@ -92,6 +92,31 @@
     "learning-output-style@claude-plugins-official": true,
     "playground@claude-plugins-official": true
   },
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "생각하는 중",
+      "분석하는 중",
+      "코드 읽는 중",
+      "파일 탐색 중",
+      "작성하는 중",
+      "검토하는 중",
+      "실행하는 중",
+      "검색하는 중",
+      "변경 적용 중",
+      "테스트 확인 중",
+      "구조 파악 중",
+      "계획 수립 중",
+      "의존성 추적 중",
+      "리팩토링 중",
+      "디버깅 중",
+      "패턴 매칭 중",
+      "컨텍스트 수집 중",
+      "해결책 모색 중",
+      "최적화 중",
+      "연결고리 찾는 중"
+    ]
+  },
   "skipDangerousModePermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
