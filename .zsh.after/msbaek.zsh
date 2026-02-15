@@ -60,7 +60,7 @@ alias vi='nvim'
 alias gl='git log'
 alias find_wifi_pwd='security find-generic-password -wa '
 
-alias cat='bat --plain --wrap character'
+# alias cat='bat --plain --wrap character'
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 export PYSPARK_DRIVER_PYTHON=jupyter

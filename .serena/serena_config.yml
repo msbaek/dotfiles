@@ -89,7 +89,7 @@ ls_specific_settings: {}
 #      (requires the plugin to be installed and the project being worked on to be open
 #      in your IDE).
 language_backend: LSP
-                # - ~/git/project1
+                                # - ~/git/project1
   # - ~/git/project2
 base_modes:
 
@@ -99,3 +99,8 @@ base_modes:
 default_modes:
 - interactive
 - editing
+
+# list of paths to ignore across all projects.
+# Same syntax as gitignore, so you can use * and **.
+# These patterns are merged additively with each project's own ignored_paths.
+ignored_paths: []
