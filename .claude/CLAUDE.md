@@ -375,7 +375,21 @@ When using superpowers:brainstorming, automatically incorporate context from ~/g
 - TDD/OOP/DDD 중심 설계 선호
 - 단순성과 실용성 우선 (YAGNI, DRY)
 - 복잡한 작업은 2-5분 단위로 분해
+
+Prompt Contracts 프레임워크를 brainstorming 과정에 적용 — **반드시 /prompt-contracts 스킬을 호출**하여 상세 가이드를 로드할 것:
+- Goal 도출 시: "완료"를 1분 내 검증 가능하게 정의 (테스트 가능성이 핵심)
+- Constraints 식별 시: 기술 스택, 패턴, 금지 항목을 비협상 경계로 명시
+- Failure Conditions 도출 시: "이것이 있으면 수용 불가" 목록 작성 (가드레일)
+- 설계 제안 시 각 접근법에 대해 Goal/Constraints/Failure Conditions 명시
 </brainstorming-context>
+
+<writing-plans-context>
+When using superpowers:writing-plans, apply Prompt Contracts 프레임워크 — **반드시 /prompt-contracts 스킬을 호출**하여 상세 가이드를 로드할 것:
+- 각 작업(task)에 Output Format 명시: 파일 위치, 함수 시그니처, 반환 타입
+- 각 작업에 Failure Conditions 포함: "이 조건이면 작업 미완료" 기준
+- Plan 전체에 Goal 명시: 테스트 가능한 성공 기준
+- Plan 전체에 Constraints 명시: 비협상 제약 사항
+</writing-plans-context>
 
 <superpowers-workflow>
 For complex development tasks, follow this sequence:

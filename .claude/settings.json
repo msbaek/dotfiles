@@ -14,8 +14,41 @@
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
   "permissions": {
-    "allow": ["Bash(npm run lint)", "Bash(npm run test:*)", "WebFetch"],
-    "deny": []
+    "allow": [
+      "Bash(npm run lint)",
+      "Bash(npm run test:*)",
+      "WebFetch",
+      "Bash(npm test:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(git config:*)",
+      "Bash(gh:*)",
+      "Bash(node:*)",
+      "Bash(which:*)",
+      "Bash(pwd)",
+      "Bash(ls:*)",
+      "Bash(python3 -m markitdown:*)",
+      "Bash(markitdown:*)",
+      "Bash(for file in ~/DocumentsLocal/msbaek_vault/STUDY/DataBricks/공식강의/2.Data-Privacy/labs/*.html)",
+      "Bash(done)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_close",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_snapshot",
+      "mcp__filesystem__list_directory",
+      "mcp__filesystem__directory_tree",
+      "mcp__filesystem__read_multiple_files"
+    ],
+    "deny": [
+      "Bash(rm -rf /)"
+    ],
+    "ask": [],
+    "defaultMode": "default"
   },
   "hooks": {
     "PreToolUse": [
