@@ -1,14 +1,64 @@
 ---
 argument-hint: "[kr|en] [transcript or YouTube URL]"
-description: "Youtube URL 또는 트랜스크립트를 입력받아 번역, 정리해서 obsidian 문서로 저장 (첫 번째 인자로 언어 지정: kr|en, 기본값: en)"
+description: "Youtube URL 또는 트랜스크립트 → 백그라운드로 번역/정리 → obsidian 문서 생성 (첫 번째 인자로 언어 지정: kr|en, 기본값: en)"
 color: yellow
 ---
 
 # article summarize - $ARGUMENTS
 
-제공되는 YouTube URL 또는 트랜스크립트를 번역/정리해서 obsidian 문서를 생성합니다.
+YouTube URL 또는 트랜스크립트를 받아 **백그라운드**로 번역/정리하여 Obsidian 문서를 생성합니다.
 
-## 언어 옵션 처리
+## 실행 모드 판단
+
+**이 스킬이 직접 호출된 경우 (사용자가 메인 세션에서 `/obsidian:summarize-youtube URL` 실행):**
+→ **백그라운드 모드**로 실행
+
+**이 스킬이 subagent 내부에서 호출된 경우 (batch-summarize-urls 등):**
+→ **동기 모드**로 실행
+
+## 백그라운드 모드 (직접 호출 시)
+
+### Step 1: Progress 파일 생성
+
+`.claude/article-progress/` 디렉토리에 진행 상황 파일을 생성합니다.
+파일명: `YYYYMMDD-HHMMSS-youtube-{video-id-or-slug}.json`
+
+```json
+{
+  "url": "$ARGUMENTS",
+  "type": "youtube",
+  "status": "processing",
+  "started_at": "현재시간 ISO-8601",
+  "completed_at": null,
+  "output_file": null,
+  "error": null
+}
+```
+
+### Step 2: 백그라운드 subagent 시작
+
+Task tool을 사용하여 백그라운드 subagent를 시작합니다:
+
+- `subagent_type`: "general-purpose"
+- `run_in_background`: true
+- `description`: "Summarize YouTube: {video title or ID}"
+- `prompt`: 아래 동기 모드 프로세스 전체를 포함하되, 다음을 추가:
+  - progress 파일 경로를 전달
+  - 작업 완료 후 progress 파일을 completed로 업데이트하도록 지시
+  - 실패 시 progress 파일을 failed로 업데이트하도록 지시
+
+### Step 3: 사용자에게 알림 후 즉시 반환
+
+```
+백그라운드 작업 시작됨:
+- URL: $ARGUMENTS
+- Progress: .claude/article-progress/{파일명}.json
+- 완료되면 자동으로 알려드립니다.
+```
+
+## 동기 모드 (subagent에서 호출 시 / 백그라운드 subagent 내부)
+
+### 언어 옵션 처리
 
 ```bash
 # 첫 번째 인자로 언어 옵션 확인 (기본값: en)
@@ -54,7 +104,12 @@ if [[ "$CLEANED_ARGUMENTS" == *"youtube.com/watch?v="* ]] || [[ "$CLEANED_ARGUME
 
     if [ $? -eq 0 ] && [ -n "$YOUTUBE_DATA" ]; then
         echo "YouTube 데이터 추출 완료."
-        echo "$YOUTUBE_DATA" > /tmp/youtube_data.json
+        # Unique temp file to prevent race condition between concurrent sessions
+        VIDEO_ID=$(echo "$CLEANED_ARGUMENTS" | sed -n 's/.*[?&]v=\([^&]*\).*/\1/p; s|.*youtu\.be/\([^?]*\).*|\1|p' | head -1)
+        TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+        YOUTUBE_TEMP_FILE="/tmp/youtube_data_${VIDEO_ID}_${TIMESTAMP}.json"
+        echo "$YOUTUBE_DATA" > "$YOUTUBE_TEMP_FILE"
+        echo "임시 파일: $YOUTUBE_TEMP_FILE"
     else
         echo "YouTube 데이터 추출 실패. 트랜스크립트로 처리합니다."
         TRANSCRIPT="$CLEANED_ARGUMENTS"
@@ -65,7 +120,7 @@ else
 fi
 ```
 
-## 작업 프로세스
+### 작업 프로세스
 
 1. **입력 데이터 분석 및 처리**
    - 첫 번째 인자로 언어 옵션 파싱: `kr`/`ko`/`en` 중 하나, 없으면 영어 우선 (기본값)
@@ -75,6 +130,7 @@ fi
      - `~/git/lib/download-youtube-transcript`의 `python script.py` 명령어를 사용하여 JSON 형식으로 메타데이터와 트랜스크립트 추출
      - 언어 옵션에 따라 `-l kr` (한글 우선) 또는 `-l en` (영어 우선, 기본값)으로 실행
      - 첫 번째 언어 실패 시 대체 언어로 재시도
+     - 고유한 임시 파일명(`/tmp/youtube_data_${VIDEO_ID}_${TIMESTAMP}.json`)을 사용하여 동시 실행 시 충돌 방지
    - 트랜스크립트인 경우: 기존 방식대로 직접 처리
 
 2. **메타데이터 자동 생성** (URL인 경우)
@@ -89,6 +145,42 @@ fi
 
 4. **태그 부여**
    - hierarchical tagging 규칙은 `~/.claude/commands/obsidian/add-tag.md` 에 정의된 규칙을 준수
+
+5. **Progress 파일 업데이트 (백그라운드 모드 시)**
+
+progress 파일 경로가 전달된 경우, 작업 완료/실패 시 업데이트합니다:
+
+성공 시:
+```json
+{
+  "url": "...",
+  "type": "youtube",
+  "status": "completed",
+  "started_at": "...",
+  "completed_at": "현재시간 ISO-8601",
+  "output_file": "001-INBOX/문서제목.md",
+  "error": null
+}
+```
+
+실패 시:
+```json
+{
+  "url": "...",
+  "type": "youtube",
+  "status": "failed",
+  "started_at": "...",
+  "completed_at": "현재시간 ISO-8601",
+  "output_file": null,
+  "error": "에러 메시지"
+}
+```
+
+6. **임시 파일 정리**
+
+```bash
+rm -f "$YOUTUBE_TEMP_FILE"
+```
 
 ## yaml frontmatter 예시
 
@@ -188,3 +280,12 @@ When you have completed the translation and summarization, present your work in 
 Remember to adhere to all the guidelines and precautions mentioned above throughout your translation and summarization
 process.
 ```
+
+## 진행 상황 모니터링
+
+메인 세션에서 현재 진행 중인 백그라운드 작업을 확인하려면:
+
+`.claude/article-progress/` 폴더의 JSON 파일들을 읽어서 상태를 보고합니다:
+- `processing`: "처리 중: URL"
+- `completed`: "완료: URL → 파일경로"
+- `failed`: "실패: URL (에러메시지)"
