@@ -98,4 +98,6 @@ node_modules/
 .claude/usage-data/
 .claude/image-cache/
 .claude/plans/
-.claude/plans/
+.claude/security_warnings_state_*.json
+.claude/mcp-needs-auth-cache.json
+.serena/

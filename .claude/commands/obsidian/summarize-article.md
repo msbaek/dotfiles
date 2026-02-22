@@ -57,19 +57,63 @@ Task tool을 사용하여 백그라운드 subagent를 시작합니다:
 
 ## 동기 모드 (subagent에서 호출 시 / 백그라운드 subagent 내부)
 
-### Step 1: 콘텐츠 추출
+### Step 1: 콘텐츠 추출 (3단계 폴백)
 
-bash를 사용하여 독립 Playwright 브라우저로 콘텐츠를 추출합니다:
+콘텐츠 추출은 아래 순서로 시도합니다. 각 단계가 실패하면 다음 단계로 넘어갑니다.
+
+#### 1차 시도: extract.js (독립 headless 브라우저)
 
 ```bash
 cd ~/git/lib/extract-article && node extract.js "$ARGUMENTS"
 ```
 
-- 이 명령은 독립적인 headless 브라우저를 실행하고 완료 후 자동 종료합니다
 - 출력: JSON 형식 `{ title, author, content, html, images[] }`
 - 실패 시: stderr에 JSON `{ error: "메시지" }` 출력
+- 타임아웃(60초) 또는 에러 발생 시 → 2차 시도로 진행
 
-**CRITICAL: Playwright MCP tool을 사용하지 마세요. 반드시 위 bash 명령으로 콘텐츠를 추출해야 합니다. 이는 브라우저 세션 격리를 위한 필수 요구사항입니다.**
+#### 2차 시도: 브라우저 세션 정리 후 extract.js 재시도
+
+1차 시도가 실패한 경우, 기존 브라우저 세션이 충돌을 일으킬 수 있으므로 정리 후 재시도합니다.
+
+```bash
+# 1. Playwright MCP 브라우저 세션 종료 (browser_close 호출)
+# 2. 잔여 Chrome 프로세스 정리
+pkill -f "mcp-chrome" 2>/dev/null; sleep 2
+# 3. extract.js 재시도
+cd ~/git/lib/extract-article && node extract.js "$ARGUMENTS"
+```
+
+- 성공 시: 1차 시도와 동일하게 JSON 결과 사용
+- 실패 시: 3차 시도로 진행
+
+#### 3차 시도: Playwright MCP (최후 수단)
+
+extract.js가 2회 모두 실패한 경우에만 Playwright MCP tool을 사용합니다.
+
+**반드시 아래 순서를 따릅니다:**
+
+1. **기존 브라우저 세션 종료**: Playwright MCP의 `browser_close`를 호출합니다.
+2. **기존 Chrome 프로세스 정리**: 아래 bash 명령으로 잔여 프로세스를 종료합니다:
+   ```bash
+   pkill -f "mcp-chrome" 2>/dev/null; sleep 2
+   ```
+3. **페이지 접근**: `browser_navigate`로 URL에 접근합니다.
+4. **콘텐츠 추출**: `browser_snapshot`으로 페이지 콘텐츠를 가져옵니다.
+   - snapshot을 파일로 저장: `browser_snapshot`의 `filename` 파라미터 사용
+   - 저장 경로: `/tmp/article-snapshot-{timestamp}.md`
+5. **메타데이터 추출**: snapshot에서 title, author 등을 파싱합니다.
+   - title: `heading [level=1]` 텍스트
+   - author: byline 영역의 링크 텍스트
+
+**Playwright MCP도 실패하는 경우** (browser launch 에러 등):
+- 에러 메시지를 progress 파일에 기록
+- 사용자에게 수동 개입이 필요하다고 보고
+
+#### 이미지 처리 (Playwright MCP 모드)
+
+Playwright MCP로 추출한 경우 이미지 URL을 직접 확인할 수 없으므로:
+- snapshot에서 `figure` 또는 `img` 요소의 이미지 정보를 확인
+- 이미지가 없으면 이미지 없이 문서를 생성 (이미지 누락 사실을 문서 끝에 명시)
 
 ### Step 2: 번역 및 요약
 

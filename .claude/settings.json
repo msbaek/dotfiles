@@ -3,8 +3,7 @@
   "env": {
     "ENABLE_LSP_TOOL": "1",
     "MAX_THINKING_TOKENS": "16000",
-    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "16384",
-    "BASH_MAX_OUTPUT_LENGTH": "1000000",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "128000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD": "1",
     "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-5-20250929",
@@ -44,9 +43,7 @@
       "mcp__filesystem__directory_tree",
       "mcp__filesystem__read_multiple_files"
     ],
-    "deny": [
-      "Bash(rm -rf /)"
-    ],
+    "deny": ["Bash(rm -rf /)"],
     "ask": [],
     "defaultMode": "default"
   },
@@ -104,7 +101,6 @@
     "omnisharp@claude-code-lsps": true,
     "rust-analyzer@claude-code-lsps": true,
     "vtsls@claude-code-lsps": true,
-    "msbaek-tdd@msbaek-claude-plugins": true,
     "kotlin-lsp@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
@@ -123,7 +119,8 @@
     "Notion@claude-plugins-official": true,
     "hookify@claude-plugins-official": true,
     "learning-output-style@claude-plugins-official": true,
-    "playground@claude-plugins-official": true
+    "playground@claude-plugins-official": true,
+    "msbaek-tdd@msbaek-claude-plugins": true
   },
   "spinnerVerbs": {
     "mode": "replace",

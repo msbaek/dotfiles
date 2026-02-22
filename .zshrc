@@ -175,3 +175,13 @@ export CLAUDE_CODE_MAX_OUTPUT_TOKENS=128000
 
 # rm-safely - Safe rm command
 source "~/.rm-safely" >/dev/null 2>&1
+
+# Auto-rebuild npm native modules after brew upgrade (cmem 등)
+brew() {
+  command brew "$@"
+  if [[ "$1" == "upgrade" ]]; then
+    echo "🔄 Rebuilding cmem native modules..."
+    (cd /opt/homebrew/lib/node_modules/@colbymchenry/cmem 2>/dev/null && npm rebuild better-sqlite3 2>/dev/null) && \
+      echo "✅ cmem rebuilt" || echo "⚠️ cmem rebuild skipped (not installed?)"
+  fi
+}
