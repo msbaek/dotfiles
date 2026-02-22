@@ -1890,6 +1890,14 @@ vim.keymap.set("n", "k", "gk")
 --
 -- vim.keymap.set("n", "yy", "_", { noremap = true, desc = "Move to line start" })
 -- vim.keymap.set("n", "rr", "$", { noremap = true, desc = "Move to line end" })
+-- Open current file in Zed at cursor position
+vim.keymap.set("n", "<leader>oz", function()
+  local file = vim.fn.expand("%:p")
+  local line = vim.fn.line(".")
+  local col = vim.fn.col(".")
+  vim.fn.jobstart({ "zed", file .. ":" .. line .. ":" .. col })
+end, { desc = "Open in Zed" })
+
 -- ObsidianLink
 -- ObsidianLinkNew
 -- ObsidianLinks
