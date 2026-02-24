@@ -185,3 +185,6 @@ brew() {
       echo "✅ cmem rebuilt" || echo "⚠️ cmem rebuild skipped (not installed?)"
   fi
 }
+
+# agf - AI Agent Session Finder
+eval "$(agf init zsh)"
