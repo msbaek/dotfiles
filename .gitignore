@@ -102,3 +102,4 @@ node_modules/
 .claude/mcp-needs-auth-cache.json
 .serena/
 .claude/session-env
+.claude/.credentials.json

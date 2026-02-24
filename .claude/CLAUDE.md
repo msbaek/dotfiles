@@ -32,6 +32,8 @@ Only implement changes when explicitly requested. When unclear, investigate and 
 
 <do_not_act_before_instructions>
 Do not jump into implementation or change files unless clearly instructed to make changes. When the user's intent is ambiguous, default to providing information, ask question to user, doing research, and providing recommendations rather than taking action. Only proceed with edits, modifications, or implementations when the user explicitly requests them.
+
+Exception: 명시적 버그 리포트(에러 로그, 실패 테스트, CI 실패)를 받은 경우, 조사→수정→검증을 자율적으로 진행한다. 사용자 컨텍스트 스위칭을 최소화한다.
 </do_not_act_before_instructions>
 
 ### Augmented Coding Principles
@@ -71,6 +73,11 @@ Never speculate about code you have not opened. If the user references a specifi
 ALWAYS read and understand relevant files before proposing code edits. Be rigorous and persistent in searching code for key facts. Thoroughly review the style, conventions, and abstractions of the codebase before implementing new features or abstractions.
 </investigate_before_answering>
 
+<root_cause_analysis>
+Find root causes. No temporary fixes. Senior developer standards apply.
+Don't patch symptoms — trace the actual source of the problem before implementing a fix.
+</root_cause_analysis>
+
 ### Quality Control
 
 Only implement what's requested. No over-engineering, hardcoding, or unnecessary file creation.
@@ -91,6 +98,12 @@ If the task is unreasonable or infeasible, or if any of the tests are incorrect,
 <reduce_file_creation>
 If you create any temporary new files, scripts, or helper files for iteration, clean up these files by removing them at the end of the task.
 </reduce_file_creation>
+
+<elegance_check>
+For changes touching 50+ lines or introducing new abstractions: pause and ask "is there a more elegant way?" before finalizing.
+Skip this for simple, obvious fixes.
+Challenge your own work before presenting it.
+</elegance_check>
 
 ### Long-running Tasks
 
@@ -126,6 +139,8 @@ To take advantage of subagent orchestration:
 1. Ensure well-defined subagent tools: Have subagent tools available and described in tool definitions.
 2. Let Claude orchestrate naturally: Claude will delegate appropriately without explicit instruction.
 3. Adjust conservativeness if needed: Only delegate to subagents when the task clearly benefits from a separate agent with a new context window.
+4. 리서치, 탐색, 병렬 분석 작업은 적극적으로 subagent에 위임하여 메인 컨텍스트 보호.
+5. One task per subagent for focused execution.
    </subagent_orchestration>
 
 <use_parallel_tool_calls>
@@ -162,6 +177,8 @@ Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
 <work_patterns>
 
 - Always start in plan mode before working on any project
+- If something goes sideways, STOP and re-plan immediately
+- Use plan mode for verification steps, not just building
 - When using APIs, SDKs, or libraries, use CONTEXT7 MCP tool to verify correct usage before proceeding
 
 Plan Folder Structure:
@@ -171,6 +188,8 @@ Plan Folder Structure:
   - 예: `.claude/plans/2026-02-14-plan-folder-isolation/`
 - 폴더 안에 plan 파일과 `INDEX.md`를 저장한다.
 - Update the plan as work progresses.
+- INDEX.md의 Progress 섹션을 task tracking에 활용 (tasks/todo.md 대신 기존 plan 폴더 구조 사용)
+- 각 단계에서 변경 사항 요약 기록
 
 폴더별 INDEX.md:
 - 해당 작업의 상태를 관리하는 파일. 세션 시작 시 이 파일로 resume.
@@ -363,6 +382,11 @@ Record useful discoveries during tasks to ai-learnings.md.
 
 <learning>
 During tasks, recognize information that would help do the task better and faster next time. Save such learnings to ai-learnings.md file in the project.
+
+Self-improvement loop:
+- After ANY correction from the user: update ai-learnings.md with the pattern
+- Write rules that prevent the same mistake
+- Review learnings at session start for relevant project context
 </learning>
 
 ### Superpowers Integration
@@ -407,6 +431,8 @@ TDD 강제 원칙:
 Before marking any task as complete, verify:
 - [ ] All tests pass
 - [ ] Plan/todo documents reflect completed status
+- [ ] Diff behavior between main and changes
+- [ ] "Would a staff engineer approve this?"
 - [ ] Update 폴더별 INDEX.md progress (resume point, status, task counts)
 - [ ] Update 글로벌 INDEX.md 상태 (active/completed/paused) if it exists
 - [ ] Context recorded for next session
