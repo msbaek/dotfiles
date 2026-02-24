@@ -57,63 +57,54 @@ Task tool을 사용하여 백그라운드 subagent를 시작합니다:
 
 ## 동기 모드 (subagent에서 호출 시 / 백그라운드 subagent 내부)
 
-### Step 1: 콘텐츠 추출 (3단계 폴백)
+### Step 1: 콘텐츠 추출 (Playwright MCP)
 
-콘텐츠 추출은 아래 순서로 시도합니다. 각 단계가 실패하면 다음 단계로 넘어갑니다.
+Playwright MCP 도구를 사용하여 콘텐츠를 추출합니다.
 
-#### 1차 시도: extract.js (독립 headless 브라우저)
+#### 1단계: 페이지 접근
 
-```bash
-cd ~/git/lib/extract-article && node extract.js "$ARGUMENTS"
+`browser_navigate`로 URL에 접근합니다.
+
+- URL: `$ARGUMENTS`
+- 실패 시: 에러 보고 후 중단 (progress 파일을 `failed`로 업데이트)
+
+#### 2단계: 메타데이터 추출
+
+`browser_run_code`로 title, author, 이미지 목록을 추출합니다.
+
+```javascript
+async (page) => {
+  const title = await page.title();
+  const metadata = await page.evaluate(() => {
+    const authorMeta = document.querySelector(
+      'meta[name="author"], meta[property="article:author"], meta[name="twitter:creator"]'
+    );
+    const authorEl = document.querySelector(
+      '[rel="author"], .author, .byline, [itemprop="author"]'
+    );
+    const author = authorMeta?.content || authorEl?.textContent?.trim() || '';
+    const images = [...document.querySelectorAll('article img, main img, [role="main"] img, .post-content img, .article-content img, .entry-content img')]
+      .map(img => ({ src: img.src, alt: img.alt || '' }))
+      .filter(img => img.src && !img.src.startsWith('data:'));
+    return { author, images };
+  });
+  return { title, ...metadata };
+}
 ```
 
-- 출력: JSON 형식 `{ title, author, content, html, images[] }`
-- 실패 시: stderr에 JSON `{ error: "메시지" }` 출력
-- 타임아웃(60초) 또는 에러 발생 시 → 2차 시도로 진행
+- 실패 시: snapshot만으로 진행 (title은 snapshot의 `heading [level=1]` 텍스트에서 파싱, author는 빈 문자열)
 
-#### 2차 시도: 브라우저 세션 정리 후 extract.js 재시도
+#### 3단계: 본문 추출
 
-1차 시도가 실패한 경우, 기존 브라우저 세션이 충돌을 일으킬 수 있으므로 정리 후 재시도합니다.
+`browser_snapshot`으로 페이지 콘텐츠를 파일로 저장합니다.
 
-```bash
-# 1. Playwright MCP 브라우저 세션 종료 (browser_close 호출)
-# 2. 잔여 Chrome 프로세스 정리
-pkill -f "mcp-chrome" 2>/dev/null; sleep 2
-# 3. extract.js 재시도
-cd ~/git/lib/extract-article && node extract.js "$ARGUMENTS"
-```
+- `filename` 파라미터 사용: `/tmp/article-snapshot-{timestamp}.md`
+- 저장된 파일을 Read tool로 읽어서 번역/요약에 사용
+- 실패 시: 에러 보고 후 중단
 
-- 성공 시: 1차 시도와 동일하게 JSON 결과 사용
-- 실패 시: 3차 시도로 진행
+#### 4단계: 브라우저 정리
 
-#### 3차 시도: Playwright MCP (최후 수단)
-
-extract.js가 2회 모두 실패한 경우에만 Playwright MCP tool을 사용합니다.
-
-**반드시 아래 순서를 따릅니다:**
-
-1. **기존 브라우저 세션 종료**: Playwright MCP의 `browser_close`를 호출합니다.
-2. **기존 Chrome 프로세스 정리**: 아래 bash 명령으로 잔여 프로세스를 종료합니다:
-   ```bash
-   pkill -f "mcp-chrome" 2>/dev/null; sleep 2
-   ```
-3. **페이지 접근**: `browser_navigate`로 URL에 접근합니다.
-4. **콘텐츠 추출**: `browser_snapshot`으로 페이지 콘텐츠를 가져옵니다.
-   - snapshot을 파일로 저장: `browser_snapshot`의 `filename` 파라미터 사용
-   - 저장 경로: `/tmp/article-snapshot-{timestamp}.md`
-5. **메타데이터 추출**: snapshot에서 title, author 등을 파싱합니다.
-   - title: `heading [level=1]` 텍스트
-   - author: byline 영역의 링크 텍스트
-
-**Playwright MCP도 실패하는 경우** (browser launch 에러 등):
-- 에러 메시지를 progress 파일에 기록
-- 사용자에게 수동 개입이 필요하다고 보고
-
-#### 이미지 처리 (Playwright MCP 모드)
-
-Playwright MCP로 추출한 경우 이미지 URL을 직접 확인할 수 없으므로:
-- snapshot에서 `figure` 또는 `img` 요소의 이미지 정보를 확인
-- 이미지가 없으면 이미지 없이 문서를 생성 (이미지 누락 사실을 문서 끝에 명시)
+`browser_close`로 페이지를 닫습니다.
 
 ### Step 2: 번역 및 요약
 
@@ -181,9 +172,9 @@ related: []
 source: https://azeynalli1990.medium.com/10-essential-software-design-patterns-used-in-java-core-libraries-bb8156ae279b
 ```
 
-- id: 문서에서 발견한 제목 (extract.js 결과의 title 사용)
+- id: 문서에서 발견한 제목 (Playwright MCP에서 추출한 title 사용)
 - aliases: 문서에서 발견한 제목의 한국어 번역
-- author: 문서에서 발견한 작성자 (extract.js 결과의 author 사용). 이름은 다 소문자, 공백은 '-'로 변경
+- author: 문서에서 발견한 작성자 (Playwright MCP에서 추출한 author 사용). 이름은 다 소문자, 공백은 '-'로 변경
 - created_at: obsidian 파일 생성 시점
 - source: 문서 url
 
