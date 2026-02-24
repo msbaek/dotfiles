@@ -1,0 +1,4 @@
+sort_by = "time"              # 정렬 기준: time, name, agent
+max_sessions = 200            # 최대 표시 세션 수
+search_scope = "name_path"    # 검색 범위: name_path(기본) 또는 all
+summary_search_count = 5      # 요약 검색 결과 수

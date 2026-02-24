@@ -238,3 +238,5 @@ export ENABLE_LSP_TOOLS=1
 # 활성화 이후 `/context`로 확인해 보면 MCP tools 항목이 사라진 것을 볼 수 있습니다.
 # https://github.com/anthropics/claude-code/issues/12836
 export ENABLE_TOOL_SEARCH=true
+
+alias agfu='cargo install --git https://github.com/subinium/agf.git'
