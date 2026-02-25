@@ -57,6 +57,14 @@ Task tool을 사용하여 백그라운드 subagent를 시작합니다:
 
 ## 동기 모드 (subagent에서 호출 시 / 백그라운드 subagent 내부)
 
+### 전제 조건: Dia CDP 연결
+
+이 스킬은 Playwright MCP가 CDP로 Dia 브라우저에 연결된 상태에서 동작합니다.
+- Dia가 `--remote-debugging-port=9222`로 실행 중이어야 합니다.
+- CDP 연결 실패 시: "Dia를 디버깅 모드로 실행해주세요: `dia` (shell alias)" 안내 후 중단.
+- Playwright가 새 윈도우에서 작업합니다 (기존 Dia 탭 영향 없음).
+- browser_close 시 해당 page만 닫습니다 (Dia 전체 종료 금지).
+
 ### Step 1: 콘텐츠 추출 (Playwright MCP)
 
 Playwright MCP 도구를 사용하여 콘텐츠를 추출합니다.
@@ -101,6 +109,21 @@ async (page) => {
 - `filename` 파라미터 사용: `/tmp/article-snapshot-{timestamp}.md`
 - 저장된 파일을 Read tool로 읽어서 번역/요약에 사용
 - 실패 시: 에러 보고 후 중단
+
+#### 3.5단계: 로그인 wall 감지
+
+`~/.claude/auth-registry.json` 파일이 존재하면 로그인 wall을 감지합니다.
+
+1. URL 도메인을 auth-registry.json의 키와 매칭
+2. 매칭된 사이트가 있으면: snapshot 텍스트에서 `detect_patterns` 검색
+3. 패턴이 감지되면:
+   - 사용자에게 `login_guide` 메시지 표시
+   - 사용자가 로그인 완료를 알리면 동일 URL로 재시도 (1단계부터)
+   - 재시도 후에도 실패하면 에러 보고
+4. 미등록 사이트에서 snapshot 본문이 비정상적으로 짧으면 (200자 미만):
+   - "로그인이 필요할 수 있습니다. Dia에서 해당 사이트에 로그인 후 다시 시도해주세요."
+   - "이 사이트의 로그인 패턴을 auth-registry.json에 추가할까요?" 제안
+   - 사용자가 승인하면: 현재 snapshot에서 wall 패턴 후보를 추출하여 레지스트리에 추가
 
 #### 4단계: 브라우저 정리
 
