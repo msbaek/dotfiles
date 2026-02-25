@@ -65,20 +65,24 @@ Task tool을 사용하여 백그라운드 subagent를 시작합니다:
 - Playwright가 새 윈도우에서 작업합니다 (기존 Dia 탭 영향 없음).
 - browser_close 시 해당 page만 닫습니다 (Dia 전체 종료 금지).
 
-### Step 1: 콘텐츠 추출 (Playwright MCP)
+**CRITICAL: 반드시 CDP 연결 도구(`mcp__playwright__*`)를 사용하세요.**
+- ✅ 사용: `mcp__playwright__browser_navigate`, `mcp__playwright__browser_snapshot`, `mcp__playwright__browser_run_code`, `mcp__playwright__browser_close`
+- ❌ 금지: `mcp__plugin_playwright_playwright__*` (플러그인 도구 — 자체 Chrome을 실행하므로 Dia 세션 활용 불가)
 
-Playwright MCP 도구를 사용하여 콘텐츠를 추출합니다.
+### Step 1: 콘텐츠 추출 (Playwright MCP — CDP 연결)
+
+`mcp__playwright__*` 도구를 사용하여 Dia 브라우저로 콘텐츠를 추출합니다.
 
 #### 1단계: 페이지 접근
 
-`browser_navigate`로 URL에 접근합니다.
+`mcp__playwright__browser_navigate`로 URL에 접근합니다.
 
 - URL: `$ARGUMENTS`
 - 실패 시: 에러 보고 후 중단 (progress 파일을 `failed`로 업데이트)
 
 #### 2단계: 메타데이터 추출
 
-`browser_run_code`로 title, author, 이미지 목록을 추출합니다.
+`mcp__playwright__browser_run_code`로 title, author, 이미지 목록을 추출합니다.
 
 ```javascript
 async (page) => {
@@ -104,7 +108,7 @@ async (page) => {
 
 #### 3단계: 본문 추출
 
-`browser_snapshot`으로 페이지 콘텐츠를 파일로 저장합니다.
+`mcp__playwright__browser_snapshot`으로 페이지 콘텐츠를 파일로 저장합니다.
 
 - `filename` 파라미터 사용: `/tmp/article-snapshot-{timestamp}.md`
 - 저장된 파일을 Read tool로 읽어서 번역/요약에 사용
@@ -127,7 +131,7 @@ async (page) => {
 
 #### 4단계: 브라우저 정리
 
-`browser_close`로 페이지를 닫습니다.
+`mcp__playwright__browser_close`로 페이지를 닫습니다.
 
 ### Step 2: 번역 및 요약
 
