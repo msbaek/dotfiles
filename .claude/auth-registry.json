@@ -1,0 +1,8 @@
+{
+  "_comment": "사이트별 로그인 wall 감지 패턴. 점진적으로 추가.",
+  "medium.com": {
+    "detect_patterns": ["Member-only story", "Open in app", "sign in to read"],
+    "login_guide": "Dia 브라우저에서 medium.com에 로그인한 후 다시 시도해주세요.",
+    "retry_after_login": true
+  }
+}
