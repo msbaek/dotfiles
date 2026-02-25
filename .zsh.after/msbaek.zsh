@@ -240,3 +240,6 @@ export ENABLE_LSP_TOOLS=1
 export ENABLE_TOOL_SEARCH=true
 
 alias agfu='cargo install --git https://github.com/subinium/agf.git'
+
+# Dia browser with remote debugging for Playwright CDP
+alias dia='open -a Dia --args --remote-debugging-port=9222'
