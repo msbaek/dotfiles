@@ -2,7 +2,7 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["@playwright/mcp@latest", "--cdp-endpoint", "ws://localhost:9222"]
+      "args": ["@playwright/mcp@latest", "--cdp-endpoint=http://localhost:9222"]
     }
   }
 }
