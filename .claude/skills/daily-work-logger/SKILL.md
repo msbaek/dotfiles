@@ -24,16 +24,16 @@ description: |
 │  - 결과 수집 및 Daily Note 반영 (Phase 3)                      │
 └─────────────────────────────────────────────────────────────┘
                               │
-   ┌───────────┬───────┬──────┼──────┬───────────┐
-   │           │       │      │      │           │
-   ▼           ▼       ▼      ▼      ▼           ▼
-┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐
-│ Sub 1  │ │ Sub 2  │ │ Sub 3  │ │ Sub 4  │ │ Sub 5  │
-│ Vault  │ │ CC     │ │ Meetng │ │ Learn  │ │ Things │
-│ Files  │ │ Sessns │ │ Notes  │ │ Extrcr │ │ Analzr │
-└────────┘ └────────┘ └────────┘ └────────┘ └────────┘
-   │           │       │      │      │           │
-   └───────────┴───────┴──────┼──────┴───────────┘
+   ┌───────────┬──────────────┼──────────────┐
+   │           │              │              │
+   ▼           ▼              ▼              ▼
+┌────────┐ ┌────────────┐ ┌────────┐ ┌────────┐
+│ Sub 1  │ │ Sub 2      │ │ Sub 3  │ │ Sub 4  │
+│ Vault  │ │ CC+Learn   │ │ Meetng │ │ Things │
+│ Files  │ │ (cmem)     │ │ Notes  │ │ Analzr │
+└────────┘ └────────────┘ └────────┘ └────────┘
+   │           │              │              │
+   └───────────┴──────────────┼──────────────┘
                               ▼
                    ┌─────────────────┐
                    │ Daily Note 반영  │
@@ -59,7 +59,7 @@ description: |
 | dailies | `~/DocumentsLocal/msbaek_vault/notes/dailies/` |
 | 미팅 노트 | `notes/dailies/YYYY-MM-DD-*.md` |
 | 기술 문서 | `001-INBOX/`, `003-RESOURCES/` |
-| Claude 세션 | `~/.claude/projects/` |
+| Claude 세션 | cmem MCP (list_sessions, get_session_context) |
 
 ---
 
@@ -83,7 +83,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ### Phase 2: 서브 에이전트 병렬 실행 ★
 
-> **중요**: 아래 5개의 Task를 **단일 메시지에서 동시에 호출**하여 병렬 실행합니다.
+> **중요**: 아래 4개의 Task를 **단일 메시지에서 동시에 호출**하여 병렬 실행합니다.
 > 각 서브 에이전트는 분석 결과를 **마크다운 형식의 텍스트**로 반환합니다.
 > 비용/속도 최적화를 위해 **haiku 모델**을 사용합니다.
 
@@ -132,47 +132,73 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ---
 
-#### SubAgent 2: Claude Sessions Analyzer
+#### SubAgent 2: Claude Sessions & Learning Analyzer (cmem)
 
 **Task 호출 파라미터:**
 | 파라미터 | 값 |
 |---------|-----|
-| description | "Claude 세션 분석" |
+| description | "Claude 세션 및 학습 분석" |
 | subagent_type | "general-purpose" |
 | model | "haiku" |
 
-**프롬프트 (TARGET_DATE, NEXT_DATE 치환 필요):**
+**프롬프트 (TARGET_DATE 치환 필요):**
 
 ```
-당신은 Claude Code 세션 로그 분석 전문가입니다. 코드를 작성하지 말고 분석만 수행하세요.
+당신은 Claude Code 세션 분석 및 학습 내용 추출 전문가입니다. 코드를 작성하지 말고 분석만 수행하세요.
 
 ## 작업
-{TARGET_DATE} 날짜의 Claude Code 세션 로그를 분석하여 수행한 작업을 추출합니다.
-
-## 경로
-- Claude 프로젝트: ~/.claude/projects/
+{TARGET_DATE} 날짜의 Claude Code 세션을 cmem MCP 도구로 분석하여:
+1. 수행한 작업을 프로젝트별로 요약
+2. 학습 관련 내용을 추출하여 분류
 
 ## 실행 단계
-1. Bash로 해당 날짜 세션 로그 찾기 (macOS 호환):
-   find ~/.claude/projects -name "*.jsonl" -type f -exec stat -f "%Sm %N" -t "%Y-%m-%d" {} \; 2>/dev/null | grep "{TARGET_DATE}" | awk '{print $2}'
 
-   **주의**: macOS BSD find는 `-newermt` 옵션이 다르게 동작하므로 `stat` + `grep` 조합 사용
+### 1단계: 세션 목록 조회
+ToolSearch 도구로 "cmem" 검색하여 cmem MCP 도구를 로드합니다.
+mcp__cmem__list_sessions(limit: 30)를 호출하여 최근 세션 목록을 가져옵니다.
 
-2. 각 세션 로그에서 추출할 정보 (Bash로 head -100 등으로 일부만 읽기):
-   - 프로젝트 경로 (어떤 프로젝트에서 작업했는지) - 파일 경로에서 프로젝트명 추출
-   - 주요 작업 내용 (코드 작성, 버그 수정, 리팩토링 등)
-   - 사용자 요청 메시지 요약
+### 2단계: 날짜 필터링
+list_sessions 결과의 상대 시간("1d ago", "2d ago" 등)을 확인하여 {TARGET_DATE}에 해당할 가능성이 있는 세션들을 후보로 선택합니다.
+각 후보 세션에 대해 mcp__cmem__get_session(sessionId, includeMessages: false)를 호출하여 절대 타임스탬프(Created 필드)로 정확한 날짜 매칭을 수행합니다.
+Created 타임스탬프가 {TARGET_DATE}T00:00:00Z ~ {TARGET_DATE}T23:59:59Z 범위에 있는 세션만 확정합니다.
 
-3. JSONL 파일 분석 시 jq 사용:
-   head -50 [파일] | jq -r 'select(.type=="user") | .message.content[:200]' 2>/dev/null
+### 3단계: 세션 컨텍스트 수집
+확정된 각 세션에 대해 mcp__cmem__get_session_context(sessionId, messageCount: 5)를 호출합니다.
 
-## 출력 형식 (마크다운으로 반환)
+### 4단계: 결과 분석 및 정리
+수집된 세션 컨텍스트를 분석하여 두 개의 섹션으로 결과를 반환합니다:
+- 작업 요약: 프로젝트별 수행 작업
+- 학습 기록: 새로 배운 기술/개념/해결방법
+
+학습 감지 기준:
+- 새로운 도구, 라이브러리, API 사용
+- 버그 해결 과정에서 얻은 인사이트
+- 설계 결정과 그 이유
+- 처음 접한 개념이나 패턴
+
+## 에러 처리
+- cmem 도구 로드 실패 → "cmem 서버 접속 불가 — Claude 세션 분석 건너뜀" 반환
+- 해당 날짜 세션 0건 → 아래 형식에서 각 섹션에 "없음" 표시
+
+## 출력 형식 (마크다운으로 반환 — 반드시 아래 두 섹션 모두 포함)
+
 ### Claude Code 작업
 - **[프로젝트명]**: 수행 작업 요약
   - 세부 작업 1
   - 세부 작업 2
 
-(세션이 없으면 "해당 날짜에 Claude Code 세션 없음" 반환)
+### 학습 기록
+
+#### 기술/도구
+- **[도구명]**: 설명 (1줄)
+
+#### 개념
+- **[개념명]**: 설명 (1줄)
+
+#### 해결방법
+- **[문제]**: 해결 방법 요약
+
+(각 하위 섹션에 해당 항목이 없으면 "없음" 표시)
 ```
 
 ---
@@ -221,63 +247,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ---
 
-#### SubAgent 4: Learning Extractor
-
-**Task 호출 파라미터:**
-| 파라미터 | 값 |
-|---------|-----|
-| description | "학습 내용 추출" |
-| subagent_type | "general-purpose" |
-| model | "haiku" |
-
-**프롬프트 (TARGET_DATE, NEXT_DATE 치환 필요):**
-
-```
-당신은 학습 내용 추출 전문가입니다. 코드를 작성하지 말고 분석만 수행하세요.
-
-## 작업
-{TARGET_DATE} 날짜의 Claude Code 세션에서 학습 관련 내용을 추출합니다.
-
-## 경로
-- Claude 세션: ~/.claude/projects/
-
-## 학습 감지 키워드
-- 한국어: 배웠, 알게, 처음, 새로운, 이해, 몰랐
-- 영어: TIL, learned, discovered, first time
-- 질문 패턴: 뭐야, 어떻게, 왜, What, How, Why
-
-## 실행 단계
-1. Bash로 해당 날짜 세션 로그 찾기 (macOS 호환):
-   find ~/.claude/projects -name "*.jsonl" -type f -exec stat -f "%Sm %N" -t "%Y-%m-%d" {} \; 2>/dev/null | grep "{TARGET_DATE}" | awk '{print $2}'
-
-   **주의**: macOS BSD find는 `-newermt` 옵션이 다르게 동작하므로 `stat` + `grep` 조합 사용
-
-2. 각 세션에서 학습 관련 대화 추출 (Bash로 일부만 읽기):
-   head -100 [파일] | jq -r 'select(.type=="user") | .message.content // "" | select(test("뭐야|어떻게|왜|배웠|알게|TIL|learned"; "i"))' 2>/dev/null
-
-3. 학습 내용 분류:
-   - 기술/도구: 새 라이브러리, CLI, API
-   - 개념: 프로그래밍 개념, 패턴, 원칙
-   - 해결방법: 에러 해결, 문제 해결 기법
-
-## 출력 형식 (마크다운으로 반환)
-### 학습 기록
-
-#### 기술/도구
-- **[도구명]**: 설명 (1줄)
-
-#### 개념
-- **[개념명]**: 설명 (1줄)
-
-#### 해결방법
-- **[문제]**: 해결 방법 요약
-
-(학습 내용 없으면 "해당 날짜에 특별한 학습 기록 없음" 반환)
-```
-
----
-
-#### SubAgent 5: Things Analyzer
+#### SubAgent 4: Things Analyzer
 
 **Task 호출 파라미터:**
 | 파라미터 | 값 |
@@ -332,7 +302,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ### Phase 3: 결과 통합 및 Daily Note 반영 (메인 에이전트)
 
-1. **5개 서브 에이전트 결과 수집**
+1. **4개 서브 에이전트 결과 수집**
    - 각 Task 도구의 반환값을 수집
 
 2. **Daily Note 확인**
@@ -348,13 +318,13 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 {SubAgent 1 결과 - Vault 문서 작업}
 
-{SubAgent 2 결과 - Claude Code 작업}
+{SubAgent 2 결과 중 "Claude Code 작업" 섹션}
 
 {SubAgent 3 결과 - 미팅}
 
-{SubAgent 5 결과 - Things 활동}
+{SubAgent 4 결과 - Things 활동}
 
-{SubAgent 4 결과 - 학습 기록}
+{SubAgent 2 결과 중 "학습 기록" 섹션}
 ```
 
 4. **완료 메시지 출력**
@@ -366,7 +336,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ## 병렬 실행 핵심 원칙
 
-1. **단일 응답에서 5개 Task 동시 호출**: 메인 에이전트는 Phase 2에서 하나의 응답에 5개의 Task 도구 호출을 포함해야 합니다.
+1. **단일 응답에서 4개 Task 동시 호출**: 메인 에이전트는 Phase 2에서 하나의 응답에 4개의 Task 도구 호출을 포함해야 합니다.
 
 2. **haiku 모델 사용**: 비용과 속도 최적화를 위해 서브 에이전트는 haiku 모델을 사용합니다.
 
@@ -384,7 +354,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 | 구분 | 기존 방식 | 서브 에이전트 방식 |
 |------|----------|-------------------|
 | 메인 에이전트 컨텍스트 | 모든 파일 내용 로드 | 최종 결과만 수신 |
-| 병렬 처리 | 불가 | 5개 작업 동시 실행 |
+| 병렬 처리 | 불가 | 4개 작업 동시 실행 |
 | 실패 격리 | 전체 실패 | 개별 서브 에이전트만 재시도 |
 
 ---
@@ -394,13 +364,14 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 - 서브 에이전트 실패 시: 해당 섹션을 "분석 실패"로 표시하고 나머지 결과는 반영
 - Daily Note 없음: 기본 템플릿으로 새로 생성
 - 파일 없음: "해당 날짜에 [항목] 없음"으로 표시
-- Things MCP 미설정: SubAgent 5가 "Things MCP 서버 미설정 - 건너뜀" 반환, 나머지 서브 에이전트 정상 동작
+- Things MCP 미설정: SubAgent 4가 "Things MCP 서버 미설정 - 건너뜀" 반환, 나머지 서브 에이전트 정상 동작
+- cmem 서버 미응답: SubAgent 2가 "cmem 서버 접속 불가 — Claude 세션 분석 건너뜀" 반환, 나머지 서브 에이전트 정상 동작
 
 ---
 
 ## 관련 Skill
 
-- `learning-tracker`: 학습 내용 추출 (SubAgent 4로 사용됨, 독립 실행도 가능)
+- `learning-tracker`: 학습 내용 추출 (독립 실행 전용)
 - `weekly-claude-analytics`: 주간 종합 분석
 - `project-time-tracker`: 프로젝트별 시간 추적
 - `usage-pattern-analyzer`: 도구 사용 패턴 분석
@@ -410,6 +381,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 | MCP 서버 | 용도 | 등록 명령 |
 |----------|------|----------|
-| Things MCP | SubAgent 5에서 Things 활동 분석 | `claude mcp add-json -s user things '{"command":"uvx","args":["things-mcp"]}'` |
+| cmem | SubAgent 2에서 Claude 세션 분석 | cmem MCP 서버 설정 필요 (https://github.com/anthropics/claude-code-memory) |
+| Things MCP | SubAgent 4에서 Things 활동 분석 | `claude mcp add-json -s user things '{"command":"uvx","args":["things-mcp"]}'` |
 
-> **참고**: Things MCP 서버가 등록되어 있지 않아도 스킬은 정상 동작합니다. SubAgent 5만 "건너뜀" 처리됩니다.
+> **참고**: cmem 또는 Things MCP 서버가 등록되어 있지 않아도 스킬은 정상 동작합니다. 해당 서브 에이전트만 "건너뜀" 처리됩니다.
