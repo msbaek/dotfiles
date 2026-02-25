@@ -57,21 +57,15 @@ Task tool을 사용하여 백그라운드 subagent를 시작합니다:
 
 ## 동기 모드 (subagent에서 호출 시 / 백그라운드 subagent 내부)
 
-### 전제 조건: Dia CDP 연결
+### 전제 조건: Playwright 영구 프로필
 
-이 스킬은 Playwright MCP가 CDP로 Dia 브라우저에 연결된 상태에서 동작합니다.
-- Dia가 `--remote-debugging-port=9222`로 실행 중이어야 합니다.
-- CDP 연결 실패 시: "Dia를 디버깅 모드로 실행해주세요: `dia` (shell alias)" 안내 후 중단.
-- Playwright가 새 윈도우에서 작업합니다 (기존 Dia 탭 영향 없음).
-- browser_close 시 해당 page만 닫습니다 (Dia 전체 종료 금지).
+이 스킬은 Playwright MCP가 영구 프로필(`~/.playwright-profile`)로 Chrome을 실행합니다.
+- 로그인이 필요한 사이트는 **최초 1회** Playwright Chrome에서 로그인하면 세션이 유지됩니다.
+- 로그인 방법: `mcp__playwright__browser_navigate`로 사이트 접근 → 수동 로그인 → 이후 자동 유지.
 
-**CRITICAL: 반드시 CDP 연결 도구(`mcp__playwright__*`)를 사용하세요.**
-- ✅ 사용: `mcp__playwright__browser_navigate`, `mcp__playwright__browser_snapshot`, `mcp__playwright__browser_run_code`, `mcp__playwright__browser_close`
-- ❌ 금지: `mcp__plugin_playwright_playwright__*` (플러그인 도구 — 자체 Chrome을 실행하므로 Dia 세션 활용 불가)
+### Step 1: 콘텐츠 추출 (Playwright MCP)
 
-### Step 1: 콘텐츠 추출 (Playwright MCP — CDP 연결)
-
-`mcp__playwright__*` 도구를 사용하여 Dia 브라우저로 콘텐츠를 추출합니다.
+Playwright MCP 도구를 사용하여 콘텐츠를 추출합니다.
 
 #### 1단계: 페이지 접근
 
