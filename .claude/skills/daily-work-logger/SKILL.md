@@ -30,7 +30,7 @@ description: |
 ┌────────┐ ┌────────────┐ ┌────────┐ ┌────────┐
 │ Sub 1  │ │ Sub 2      │ │ Sub 3  │ │ Sub 4  │
 │ Vault  │ │ CC+Learn   │ │ Meetng │ │ Things │
-│ Files  │ │ (cmem)     │ │ Notes  │ │ Analzr │
+│ Files  │ │ (history)  │ │ Notes  │ │ Analzr │
 └────────┘ └────────────┘ └────────┘ └────────┘
    │           │              │              │
    └───────────┴──────────────┼──────────────┘
@@ -59,7 +59,7 @@ description: |
 | dailies | `~/DocumentsLocal/msbaek_vault/notes/dailies/` |
 | 미팅 노트 | `notes/dailies/YYYY-MM-DD-*.md` |
 | 기술 문서 | `001-INBOX/`, `003-RESOURCES/` |
-| Claude 세션 | cmem MCP (list_sessions, get_session_context) |
+| Claude 세션 | `~/.claude/history.jsonl` (세션 인덱스) |
 
 ---
 
@@ -132,7 +132,7 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 
 ---
 
-#### SubAgent 2: Claude Sessions & Learning Analyzer (cmem)
+#### SubAgent 2: Claude Sessions & Learning Analyzer (history.jsonl)
 
 **Task 호출 파라미터:**
 | 파라미터 | 값 |
@@ -147,37 +147,62 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 당신은 Claude Code 세션 분석 및 학습 내용 추출 전문가입니다. 코드를 작성하지 말고 분석만 수행하세요.
 
 ## 작업
-{TARGET_DATE} 날짜의 Claude Code 세션을 cmem MCP 도구로 분석하여:
+{TARGET_DATE} 날짜의 Claude Code 세션을 ~/.claude/history.jsonl 파일에서 파싱하여:
 1. 수행한 작업을 프로젝트별로 요약
 2. 학습 관련 내용을 추출하여 분류
 
 ## 실행 단계
 
-### 1단계: 세션 목록 조회
-ToolSearch 도구로 "cmem" 검색하여 cmem MCP 도구를 로드합니다.
-mcp__cmem__list_sessions(limit: 30)를 호출하여 최근 세션 목록을 가져옵니다.
+### 1단계: history.jsonl 파싱으로 세션 추출
+Bash 도구로 python3 스크립트를 실행하여 {TARGET_DATE}에 해당하는 세션들을 추출합니다:
 
-### 2단계: 날짜 필터링
-list_sessions 결과의 상대 시간("1d ago", "2d ago" 등)을 확인하여 {TARGET_DATE}에 해당할 가능성이 있는 세션들을 후보로 선택합니다.
-각 후보 세션에 대해 mcp__cmem__get_session(sessionId, includeMessages: false)를 호출하여 절대 타임스탬프(Created 필드)로 정확한 날짜 매칭을 수행합니다.
-Created 타임스탬프가 {TARGET_DATE}T00:00:00Z ~ {TARGET_DATE}T23:59:59Z 범위에 있는 세션만 확정합니다.
+python3 -c "
+import json, datetime, os
 
-### 3단계: 세션 컨텍스트 수집
-확정된 각 세션에 대해 mcp__cmem__get_session_context(sessionId, messageCount: 5)를 호출합니다.
+with open(os.path.expanduser('~/.claude/history.jsonl')) as f:
+    lines = f.readlines()
 
-### 4단계: 결과 분석 및 정리
-수집된 세션 컨텍스트를 분석하여 두 개의 섹션으로 결과를 반환합니다:
-- 작업 요약: 프로젝트별 수행 작업
-- 학습 기록: 새로 배운 기술/개념/해결방법
+target_start = datetime.datetime(int('{TARGET_DATE}'[:4]), int('{TARGET_DATE}'[5:7]), int('{TARGET_DATE}'[8:10]), 0, 0, 0).timestamp() * 1000
+target_end = target_start + 86400000
+
+sessions = {}
+for line in lines:
+    obj = json.loads(line)
+    ts = obj.get('timestamp', 0)
+    if target_start <= ts < target_end:
+        sid = obj.get('sessionId', 'no-sid')
+        proj = obj.get('project', 'unknown')
+        display = obj.get('display', '').strip()
+        if not display:
+            continue
+        proj_name = proj.split('/')[-1] if '/' in proj else proj
+        if sid not in sessions:
+            sessions[sid] = {'project': proj_name, 'project_path': proj, 'messages': []}
+        sessions[sid]['messages'].append(display[:200])
+
+for sid, info in sorted(sessions.items(), key=lambda x: x[1]['project']):
+    print(f'### {info[\"project\"]} (세션: {sid[:8]}...)')
+    for m in info['messages']:
+        print(f'  > {m}')
+    print()
+"
+
+### 2단계: 결과 분석 및 정리
+1단계에서 출력된 프로젝트별 세션 정보를 분석합니다.
+각 프로젝트에서 수행한 작업을 user message(display) 내용으로부터 파악합니다.
+- 슬래시 명령어(예: /obsidian:summarize-article)는 해당 도구 사용으로 기록
+- URL이 포함된 메시지는 해당 리소스 작업으로 기록
+- 일반 메시지는 작업 내용 그대로 요약
+- /clear, /resume 등 세션 관리 명령어는 무시
 
 학습 감지 기준:
-- 새로운 도구, 라이브러리, API 사용
-- 버그 해결 과정에서 얻은 인사이트
+- 새로운 도구, 라이브러리, API 사용 (처음 보이는 도구/명령어)
+- 버그 해결 과정에서 얻은 인사이트 (문제→해결 패턴)
 - 설계 결정과 그 이유
 - 처음 접한 개념이나 패턴
 
 ## 에러 처리
-- cmem 도구 로드 실패 → "cmem 서버 접속 불가 — Claude 세션 분석 건너뜀" 반환
+- history.jsonl 파일 없음 → "history.jsonl 파일을 찾을 수 없음 — Claude 세션 분석 건너뜀" 반환
 - 해당 날짜 세션 0건 → 아래 형식에서 각 섹션에 "없음" 표시
 
 ## 출력 형식 (마크다운으로 반환 — 반드시 아래 두 섹션 모두 포함)
@@ -365,7 +390,7 @@ Created 타임스탬프가 {TARGET_DATE}T00:00:00Z ~ {TARGET_DATE}T23:59:59Z 범
 - Daily Note 없음: 기본 템플릿으로 새로 생성
 - 파일 없음: "해당 날짜에 [항목] 없음"으로 표시
 - Things MCP 미설정: SubAgent 4가 "Things MCP 서버 미설정 - 건너뜀" 반환, 나머지 서브 에이전트 정상 동작
-- cmem 서버 미응답: SubAgent 2가 "cmem 서버 접속 불가 — Claude 세션 분석 건너뜀" 반환, 나머지 서브 에이전트 정상 동작
+- history.jsonl 파일 없음: SubAgent 2가 "history.jsonl 파일을 찾을 수 없음 — Claude 세션 분석 건너뜀" 반환, 나머지 서브 에이전트 정상 동작
 
 ---
 
@@ -381,7 +406,6 @@ Created 타임스탬프가 {TARGET_DATE}T00:00:00Z ~ {TARGET_DATE}T23:59:59Z 범
 
 | MCP 서버 | 용도 | 등록 명령 |
 |----------|------|----------|
-| cmem | SubAgent 2에서 Claude 세션 분석 | cmem MCP 서버 설정 필요 (https://github.com/anthropics/claude-code-memory) |
 | Things MCP | SubAgent 4에서 Things 활동 분석 | `claude mcp add-json -s user things '{"command":"uvx","args":["things-mcp"]}'` |
 
-> **참고**: cmem 또는 Things MCP 서버가 등록되어 있지 않아도 스킬은 정상 동작합니다. 해당 서브 에이전트만 "건너뜀" 처리됩니다.
+> **참고**: Things MCP 서버가 등록되어 있지 않아도 스킬은 정상 동작합니다. 해당 서브 에이전트만 "건너뜀" 처리됩니다. SubAgent 2는 `~/.claude/history.jsonl` 파일을 직접 파싱하므로 별도 MCP 서버가 필요 없습니다.
