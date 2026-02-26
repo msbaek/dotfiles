@@ -1,5 +1,8 @@
 ## Ground Rule
 
+> **Tag convention:** `<when-*>` = conditional trigger | other `<tags>` = always-on rules
+> **Priority:** P0 (`investigate_then_act`, `tool_preferences`) every interaction | P1 (`active_partner`, `context_health`, `verification-before-completion`) most interactions | P2 (`elegance_check`, `large_scale_changes`, `offload_deterministic`) when applicable
+
 ### Session Management
 
 <when-starting-a-new-session>
@@ -24,15 +27,35 @@
 Each task is executed by launching a new sub-agent, preventing context exhaustion in the main session.
 </when-executing-a-new-task>
 
+### Tool Preferences
+
+<tool_preferences>
+| Task | Tool | Reason |
+|------|------|--------|
+| Syntax-aware search | `sg --lang <lang> -p '<pattern>'` | Structural matching |
+| Text search | `rg` (ripgrep) | Fast, respects .gitignore |
+| File finding | `fd` | Fast, intuitive |
+| Web content | Playwright MCP first | Dynamic/auth content, Cloudflare bypass |
+| Large files (>500 lines) | Serena/LSP symbolic tools | More efficient than Read |
+
+**Web Content:** Playwright MCP → WebFetch (static only). Never fetch/curl/wget.
+
+**File Reading Safety:** Files >1000 lines: use offset/limit. Before Edit: verify old_string uniqueness.
+
+**Tool Consolidation Principle:** If a human can't definitively choose between tools, the agent can't either. Prefer one comprehensive tool over multiple narrow alternatives.
+</tool_preferences>
+
 ### Action Principles
 
-Only implement changes when explicitly requested. When unclear, investigate and recommend first.
+<investigate_then_act>
+Do not jump into implementation unless clearly instructed. Default sequence: read code → demonstrate understanding → act.
+- Ambiguous intent → default to information, questions, research, and recommendations
+- Before implementation → show plans or architecture to verify alignment (5 min alignment > 1 hour wrong direction)
+- Before proposing edits → read and understand relevant files. Never speculate about unread code
+- Review style, conventions, and abstractions before implementing new features
 
-<do_not_act_before_instructions>
-Do not jump into implementation or change files unless clearly instructed. When intent is ambiguous, default to information, questions, research, and recommendations. Only proceed with edits when explicitly requested.
-
-Exception: On explicit bug reports (error logs, failing tests, CI failures), proceed autonomously: investigate → fix → verify. Minimize user context switching.
-</do_not_act_before_instructions>
+Exception: On explicit bug reports (error logs, failing tests, CI failures), proceed autonomously: investigate → fix → verify.
+</investigate_then_act>
 
 ### Augmented Coding Principles
 
@@ -45,10 +68,6 @@ No silent compliance. Push back on unclear instructions, challenge incorrect ass
 - Uncertainty → say "I don't know" honestly
 - Better alternative exists → propose it proactively
 </active_partner>
-
-<check_alignment_first>
-Demonstrate understanding before implementation. Show plans, diagrams, or architecture descriptions to verify alignment before writing code. 5 minutes of alignment beats 1 hour of coding in the wrong direction.
-</check_alignment_first>
 
 <noise_cancellation>
 Be succinct. Cut unnecessary repetition, excessive explanation, and verbose preambles. Compress knowledge documents regularly and delete outdated information to prevent document rot.
@@ -63,22 +82,14 @@ Don't ask AI to perform deterministic work directly. Ask it to write scripts for
 Treat AI performance degradation as a code quality warning signal. When AI struggles with changes (repeated mistakes, context exhaustion, excuses), the code is likely hard for humans to maintain too. Don't blame the AI — consider refactoring.
 </canary_in_the_code_mine>
 
-### Code Investigation
+### Quality Control
 
-Never speculate without reading code. Always open and verify files before answering.
-
-<investigate_before_answering>
-Never speculate about code you have not opened. Read and understand relevant files before proposing edits. Be rigorous in searching code for key facts. Review style, conventions, and abstractions before implementing new features.
-</investigate_before_answering>
+Only implement what's requested. No over-engineering, hardcoding, or unnecessary file creation.
 
 <root_cause_analysis>
 Find root causes. No temporary fixes. Senior developer standards apply.
 Don't patch symptoms — trace the actual source of the problem before implementing a fix.
 </root_cause_analysis>
-
-### Quality Control
-
-Only implement what's requested. No over-engineering, hardcoding, or unnecessary file creation.
 
 <avoid_overengineering>
 Beyond system prompt rules: trust internal code and framework guarantees. Only validate at system boundaries (user input, external APIs). Three similar lines of code is better than a premature abstraction.
@@ -246,26 +257,14 @@ Manual commits only when /commit skill is unavailable. In that case:
 2. `git commit -F <file>` then clean up
 </git_commit_messages>
 
-### Tool Preferences
+### LSP-First Development (Java 프로젝트 전용)
 
-<tool_preferences>
+<when-java-project>
+**이 섹션은 Java/JVM 프로젝트에서만 적용. Non-Java 프로젝트(dotfiles, scripts, config 등)에서는 무시.**
+
 | Task | Tool | Reason |
 |------|------|--------|
-| Syntax-aware search | `sg --lang <lang> -p '<pattern>'` | Structural matching |
-| Text search | `rg` (ripgrep) | Fast, respects .gitignore |
-| File finding | `fd` | Fast, intuitive |
-| Web content | Playwright MCP first | Dynamic/auth content, Cloudflare bypass |
-| **Code navigation (Java)** | **LSP (JDTLS) required** | **Accurate definition/reference/call tracing** |
-| Large files (>500 lines) | Serena/LSP symbolic tools | More efficient than Read |
-
-**Web Content:** Playwright MCP → WebFetch (static only). Never fetch/curl/wget.
-
-**File Reading Safety:** Files >1000 lines: use offset/limit. Before Edit: verify old_string uniqueness.
-
-**Tool Consolidation Principle:** If a human can't definitively choose between tools, the agent can't either. Prefer one comprehensive tool over multiple narrow alternatives.
-</tool_preferences>
-
-### LSP-First Development
+| Code navigation (Java) | LSP (JDTLS) required | Accurate definition/reference/call tracing |
 
 <lsp_enforcement>
 **CRITICAL: When LSP is available, use it FIRST. This is mandatory, not optional.**
@@ -282,6 +281,7 @@ Manual commits only when /commit skill is unavailable. In that case:
 
 **Fallback:** Attempt LSP first → on error/timeout, report to user → Grep/Read only after user approval.
 </lsp_enforcement>
+</when-java-project>
 
 ### Large-scale Changes
 
@@ -304,6 +304,7 @@ Self-improvement loop:
 ### Superpowers Integration
 
 Leverage superpowers plugin for structured development workflows.
+**Prompt Contracts**: brainstorming과 planning 시 반드시 `/prompt-contracts` 스킬을 호출하여 Goal/Constraints/Failure Conditions를 명시.
 
 <brainstorming-context>
 When using superpowers:brainstorming, incorporate context from ~/git/aboutme/AI-PROFILE.md:
@@ -311,16 +312,11 @@ When using superpowers:brainstorming, incorporate context from ~/git/aboutme/AI-
 - TDD/OOP/DDD-centered design preference
 - Simplicity and pragmatism first (YAGNI, DRY)
 - Break complex tasks into 2-5 minute units
-
-Apply Prompt Contracts framework — **must invoke /prompt-contracts skill**:
-- Goal: define "done" as verifiable within 1 minute (testability is key)
-- Constraints: tech stack, patterns, forbidden items as non-negotiable boundaries
-- Failure Conditions: "unacceptable if present" list (guardrails)
 - Each design approach: specify Goal/Constraints/Failure Conditions
 </brainstorming-context>
 
 <writing-plans-context>
-When using superpowers:writing-plans, apply Prompt Contracts framework — **must invoke /prompt-contracts skill**:
+When using superpowers:writing-plans:
 - Each task: specify Output Format (file location, function signature, return type)
 - Each task: include Failure Conditions ("task incomplete if this condition exists")
 - Overall plan: specify Goal (testable success criteria) and Constraints (non-negotiable)
