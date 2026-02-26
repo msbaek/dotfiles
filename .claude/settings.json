@@ -122,7 +122,12 @@
     "learning-output-style@claude-plugins-official": true,
     "playground@claude-plugins-official": true,
     "msbaek-tdd@msbaek-claude-plugins": true,
-    "arscontexta@agenticnotetaking": true
+    "arscontexta@agenticnotetaking": true,
+    "context-engineering-fundamentals@context-engineering-marketplace": true,
+    "agent-architecture@context-engineering-marketplace": true,
+    "agent-evaluation@context-engineering-marketplace": true,
+    "agent-development@context-engineering-marketplace": true,
+    "cognitive-architecture@context-engineering-marketplace": true
   },
   "spinnerVerbs": {
     "mode": "replace",
