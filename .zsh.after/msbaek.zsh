@@ -11,7 +11,6 @@ export GRADLE_HOME=/usr/local/opt/gradle/libexec
 
 export MAVEN_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=n"
 
-alias greset='git add .; git reset --hard HEAD'
 
 # rbenv
 # eval "$(rbenv init - zsh)"
@@ -41,24 +40,12 @@ globalias() {
 }
 zle -N globalias
 
-alias mci="mvn clean install"
-alias mcr="mvn clean spring-boot:run"
-
 export ZEPPELIN_HOME="/usr/local/zeppelin"
 # export PYSPARK_PYTHON=python3
 # export SPARK_HOME="/opt/homebrew/Cellar/apache-spark/3.3.1/libexec"
 export TOMCAT_HOME="/usr/local/apache-tomcat-8.5.64"
-alias sshadd='ssh-add ~/Documents/hminter-VPN/hmmall-keypair.pem'
-alias listening-port='sudo lsof -PiTCP -sTCP:LISTEN'
-alias pid-by-port='sudo lsof -i TCP:'
-
-alias brewu='brew upgrade; brew cleanup'
-alias ta='tmux attach'
 set -o vi
 
-alias vi='nvim'
-alias gl='git log'
-alias find_wifi_pwd='security find-generic-password -wa '
 
 # alias cat='bat --plain --wrap character'
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
@@ -149,10 +136,6 @@ duf() {
 }
 
 # alias ll='exa -l -a -s modified -r --git'
-alias ll='lsd -aFlht'
-alias ls='eza --color=always --long --git --icons=always --no-user --no-permissions -s modified'
-alias fdm='fd --hidden --no-ignore'
-alias rgm='rg --no-ignore --hidden'
 # ---- TheFuck ----
 # thefuck alias
 eval $(thefuck --alias)
@@ -181,13 +164,11 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
 #alias ls="eza --color=always --long --icons=always --no-user --no-permissions"
-alias ls="eza --color=always --icons=always -a -1 --git"
 
 export LANG=ko_KR.UTF-8
 export LC_ALL=ko_KR.UTF-8
 eval "$(rbenv init -)"
 
-alias jhkeycloakup='docker-compose -f src/main/docker/keycloak.yml up -d'
 
 export PATH="/opt/homebrew/Caskroom/flutter/3.7.9/flutter/bin:$PATH"
 
@@ -208,25 +189,12 @@ export GOROOT=$(brew --prefix go)/libexec
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 
-alias gdum='gdu -h -d 1'
-alias d2h='diff2html -s side'
 # unalias gsd
 
 export AWS_PROFILE=default
 # export ANTHROPIC_MODEL='us.anthropic.claude-sonnet-4-20250514-v1:0'
 # export DISABLE_PROMPT_CACHING=0
 FUNCNEST=100
-
-# Add to ~/.zshrc or ~/.bashrc
-alias cl='claude'
-alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
-# Headless mode aliases
-alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
-alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'
-alias plugins-cc='npx claude-code-templates@latest --plugins'
-alias chats-cc='npx claude-code-templates@latest --chats'
-alias clean-mac='npx mac-cleaner-cli'
-alias rm='trash'
 
 export ENABLE_LSP_TOOLS=1
 # 클로드 코드에서 MCP를 설정만 하더라도 토큰을 잡아먹어
@@ -238,7 +206,118 @@ export ENABLE_LSP_TOOLS=1
 # 활성화 이후 `/context`로 확인해 보면 MCP tools 항목이 사라진 것을 볼 수 있습니다.
 # https://github.com/anthropics/claude-code/issues/12836
 export ENABLE_TOOL_SEARCH=true
-
-alias agfu='cargo install --git https://github.com/subinium/agf.git'
-
 export VAULT_ROOT=$HOME/DocumentsLocal/msbaek_vault/
+
+alias rm='trash'
+alias greset='git add .; git reset --hard HEAD'
+alias ll='lsd -aFlht'
+alias ls='eza --color=always --long --git --icons=always --no-user --no-permissions -s modified'
+alias fdm='fd --hidden --no-ignore'
+alias rgm='rg --no-ignore --hidden'
+alias brewu='brew upgrade; brew cleanup'
+alias ta='tmux attach'
+alias vi='nvim'
+alias gl='git log'
+# Headless mode aliases
+alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
+alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
+alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'
+
+alias d2h='diff2html -s side'
+
+alias gdum='gdu -h -d 1'
+alias agfu='cargo install --git https://github.com/subinium/agf.git'
+alias find-largest-file='sudo du -a * | sort -r -n'
+alias listening-port='sudo lsof -PiTCP -sTCP:LISTEN'
+alias pid-by-port='sudo lsof -i TCP:'
+alias find_wifi_pwd='security find-generic-password -wa '
+
+
+# ── ~/bin migrated functions ──
+
+get_my_ip() {
+  ifconfig | grep "inet " | grep -v 127.0.0.1
+}
+
+reverse_lines() {
+  pbpaste | awk '1 {line[NR] = $0} END {for (i=NR; i>0; i--) print line[i]}' | pbcopy
+}
+
+prev() {
+  find . -type f | fzf --ansi --preview 'less {}'
+}
+
+kill_by_port() {
+  lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9
+}
+
+pull_br() {
+  git add . ; git reset --hard HEAD; git checkout main; git pull; git checkout $1; git pull
+}
+
+indent_complexity() {
+  java -jar $HOME/git/lib/indent-complexity-proxy/target/indent-complexity-proxy-0.2.0-standalone.jar $1
+}
+
+fsb() {
+  local pattern=$*
+  local branches branch
+  branches=$(git branch --all | awk 'tolower($0) ~ /'"$pattern"'/') &&
+  branch=$(echo "$branches" |
+          fzf-tmux -p --reverse -1 -0 +m) &&
+  if [ "$branch" = "" ]; then
+      echo "[$0] No branch matches the provided pattern"; return;
+  fi;
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort --preview \
+         'f() { set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}"); [ $# -eq 0 ] || git show --color=always $1 ; }; f {}' \
+      --header "enter to view, ctrl-o to checkout" \
+      --bind "q:abort,ctrl-f:preview-page-down,ctrl-b:preview-page-up" \
+      --bind "ctrl-o:become:(echo {} | grep -o '[a-f0-9]\{7\}' | head -1 | xargs git checkout)" \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF" --preview-window=right:60%
+}
+
+git_backwards() {
+  git checkout .
+  git clean -fd
+  git checkout $(git log --pretty=%H --parents -n 2 | tail -n 1)
+}
+
+git_forwards() {
+  local BR
+  if [ $# -eq 1 ]; then
+      BR=$1
+  fi
+  BR=${BR:-main}
+  echo "Checking out forwards from $BR"
+  git checkout .
+  git clean -fd
+  git checkout $(git log --reverse --pretty=%H --ancestry-path HEAD..$BR | head -n 1)
+}
+
+matrix() {
+  while true; do
+    echo $(tput lines) $(tput cols) $(( RANDOM % $(tput cols) )) $(printf "\U$(($RANDOM % 500))")
+    sleep 0.05
+  done | gawk '{
+    a[$3]= 0;
+    for (x in a){
+      o=a[x];
+      a[x]=a[x]+1;
+      printf "\033[%s;%sH\033[2;32m%s",o,x,$4;
+      printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,$4;
+      if (a[x]>=$1){
+        a[x]=0;
+      }
+    }
+  }'
+}
