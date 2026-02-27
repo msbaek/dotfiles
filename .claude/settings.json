@@ -43,33 +43,11 @@
       "mcp__filesystem__directory_tree",
       "mcp__filesystem__read_multiple_files"
     ],
-    "deny": [
-      "Bash(rm -rf /)"
-    ],
+    "deny": ["Bash(rm -rf /)"],
     "ask": [],
     "defaultMode": "default"
   },
   "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "terminal-notifier -title \"Claude Code - PreToolUse\" -message \"🚨🚨🚨 도구 실행 준비 중: $CLAUDE_TOOL_NAME 🚨🚨🚨\" -sound default"
-          }
-        ]
-      },
-      {
-        "matcher": "bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "jq -r '\"\\(.tool_input.command) - \\(.tool_input.description // \"No description\")\"' >> ~/.claude/bash-command-log.txt"
-          }
-        ]
-      }
-    ],
     "Stop": [
       {
         "hooks": [
@@ -153,6 +131,16 @@
       "최적화 중",
       "연결고리 찾는 중"
     ]
+  },
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--config",
+        "/Users/msbaek/.claude/playwright-config.json"
+      ]
+    }
   },
   "skipDangerousModePermissionPrompt": true,
   "feedbackSurveyState": {
