@@ -266,7 +266,7 @@ indent_complexity() {
 }
 
 # 패턴으로 git 브랜치를 fuzzy 검색 후 checkout. usage: fsb feature
-fzf-checkout() {
+fsb() {
   local pattern=$*
   local branches branch
   branches=$(git branch --all | awk 'tolower($0) ~ /'"$pattern"'/') &&
@@ -279,7 +279,7 @@ fzf-checkout() {
 }
 
 # fzf로 git log를 인터랙티브 탐색. enter=상세보기, ctrl-o=checkout
-fzf-gl() {
+fshow() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort --preview \
