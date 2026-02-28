@@ -235,31 +235,38 @@ alias find_wifi_pwd='security find-generic-password -wa '
 
 # ── ~/bin migrated functions ──
 
+# Show all local IP addresses (loopback 제외)
 get_my_ip() {
   ifconfig | grep "inet " | grep -v 127.0.0.1
 }
 
+# 클립보드 텍스트의 줄 순서를 뒤집기 (pbpaste → 역순 → pbcopy)
 reverse_lines() {
   pbpaste | awk '1 {line[NR] = $0} END {for (i=NR; i>0; i--) print line[i]}' | pbcopy
 }
 
+# fzf로 현재 디렉토리의 파일을 탐색하며 미리보기
 prev() {
   find . -type f | fzf --ansi --preview 'less {}'
 }
 
+# 지정 포트를 점유 중인 프로세스를 강제 종료. usage: kill_by_port 8080
 kill_by_port() {
   lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9
 }
 
+# 현재 변경사항 버리고, main pull 후 지정 브랜치도 pull. usage: pull_br feature-branch
 pull_br() {
   git add . ; git reset --hard HEAD; git checkout main; git pull; git checkout $1; git pull
 }
 
+# 파일의 들여쓰기 기반 복잡도 측정. usage: indent_complexity MyClass.java
 indent_complexity() {
   java -jar $HOME/git/lib/indent-complexity-proxy/target/indent-complexity-proxy-0.2.0-standalone.jar $1
 }
 
-fsb() {
+# 패턴으로 git 브랜치를 fuzzy 검색 후 checkout. usage: fsb feature
+fzf-checkout() {
   local pattern=$*
   local branches branch
   branches=$(git branch --all | awk 'tolower($0) ~ /'"$pattern"'/') &&
@@ -271,7 +278,8 @@ fsb() {
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
-fshow() {
+# fzf로 git log를 인터랙티브 탐색. enter=상세보기, ctrl-o=checkout
+fzf-gl() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort --preview \
@@ -286,13 +294,17 @@ fshow() {
 FZF-EOF" --preview-window=right:60%
 }
 
-git_backwards() {
+# git 히스토리에서 한 커밋 뒤로 이동 (변경사항 초기화 후 부모 커밋으로 checkout)
+unalias gb
+gb() {
   git checkout .
   git clean -fd
   git checkout $(git log --pretty=%H --parents -n 2 | tail -n 1)
 }
 
-git_forwards() {
+# git 히스토리에서 한 커밋 앞으로 이동. usage: gf [target-branch] (기본: main)
+unalias gf
+gf() {
   local BR
   if [ $# -eq 1 ]; then
       BR=$1
@@ -304,6 +316,7 @@ git_forwards() {
   git checkout $(git log --reverse --pretty=%H --ancestry-path HEAD..$BR | head -n 1)
 }
 
+# 터미널에 Matrix 스타일 텍스트 비 애니메이션
 matrix() {
   while true; do
     echo $(tput lines) $(tput cols) $(( RANDOM % $(tput cols) )) $(printf "\U$(($RANDOM % 500))")
