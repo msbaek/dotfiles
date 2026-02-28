@@ -16,10 +16,10 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
    - $ARGUMENTS로 전달된 값 처리:
      - 전체 경로인 경우: 해당 경로의 파일 사용
      - 파일명만 입력한 경우: vault 내에서 파일 검색
-   - vault 기본 경로: `~/DocumentsLocal/msbaek_vault/`
+   - vault 기본 경로: `$VAULT_ROOT/`
    - 파일 검색 방법:
      ```bash
-     fd -e md "^파일명$" ~/DocumentsLocal/msbaek_vault/
+     fd -e md "^파일명$" $VAULT_ROOT/
      ```
    - 검색 결과 처리:
      - 파일이 없으면 에러 메시지와 함께 종료
@@ -509,7 +509,7 @@ note:
 ### 방법 4: 전체 경로로 입력
 
 ```bash
-/obsidian:create-presentation ~/DocumentsLocal/msbaek_vault/003-RESOURCES/TDD-Best-Practices.md --duration 60
+/obsidian:create-presentation $VAULT_ROOT/003-RESOURCES/TDD-Best-Practices.md --duration 60
 ```
 
 ### 인자 없이 실행
@@ -524,8 +524,8 @@ note:
 파일명이 중복될 경우:
 ```
 🔍 "TDD-Best-Practices.md" 파일이 여러 개 발견되었습니다:
-1. ~/DocumentsLocal/msbaek_vault/003-RESOURCES/TDD-Best-Practices.md
-2. ~/DocumentsLocal/msbaek_vault/001-INBOX/TDD-Best-Practices.md
+1. $VAULT_ROOT/003-RESOURCES/TDD-Best-Practices.md
+2. $VAULT_ROOT/001-INBOX/TDD-Best-Practices.md
 
 어느 파일을 변환하시겠습니까? (번호 입력)
 → 1 선택

@@ -131,18 +131,18 @@ async (page) => {
 
 추출된 콘텐츠를 아래 규칙(`## 문서 번역 및 요약 규칙`)에 따라 정리하여 yaml frontmatter를 포함한 obsidian 파일로 저장합니다.
 
-- 저장 경로: `~/DocumentsLocal/msbaek_vault/001-INBOX/`
+- 저장 경로: `$VAULT_ROOT/001-INBOX/`
 - hierarchical tagging 규칙: `~/.claude/commands/obsidian/add-tag.md` 준수
 
 ### Step 3: 이미지 처리
 
 추출된 이미지 목록(`images[]`)을 ATTACHMENTS 폴더에 저장하고, Obsidian 문서에 포함시킵니다.
 
-- ATTACHMENTS 경로: `~/DocumentsLocal/msbaek_vault/ATTACHMENTS/`
+- ATTACHMENTS 경로: `$VAULT_ROOT/ATTACHMENTS/`
 - **이미지는 하나도 누락 없이 포함**되어야 합니다
 - 이미지 다운로드에는 bash curl을 사용합니다:
   ```bash
-  curl -sL -o ~/DocumentsLocal/msbaek_vault/ATTACHMENTS/{filename} "{image_url}"
+  curl -sL -o $VAULT_ROOT/ATTACHMENTS/{filename} "{image_url}"
   ```
 
 ### Step 4: Progress 파일 업데이트 (백그라운드 모드 시)

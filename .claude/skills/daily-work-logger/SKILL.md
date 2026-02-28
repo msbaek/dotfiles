@@ -55,8 +55,8 @@ description: |
 
 | 항목 | 경로 |
 |------|------|
-| vault | `~/DocumentsLocal/msbaek_vault/` |
-| dailies | `~/DocumentsLocal/msbaek_vault/notes/dailies/` |
+| vault | `$VAULT_ROOT/` |
+| dailies | `$VAULT_ROOT/notes/dailies/` |
 | 미팅 노트 | `notes/dailies/YYYY-MM-DD-*.md` |
 | 기술 문서 | `001-INBOX/`, `003-RESOURCES/` |
 | Claude 세션 | `~/.claude/history.jsonl` (세션 인덱스) |
@@ -76,7 +76,7 @@ echo "대상 날짜: $TARGET_DATE"
 
 2. **Daily Note 경로 확인**
 ```bash
-DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
+DAILY_NOTE="$VAULT_ROOT/notes/dailies/${TARGET_DATE}.md"
 ```
 
 ---
@@ -107,12 +107,12 @@ DAILY_NOTE="$HOME/DocumentsLocal/msbaek_vault/notes/dailies/${TARGET_DATE}.md"
 {TARGET_DATE} 날짜에 생성/수정된 파일들을 분석하여 업무 관련 내용을 추출합니다.
 
 ## 경로
-- Vault: ~/DocumentsLocal/msbaek_vault/
+- Vault: $VAULT_ROOT/
 - 분석 대상 디렉토리: 001-INBOX/, 003-RESOURCES/, 000-SLIPBOX/, work-log/
 
 ## 실행 단계
 1. Bash로 해당 날짜에 수정된 .md 파일 찾기 (macOS 호환):
-   find ~/DocumentsLocal/msbaek_vault -name "*.md" -type f -exec stat -f "%Sm %N" -t "%Y-%m-%d" {} \; 2>/dev/null | grep "{TARGET_DATE}" | awk '{print $2}' | grep -v "notes/dailies/"
+   find $VAULT_ROOT -name "*.md" -type f -exec stat -f "%Sm %N" -t "%Y-%m-%d" {} \; 2>/dev/null | grep "{TARGET_DATE}" | awk '{print $2}' | grep -v "notes/dailies/"
 
    **주의**: macOS BSD find는 `-newermt` 옵션이 다르게 동작하므로 `stat` + `grep` 조합 사용
 
@@ -246,11 +246,11 @@ for sid, info in sorted(sessions.items(), key=lambda x: x[1]['project']):
 {TARGET_DATE} 날짜의 미팅 노트를 분석하여 주요 내용을 추출합니다.
 
 ## 경로
-- 미팅 노트 패턴: ~/DocumentsLocal/msbaek_vault/notes/dailies/{TARGET_DATE}-*.md
+- 미팅 노트 패턴: $VAULT_ROOT/notes/dailies/{TARGET_DATE}-*.md
 
 ## 실행 단계
 1. Bash로 미팅 노트 파일 찾기:
-   ls ~/DocumentsLocal/msbaek_vault/notes/dailies/{TARGET_DATE}-*.md 2>/dev/null
+   ls $VAULT_ROOT/notes/dailies/{TARGET_DATE}-*.md 2>/dev/null
 
 2. 발견된 각 미팅 노트 파일 읽기 (Read 도구 사용)
 

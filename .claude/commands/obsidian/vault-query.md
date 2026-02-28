@@ -39,7 +39,7 @@ vault-intelligence 시스템을 활용하여 Obsidian vault 문서를 검색하�
 ## 시스템 위치
 
 - **vault-intelligence 경로**: `~/git/vault-intelligence/`
-- **vault 경로**: `~/DocumentsLocal/msbaek_vault/`
+- **vault 경로**: `$VAULT_ROOT/`
 
 ## 작업 프로세스
 

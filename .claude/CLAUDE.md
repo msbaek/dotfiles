@@ -257,6 +257,20 @@ Manual commits only when /commit skill is unavailable. In that case:
 2. `git commit -F <file>` then clean up
 </git_commit_messages>
 
+### Obsidian Vault
+
+<obsidian_vault>
+| 항목 | 값 |
+|------|-----|
+| Vault Root | `$VAULT_ROOT` (`~/DocumentsLocal/msbaek_vault/`) |
+| 기본 저장 경로 | `$VAULT_ROOT/001-INBOX/` |
+| 첨부파일 경로 | `$VAULT_ROOT/ATTACHMENTS/` |
+
+Obsidian 문서 생성 시 반드시 `$VAULT_ROOT/001-INBOX/`에 저장.
+경로는 이 섹션을 Single Source of Truth로 삼는다.
+개별 skill/command/agent에서 경로를 하드코딩하지 않고 이 규칙을 따른다.
+</obsidian_vault>
+
 ### LSP-First Development (Java 프로젝트 전용)
 
 <when-java-project>

@@ -12,7 +12,7 @@ description: |
 
 | 항목 | 경로 |
 |------|------|
-| vault | `~/DocumentsLocal/msbaek_vault/` |
+| vault | `$VAULT_ROOT` (글로벌 CLAUDE.md 참조) |
 | vault-intelligence | `~/git/vault-intelligence/` |
 
 ## markdown-oxide LSP 활용

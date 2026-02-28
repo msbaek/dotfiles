@@ -2,6 +2,8 @@
 name: zettelkasten-expert
 description: Use this agent when you need to organize knowledge using the Zettelkasten method in Obsidian, create or manage notes following the vault's established structure, implement hierarchical tagging systems, or help with knowledge maturation workflows from INBOX to SLIPBOX. This agent can analyze existing notes for connections, suggest appropriate tags, assess note maturity, and provide automated workflow guidance.
 
+> **경로 설정**: 글로벌 CLAUDE.md의 `<obsidian_vault>` 섹션을 따릅니다.
+
 Examples:
 ```
 <example>
