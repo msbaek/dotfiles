@@ -227,7 +227,7 @@ alias d2h='diff2html -s side'
 
 alias gdum='gdu -h -d 1'
 alias agfu='cargo install --git https://github.com/subinium/agf.git'
-alias find-largest-file='sudo du -a * | sort -r -n'
+alias find-largest-file='du -ah * | sort -rn'
 alias listening-port='sudo lsof -PiTCP -sTCP:LISTEN'
 alias pid-by-port='sudo lsof -i TCP:'
 alias find_wifi_pwd='security find-generic-password -wa '
