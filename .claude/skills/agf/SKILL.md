@@ -1,8 +1,8 @@
 ---
 name: agf
 description: |
-  Claude Code 세션 탐색 및 분석. agf 데이터 소스(history.jsonl)를 활용한 세션 리스트 조회 및 상세 분석.
-  "세션 목록", "session list", "agf" 등의 요청 시 자동 적용.
+  Claude Code 세션 탐색 및 분석. agf 데이터 소스(history.jsonl)를 활용한 세션 리스트 조회, 검색 및 상세 분석.
+  "세션 목록", "session list", "세션 검색", "session search", "agf" 등의 요청 시 자동 적용.
 ---
 
 # agf - Session Explorer Skill
@@ -15,9 +15,12 @@ agf(AI Agent Session Finder)의 데이터 소스인 `~/.claude/history.jsonl`과
 
 | 커맨드 | 설명 |
 |--------|------|
+| `/agf` | 사용법 표시 |
 | `/agf list` | 오늘 세션 리스트 |
 | `/agf list YYYY-MM-DD` | 특정 날짜 세션 리스트 |
 | `/agf show <session-id-prefix>` | 특정 세션 상세 + AI 요약 |
+| `/agf search <query>` | display 필드에서 세션 검색 |
+| `/agf search --deep <query>` | 세션 JSONL 내부까지 deep 검색 |
 
 ## 경로 정보
 
@@ -27,6 +30,34 @@ agf(AI Agent Session Finder)의 데이터 소스인 `~/.claude/history.jsonl`과
 | 세션 데이터 | `~/.claude/projects/<project-dir>/<sessionId>.jsonl` |
 | 스크립트 디렉토리 | `~/.claude/skills/agf/` |
 | 디렉토리 매핑 | 비영숫자 문자를 `-`로 치환 (예: `/Users/msbaek/dotfiles` → `-Users-msbaek-dotfiles`) |
+
+---
+
+## 사용법 표시 (인자 없이 호출)
+
+인자 없이 `/agf`가 호출되면 위 커맨드 테이블을 사용자에게 표시합니다.
+
+---
+
+## search 커맨드
+
+쿼리 문자열로 세션을 검색합니다. 대소문자를 무시합니다.
+
+### 실행 절차
+
+1. **쿼리 추출** — 인수에서 `search` 다음 값을 쿼리로 사용. `--deep` 옵션 확인.
+2. **Bash로 스크립트 실행**
+3. **결과를 사용자에게 표시** — 스크립트 출력을 그대로 표시
+
+### 실행 명령
+
+```bash
+# display 필드 검색 (기본)
+python3 ~/.claude/skills/agf/search.py <query>
+
+# 세션 JSONL 내부까지 deep 검색
+python3 ~/.claude/skills/agf/search.py --deep <query>
+```
 
 ---
 

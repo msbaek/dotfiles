@@ -1,63 +1,43 @@
 #!/usr/bin/env python3
-"""agf list - Claude Code 세션 목록 조회"""
+"""agf list - Claude Code session list"""
 
-import json, os, datetime, re, sys
-
-HISTORY = os.path.expanduser("~/.claude/history.jsonl")
-PROJECTS_DIR = os.path.expanduser("~/.claude/projects")
+import sys, datetime
+from common import load_history, project_dir_name, session_file_path, file_meta
 
 
 def main():
     target = sys.argv[1] if len(sys.argv) > 1 else datetime.date.today().isoformat()
-
-    if not os.path.exists(HISTORY):
-        print("ERROR: ~/.claude/history.jsonl 파일을 찾을 수 없습니다.")
-        raise SystemExit(1)
-
-    y, m, d = int(target[:4]), int(target[5:7]), int(target[8:10])
-    t_start = datetime.datetime(y, m, d).timestamp() * 1000
-    t_end = t_start + 86400000
-
-    with open(HISTORY) as f:
-        lines = f.readlines()
+    entries = load_history(date=target)
 
     sessions = {}
-    for line in lines:
-        obj = json.loads(line)
+    for obj in entries:
+        sid = obj.get("sessionId", "")
+        if not sid:
+            continue
+        proj = obj.get("project", "unknown")
+        display = obj.get("display", "").strip()
+        if not display:
+            continue
         ts = obj.get("timestamp", 0)
-        if t_start <= ts < t_end:
-            sid = obj.get("sessionId", "")
-            if not sid:
-                continue
-            proj = obj.get("project", "unknown")
-            display = obj.get("display", "").strip()
-            if not display:
-                continue
-            proj_name = proj.split("/")[-1] if "/" in proj else proj
-            if sid not in sessions:
-                sessions[sid] = {"project": proj_name, "project_path": proj, "messages": [], "first_ts": ts}
-            sessions[sid]["messages"].append(display)
-            if ts < sessions[sid]["first_ts"]:
-                sessions[sid]["first_ts"] = ts
+        proj_name = proj.split("/")[-1] if "/" in proj else proj
+        if sid not in sessions:
+            sessions[sid] = {"project": proj_name, "project_path": proj, "messages": [], "first_ts": ts}
+        sessions[sid]["messages"].append(display)
+        if ts < sessions[sid]["first_ts"]:
+            sessions[sid]["first_ts"] = ts
 
     results = []
     for sid, info in sessions.items():
-        proj_dir = re.sub(r'[^a-zA-Z0-9]', '-', info["project_path"])
-        session_file = os.path.join(PROJECTS_DIR, proj_dir, f"{sid}.jsonl")
+        proj_dir = project_dir_name(info["project_path"])
+        sf = session_file_path(proj_dir, sid)
+        meta = file_meta(sf)
+        start_time = datetime.datetime.fromtimestamp(info["first_ts"] / 1000).strftime("%H:%M")
         duration = "-"
         size_str = "-"
-        start_time = datetime.datetime.fromtimestamp(info["first_ts"] / 1000).strftime("%H:%M")
-        if os.path.exists(session_file):
-            stat = os.stat(session_file)
-            created = datetime.datetime.fromtimestamp(stat.st_birthtime)
-            modified = datetime.datetime.fromtimestamp(stat.st_mtime)
-            delta = modified - created
-            hours, remainder = divmod(int(delta.total_seconds()), 3600)
-            minutes = remainder // 60
-            duration = f"{hours}h {minutes:02d}m"
-            start_time = created.strftime("%H:%M")
-            size_mb = stat.st_size / (1024 * 1024)
-            size_str = f"{size_mb:.1f}MB"
+        if meta:
+            start_time = meta["start_time"]
+            duration = meta["duration_str"]
+            size_str = meta["size_str"]
         first_msg = info["messages"][0][:50].replace("|", "/").replace("\n", " ")
         results.append((start_time, info["project"], sid[:8], duration, size_str, first_msg, len(info["messages"])))
 

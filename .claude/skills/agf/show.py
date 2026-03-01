@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""agf show - Claude Code 세션 상세 데이터 추출"""
+"""agf show - Claude Code session detail extractor"""
 
-import json, os, datetime, sys
-
-PROJECTS_DIR = os.path.expanduser("~/.claude/projects")
-HISTORY = os.path.expanduser("~/.claude/history.jsonl")
+import json, os, sys
+from common import PROJECTS_DIR, HISTORY, file_meta
 
 
 def main():
@@ -37,13 +35,9 @@ def main():
     proj_dir = os.path.basename(os.path.dirname(session_file))
 
     # File metadata
-    stat = os.stat(session_file)
-    created = datetime.datetime.fromtimestamp(stat.st_birthtime)
-    modified = datetime.datetime.fromtimestamp(stat.st_mtime)
-    delta = modified - created
-    hours, remainder = divmod(int(delta.total_seconds()), 3600)
-    minutes = remainder // 60
-    size_mb = stat.st_size / (1024 * 1024)
+    meta = file_meta(session_file)
+    created = meta["created"]
+    modified = meta["modified"]
 
     # Parse session JSONL
     with open(session_file) as f:
@@ -98,10 +92,10 @@ def main():
     print(f"git_branch: {git_branch}")
     print(f"start: {created.strftime('%Y-%m-%d %H:%M')}")
     print(f"end: {modified.strftime('%Y-%m-%d %H:%M')}")
-    print(f"duration: {hours}h {minutes:02d}m")
+    print(f"duration: {meta['duration_str']}")
     print(f"user_messages: {user_count}")
     print(f"assistant_messages: {asst_count}")
-    print(f"file_size: {size_mb:.1f}MB")
+    print(f"file_size: {meta['size_str']}")
     print("META_END")
 
     # Output conversation data for AI summary (max ~4000 chars)
