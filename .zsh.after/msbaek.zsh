@@ -9,7 +9,7 @@ export CPPFLAGS="-I/usr/local/opt/zlib/include"
 export M2_HOME=/usr/local/opt/maven/libexec
 export GRADLE_HOME=/usr/local/opt/gradle/libexec
 
-export MAVEN_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=n"
+# export MAVEN_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=n"
 
 
 # rbenv
@@ -208,7 +208,15 @@ export ENABLE_LSP_TOOLS=1
 export ENABLE_TOOL_SEARCH=true
 export VAULT_ROOT=$HOME/DocumentsLocal/msbaek_vault/
 
-alias rm='trash'
+rm() {
+  local args=()
+  for arg in "$@"; do
+    [[ "$arg" == -* ]] || args+=("$arg")
+  done
+  if (( ${#args[@]} > 0 )); then
+    command trash "${args[@]}"
+  fi
+}
 alias greset='git add .; git reset --hard HEAD'
 alias ll='lsd -aFlht'
 alias ls='eza --color=always --long --git --icons=always --no-user --no-permissions -s modified'
