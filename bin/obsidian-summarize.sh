@@ -1,0 +1,201 @@
+#!/bin/bash
+# obsidian-summarize.sh — Alfred + Claude Obsidian Summarization
+# Self-invoking pattern: Launcher mode (Alfred) → Executor mode (tmux)
+#
+# Usage:
+#   Launcher:  obsidian-summarize.sh youtube-en|youtube-kr|article
+#   Executor:  obsidian-summarize.sh --execute youtube-en|youtube-kr|article <url>
+
+set -euo pipefail
+
+VAULT_ROOT="${VAULT_ROOT:-$HOME/DocumentsLocal/msbaek_vault}"
+ERROR_LOG="$VAULT_ROOT/001-INBOX/error-list.md"
+NOTIFIER="/opt/homebrew/bin/terminal-notifier"
+SCRIPT_PATH="$(realpath "$0")"
+LOCK_FILE="/tmp/obsidian-summarize.lock"
+SHARED_LOG="/tmp/obsidian-summarize.log"
+
+# ── Helpers ──────────────────────────────────────
+
+extract_url_from_dia() {
+  osascript -e '
+tell application "Dia"
+    tell window 1
+        repeat with t in tabs
+            if isFocused of t then
+                return URL of t
+            end if
+        end repeat
+    end tell
+end tell' 2>/dev/null
+}
+
+extract_url() {
+  local url
+  # Try Dia Browser first
+  url=$(extract_url_from_dia) && [[ -n "$url" ]] && {
+    echo "$url"
+    return 0
+  }
+  # Fallback to clipboard
+  url=$(pbpaste 2>/dev/null)
+  echo "$url"
+}
+
+validate_url() {
+  [[ "$1" =~ ^https?:// ]]
+}
+
+get_skill_command() {
+  local type="$1" url="$2"
+  case "$type" in
+  youtube-en) echo "/obsidian:summarize-youtube en $url" ;;
+  youtube-kr) echo "/obsidian:summarize-youtube kr $url" ;;
+  article) echo "/obsidian:summarize-article $url" ;;
+  *) return 1 ;;
+  esac
+}
+
+log_error() {
+  local cmd="$1" url="$2" error="$3"
+  local timestamp
+  timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+
+  # Create error log with header if missing
+  if [[ ! -f "$ERROR_LOG" ]]; then
+    mkdir -p "$(dirname "$ERROR_LOG")"
+    cat >"$ERROR_LOG" <<'HEADER'
+# Obsidian Summarization Error Log
+
+| Timestamp | Command | URL | Error |
+|-----------|---------|-----|-------|
+HEADER
+  fi
+
+  echo "| $timestamp | $cmd | $url | $error |" >>"$ERROR_LOG"
+}
+
+send_notification() {
+  local title="$1" message="$2"
+  "$NOTIFIER" \
+    -title "$title" \
+    -message "$message" \
+    -sound default \
+    -group "obsidian-summarize"
+}
+
+log() {
+  local msg="[$(date '+%H:%M:%S')] $*"
+  echo "$msg"
+  echo "$msg" >> "$SHARED_LOG"
+}
+
+# ── Executor mode (runs inside tmux) ────────────
+
+run_executor() {
+  local type="$1" url="$2"
+  local skill_cmd
+  skill_cmd=$(get_skill_command "$type" "$url")
+
+  local short_url="${url:0:60}"
+  local job_id="$type | $short_url"
+  log ""
+  log "┏━━━ START: $job_id ━━━"
+  log "┃ URL: $url"
+  log "┃ Skill: $skill_cmd"
+
+  # Acquire exclusive lock — queues concurrent requests
+  log "Acquiring lock..."
+  exec 9>"$LOCK_FILE"
+  if ! flock -n 9; then
+    log "⏳ Waiting for previous job to finish..."
+    send_notification "Obsidian Summarize ⏳" "Queued: $type (waiting for previous job)"
+    flock 9
+  fi
+  log "Lock acquired"
+  send_notification "Obsidian Summarize" "Started: $type — $url"
+
+  # Run claude from VAULT_ROOT so skills save files to the correct vault
+  cd "$VAULT_ROOT" || {
+    flock -u 9
+    log "❌ Cannot cd to $VAULT_ROOT"
+    send_notification "Obsidian Summarize ❌" "Cannot cd to $VAULT_ROOT"
+    return 1
+  }
+  log "Working directory: $(pwd)"
+  log "Running claude..."
+  local exit_code=0
+  claude --dangerously-skip-permissions -p "$skill_cmd" || exit_code=$?
+
+  # Release lock (also auto-released when fd 9 closes on process exit)
+  flock -u 9
+  log "Lock released"
+
+  if [[ $exit_code -eq 0 ]]; then
+    log "✅ Done"
+    log "┗━━━ END: $job_id ━━━"
+    send_notification "Obsidian Summarize ✅" "Done: $type"
+    sleep 3
+  else
+    local error_msg="claude exited with code $exit_code"
+    log_error "$skill_cmd" "$url" "$error_msg"
+    log "❌ Failed: $error_msg"
+    log "┗━━━ END: $job_id ━━━"
+    send_notification "Obsidian Summarize ❌" "Failed: $error_msg"
+    echo ""
+    echo "Press Enter to close this session..."
+    read -r
+  fi
+}
+
+# ── Launcher mode (called from Alfred) ──────────
+
+run_launcher() {
+  local type="$1"
+
+  # Validate type
+  case "$type" in
+  youtube-en | youtube-kr | article) ;;
+  *)
+    send_notification "Obsidian Summarize ❌" "Unknown type: $type"
+    exit 1
+    ;;
+  esac
+
+  # Verify INBOX directory exists
+  if [[ ! -d "$VAULT_ROOT/001-INBOX" ]]; then
+    send_notification "Obsidian Summarize ❌" "INBOX directory not found"
+    exit 1
+  fi
+
+  # Extract URL
+  local url
+  url=$(extract_url)
+
+  if [[ -z "$url" ]]; then
+    send_notification "Obsidian Summarize ❌" "URL을 먼저 복사하세요"
+    exit 1
+  fi
+
+  if ! validate_url "$url"; then
+    log_error "$type" "$url" "Invalid URL format"
+    send_notification "Obsidian Summarize ❌" "Invalid URL: $url"
+    exit 1
+  fi
+
+  # Launch tmux session with executor mode
+  local session_name="obsidian-$(date +%s)"
+  local escaped_url
+  escaped_url=$(printf '%q' "$url")
+  tmux new-session -d -s "$session_name" \
+    "$SCRIPT_PATH --execute $type $escaped_url"
+}
+
+# ── Main dispatch ────────────────────────────────
+
+if [[ "${1:-}" == "--execute" ]]; then
+  shift
+  run_executor "$@"
+else
+  run_launcher "${1:?Usage: obsidian-summarize.sh youtube-en|youtube-kr|article}"
+fi
