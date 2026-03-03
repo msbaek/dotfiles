@@ -143,8 +143,9 @@
       "command": "npx",
       "args": [
         "@playwright/mcp@latest",
-        "--config",
-        "/Users/msbaek/.claude/playwright-config.json"
+        "--isolated",
+        "--storage-state",
+        "/Users/msbaek/.playwright-profile/storage-state.json"
       ]
     }
   },
