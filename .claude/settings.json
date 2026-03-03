@@ -142,7 +142,7 @@
     "playwright": {
       "command": "npx",
       "args": [
-        "@playwright/mcp@latest",
+        "@playwright/mcp@0.0.68",
         "--isolated",
         "--storage-state",
         "/Users/msbaek/.playwright-profile/storage-state.json"
