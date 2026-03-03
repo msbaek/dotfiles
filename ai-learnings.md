@@ -22,3 +22,23 @@
 - Playwright MCP 인증 사이트 접근: `userDataDir` 영구 프로필 사용
 - API/SDK 설정: CONTEXT7 MCP로 공식 문서 확인 후 적용
 - MCP 설정 변경 후 반드시 수동 테스트 (MCP protocol 직접 호출로 검증 가능)
+
+## Brewfile 패키지 의존성 주의 (2026-03-03)
+
+### autojump은 oh-my-zsh가 사용
+**문제:** Brewfile 정리 시 autojump을 제거했으나, oh-my-zsh의 autojump 플러그인이 의존.
+**규칙:** 패키지 제거 전 oh-my-zsh 플러그인 목록(`.zshrc`의 `plugins=()`)과 교차 확인할 것.
+
+## Brewfile pre-commit hook 충돌 (2026-03-02)
+
+### 문제
+pre-commit hook `update-brewfile.sh`가 `brew bundle dump --force`를 실행하여 매 커밋 시 Brewfile을 현재 설치 상태로 덮어씀. 수동 편집(카테고리화, 정리)이 모두 원복됨.
+
+### 해결
+- Brewfile은 hook이 자동 관리하도록 두고, 카테고리화된 큐레이션 파일을 `docs/brewfile-curated.md`로 분리
+- 패키지 제거는 Brewfile 편집이 아닌 `brew uninstall` 실행 → 다음 커밋 시 hook이 Brewfile 자동 업데이트
+
+### 규칙
+- Brewfile을 직접 편집하지 말 것 (hook이 덮어씀)
+- 패키지 추가/제거는 `brew install`/`brew uninstall` 후 커밋
+- 카테고리화, 문서화 등 부가 정보는 별도 파일(docs/)에 보관

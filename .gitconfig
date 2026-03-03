@@ -118,7 +118,6 @@
 	autocrlf = input
   editor = vim
   excludesfile = ~/.gitignore
-	# pager = diff-so-fancy | less --tabs=4 -RFX
 	pager = delta
 [advice]
   statusHints = false
@@ -139,15 +138,7 @@
 [init]
 	defaultBranch = main
 [interactive]
-	# diffFilter = diff-so-fancy --patch
 	diffFilter = delta --color-only
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[icdiff]
-	options = --highlight --line-numbers
 [delta]
 	navigate = true
 	side-by-side = true

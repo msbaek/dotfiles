@@ -1,55 +1,22 @@
 # Brewfile Curated List
 
-> 최종 업데이트: 2026-03-02
+> 최종 업데이트: 2026-03-03
 > 이 파일은 실제 `Brewfile`(hook 자동 생성)과 별도로 관리되는 큐레이션 목록입니다.
 > 불필요한 패키지 제거 가이드 및 카테고리 분류를 제공합니다.
 
-## 제거 대상 (brew uninstall 필요)
+## 제거 완료 (2026-03-02~03)
 
-아래 패키지를 `brew uninstall`하면 다음 커밋 시 hook이 Brewfile에서 자동 제거합니다.
+아래 패키지는 이미 제거 완료. 다음 커밋 시 hook이 Brewfile에서 자동 반영.
 
-### Taps (6개)
+- **Taps 6개**: equalsraf/neovim-qt, omnisharp/omnisharp-roslyn, sst/tap, steipete/tap, subinium/tap, wimdeblauwe/ttcli
+- **Brew 20개**: diff-so-fancy, icdiff, macvim, neovim-qt, dust, cocoapods, ideviceinstaller, ios-deploy, libimobiledevice, libusbmuxd, kdoctor, omnisharp-mono, aspell, brightness, doxx, mole, up, xclip, leveldb, caddy
+- **Cask 1개**: fig
+- **참고**: autojump은 oh-my-zsh 플러그인 의존으로 유지
 
-```bash
-brew untap equalsraf/neovim-qt
-brew untap omnisharp/omnisharp-roslyn
-brew untap sst/tap
-brew untap steipete/tap
-brew untap subinium/tap
-brew untap wimdeblauwe/ttcli
-```
-
-### Brew (21개)
+## 미제거 (sudo 필요)
 
 ```bash
-brew uninstall autojump        # zoxide로 대체
-brew uninstall diff-so-fancy   # git-delta로 통합
-brew uninstall icdiff           # git-delta로 통합
-brew uninstall macvim           # neovim으로 통합
-brew uninstall neovim-qt        # neovim으로 통합
-brew uninstall dust             # gdu로 통합
-brew uninstall cocoapods        # iOS 미사용
-brew uninstall ideviceinstaller # iOS 미사용
-brew uninstall ios-deploy       # iOS 미사용
-brew uninstall libimobiledevice # iOS 미사용
-brew uninstall libusbmuxd       # iOS 미사용
-brew uninstall kdoctor          # iOS/KMP 미사용
-brew uninstall omnisharp-mono   # C# 미사용
-brew uninstall aspell           # 에디터 내장 대체
-brew uninstall brightness       # macOS 시스템 조절
-brew uninstall doxx             # 미사용
-brew uninstall mole             # ssh -L 대체
-brew uninstall up               # 미사용
-brew uninstall xclip            # macOS pbcopy/pbpaste
-brew uninstall leveldb          # 미사용 DB
-brew uninstall caddy            # 미사용 웹서버
-```
-
-### Casks (2개)
-
-```bash
-brew uninstall --cask fig          # Claude Code로 대체
-brew uninstall --cask mactex-no-gui # LaTeX 미사용
+brew uninstall --cask --force mactex-no-gui  # LaTeX 미사용, sudo 필요
 ```
 
 ---
