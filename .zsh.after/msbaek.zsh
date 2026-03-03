@@ -223,7 +223,7 @@ alias ls='eza --color=always --long --git --icons=always --no-user --no-permissi
 alias fdm='fd --hidden --no-ignore'
 alias rgm='rg --no-ignore --hidden'
 alias brewu='brew upgrade; brew cleanup'
-alias ta='tmux attach'
+alias ta='tmux attach -t work'
 alias vi='nvim'
 alias gl='git log'
 # Headless mode aliases
