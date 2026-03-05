@@ -181,3 +181,11 @@ source "~/.rm-safely" >/dev/null 2>&1
 eval "$(agf init zsh)"
 
 alias claude-mem="bun $HOME/.claude/plugins/cache/thedotmack/claude-mem/10.5.2/scripts/worker-service.cjs"
+
+# Private environment variables
+[ -f ~/dotfiles-private/.env.ktown4u ] && source ~/dotfiles-private/.env.ktown4u
+
+# Shell GPT with Cerebras AI
+ai() {
+  OPENAI_API_KEY="$CEREBRAS_API_KEY" sgpt -s "$*"
+}

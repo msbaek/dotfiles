@@ -258,6 +258,14 @@ prev() {
   find . -type f | fzf --ansi --preview 'less {}'
 }
 
+# 이름으로 프로세스 강제 종료. usage: kill_by_name playwright-mcp
+kill_by_name() {
+  if [ -z "$1" ]; then
+    echo "Usage: kill_by_name <process-name>"; return 1
+  fi
+  pkill -9 -f "$1"
+}
+
 # 지정 포트를 점유 중인 프로세스를 강제 종료. usage: kill_by_port 8080
 kill_by_port() {
   lsof -i TCP:$1 | grep LISTEN | awk '{print $2}' | xargs kill -9

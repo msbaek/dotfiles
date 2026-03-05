@@ -15,9 +15,8 @@ color: yellow
 if [[ "$ARGUMENTS" == *"youtube.com/watch?v="* ]] || [[ "$ARGUMENTS" == *"youtu.be/"* ]]; then
     echo "YouTube URL이 감지되었습니다. 메타데이터와 트랜스크립트를 다운로드합니다."
 
-    # yt 명령어로 JSON 형식 데이터 추출
-    cd ~/git/lib/download-youtube-transcript
-    YOUTUBE_DATA=$(yt "$ARGUMENTS" -f json -l ko 2>/dev/null || yt "$ARGUMENTS" -f json -l en)
+    # download-youtube-transcript 스크립트로 JSON 형식 데이터 추출
+    YOUTUBE_DATA=$(~/bin/download-youtube-transcript "$ARGUMENTS" -f json -l ko 2>/dev/null || ~/bin/download-youtube-transcript "$ARGUMENTS" -f json -l en)
 
     if [ $? -eq 0 ]; then
         echo "YouTube 데이터 추출 완료."
@@ -37,8 +36,8 @@ fi
 1. **입력 데이터 분석 및 처리**
    - $ARGUMENTS가 YouTube URL인지 확인 (youtube.com/watch?v=, youtu.be/ 패턴)
    - URL인 경우:
-     - `~/git/lib/download-youtube-transcript`의 `yt` 명령어를 사용하여 JSON 형식으로 메타데이터와 트랜스크립트 추출
-     - `yt "$URL" -f json`로 실행하여 제목, 채널, 업로드 날짜 등의 메타데이터 확보
+     - `~/bin/download-youtube-transcript` 스크립트를 사용하여 JSON 형식으로 메타데이터와 트랜스크립트 추출
+     - `~/bin/download-youtube-transcript "$URL" -f json`로 실행하여 제목, 채널, 업로드 날짜 등의 메타데이터 확보
    - 트랜스크립트인 경우: 기존 방식대로 직접 처리
 
 2. **메타데이터 자동 생성** (URL인 경우)

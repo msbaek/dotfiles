@@ -72,8 +72,7 @@ def determine_input_type(input_text):
 
 ```bash
 # YouTube 메타데이터 및 트랜스크립트 추출
-cd ~/git/lib/download-youtube-transcript
-yt "$URL" -f json -l ko 2>/dev/null || yt "$URL" -f json -l en
+~/bin/download-youtube-transcript "$URL" -f json -l ko 2>/dev/null || ~/bin/download-youtube-transcript "$URL" -f json -l en
 ```
 
 #### 웹 문서 처리

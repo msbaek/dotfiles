@@ -110,7 +110,9 @@
     "agent-evaluation@context-engineering-marketplace": true,
     "agent-development@context-engineering-marketplace": true,
     "cognitive-architecture@context-engineering-marketplace": true,
-    "claude-mem@thedotmack": true
+    "claude-mem@thedotmack": true,
+    "ralph-loop@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
   },
   "spinnerVerbs": {
     "mode": "replace",
