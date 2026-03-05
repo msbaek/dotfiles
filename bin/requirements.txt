@@ -1,0 +1,9 @@
+# Python dependencies for ~/bin scripts
+# Install: pip install -r ~/bin/requirements.txt
+
+# download-youtube-transcript
+youtube-transcript-api>=0.6.2
+yt-dlp>=2023.12.30
+
+# sync-chrome-cookies.py
+rookiepy>=0.5.0

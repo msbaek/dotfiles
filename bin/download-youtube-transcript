@@ -1,0 +1,174 @@
+#!/usr/bin/env python3
+"""Download YouTube video metadata and transcript.
+
+Usage:
+    download-youtube-transcript <url> [-l LANG] [-f FORMAT] [-o OUTPUT] [--metadata-only]
+
+Examples:
+    download-youtube-transcript "https://youtube.com/watch?v=abc123" -f json -l ko
+    download-youtube-transcript "https://youtu.be/abc123" -l en
+"""
+
+from youtube_transcript_api import YouTubeTranscriptApi
+import yt_dlp
+import re
+import sys
+import json
+import argparse
+from datetime import datetime
+
+
+def extract_video_id(url):
+    """Extract video ID from YouTube URL."""
+    patterns = [
+        r'(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&\s]+)',
+        r'(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^\s]+)'
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, url)
+        if match:
+            return match.group(1)
+    return None
+
+
+def extract_metadata(video_url):
+    """Extract YouTube video metadata using yt-dlp."""
+    ydl_opts = {
+        'quiet': True,
+        'no_warnings': True,
+    }
+
+    try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(video_url, download=False)
+            return {
+                'video_id': info.get('id'),
+                'title': info.get('title'),
+                'channel': info.get('uploader') or info.get('channel'),
+                'upload_date': info.get('upload_date'),
+                'duration': info.get('duration'),
+                'view_count': info.get('view_count'),
+                'description': info.get('description'),
+                'thumbnail': info.get('thumbnail')
+            }
+    except Exception as e:
+        print(f"Metadata extraction error: {str(e)}", file=sys.stderr)
+        return None
+
+
+def get_transcript(video_url, language='en'):
+    """Fetch YouTube video transcript."""
+    try:
+        video_id = extract_video_id(video_url)
+        if not video_id:
+            raise ValueError("Invalid YouTube URL.")
+
+        api = YouTubeTranscriptApi()
+        transcript = api.fetch(video_id, languages=[language])
+
+        transcript_list = []
+        for snippet in transcript.snippets:
+            transcript_list.append({
+                'start': snippet.start,
+                'duration': snippet.duration,
+                'text': snippet.text
+            })
+        return transcript_list
+
+    except Exception as e:
+        print(f"Transcript extraction error: {str(e)}", file=sys.stderr)
+        return None
+
+
+def combine_data(video_url, language='en', metadata_only=False):
+    """Combine metadata and transcript."""
+    metadata = extract_metadata(video_url)
+
+    if not metadata:
+        video_id = extract_video_id(video_url)
+        metadata = {
+            'video_id': video_id,
+            'title': 'N/A',
+            'channel': 'N/A',
+            'upload_date': 'N/A',
+            'duration': 'N/A',
+            'view_count': 'N/A',
+            'description': 'N/A',
+            'thumbnail': 'N/A'
+        }
+
+    result = metadata.copy()
+
+    if not metadata_only:
+        transcript = get_transcript(video_url, language)
+        if transcript:
+            result['transcript'] = transcript
+            result['transcript_language'] = language
+        else:
+            result['transcript'] = None
+            result['transcript_language'] = language
+
+    return result
+
+
+def print_text_format(data, language='en'):
+    """Print in text format."""
+    print(f"Title: {data.get('title', 'N/A')}")
+    print(f"Channel: {data.get('channel', 'N/A')}")
+    print(f"Upload date: {data.get('upload_date', 'N/A')}")
+    print(f"Duration: {data.get('duration', 'N/A')}s")
+    print(f"Views: {data.get('view_count', 'N/A')}")
+    print("\n--- Transcript ---")
+
+    transcript = data.get('transcript')
+    if transcript:
+        for snippet in transcript:
+            start_time = int(snippet['start'])
+            text = snippet['text'].replace('\n', ' ')
+            minutes = start_time // 60
+            seconds = start_time % 60
+            print(f"[{minutes:02d}:{seconds:02d}] {text}")
+    else:
+        print("Could not fetch transcript.")
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Download YouTube video metadata and transcript.')
+    parser.add_argument('url', help='YouTube video URL')
+    parser.add_argument('-l', '--language', default='en', help='Transcript language code (default: en)')
+    parser.add_argument('-f', '--format', choices=['json', 'text'], default='text', help='Output format (default: text)')
+    parser.add_argument('-o', '--output', help='Output file path (stdout if not specified)')
+    parser.add_argument('--metadata-only', action='store_true', help='Fetch metadata only (no transcript)')
+
+    args = parser.parse_args()
+
+    data = combine_data(args.url, args.language, args.metadata_only)
+    if not data:
+        print("Could not fetch data.", file=sys.stderr)
+        sys.exit(1)
+
+    if args.format == 'json':
+        output_content = json.dumps(data, ensure_ascii=False, indent=2)
+    else:
+        import io
+        import contextlib
+
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            print_text_format(data, args.language)
+        output_content = f.getvalue()
+
+    if args.output:
+        with open(args.output, 'w', encoding='utf-8') as f:
+            f.write(output_content)
+        print(f"Results saved to {args.output}.")
+    else:
+        if args.format == 'json':
+            print(output_content)
+        else:
+            print_text_format(data, args.language)
+
+
+if __name__ == "__main__":
+    main()
