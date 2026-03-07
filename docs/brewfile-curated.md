@@ -9,7 +9,8 @@
 아래 패키지는 이미 제거 완료. 다음 커밋 시 hook이 Brewfile에서 자동 반영.
 
 - **Taps 6개**: equalsraf/neovim-qt, omnisharp/omnisharp-roslyn, sst/tap, steipete/tap, subinium/tap, wimdeblauwe/ttcli
-- **Brew 20개**: diff-so-fancy, icdiff, macvim, neovim-qt, dust, cocoapods, ideviceinstaller, ios-deploy, libimobiledevice, libusbmuxd, kdoctor, omnisharp-mono, aspell, brightness, doxx, mole, up, xclip, leveldb, caddy
+- **Brew 19개**: diff-so-fancy, icdiff, macvim, neovim-qt, dust, cocoapods, ideviceinstaller, ios-deploy, libimobiledevice, libusbmuxd, kdoctor, omnisharp-mono, aspell, brightness, doxx, up, xclip, leveldb, caddy
+- **참고**: mole(tw93/mole)은 macOS 시스템 청소/최적화 도구로, 잘못된 사유(ssh -L 대체)로 제거되었다가 재설치됨
 - **Cask 1개**: fig
 - **참고**: autojump은 oh-my-zsh 플러그인 의존으로 유지
 
@@ -232,6 +233,7 @@ brew "yt-dlp"
 brew "asitop"
 brew "bottom"
 brew "htop"
+brew "mole"                # macOS 시스템 청소/최적화/디스크분석 (tw93/mole)
 ```
 
 ### Window Management & UI

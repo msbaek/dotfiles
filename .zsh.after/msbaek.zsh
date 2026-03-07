@@ -224,6 +224,7 @@ alias fdm='fd --hidden --no-ignore'
 alias rgm='rg --no-ignore --hidden'
 alias brewu='brew upgrade; brew cleanup'
 alias ta='tmux attach -t work'
+alias tk='tmux kill-server'
 alias vi='nvim'
 alias gl='git log'
 # Headless mode aliases
@@ -350,4 +351,8 @@ matrix() {
       }
     }
   }'
+}
+
+disk-free() {
+  df -k . | tail -1 | awk '{free=$4; printf "Free: %.2f GB (%.2f MB)\n", free/1024/1024, free/1024}'
 }

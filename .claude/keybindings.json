@@ -18,7 +18,7 @@
         "shift+tab": "chat:cycleMode",
         "meta+p": "chat:modelPicker",
         "meta+o": "chat:fastMode",
-        "meta+t": "chat:thinkingToggle",
+        "meta+shift+t": "chat:thinkingToggle",
         "enter": "chat:submit",
         "up": "history:previous",
         "down": "history:next",

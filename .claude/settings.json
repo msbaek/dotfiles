@@ -112,7 +112,16 @@
     "cognitive-architecture@context-engineering-marketplace": true,
     "claude-mem@thedotmack": true,
     "ralph-loop@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
+    "skill-creator@claude-plugins-official": true,
+    "sync-claude-sessions-skill@personal-os-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "personal-os-skills": {
+      "source": {
+        "source": "github",
+        "repo": "ArtemXTech/personal-os-skills"
+      }
+    }
   },
   "spinnerVerbs": {
     "mode": "replace",
@@ -139,6 +148,7 @@
       "연결고리 찾는 중"
     ]
   },
+  "autoMemoryEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "mcpServers": {
     "playwright": {
@@ -149,9 +159,16 @@
         "--storage-state",
         "/Users/msbaek/.playwright-profile/storage-state.json"
       ]
+    },
+    "qmd": {
+      "command": "qmd",
+      "args": [
+        "mcp"
+      ]
     }
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
-  }
+  },
+  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault"
 }

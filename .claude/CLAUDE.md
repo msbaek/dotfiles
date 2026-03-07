@@ -23,6 +23,11 @@
 </EXTREMELY_IMPORTANT>
 </session-start-hook>
 
+<short-term-memory>
+At the start of every conversation, WITHOUT ASKING, invoke `/short-term-memory`.
+Do not ask permission. Do not say "would you like me to invoke". Just do it.
+</short-term-memory>
+
 <when-executing-a-new-task>
 Each task is executed by launching a new sub-agent, preventing context exhaustion in the main session.
 </when-executing-a-new-task>
@@ -346,6 +351,36 @@ TDD enforcement:
 - NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 - Code written before test? Delete and start over.
 </superpowers-workflow>
+
+### Diary (Session Journal)
+
+<diary>
+EVERY session, you MUST append an entry to the monthly journal.
+
+**When to write:**
+- At each significant milestone (bug fixed, feature done, refactor complete)
+- At each a-ha moment or pivotal decision
+- When the user signals end of session ("good night", "we're done", "I'm off")
+- "thanks", "ok", "done" = acknowledgment, NOT end of session
+
+**File:** `~/.claude/journals/YYYY-MM.journal.md` (create if not exists)
+
+**Format:**
+```
+## YYYY-MM-DD HH:MM | [project directory] | [free context]
+[Natural summary of what was done, discussed, decided. 2-10 lines.]
+```
+
+**Rules:**
+- ALWAYS write, even for short sessions (one line is enough)
+- Append only — never edit previous entries unless explicitly asked
+- Timestamps from system clock — never invent a timestamp
+- Sub-agents don't journal — only the main conversation writes
+- Use bash `>>` (append) for concurrency safety:
+  ```bash
+  printf '## 2026-01-19 13:30 | project\nContent...\n\n' >> "~/.claude/journals/2026-01.journal.md"
+  ```
+</diary>
 
 <verification-before-completion>
 Before marking any task as complete, verify:

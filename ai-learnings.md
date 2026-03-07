@@ -29,6 +29,15 @@
 **문제:** Brewfile 정리 시 autojump을 제거했으나, oh-my-zsh의 autojump 플러그인이 의존.
 **규칙:** 패키지 제거 전 oh-my-zsh 플러그인 목록(`.zshrc`의 `plugins=()`)과 교차 확인할 것.
 
+## Homebrew 패키지 식별 오류 (2026-03-06)
+
+### 문제
+tw93/mole(macOS 시스템 청소/최적화 도구)을 davrodpin/mole(SSH 터널링 도구)과 혼동하여 "ssh -L 대체" 사유로 잘못 제거함.
+
+### 규칙
+- 패키지 제거 전 반드시 GitHub 저장소를 확인하여 실제 용도를 검증할 것
+- 동명의 패키지가 여러 개 존재할 수 있으므로, tap/author까지 확인할 것
+
 ## Brewfile pre-commit hook 충돌 (2026-03-02)
 
 ### 문제
