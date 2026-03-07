@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Sync Claude Code sessions to Obsidian markdown.
+"""Sync Claude Code sessions to ~/git/claude-session (Git + Obsidian vault).
+
+Sessions are saved as markdown with YYYY/MM/ date folders and project names
+in both the filename and frontmatter projects field.
 
 Usage:
     claude-sessions sync [--session-id ID] [--transcript PATH]
@@ -23,35 +26,73 @@ from pathlib import Path
 __version__ = "1.0.0"
 
 # Configuration - auto-detect from environment or CWD
-def _detect_vault_dir():
-    """Auto-detect Obsidian vault from VAULT_DIR env var or by walking up from CWD."""
-    if os.environ.get("VAULT_DIR"):
-        return Path(os.environ["VAULT_DIR"])
-    cwd = Path.cwd()
-    for parent in [cwd, *cwd.parents]:
-        if (parent / ".obsidian").is_dir():
-            return parent
-    return cwd
-
 def _detect_sessions_dir():
     """Auto-detect Claude project sessions directory from CWD."""
     cwd = str(Path.cwd())
     encoded = cwd.replace("/", "-")
-    candidate = Path.home() / ".claude" / "projects" / encoded
+    candidate = PROJECTS_DIR / encoded
     if candidate.is_dir():
         return candidate
     # Fallback: most recently modified project dir
-    projects = Path.home() / ".claude" / "projects"
-    if projects.is_dir():
-        dirs = sorted([d for d in projects.iterdir() if d.is_dir()], key=lambda d: d.stat().st_mtime, reverse=True)
+    if PROJECTS_DIR.is_dir():
+        dirs = sorted([d for d in PROJECTS_DIR.iterdir() if d.is_dir()], key=lambda d: d.stat().st_mtime, reverse=True)
         if dirs:
             return dirs[0]
-    return projects
+    return PROJECTS_DIR
 
-VAULT_DIR = _detect_vault_dir()
-OUTPUT_DIR = VAULT_DIR / "Claude-Sessions"
-SKILLS_DIR = VAULT_DIR / ".claude" / "skills"
+SESSION_REPO = Path.home() / "git" / "claude-session"
+PROJECTS_DIR = Path.home() / ".claude" / "projects"
 SESSIONS_DIR = _detect_sessions_dir()
+SKILLS_DIR = Path.home() / ".claude" / "skills"
+VAULT_DIR = Path.home() / "DocumentsLocal" / "msbaek_vault"
+
+
+def extract_project_name(project_dir_name: str) -> str:
+    """Extract human-readable project name from encoded directory name.
+
+    Examples:
+        '-Users-msbaek-git-kt4u-mercury' -> 'kt4u/mercury'
+        '-Users-msbaek-dotfiles' -> 'dotfiles'
+        '-Users-msbaek-temp-eval' -> 'temp/eval'
+        '-Users-msbaek-DocumentsLocal-msbaek-vault' -> 'DocumentsLocal/msbaek-vault'
+        '-Users-msbaek-git-coding-dojo' -> 'coding-dojo'
+    """
+    name = project_dir_name.lstrip("-")
+    parts = name.split("-")
+    if len(parts) >= 2 and parts[0] == "Users":
+        parts = parts[2:]  # Skip 'Users' and username
+
+    namespace_dirs = {"git", "temp", "DocumentsLocal"}
+
+    if parts and parts[0] in namespace_dirs:
+        namespace = parts[0]
+        rest = parts[1:]
+        if namespace == "git" and len(rest) >= 2:
+            # Check filesystem to distinguish org/repo from hyphenated-name
+            # e.g., ~/git/kt4u/mercury exists -> kt4u/mercury
+            # e.g., ~/git/coding-dojo exists -> coding-dojo
+            org_repo_path = Path.home() / "git" / rest[0] / "-".join(rest[1:])
+            flat_path = Path.home() / "git" / "-".join(rest)
+            if flat_path.is_dir():
+                return "-".join(rest)
+            elif org_repo_path.is_dir():
+                return f"{rest[0]}/{'-'.join(rest[1:])}"
+            else:
+                # Default: assume org/repo structure
+                return f"{rest[0]}/{'-'.join(rest[1:])}"
+        elif namespace == "git" and rest:
+            return "-".join(rest)
+        elif rest:
+            return f"{namespace}/{'-'.join(rest)}"
+        return namespace
+
+    return "-".join(parts) if parts else project_dir_name
+
+
+def project_name_for_filename(project_name: str) -> str:
+    """Convert project name to filename-safe format. 'kt4u/mercury' -> 'kt4u-mercury'"""
+    return project_name.replace("/", "-")
+
 
 PRESERVED_FIELDS = {"comments", "projects", "status", "tags", "rating", "title"}
 PRESERVED_SECTION = "## My Notes"
@@ -414,17 +455,24 @@ def generate_markdown(data: dict, session_id: str, existing_fm: dict | None = No
 def find_session_file(session_id: str) -> Path | None:
     """Find existing markdown file for a session."""
     short_id = session_id[:8]
-    for f in OUTPUT_DIR.glob(f"*-{short_id}.md"):
+    for f in SESSION_REPO.rglob(f"*-{short_id}.md"):
         return f
     return None
 
 
-def get_output_path(session_id: str, date: str) -> Path:
-    """Get output file path for a session."""
-    return OUTPUT_DIR / f"{date}-{session_id[:8]}.md"
+def get_output_path(session_id: str, date: str, project_name: str = "") -> Path:
+    """Get output file path for a session.
+
+    Structure: SESSION_REPO/YYYY/MM/YYYY-MM-DD-project-sessionid.md
+    """
+    year, month = date[:4], date[5:7]
+    project_part = f"-{project_name_for_filename(project_name)}" if project_name else ""
+    filename = f"{date}{project_part}-{session_id[:8]}.md"
+    return SESSION_REPO / year / month / filename
 
 
-def sync_session(session_id: str, transcript_path: str | None = None, quiet: bool = False) -> Path | None:
+def sync_session(session_id: str, transcript_path: str | None = None,
+                 quiet: bool = False, project_name: str = "") -> Path | None:
     """Sync a session to markdown. Returns output path or None."""
     if session_id.startswith("agent-"):
         return None
@@ -444,8 +492,12 @@ def sync_session(session_id: str, transcript_path: str | None = None, quiet: boo
     data = extract_session_data(records)
     data["session_id"] = session_id
 
+    # Use provided project_name or detect from SESSIONS_DIR
+    if not project_name:
+        project_name = extract_project_name(SESSIONS_DIR.name)
+
     existing_file = find_session_file(session_id)
-    output_file = existing_file or get_output_path(session_id, data["date"])
+    output_file = existing_file or get_output_path(session_id, data["date"], project_name)
 
     existing_fm = None
     my_notes = None
@@ -454,7 +506,16 @@ def sync_session(session_id: str, transcript_path: str | None = None, quiet: boo
         existing_fm = parse_frontmatter(content)
         my_notes = extract_my_notes_section(content)
 
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    # Auto-populate projects in frontmatter
+    if project_name:
+        if existing_fm is None:
+            existing_fm = {}
+        existing_projects = existing_fm.get("projects", [])
+        if isinstance(existing_projects, list) and project_name not in existing_projects:
+            existing_projects.append(project_name)
+            existing_fm["projects"] = existing_projects
+
+    output_file.parent.mkdir(parents=True, exist_ok=True)
     markdown = generate_markdown(data, session_id, existing_fm, my_notes)
     output_file.write_text(markdown, encoding="utf-8")
 
@@ -567,7 +628,9 @@ def set_session_tags(session_id: str, tags: list[str]) -> bool:
 def get_session_files() -> list[tuple[Path, dict]]:
     """Get all session files with frontmatter, sorted by last activity."""
     sessions = []
-    for f in OUTPUT_DIR.glob("*.md"):
+    for f in SESSION_REPO.rglob("*.md"):
+        if f.name.startswith("."):
+            continue
         try:
             content = f.read_text(encoding="utf-8")
             fm = parse_frontmatter(content)
@@ -575,7 +638,6 @@ def get_session_files() -> list[tuple[Path, dict]]:
                 sessions.append((f, fm))
         except Exception:
             continue
-
     return sorted(sessions, key=lambda x: x[1].get("last_activity", x[1].get("date", "")), reverse=True)
 
 
@@ -660,7 +722,9 @@ def cmd_sync(args):
         # No session_id is normal on first prompt or when stdin is unavailable
         return 0
 
-    result = sync_session(session_id, transcript_path, quiet=args.quiet)
+    # Detect project name from CWD
+    project_name = extract_project_name(SESSIONS_DIR.name)
+    result = sync_session(session_id, transcript_path, quiet=args.quiet, project_name=project_name)
     return 0
 
 
@@ -668,18 +732,37 @@ def cmd_export(args):
     """Export command - batch export sessions."""
     if args.today:
         cutoff = time.time() - 86400
-        sessions = [f for f in SESSIONS_DIR.glob("*.jsonl")
-                    if f.stat().st_mtime >= cutoff and f.stat().st_size > 0]
-        print(f"Found {len(sessions)} sessions from today")
+        count = 0
+        for project_dir in PROJECTS_DIR.iterdir():
+            if not project_dir.is_dir():
+                continue
+            project_name = extract_project_name(project_dir.name)
+            for f in project_dir.glob("*.jsonl"):
+                if f.stat().st_mtime >= cutoff and f.stat().st_size > 0:
+                    sync_session(f.stem, str(f), quiet=args.quiet, project_name=project_name)
+                    count += 1
+        if not args.quiet:
+            print(f"Exported {count} sessions from today")
     elif args.all:
-        sessions = [f for f in SESSIONS_DIR.glob("*.jsonl") if f.stat().st_size > 0]
-        print(f"Found {len(sessions)} total sessions")
+        count = 0
+        for project_dir in PROJECTS_DIR.iterdir():
+            if not project_dir.is_dir():
+                continue
+            project_name = extract_project_name(project_dir.name)
+            for f in project_dir.glob("*.jsonl"):
+                if f.stat().st_size > 0:
+                    sync_session(f.stem, str(f), quiet=args.quiet, project_name=project_name)
+                    count += 1
+        if not args.quiet:
+            print(f"Exported {count} total sessions")
     else:
-        sessions = [Path(args.file)]
-
-    for session_file in sessions:
-        session_id = session_file.stem
-        sync_session(session_id, str(session_file), quiet=args.quiet)
+        session_file = Path(args.file)
+        project_name = ""
+        for parent in session_file.parents:
+            if parent.parent == PROJECTS_DIR:
+                project_name = extract_project_name(parent.name)
+                break
+        sync_session(session_file.stem, str(session_file), quiet=args.quiet, project_name=project_name)
 
     return 0
 
