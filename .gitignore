@@ -103,3 +103,4 @@ node_modules/
 .serena/
 .claude/session-env
 .claude/.credentials.json
+.claude/skills/recall/output
