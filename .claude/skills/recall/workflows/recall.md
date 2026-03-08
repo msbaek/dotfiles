@@ -7,7 +7,7 @@ Load context from vault memory - temporal queries use agf (history.jsonl), topic
 Parse the user's input after `/recall` and classify:
 
 - **Graph** - starts with "graph": "graph last week", "graph yesterday", "graph today"
-  -> Go to Step 2C
+  -> Go to Step 2C **ONLY** (다른 Step 실행 금지)
 - **Temporal** - mentions time: "yesterday", "today", "last week", "this week", a date, "what was I doing", "session history"
   -> Go to Step 2A
 - **Topic** - mentions a subject: "QMD video", "authentication", "lab content"
@@ -132,21 +132,35 @@ No results found for "QUERY". Try:
 
 ## Step 2C: Graph Visualization
 
-Strip "graph" prefix from query to get the date expression. Run:
+Strip "graph" prefix from query to get the date expression. **반드시 1회만 호출** — 스크립트가 내부적으로 날짜 범위를 처리합니다.
+
+**중요: DATE_EXPR을 그대로 전달할 것.** 날짜 변환/분할하지 말 것. Step 2A의 agf 방식과 다름.
 
 ```bash
-python3 .claude/skills/recall/scripts/session-graph.py DATE_EXPR
+# 정확히 1회만 호출 — 여러 번 호출 금지
+python3 ~/.claude/skills/recall/scripts/session-graph.py DATE_EXPR
 ```
 
+지원되는 DATE_EXPR (스크립트가 내부 처리):
+- `yesterday`, `today`
+- `YYYY-MM-DD`
+- `last week`, `this week`
+- `last N days`
+
 Options:
-- `--min-files N` - only show sessions touching N+ files (default: 2, use 5+ for cleaner graphs)
-- `--min-msgs N` - filter noise (default: 3)
+- `--min-files N` - only show sessions touching N+ files (default: 3)
+- `--min-msgs N` - filter noise (default: 5)
 - `--all-projects` - scan all projects
-- `-o PATH` - custom output path (default: /tmp/session-graph.html)
+- `-o PATH` - custom output path
 - `--no-open` - don't auto-open browser
 
-Opens interactive HTML in browser. Session nodes colored by day, file nodes colored by folder.
-Tell the user the node/edge counts and what to look for (clusters, shared files).
+**⚠️ 금지사항:**
+- 스크립트가 자동으로 브라우저를 엽니다. 추가로 `open` 명령을 실행하지 마세요.
+- Graph 쿼리는 Step 2C만 실행합니다. Step 2A(temporal)를 함께 실행하지 마세요.
+- 스크립트 출력(HTML 경로)을 받아서 다시 `open`하지 마세요.
+
+스크립트 실행 후 stdout에서 노드/엣지 수를 파싱하여 사용자에게 보고합니다.
+Session nodes colored by day, file nodes colored by folder. Clusters와 shared files를 안내합니다.
 
 ## Notes
 
