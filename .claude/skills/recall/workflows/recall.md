@@ -137,8 +137,13 @@ Strip "graph" prefix from query to get the date expression. **반드시 1회만 
 **중요: DATE_EXPR을 그대로 전달할 것.** 날짜 변환/분할하지 말 것. Step 2A의 agf 방식과 다름.
 
 ```bash
-# 정확히 1회만 호출 — 여러 번 호출 금지
-python3 ~/.claude/skills/recall/scripts/session-graph.py DATE_EXPR --all-projects --min-msgs 1
+# 정확히 이 명령어를 1회만 실행 — --no-open 필수
+python3 ~/.claude/skills/recall/scripts/session-graph.py DATE_EXPR --all-projects --min-msgs 1 --no-open
+```
+
+스크립트 완료 후, stdout의 "Saved to PATH" 줄에서 경로를 추출하여 별도로 1회만 open:
+```bash
+open /path/to/session-graph.html
 ```
 
 지원되는 DATE_EXPR (스크립트가 내부 처리):
@@ -147,17 +152,13 @@ python3 ~/.claude/skills/recall/scripts/session-graph.py DATE_EXPR --all-project
 - `last week`, `this week`
 - `last N days`
 
-Options:
+추가 Options (필요 시):
 - `--min-files N` - only show sessions touching N+ files (default: 3)
-- `--min-msgs N` - filter noise (default: 5)
-- `--all-projects` - scan all projects
 - `-o PATH` - custom output path
-- `--no-open` - don't auto-open browser
 
 **⚠️ 금지사항:**
-- 스크립트가 자동으로 브라우저를 엽니다. 추가로 `open` 명령을 실행하지 마세요.
 - Graph 쿼리는 Step 2C만 실행합니다. Step 2A(temporal)를 함께 실행하지 마세요.
-- 스크립트 출력(HTML 경로)을 받아서 다시 `open`하지 마세요.
+- open 명령은 반드시 1회만 실행합니다. 스크립트에 --no-open을 반드시 붙이세요.
 
 스크립트 실행 후 stdout에서 노드/엣지 수를 파싱하여 사용자에게 보고합니다.
 Session nodes colored by day, file nodes colored by folder. Clusters와 shared files를 안내합니다.
