@@ -54,7 +54,7 @@ SKIP_PATTERNS = [
 ]
 
 FILE_PATH_RE = re.compile(
-    r'(?:^|[\s"\'=])(' + re.escape(VAULT_PREFIX) + r'[^\s"\';<>|&\)]+)',
+    r'(?:^|[\s"\'=])(/(?:Users|home)/[^\s"\';<>|&\)]+)',
 )
 
 # Obsidian-inspired palette
@@ -110,7 +110,7 @@ NOISE_FILES = {
 }
 
 
-def extract_file_paths(jsonl_path: Path) -> dict | None:
+def extract_file_paths(jsonl_path: Path, prefixes: list[str] | None = None) -> dict | None:
     """Extract all file paths from tool calls in a JSONL session file."""
     files = set()
     ops = defaultdict(set)
@@ -162,7 +162,7 @@ def extract_file_paths(jsonl_path: Path) -> dict | None:
                     if tool in ('Read', 'Edit', 'Write', 'NotebookEdit'):
                         fp = inp.get('file_path') or inp.get('notebook_path', '')
                         if fp:
-                            norm = normalize_path(fp)
+                            norm = normalize_path(fp, prefixes)
                             if norm:
                                 files.add(norm)
                                 ops[norm].add(tool.lower())
@@ -170,7 +170,7 @@ def extract_file_paths(jsonl_path: Path) -> dict | None:
                     elif tool in ('Glob', 'Grep'):
                         fp = inp.get('path', '')
                         if fp:
-                            norm = normalize_path(fp)
+                            norm = normalize_path(fp, prefixes)
                             if norm:
                                 files.add(norm)
                                 ops[norm].add('search')
@@ -179,7 +179,7 @@ def extract_file_paths(jsonl_path: Path) -> dict | None:
                         cmd = inp.get('command', '')
                         for m in FILE_PATH_RE.finditer(cmd):
                             fp = m.group(1).rstrip('.,;:')
-                            norm = normalize_path(fp)
+                            norm = normalize_path(fp, prefixes)
                             if norm:
                                 files.add(norm)
                                 ops[norm].add('bash')
@@ -217,8 +217,13 @@ def extract_file_paths(jsonl_path: Path) -> dict | None:
     }
 
 
-def normalize_path(fp: str) -> str | None:
-    """Normalize a file path to vault-relative, skip irrelevant paths."""
+def normalize_path(fp: str, prefixes: list[str] | None = None) -> str | None:
+    """Normalize a file path to prefix-relative, skip irrelevant paths.
+
+    Args:
+        fp: Absolute file path.
+        prefixes: List of allowed path prefixes. Defaults to [VAULT_PREFIX].
+    """
     if not fp or not fp.startswith('/'):
         return None
 
@@ -230,10 +235,17 @@ def normalize_path(fp: str) -> str | None:
         if pat.search(fp):
             return None
 
-    if not fp.startswith(VAULT_PREFIX):
+    allowed = prefixes or [VAULT_PREFIX]
+    matched_prefix = None
+    for pfx in allowed:
+        if fp.startswith(pfx):
+            matched_prefix = pfx
+            break
+
+    if not matched_prefix:
         return None
 
-    rel = fp[len(VAULT_PREFIX):]
+    rel = fp[len(matched_prefix):]
     if not rel:
         return None
 
@@ -1177,6 +1189,16 @@ def main():
     sessions = []
     skipped = 0
 
+    # Build prefix list: decode each project dir name back to original path
+    all_prefixes = [VAULT_PREFIX]
+    for proj_dir in project_dirs:
+        # proj_dir.name is like "-Users-msbaek-dotfiles" → "/Users/msbaek/dotfiles/"
+        decoded = proj_dir.name.replace('-', '/')
+        if not decoded.endswith('/'):
+            decoded += '/'
+        if decoded not in all_prefixes:
+            all_prefixes.append(decoded)
+
     for proj_dir in project_dirs:
         for filepath in proj_dir.glob("*.jsonl"):
             try:
@@ -1195,7 +1217,7 @@ def main():
                 continue
 
             print(f"  Scanning {filepath.stem[:8]}...", end='\r')
-            result = extract_file_paths(filepath)
+            result = extract_file_paths(filepath, all_prefixes)
             if result and result['start_time'] >= date_start and result['start_time'] < date_end:
                 sessions.append(result)
 
