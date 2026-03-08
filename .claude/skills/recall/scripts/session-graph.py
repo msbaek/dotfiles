@@ -1168,7 +1168,8 @@ def main():
     parser.add_argument('--min-msgs', type=int, default=5, help='Min user messages per session (default: 5)')
     parser.add_argument('--min-files', type=int, default=3, help='Min files touched to include session (default: 3)')
     parser.add_argument('--day', type=str, default=None, help='Filter to specific day (e.g. monday, 2026-02-20)')
-    parser.add_argument('--all-projects', action='store_true')
+    parser.add_argument('--all-projects', action='store_true',
+                        help='Show files from all projects (default: only current project files)')
     parser.add_argument('--no-open', action='store_true', help='Do not open browser')
     parser.add_argument('-o', '--output', default=None)
 
@@ -1184,20 +1185,23 @@ def main():
 
     print(f"Scanning sessions for {date_label}...")
 
-    project_dirs = recall_day.get_project_dirs(None, args.all_projects)
+    # Always scan ALL project sessions (any project may touch current dir files)
+    project_dirs = recall_day.get_project_dirs(None, True)
 
     sessions = []
     skipped = 0
 
-    # Build prefix list: decode each project dir name back to original path
-    all_prefixes = [VAULT_PREFIX]
-    for proj_dir in project_dirs:
-        # proj_dir.name is like "-Users-msbaek-dotfiles" → "/Users/msbaek/dotfiles/"
-        decoded = proj_dir.name.replace('-', '/')
-        if not decoded.endswith('/'):
-            decoded += '/'
-        if decoded not in all_prefixes:
-            all_prefixes.append(decoded)
+    # Build display prefixes: which file paths to SHOW in the graph
+    if args.all_projects:
+        display_prefixes = [VAULT_PREFIX]
+        for proj_dir in project_dirs:
+            decoded = proj_dir.name.replace('-', '/')
+            if not decoded.endswith('/'):
+                decoded += '/'
+            if decoded not in display_prefixes:
+                display_prefixes.append(decoded)
+    else:
+        display_prefixes = [VAULT_PREFIX]
 
     for proj_dir in project_dirs:
         for filepath in proj_dir.glob("*.jsonl"):
@@ -1217,7 +1221,7 @@ def main():
                 continue
 
             print(f"  Scanning {filepath.stem[:8]}...", end='\r')
-            result = extract_file_paths(filepath, all_prefixes)
+            result = extract_file_paths(filepath, display_prefixes)
             if result and result['start_time'] >= date_start and result['start_time'] < date_end:
                 sessions.append(result)
 
