@@ -180,8 +180,6 @@ source "~/.rm-safely" >/dev/null 2>&1
 # agf - AI Agent Session Finder
 eval "$(agf init zsh)"
 
-alias claude-mem="bun $HOME/.claude/plugins/cache/thedotmack/claude-mem/10.5.2/scripts/worker-service.cjs"
-
 # Private environment variables
 [ -f ~/dotfiles-private/.env.ktown4u ] && source ~/dotfiles-private/.env.ktown4u
 
