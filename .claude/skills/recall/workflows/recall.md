@@ -138,7 +138,7 @@ Strip "graph" prefix from query to get the date expression. **반드시 1회만 
 
 ```bash
 # 정확히 이 명령어를 1회만 실행 — --no-open 필수
-python3 ~/.claude/skills/recall/scripts/session-graph.py DATE_EXPR --all-projects --min-msgs 1 --no-open
+python3 ~/.claude/skills/recall/scripts/session-graph.py DATE_EXPR --min-msgs 1 --no-open
 ```
 
 스크립트 완료 후, stdout의 "Saved to PATH" 줄에서 경로를 추출하여 별도로 1회만 open:
@@ -153,6 +153,7 @@ open /path/to/session-graph.html
 - `last N days`
 
 추가 Options (필요 시):
+- `--all-projects` - 모든 프로젝트 세션 포함 (기본: 현재 프로젝트만)
 - `--min-files N` - only show sessions touching N+ files (default: 3)
 - `-o PATH` - custom output path
 
