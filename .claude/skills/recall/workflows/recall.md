@@ -1,6 +1,6 @@
 # Recall Workflow
 
-Load context from vault memory - temporal queries use native JSONL files, topic queries use vis semantic search.
+Load context from vault memory - temporal queries use agf (history.jsonl), topic queries use vis semantic search.
 
 ## Step 1: Classify Query
 
@@ -15,32 +15,35 @@ Parse the user's input after `/recall` and classify:
 - **Both** - temporal + topic: "what did I do with QMD yesterday"
   -> Go to Step 2A first, then scan results for the topic
 
-## Step 2A: Temporal Recall (JSONL Timeline)
+## Step 2A: Temporal Recall (agf 활용)
 
-Run the recall-day script from the skill's scripts directory:
+날짜 표현식을 YYYY-MM-DD로 변환한 뒤 agf list.py를 호출합니다.
+
+**날짜 변환 규칙** (Claude가 currentDate 기준으로 계산):
+- `yesterday` → 어제 날짜 YYYY-MM-DD
+- `today` → 오늘 날짜 YYYY-MM-DD
+- `last monday` .. `last sunday` → 해당 요일 날짜
+- `YYYY-MM-DD` → 그대로 사용
+- `this week`, `last week`, `last N days` → 날짜 범위로 확장하여 각 날짜별 호출
 
 ```bash
-python3 .claude/skills/recall/scripts/recall-day.py list DATE_EXPR
+# 단일 날짜
+python3 ~/.claude/skills/agf/list.py YYYY-MM-DD
+
+# 날짜 범위 (last week 등) — 각 날짜별 호출 후 결과 통합
+python3 ~/.claude/skills/agf/list.py 2026-03-03
+python3 ~/.claude/skills/agf/list.py 2026-03-04
+# ... (필요한 날짜만큼 반복)
 ```
-
-Replace `DATE_EXPR` with the parsed date expression. Supported:
-- `yesterday`, `today`
-- `YYYY-MM-DD`
-- `last monday` .. `last sunday`
-- `this week`, `last week`
-- `N days ago`, `last N days`
-
-Options:
-- `--min-msgs N` - filter noise (default: 3)
-- `--all-projects` - scan all projects, not just current vault
 
 Present the table to the user. If they pick a session to expand:
 
 ```bash
-python3 .claude/skills/recall/scripts/recall-day.py expand SESSION_ID
+python3 ~/.claude/skills/agf/show.py SESSION_ID_PREFIX
 ```
 
-This shows the conversation flow (user messages, assistant first lines, tool calls).
+show.py 출력에서 META/CONV/HISTORY 섹션을 파싱하여 세션 상세 + AI 요약을 제공합니다.
+(상세 절차는 `/agf show` 스킬 참조)
 
 ## Step 2B: Topic Recall (vis Semantic Search)
 
@@ -147,7 +150,7 @@ Tell the user the node/edge counts and what to look for (clusters, shared files)
 
 ## Notes
 
-- Temporal queries go through `recall-day.py` (native JSONL)
+- Temporal queries go through `agf/list.py` + `agf/show.py` (history.jsonl 인덱스 활용, 빠르고 정확)
 - Graph queries go through `session-graph.py` (NetworkX + pyvis)
 - Topic queries use `vis search` (BGE-M3 semantic search) with `--rerank` for accuracy
 - vis는 vault 전체(세션, 노트, 데일리)를 단일 검색으로 커버 — 별도 컬렉션 분리 불필요
