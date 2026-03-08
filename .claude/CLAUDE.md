@@ -45,7 +45,7 @@ Each task is executed by launching a new sub-agent, preventing context exhaustio
 
 **Tool Consolidation Principle:** If a human can't definitively choose between tools, the agent can't either. Prefer one comprehensive tool over multiple narrow alternatives.
 
-**Claude 세션 검색:** qmd는 제거됨 (2026-03-08). 아래 도구만 사용.
+**Claude 세션 검색:**
 
 | 상황 | 도구 | 예시 |
 |------|------|------|
@@ -53,11 +53,12 @@ Each task is executed by launching a new sub-agent, preventing context exhaustio
 | 세션 상세 + AI 요약 | `/agf show` | `/agf show a1b2c3d4` |
 | 키워드로 세션 제목 검색 | `/agf search` | `/agf search dotfiles` |
 | 세션 대화 내용까지 검색 | `/agf search --deep` | `/agf search --deep "vis 설치"` |
-| 개념/주제로 세션+노트 탐색 | `vis search` | `vis search "TDD 리팩토링" --rerank` |
+| 세션 semantic 검색 | `qmd` | `qmd "TDD 리팩토링"` |
+| Vault 문서 의미적 탐색 | `vis search` | `vis search "TDD 리팩토링" --rerank` |
 | 시간 기반 타임라인 | `/recall` | `/recall last week` |
 | 세션-파일 관계 그래프 | `/recall graph` | `/recall graph last week` |
 
-핵심: agf=정확한 검색(키워드/ID), vis=의미적 탐색(개념/유사도), recall=시간 기반+시각화
+핵심: agf=정확한 검색(키워드/ID), qmd=세션 semantic 검색, vis=vault 문서 의미적 탐색, recall=시간 기반+시각화
 </tool_preferences>
 
 ### Action Principles

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync Claude Code sessions to ~/git/claude-session (Git + Obsidian vault).
+"""Sync Claude Code sessions to ~/git/claude-sessions (Git + Obsidian vault).
 
 Sessions are saved as markdown with YYYY/MM/ date folders and project names
 in both the filename and frontmatter projects field.
@@ -25,6 +25,7 @@ from pathlib import Path
 
 __version__ = "1.0.0"
 
+
 # Configuration - auto-detect from environment or CWD
 def _detect_sessions_dir():
     """Auto-detect Claude project sessions directory from CWD."""
@@ -35,12 +36,17 @@ def _detect_sessions_dir():
         return candidate
     # Fallback: most recently modified project dir
     if PROJECTS_DIR.is_dir():
-        dirs = sorted([d for d in PROJECTS_DIR.iterdir() if d.is_dir()], key=lambda d: d.stat().st_mtime, reverse=True)
+        dirs = sorted(
+            [d for d in PROJECTS_DIR.iterdir() if d.is_dir()],
+            key=lambda d: d.stat().st_mtime,
+            reverse=True,
+        )
         if dirs:
             return dirs[0]
     return PROJECTS_DIR
 
-SESSION_REPO = Path.home() / "git" / "claude-session"
+
+SESSION_REPO = Path.home() / "git" / "claude-sessions"
 PROJECTS_DIR = Path.home() / ".claude" / "projects"
 SESSIONS_DIR = _detect_sessions_dir()
 SKILLS_DIR = Path.home() / ".claude" / "skills"
@@ -102,6 +108,7 @@ PRESERVED_SECTION = "## My Notes"
 # Parsing & Extraction
 # =============================================================================
 
+
 def parse_jsonl(file_path: Path) -> list[dict]:
     """Parse a JSONL file into a list of records."""
     records = []
@@ -130,7 +137,7 @@ def path_to_wikilink(file_path: str) -> str | None:
     """Convert a file path to a wiki link if it's in the vault."""
     vault_str = str(VAULT_DIR)
     if file_path.startswith(vault_str):
-        rel_path = file_path[len(vault_str):].lstrip("/")
+        rel_path = file_path[len(vault_str) :].lstrip("/")
         if rel_path.endswith(".md"):
             rel_path = rel_path[:-3]
         return f"[[{rel_path}]]"
@@ -243,6 +250,7 @@ def extract_session_data(records: list[dict]) -> dict:
 # Frontmatter & Markdown
 # =============================================================================
 
+
 def parse_frontmatter(content: str) -> dict:
     """Parse frontmatter from markdown content."""
     frontmatter = {}
@@ -314,7 +322,12 @@ def extract_my_notes_section(content: str) -> str | None:
     return None
 
 
-def generate_markdown(data: dict, session_id: str, existing_fm: dict | None = None, my_notes: str | None = None) -> str:
+def generate_markdown(
+    data: dict,
+    session_id: str,
+    existing_fm: dict | None = None,
+    my_notes: str | None = None,
+) -> str:
     """Generate markdown content from session data."""
     lines = []
 
@@ -433,7 +446,9 @@ def generate_markdown(data: dict, session_id: str, existing_fm: dict | None = No
     else:
         lines.append("## My Notes")
         lines.append("")
-        lines.append("<!-- Add your notes here. This section is preserved across syncs. -->")
+        lines.append(
+            "<!-- Add your notes here. This section is preserved across syncs. -->"
+        )
     lines.append("")
 
     # Conversation
@@ -451,6 +466,7 @@ def generate_markdown(data: dict, session_id: str, existing_fm: dict | None = No
 # =============================================================================
 # File Operations
 # =============================================================================
+
 
 def find_session_file(session_id: str) -> Path | None:
     """Find existing markdown file for a session."""
@@ -471,8 +487,12 @@ def get_output_path(session_id: str, date: str, project_name: str = "") -> Path:
     return SESSION_REPO / year / month / filename
 
 
-def sync_session(session_id: str, transcript_path: str | None = None,
-                 quiet: bool = False, project_name: str = "") -> Path | None:
+def sync_session(
+    session_id: str,
+    transcript_path: str | None = None,
+    quiet: bool = False,
+    project_name: str = "",
+) -> Path | None:
     """Sync a session to markdown. Returns output path or None."""
     if session_id.startswith("agent-"):
         return None
@@ -497,7 +517,9 @@ def sync_session(session_id: str, transcript_path: str | None = None,
         project_name = extract_project_name(SESSIONS_DIR.name)
 
     existing_file = find_session_file(session_id)
-    output_file = existing_file or get_output_path(session_id, data["date"], project_name)
+    output_file = existing_file or get_output_path(
+        session_id, data["date"], project_name
+    )
 
     existing_fm = None
     my_notes = None
@@ -511,7 +533,10 @@ def sync_session(session_id: str, transcript_path: str | None = None,
         if existing_fm is None:
             existing_fm = {}
         existing_projects = existing_fm.get("projects", [])
-        if isinstance(existing_projects, list) and project_name not in existing_projects:
+        if (
+            isinstance(existing_projects, list)
+            and project_name not in existing_projects
+        ):
             existing_projects.append(project_name)
             existing_fm["projects"] = existing_projects
 
@@ -545,11 +570,13 @@ def add_comment(session_id: str, text: str) -> bool:
         new_comments = new_entry
 
     # Update frontmatter - replace comments field
-    comments_yaml = "comments: |\n" + "\n".join(f"  {line}" for line in new_comments.split("\n"))
+    comments_yaml = "comments: |\n" + "\n".join(
+        f"  {line}" for line in new_comments.split("\n")
+    )
 
-    if 'comments: |' in content:
+    if "comments: |" in content:
         # Replace existing multiline comments
-        pattern = r'comments: \|\n(?:  .*\n)*'
+        pattern = r"comments: \|\n(?:  .*\n)*"
         new_content = re.sub(pattern, comments_yaml + "\n", content)
     elif 'comments: ""' in content:
         # Replace empty comments
@@ -625,6 +652,7 @@ def set_session_tags(session_id: str, tags: list[str]) -> bool:
 # Session Listing
 # =============================================================================
 
+
 def get_session_files() -> list[tuple[Path, dict]]:
     """Get all session files with frontmatter, sorted by last activity."""
     sessions = []
@@ -638,7 +666,11 @@ def get_session_files() -> list[tuple[Path, dict]]:
                 sessions.append((f, fm))
         except Exception:
             continue
-    return sorted(sessions, key=lambda x: x[1].get("last_activity", x[1].get("date", "")), reverse=True)
+    return sorted(
+        sessions,
+        key=lambda x: x[1].get("last_activity", x[1].get("date", "")),
+        reverse=True,
+    )
 
 
 def get_active_sessions() -> list[tuple[Path, dict]]:
@@ -704,6 +736,7 @@ def interactive_pick(sessions: list[tuple[Path, dict]]) -> Path | None:
 # Commands
 # =============================================================================
 
+
 def cmd_sync(args):
     """Sync command - from stdin JSON or explicit args."""
     session_id = args.session_id
@@ -724,7 +757,9 @@ def cmd_sync(args):
 
     # Detect project name from CWD
     project_name = extract_project_name(SESSIONS_DIR.name)
-    result = sync_session(session_id, transcript_path, quiet=args.quiet, project_name=project_name)
+    result = sync_session(
+        session_id, transcript_path, quiet=args.quiet, project_name=project_name
+    )
     return 0
 
 
@@ -739,7 +774,9 @@ def cmd_export(args):
             project_name = extract_project_name(project_dir.name)
             for f in project_dir.glob("*.jsonl"):
                 if f.stat().st_mtime >= cutoff and f.stat().st_size > 0:
-                    sync_session(f.stem, str(f), quiet=args.quiet, project_name=project_name)
+                    sync_session(
+                        f.stem, str(f), quiet=args.quiet, project_name=project_name
+                    )
                     count += 1
         if not args.quiet:
             print(f"Exported {count} sessions from today")
@@ -751,7 +788,9 @@ def cmd_export(args):
             project_name = extract_project_name(project_dir.name)
             for f in project_dir.glob("*.jsonl"):
                 if f.stat().st_size > 0:
-                    sync_session(f.stem, str(f), quiet=args.quiet, project_name=project_name)
+                    sync_session(
+                        f.stem, str(f), quiet=args.quiet, project_name=project_name
+                    )
                     count += 1
         if not args.quiet:
             print(f"Exported {count} total sessions")
@@ -762,7 +801,12 @@ def cmd_export(args):
             if parent.parent == PROJECTS_DIR:
                 project_name = extract_project_name(parent.name)
                 break
-        sync_session(session_file.stem, str(session_file), quiet=args.quiet, project_name=project_name)
+        sync_session(
+            session_file.stem,
+            str(session_file),
+            quiet=args.quiet,
+            project_name=project_name,
+        )
 
     return 0
 
@@ -821,7 +865,10 @@ def cmd_note(args):
             session_id = fm.get("session_id")
 
     if not session_id:
-        print("Error: No session_id. Use --session-id or set CLAUDE_SESSION_ID", file=sys.stderr)
+        print(
+            "Error: No session_id. Use --session-id or set CLAUDE_SESSION_ID",
+            file=sys.stderr,
+        )
         return 1
 
     text = " ".join(args.text)
@@ -868,14 +915,20 @@ def cmd_log(args):
             session_id = fm.get("session_id")
 
     if not session_id:
-        print("Error: No session_id. Use --session-id or set CLAUDE_SESSION_ID", file=sys.stderr)
+        print(
+            "Error: No session_id. Use --session-id or set CLAUDE_SESSION_ID",
+            file=sys.stderr,
+        )
         return 1
 
     # Set status if provided
     if args.status:
         valid_statuses = ["active", "done", "blocked", "handoff"]
         if args.status not in valid_statuses:
-            print(f"Error: Invalid status '{args.status}'. Must be one of: {', '.join(valid_statuses)}", file=sys.stderr)
+            print(
+                f"Error: Invalid status '{args.status}'. Must be one of: {', '.join(valid_statuses)}",
+                file=sys.stderr,
+            )
             return 1
         set_session_status(session_id, args.status)
         print(f"Status: {args.status}")
@@ -922,12 +975,15 @@ def cmd_list(args):
 # Main
 # =============================================================================
 
+
 def main():
     parser = argparse.ArgumentParser(
         prog="claude-sessions",
         description="Sync Claude Code sessions to Obsidian markdown",
     )
-    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
+    parser.add_argument(
+        "--version", action="version", version=f"%(prog)s {__version__}"
+    )
     parser.add_argument("-q", "--quiet", action="store_true", help="Suppress output")
 
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -940,17 +996,27 @@ def main():
 
     # export
     p_export = subparsers.add_parser("export", help="Batch export sessions")
-    p_export.add_argument("--today", action="store_true", help="Export today's sessions")
+    p_export.add_argument(
+        "--today", action="store_true", help="Export today's sessions"
+    )
     p_export.add_argument("--all", action="store_true", help="Export all sessions")
     p_export.add_argument("file", nargs="?", help="Specific session file")
     p_export.set_defaults(func=cmd_export)
 
     # resume
     p_resume = subparsers.add_parser("resume", help="Resume a session")
-    p_resume.add_argument("--pick", "-p", action="store_true", help="Interactive picker")
-    p_resume.add_argument("--active", "-a", action="store_true", help="Most recent active")
-    p_resume.add_argument("--fork", "-f", action="store_true", help="Fork instead of continue")
-    p_resume.add_argument("--all", action="store_true", help="Show all (not just active)")
+    p_resume.add_argument(
+        "--pick", "-p", action="store_true", help="Interactive picker"
+    )
+    p_resume.add_argument(
+        "--active", "-a", action="store_true", help="Most recent active"
+    )
+    p_resume.add_argument(
+        "--fork", "-f", action="store_true", help="Fork instead of continue"
+    )
+    p_resume.add_argument(
+        "--all", action="store_true", help="Show all (not just active)"
+    )
     p_resume.add_argument("file", nargs="?", help="Markdown file to resume from")
     p_resume.set_defaults(func=cmd_resume)
 
@@ -967,9 +1033,13 @@ def main():
     p_close.set_defaults(func=cmd_close)
 
     # log
-    p_log = subparsers.add_parser("log", help="Annotate session with status/tags/rating")
+    p_log = subparsers.add_parser(
+        "log", help="Annotate session with status/tags/rating"
+    )
     p_log.add_argument("text", nargs="*", help="Optional comment")
-    p_log.add_argument("--status", "-s", help="Set status (active|done|blocked|handoff)")
+    p_log.add_argument(
+        "--status", "-s", help="Set status (active|done|blocked|handoff)"
+    )
     p_log.add_argument("--tags", "-t", help="Set tags (comma-separated)")
     p_log.add_argument("--rating", "-r", type=int, help="Set rating (1-10)")
     p_log.add_argument("--session-id", help="Session ID (defaults to current)")
