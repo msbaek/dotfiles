@@ -138,7 +138,7 @@ Strip "graph" prefix from query to get the date expression. **반드시 1회만 
 
 ```bash
 # 정확히 1회만 호출 — 여러 번 호출 금지
-python3 ~/.claude/skills/recall/scripts/session-graph.py DATE_EXPR
+python3 ~/.claude/skills/recall/scripts/session-graph.py DATE_EXPR --all-projects --min-msgs 1
 ```
 
 지원되는 DATE_EXPR (스크립트가 내부 처리):
