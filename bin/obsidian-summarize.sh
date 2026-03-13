@@ -175,12 +175,18 @@ run_launcher() {
     exit 1
   fi
 
-  # Launch tmux session with executor mode
-  local session_name="obsidian-$(date +%s)"
+  # Launch in tmux window (shared "obsidian" session for visibility)
+  local tmux_session="obsidian"
+  local window_name="$type-$(date +%H%M%S)"
   local escaped_url
   escaped_url=$(printf '%q' "$url")
-  tmux new-session -d -s "$session_name" \
-    "$SCRIPT_PATH --execute $type $escaped_url"
+  local cmd="$SCRIPT_PATH --execute $type $escaped_url"
+
+  if tmux has-session -t "$tmux_session" 2>/dev/null; then
+    tmux new-window -t "$tmux_session" -n "$window_name" "$cmd"
+  else
+    tmux new-session -d -s "$tmux_session" -n "$window_name" "$cmd"
+  fi
 }
 
 # ── Main dispatch ────────────────────────────────
