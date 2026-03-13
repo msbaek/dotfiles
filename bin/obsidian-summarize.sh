@@ -1,6 +1,6 @@
 #!/bin/bash
-# obsidian-summarize.sh — Alfred + Claude Obsidian Summarization
-# Self-invoking pattern: Launcher mode (Alfred) → Executor mode (tmux)
+# obsidian-summarize.sh — Claude Obsidian Summarization
+# Self-invoking pattern: Launcher mode → Executor mode (tmux)
 #
 # Usage:
 #   Launcher:  obsidian-summarize.sh youtube-en|youtube-kr|article
@@ -12,7 +12,6 @@ VAULT_ROOT="${VAULT_ROOT:-$HOME/DocumentsLocal/msbaek_vault}"
 ERROR_LOG="$VAULT_ROOT/001-INBOX/error-list.md"
 NOTIFIER="/opt/homebrew/bin/terminal-notifier"
 SCRIPT_PATH="$(realpath "$0")"
-LOCK_FILE="/tmp/obsidian-summarize.lock"
 SHARED_LOG="/tmp/obsidian-summarize.log"
 
 # ── Helpers ──────────────────────────────────────
@@ -104,20 +103,17 @@ run_executor() {
   log "┃ URL: $url"
   log "┃ Skill: $skill_cmd"
 
-  # Acquire exclusive lock — queues concurrent requests
-  log "Acquiring lock..."
-  exec 9>"$LOCK_FILE"
-  if ! flock -n 9; then
-    log "⏳ Waiting for previous job to finish..."
-    send_notification "Obsidian Summarize ⏳" "Queued: $type (waiting for previous job)"
-    flock 9
-  fi
-  log "Lock acquired"
+  # Ensure Playwright MCP server is running
+  ~/bin/playwright-mcp-server.sh || {
+    log "❌ Playwright MCP server failed to start"
+    send_notification "Obsidian Summarize ❌" "Playwright MCP server failed"
+    return 1
+  }
+
   send_notification "Obsidian Summarize" "Started: $type — $url"
 
   # Run claude from VAULT_ROOT so skills save files to the correct vault
   cd "$VAULT_ROOT" || {
-    flock -u 9
     log "❌ Cannot cd to $VAULT_ROOT"
     send_notification "Obsidian Summarize ❌" "Cannot cd to $VAULT_ROOT"
     return 1
@@ -126,10 +122,6 @@ run_executor() {
   log "Running claude..."
   local exit_code=0
   claude --dangerously-skip-permissions -p "$skill_cmd" || exit_code=$?
-
-  # Release lock (also auto-released when fd 9 closes on process exit)
-  flock -u 9
-  log "Lock released"
 
   if [[ $exit_code -eq 0 ]]; then
     log "✅ Done"
@@ -148,7 +140,7 @@ run_executor() {
   fi
 }
 
-# ── Launcher mode (called from Alfred) ──────────
+# ── Launcher mode ────────────────────────────────
 
 run_launcher() {
   local type="$1"
