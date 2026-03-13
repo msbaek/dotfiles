@@ -3,8 +3,9 @@
 # Self-invoking pattern: Launcher mode → Executor mode (tmux)
 #
 # Usage:
-#   Launcher:  obsidian-summarize.sh youtube-en|youtube-kr|article
-#   Executor:  obsidian-summarize.sh --execute youtube-en|youtube-kr|article <url>
+#   Launcher:   obsidian-summarize.sh youtube-en|youtube-kr|article       (URL from Dia/clipboard)
+#   With URL:   obsidian-summarize.sh --with-url youtube-en|... <url>     (URL passed directly)
+#   Executor:   obsidian-summarize.sh --execute youtube-en|... <url>      (runs inside tmux)
 
 set -euo pipefail
 
@@ -121,7 +122,7 @@ run_executor() {
   log "Working directory: $(pwd)"
   log "Running claude..."
   local exit_code=0
-  claude --dangerously-skip-permissions -p "$skill_cmd" || exit_code=$?
+  OBSIDIAN_EXEC=1 claude --dangerously-skip-permissions -p "$skill_cmd" || exit_code=$?
 
   if [[ $exit_code -eq 0 ]]; then
     log "✅ Done"
@@ -140,12 +141,49 @@ run_executor() {
   fi
 }
 
-# ── Launcher mode ────────────────────────────────
+# ── Tmux helper ──────────────────────────────────
+
+launch_tmux_window() {
+  local type="$1" url="$2"
+  local tmux_session="obsidian"
+  local window_name="$type-$(date +%H%M%S)"
+  local escaped_url
+  escaped_url=$(printf '%q' "$url")
+  local cmd="$SCRIPT_PATH --execute $type $escaped_url"
+
+  if tmux has-session -t "$tmux_session" 2>/dev/null; then
+    tmux new-window -t "$tmux_session" -n "$window_name" "$cmd"
+  else
+    tmux new-session -d -s "$tmux_session" -n "$window_name" "$cmd"
+  fi
+}
+
+# ── With-URL mode (called from Claude skills) ────
+
+run_with_url() {
+  local type="$1" url="$2"
+
+  case "$type" in
+  youtube-en | youtube-kr | article) ;;
+  *)
+    echo "Unknown type: $type"
+    exit 1
+    ;;
+  esac
+
+  if ! validate_url "$url"; then
+    echo "Invalid URL: $url"
+    exit 1
+  fi
+
+  launch_tmux_window "$type" "$url"
+}
+
+# ── Launcher mode (URL from Dia/clipboard) ───────
 
 run_launcher() {
   local type="$1"
 
-  # Validate type
   case "$type" in
   youtube-en | youtube-kr | article) ;;
   *)
@@ -154,13 +192,11 @@ run_launcher() {
     ;;
   esac
 
-  # Verify INBOX directory exists
   if [[ ! -d "$VAULT_ROOT/001-INBOX" ]]; then
     send_notification "Obsidian Summarize ❌" "INBOX directory not found"
     exit 1
   fi
 
-  # Extract URL
   local url
   url=$(extract_url)
 
@@ -175,18 +211,7 @@ run_launcher() {
     exit 1
   fi
 
-  # Launch in tmux window (shared "obsidian" session for visibility)
-  local tmux_session="obsidian"
-  local window_name="$type-$(date +%H%M%S)"
-  local escaped_url
-  escaped_url=$(printf '%q' "$url")
-  local cmd="$SCRIPT_PATH --execute $type $escaped_url"
-
-  if tmux has-session -t "$tmux_session" 2>/dev/null; then
-    tmux new-window -t "$tmux_session" -n "$window_name" "$cmd"
-  else
-    tmux new-session -d -s "$tmux_session" -n "$window_name" "$cmd"
-  fi
+  launch_tmux_window "$type" "$url"
 }
 
 # ── Main dispatch ────────────────────────────────
@@ -194,6 +219,9 @@ run_launcher() {
 if [[ "${1:-}" == "--execute" ]]; then
   shift
   run_executor "$@"
+elif [[ "${1:-}" == "--with-url" ]]; then
+  shift
+  run_with_url "$@"
 else
   run_launcher "${1:?Usage: obsidian-summarize.sh youtube-en|youtube-kr|article}"
 fi
