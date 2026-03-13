@@ -104,8 +104,18 @@ run_executor() {
   log "┃ URL: $url"
   log "┃ Skill: $skill_cmd"
 
+  # Serialize access — Playwright MCP server doesn't handle concurrent clients well
+  local lock_file="/tmp/obsidian-summarize.lock"
+  exec 9>"$lock_file"
+  if ! flock -n 9; then
+    log "⏳ Waiting for previous job to finish..."
+    send_notification "Obsidian Summarize ⏳" "Queued: $type (waiting)"
+    flock 9
+  fi
+
   # Ensure Playwright MCP server is running
   ~/bin/playwright-mcp-server.sh || {
+    flock -u 9
     log "❌ Playwright MCP server failed to start"
     send_notification "Obsidian Summarize ❌" "Playwright MCP server failed"
     return 1
@@ -115,6 +125,7 @@ run_executor() {
 
   # Run claude from VAULT_ROOT so skills save files to the correct vault
   cd "$VAULT_ROOT" || {
+    flock -u 9
     log "❌ Cannot cd to $VAULT_ROOT"
     send_notification "Obsidian Summarize ❌" "Cannot cd to $VAULT_ROOT"
     return 1
@@ -123,6 +134,8 @@ run_executor() {
   log "Running claude..."
   local exit_code=0
   OBSIDIAN_EXEC=1 claude --dangerously-skip-permissions -p "$skill_cmd" || exit_code=$?
+
+  flock -u 9
 
   if [[ $exit_code -eq 0 ]]; then
     log "✅ Done"
