@@ -425,5 +425,3 @@ Recoverability:
 |------|------|------|
 | ISMS | `~/git/isms-docs` | ISMS 관련 문서. 정보보호 정책, 인증 기준 등 참조 시 활용 |
 </reference_projects>
-
-@RTK.md

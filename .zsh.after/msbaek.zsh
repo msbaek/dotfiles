@@ -360,4 +360,3 @@ matrix() {
 disk-free() {
   df -k . | tail -1 | awk '{free=$4; printf "Free: %.2f GB (%.2f MB)\n", free/1024/1024, free/1024}'
 }
-# rtk init --global: run manually once for setup, not in shell rc
