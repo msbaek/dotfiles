@@ -33,23 +33,15 @@ color: yellow
 이 스킬은 Playwright MCP가 영구 프로필(`~/.playwright-profile`)로 Chrome을 실행합니다.
 - 로그인이 필요한 사이트는 **최초 1회** Playwright Chrome에서 로그인하면 세션이 유지됩니다.
 
-### Playwright 직렬화
+### Playwright MCP 서버 확인
 
-콘텐츠 추출 시작 전에 lock을 획득하고, 브라우저 종료 후 lock을 해제한다.
-
-Lock 파일: `/tmp/playwright-mcp.lock`
+콘텐츠 추출 시작 전에 Playwright MCP HTTP 서버가 실행 중인지 확인한다.
 
 ```bash
-# 획득
-exec 9>/tmp/playwright-mcp.lock && flock -w 300 9
-# 해제
-flock -u 9
+~/bin/playwright-mcp-server.sh
 ```
 
-- lock 획득 시: "🔒 Playwright lock 획득 (`/tmp/playwright-mcp.lock`)" 출력
-- lock 대기 시: "⏳ Playwright lock 대기 중 (`/tmp/playwright-mcp.lock`) — 수동 해제: `rm /tmp/playwright-mcp.lock`" 출력
-- lock 해제 시: "🔓 Playwright lock 해제" 출력
-- timeout(5분) 초과 시: lock 획득 실패로 처리, progress를 failed로 업데이트
+실패 시: 에러 보고 후 중단 (progress 파일을 `failed`로 업데이트)
 
 ### Step 1: 페이지 접근
 
@@ -97,9 +89,10 @@ async (page) => {
 3. 패턴이 감지되면: 사용자에게 `login_guide` 메시지 표시, 로그인 완료 후 재시도
 4. 미등록 사이트에서 snapshot 본문이 200자 미만이면: 로그인 필요 가능성 안내
 
-### Step 5: 브라우저 정리 및 lock 해제
+### Step 5: 탭 정리
 
-`mcp__playwright__browser_close`로 페이지를 닫고, Playwright lock을 해제한다.
+작업 완료 후 `mcp__playwright__browser_close`로 현재 페이지를 닫는다.
+브라우저 프로세스는 HTTP 서버가 관리하므로 별도 종료 불필요.
 
 ## 이미지 처리
 
@@ -110,10 +103,10 @@ async (page) => {
 ## 처리 프로세스 요약
 
 1. (백그라운드 모드 시) Progress 파일 생성 → subagent 시작 → 즉시 반환
-2. Playwright lock 획득
+2. Playwright MCP 서버 확인
 3. Playwright로 콘텐츠 추출 (메타데이터 + 본문 + 이미지)
 4. 로그인 wall 감지
-5. Playwright lock 해제
+5. 탭 정리
 6. Wikilink 후보 파악 (vis search)
 7. 번역/요약 (shared-rules + article 구조, wikilink 포함)
 8. 이미지 다운로드
