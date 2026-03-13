@@ -1,0 +1,37 @@
+[
+  {
+    "content": "Backlog-md로 작업 목록 생성",
+    "status": "completed",
+    "activeForm": "Backlog-md로 작업 목록 생성 완료"
+  },
+  {
+    "content": "MOC 고유 내용 베이스 문서에 흡수",
+    "status": "in_progress",
+    "activeForm": "MOC 고유 내용 흡수 중"
+  },
+  {
+    "content": "3번 문서 고유 내용 베이스 문서에 흡수",
+    "status": "pending",
+    "activeForm": "3번 문서 고유 내용 흡수 중"
+  },
+  {
+    "content": "중복 내용 정리 및 최적화",
+    "status": "pending",
+    "activeForm": "중복 내용 정리 중"
+  },
+  {
+    "content": "메타데이터/링크 통합",
+    "status": "pending",
+    "activeForm": "메타데이터/링크 통합 중"
+  },
+  {
+    "content": "원본 문서 리다이렉트 설정",
+    "status": "pending",
+    "activeForm": "원본 문서 리다이렉트 설정 중"
+  },
+  {
+    "content": "최종 검토",
+    "status": "pending",
+    "activeForm": "최종 검토 중"
+  }
+]

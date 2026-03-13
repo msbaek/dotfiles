@@ -1,0 +1,32 @@
+[
+  {
+    "content": "TDD 절차 및 가위바위보 게임 요구사항 정의",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "첫 번째 테스트 케이스 작성 (Red 단계)",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "최소한의 코드로 테스트 통과 (Green 단계)",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "코드 리팩토링 (Refactor 단계)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "다음 기능 테스트 작성 및 반복",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  }
+]

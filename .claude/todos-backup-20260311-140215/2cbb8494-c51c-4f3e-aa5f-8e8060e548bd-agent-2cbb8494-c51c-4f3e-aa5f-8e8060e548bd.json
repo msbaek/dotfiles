@@ -1,0 +1,17 @@
+[
+  {
+    "content": "트위터 페이지 접속하여 내용 읽기",
+    "status": "pending",
+    "id": "1"
+  },
+  {
+    "content": "트위터 글과 댓글 내용 분석",
+    "status": "pending",
+    "id": "2"
+  },
+  {
+    "content": "옵시디안 문서 형식으로 정리 및 생성",
+    "status": "pending",
+    "id": "3"
+  }
+]

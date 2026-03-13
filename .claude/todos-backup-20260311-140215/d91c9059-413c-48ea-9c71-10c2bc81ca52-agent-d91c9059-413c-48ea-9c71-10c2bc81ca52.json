@@ -1,0 +1,98 @@
+[
+  {
+    "content": "TDD 관련 문서 전체 조사 및 목록 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "문서별 메타데이터 추출 (제목, 저자, 태그)",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "주제별 문서 분류 체계 수립",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "책의 장(Chapter) 구조 설계",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "GitHub Pages 설정 및 Book 템플릿 준비",
+    "status": "pending",
+    "priority": "low",
+    "id": "5"
+  },
+  {
+    "content": "TDD 문서 인벤토리 CSV 파일 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "계층형 태그 체계 설계 및 적용",
+    "status": "completed",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "중복 콘텐츠 통합 계획 수립",
+    "status": "completed",
+    "priority": "medium",
+    "id": "8"
+  },
+  {
+    "content": "예제 코드 표준화 가이드 작성",
+    "status": "completed",
+    "priority": "medium",
+    "id": "9"
+  },
+  {
+    "content": "첫 3개 장 초안 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "10"
+  },
+  {
+    "content": "Chapter 1 - TDD 왜 그리고 어떻게 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "11"
+  },
+  {
+    "content": "Chapter 1 예제 코드 작성 (완전수)",
+    "status": "completed",
+    "priority": "high",
+    "id": "12"
+  },
+  {
+    "content": "Chapter 2 - 오해에서 벗어나기 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "13"
+  },
+  {
+    "content": "Chapter 3 - 테스트 케이스 도출하기 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "14"
+  },
+  {
+    "content": "Chapter 2 예제 코드 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "15"
+  },
+  {
+    "content": "Chapter 3 예제 코드 작성 (Prime Factors)",
+    "status": "completed",
+    "priority": "high",
+    "id": "16"
+  }
+]

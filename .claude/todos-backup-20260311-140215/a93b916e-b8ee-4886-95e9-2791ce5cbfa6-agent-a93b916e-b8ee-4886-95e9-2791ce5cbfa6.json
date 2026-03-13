@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Tidying 디렉토리의 모든 파일 내용 읽기",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "각 파일 내용 분석하여 적절한 계층적 태그 생성",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "Python 스크립트 작성 (YAML frontmatter 정확한 처리)",
+    "status": "in_progress",
+    "id": "3"
+  },
+  {
+    "content": "스크립트 실행하여 모든 파일에 태그 적용",
+    "status": "pending",
+    "id": "4"
+  },
+  {
+    "content": "결과 확인 및 오류 체크",
+    "status": "pending",
+    "id": "5"
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "content": "할당된 파일들의 YAML frontmatter 태그 개선 작업 - Agent-2가 8개 파일 처리 완료, 우선순위 메시지 전송",
+    "status": "in_progress",
+    "id": "1"
+  },
+  {
+    "content": "LTI.md 파일 처리 - 우선 처리 요청 전송됨",
+    "status": "in_progress",
+    "id": "2"
+  },
+  {
+    "content": "Payment.md 파일 처리 - 우선 처리 요청 전송됨",
+    "status": "in_progress",
+    "id": "3"
+  },
+  {
+    "content": "QA.md 파일 처리 - 우선 처리 요청 전송됨",
+    "status": "in_progress",
+    "id": "4"
+  },
+  {
+    "content": "주문시 비동기 Job 처리 모델 파일 처리 - 우선 처리 요청 전송됨",
+    "status": "in_progress",
+    "id": "5"
+  },
+  {
+    "content": "4. EDA 기반 병렬 처리 파일 처리 - 우선 처리 요청 전송됨",
+    "status": "in_progress",
+    "id": "6"
+  },
+  {
+    "content": "아키텍처TF-2020.md 파일 처리 - 우선 처리 요청 전송됨",
+    "status": "in_progress",
+    "id": "7"
+  },
+  {
+    "content": "나머지 5개 할당 파일들 처리 - 우선 처리 요청 전송됨",
+    "status": "in_progress",
+    "id": "8"
+  },
+  {
+    "content": "Agent-2의 우선순위 파일 처리 결과 모니터링",
+    "status": "in_progress",
+    "id": "9"
+  }
+]

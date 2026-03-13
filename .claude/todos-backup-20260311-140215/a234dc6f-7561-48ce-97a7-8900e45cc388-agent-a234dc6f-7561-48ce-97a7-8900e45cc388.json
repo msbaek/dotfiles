@@ -1,0 +1,26 @@
+[
+  {
+    "content": "analysis_results.json 파일 생성 확인 (주기적으로 체크)",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "분석 결과 파일 읽고 병합 대상 파일 쌍 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "각 파일 쌍에 대해 병합 작업 수행",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "병합 진행 상황을 merge_progress.log에 기록",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "content": "current-batch.txt 파일 읽어서 처리할 파일 목록 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "태그 부여 규칙 파일(tagging-rule.md) 읽기",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "각 파일 처리 (태그 분석 및 교체)",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "진행 상황 보고 (30개 파일마다)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "최종 결과 요약 보고",
+    "status": "pending",
+    "priority": "low",
+    "id": "5"
+  }
+]

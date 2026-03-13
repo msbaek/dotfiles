@@ -1,0 +1,20 @@
+[
+  {
+    "content": "YouTube 영상 트랜스크립트 추출을 위한 Playwright 스크립트 작성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Playwright로 트랜스크립트 데이터 수집",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "수집된 트랜스크립트를 한글 아티팩트로 정리",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  }
+]

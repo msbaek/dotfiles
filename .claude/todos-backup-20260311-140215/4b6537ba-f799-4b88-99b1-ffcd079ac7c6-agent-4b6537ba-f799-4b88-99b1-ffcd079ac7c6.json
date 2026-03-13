@@ -1,0 +1,26 @@
+[
+  {
+    "content": "CLEAN_CODE 디렉토리 파일들 스캔 및 현재 태그 상태 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "태그 개선이 필요한 파일들 식별",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "각 파일의 내용에 맞는 hierarchical tag 적용",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "처리 결과 및 제외된 파일 목록 보고",
+    "status": "pending",
+    "priority": "low",
+    "id": "4"
+  }
+]

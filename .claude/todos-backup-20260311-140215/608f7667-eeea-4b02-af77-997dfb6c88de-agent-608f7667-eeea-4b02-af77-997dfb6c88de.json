@@ -1,0 +1,62 @@
+[
+  {
+    "content": "첫 번째 파일 'Bootiful Edge Services.md' 태그 정규화",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "파일 2-10 처리 (번역 ISTIO ~ vim-seminar.md)",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "실제 정규화 대상 파일 11개 완료",
+    "status": "completed",
+    "id": "2a"
+  },
+  {
+    "content": "추가 정규화 대상 파일들 처리 진행 중",
+    "status": "in_progress",
+    "id": "2b"
+  },
+  {
+    "content": "파일 11-50 배치 처리",
+    "status": "pending",
+    "id": "3"
+  },
+  {
+    "content": "파일 51-100 배치 처리",
+    "status": "pending",
+    "id": "4"
+  },
+  {
+    "content": "파일 101-200 배치 처리",
+    "status": "pending",
+    "id": "5"
+  },
+  {
+    "content": "파일 201-300 배치 처리",
+    "status": "pending",
+    "id": "6"
+  },
+  {
+    "content": "파일 301-400 배치 처리",
+    "status": "pending",
+    "id": "7"
+  },
+  {
+    "content": "파일 401-500 배치 처리",
+    "status": "pending",
+    "id": "8"
+  },
+  {
+    "content": "파일 501-596 배캄 처리",
+    "status": "pending",
+    "id": "9"
+  },
+  {
+    "content": "처리 결과 최종 검토 및 요약 보고",
+    "status": "pending",
+    "id": "10"
+  }
+]

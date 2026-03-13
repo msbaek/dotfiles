@@ -1,0 +1,32 @@
+[
+  {
+    "content": "현재 처리 진행 상황 파악 및 남은 작업 범위 확인",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "전체 파일 목록에서 처리 완료된 파일과 남은 파일 분리",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "orchestrate.py를 활용하여 남은 540개 파일을 배치 처리",
+    "status": "in_progress",
+    "id": "3"
+  },
+  {
+    "content": "각 배치마다 진행 상황 중간 보고 (매 50개 파일마다)",
+    "status": "pending",
+    "id": "4"
+  },
+  {
+    "content": "모든 작업 완료 후 최종 요약 보고서 작성",
+    "status": "pending",
+    "id": "5"
+  },
+  {
+    "content": "파일 로딩 성능 문제 해결 및 효율적인 처리 방법 구현",
+    "status": "completed",
+    "id": "6"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "content": "파일 1-30 태그 재부여 (AI 및 프로그래밍 관련)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "batch1"
+  },
+  {
+    "content": "파일 31-60 태그 재부여 (BRUNCH, Omnivore 2024-07)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch2"
+  },
+  {
+    "content": "파일 61-90 태그 재부여 (Omnivore 2024-07~08)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch3"
+  },
+  {
+    "content": "파일 91-120 태그 재부여 (Omnivore 2024-08~10)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch4"
+  },
+  {
+    "content": "파일 121-150 태그 재부여 (Omnivore 2024-10~11, RESOURCES)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch5"
+  },
+  {
+    "content": "파일 151-180 태그 재부여 (RESOURCES/AGILE, AI)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch6"
+  },
+  {
+    "content": "파일 181-210 태그 재부여 (RESOURCES/AI)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch7"
+  },
+  {
+    "content": "파일 211-240 태그 재부엌 (RESOURCES/AI/MCP, Pair, PROMPTS)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch8"
+  },
+  {
+    "content": "파일 241-270 태그 재부여 (RESOURCES/AI/PROMPTS, tools)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch9"
+  },
+  {
+    "content": "파일 271-301 태그 재부여 (RESOURCES/AI/tools, Usage)",
+    "status": "pending",
+    "priority": "high",
+    "id": "batch10"
+  },
+  {
+    "content": "30개 파일마다 진행 상황 보고",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "progress-report"
+  },
+  {
+    "content": "작업 완료 후 전체 결과 요약 보고",
+    "status": "pending",
+    "priority": "high",
+    "id": "final-report"
+  }
+]

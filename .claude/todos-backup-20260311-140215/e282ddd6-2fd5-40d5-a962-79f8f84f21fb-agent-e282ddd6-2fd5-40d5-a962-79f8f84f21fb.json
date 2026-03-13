@@ -1,0 +1,80 @@
+[
+  {
+    "content": "PLAN.md 파일 생성 및 계획 저장",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "ctemplate-mcp 프로젝트 구조 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "YouTube 플래이리스트 영상 자막/스크립트 추출",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "YouTube 트랜스크립트 다운로드 대안 방법 시도",
+    "status": "completed",
+    "priority": "high",
+    "id": "12"
+  },
+  {
+    "content": "YouTube 트랜스크립트 수동 수집 방법 연구 (나중에)",
+    "status": "pending",
+    "priority": "low",
+    "id": "13"
+  },
+  {
+    "content": "Brunch 블로그 글 수집",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "GitHub 저장소의 마크다운 파일 수집",
+    "status": "pending",
+    "priority": "medium",
+    "id": "8"
+  },
+  {
+    "content": "X(Twitter) 트윗 데이터 수집",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Facebook 포스트 데이터 수집",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "LinkedIn 포스트 데이터 수집",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "수집된 데이터를 구조화된 형태로 정리",
+    "status": "pending",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "Claude Desktop에서 GitHub MCP 서버 설정 및 테스트",
+    "status": "pending",
+    "priority": "high",
+    "id": "10"
+  },
+  {
+    "content": "응답 품질 검증 및 개선",
+    "status": "pending",
+    "priority": "medium",
+    "id": "11"
+  }
+]

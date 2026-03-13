@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Update LSP Plugins article with full content",
+    "status": "in_progress",
+    "activeForm": "Updating LSP Plugins article"
+  },
+  {
+    "content": "Update API Response Time article with full content",
+    "status": "pending",
+    "activeForm": "Updating API Response Time article"
+  },
+  {
+    "content": "Update Vibe Kanban article with full content",
+    "status": "pending",
+    "activeForm": "Updating Vibe Kanban article"
+  },
+  {
+    "content": "Update NotebookLM article with full content",
+    "status": "pending",
+    "activeForm": "Updating NotebookLM article"
+  }
+]

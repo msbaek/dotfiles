@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Ghostty의 secure keyboard entry 상태 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Ghostty에서 secure keyboard entry 비활성화 방법 찾기",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "skhd가 accessibility 권한을 가지고 있는지 확인",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "해결책 적용 후 skhd 재시작 테스트",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Ghostty 프로세스가 백그라운드에서 실행 중인지 확인",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Phase 1: 배치 파일 파싱 (01-29)",
+    "status": "in_progress",
+    "activeForm": "배치 파일 파싱 중"
+  },
+  {
+    "content": "Phase 1: 중복 제거 및 마스터 문서 생성",
+    "status": "pending",
+    "activeForm": "중복 제거 및 마스터 문서 생성 중"
+  },
+  {
+    "content": "Phase 2: 6개 카테고리 재구성 및 심층 분석",
+    "status": "pending",
+    "activeForm": "카테고리 재구성 및 심층 분석 중"
+  },
+  {
+    "content": "Phase 3: 4종 실용 가이드 생성",
+    "status": "pending",
+    "activeForm": "실용 가이드 생성 중"
+  },
+  {
+    "content": "Phase 4: Obsidian 노트 52개 생성",
+    "status": "pending",
+    "activeForm": "Obsidian 노트 생성 중"
+  }
+]

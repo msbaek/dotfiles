@@ -1,0 +1,27 @@
+[
+  {
+    "content": "01_delete_old_data.sql 실행 (2025년 이전 데이터 삭제)",
+    "status": "pending",
+    "activeForm": "2025년 이전 데이터 삭제 실행 중"
+  },
+  {
+    "content": "02_scrub_hmmall_core.sql 실행",
+    "status": "pending",
+    "activeForm": "hmmall 핵심 테이블 스크럽 중"
+  },
+  {
+    "content": "03_scrub_hmmall_extra.sql 실행",
+    "status": "pending",
+    "activeForm": "hmmall 추가 테이블 스크럽 중"
+  },
+  {
+    "content": "04_scrub_capybara.sql 실행",
+    "status": "pending",
+    "activeForm": "capybara 테이블 스크럽 중"
+  },
+  {
+    "content": "05_verify.sql 실행 (검증)",
+    "status": "pending",
+    "activeForm": "스크럽 결과 검증 중"
+  }
+]

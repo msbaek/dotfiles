@@ -1,0 +1,26 @@
+[
+  {
+    "content": "태깅 규칙 예시 파일 읽고 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-1"
+  },
+  {
+    "content": "agent-6-files.txt의 232개 파일 처리",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "todo-2"
+  },
+  {
+    "content": "50개 파일마다 진행 상황 보고",
+    "status": "completed",
+    "priority": "medium",
+    "id": "todo-3"
+  },
+  {
+    "content": "100개 파일마다 진행 상황 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "todo-4"
+  }
+]

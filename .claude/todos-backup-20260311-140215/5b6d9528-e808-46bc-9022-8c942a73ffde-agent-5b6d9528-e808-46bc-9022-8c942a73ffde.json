@@ -1,0 +1,152 @@
+[
+  {
+    "content": "BO-배송상세.sql 코멘트 추가",
+    "status": "completed",
+    "priority": "medium",
+    "id": "1"
+  },
+  {
+    "content": "BO-배송전체.sql 코멘트 추가",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "BO-배송준비.sql 코멘트 추가",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "BO-보고서-DHL_DEC_리스트.sql 코멘트 추가",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "BO-보고서-수출실적신구(X면장).sql 코멘트 추가",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "BO-상점관리자.sql 코멘트 추가",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "BO-상품상세-가분배.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "BO-상품상세-분배.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "8"
+  },
+  {
+    "content": "BO-상품상세-입출고.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "9"
+  },
+  {
+    "content": "BO-상품상세.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "10"
+  },
+  {
+    "content": "BO-실사재고입력.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "11"
+  },
+  {
+    "content": "BO-재고수불부.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "12"
+  },
+  {
+    "content": "BO-주문전체.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "13"
+  },
+  {
+    "content": "FO-상풍상세.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "14"
+  },
+  {
+    "content": "FO-잔금상품.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "15"
+  },
+  {
+    "content": "FO-주문생성.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "16"
+  },
+  {
+    "content": "bo-상품전체-검색.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "17"
+  },
+  {
+    "content": "settlement-02.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "18"
+  },
+  {
+    "content": "settlement-03.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "19"
+  },
+  {
+    "content": "settlement-04.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "20"
+  },
+  {
+    "content": "settlement-05.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "21"
+  },
+  {
+    "content": "settlement-06.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "22"
+  },
+  {
+    "content": "settlement-07.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "23"
+  },
+  {
+    "content": "settlement-08.sql 코멘트 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "24"
+  },
+  {
+    "content": "기타 파일들 코멘트 추가",
+    "status": "pending",
+    "priority": "low",
+    "id": "25"
+  }
+]

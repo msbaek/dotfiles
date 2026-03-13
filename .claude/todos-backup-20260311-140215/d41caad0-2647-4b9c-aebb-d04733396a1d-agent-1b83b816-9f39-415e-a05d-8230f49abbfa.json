@@ -1,0 +1,27 @@
+[
+  {
+    "content": "현재 환경 및 파일 목록 확인",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "태그 정규화 스크립트 개발",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "샘플 파일 3-5개 처리 및 결과 확인",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "사용자 승인 후 전체 591개 파일 일괄 처리",
+    "status": "pending",
+    "id": "4"
+  },
+  {
+    "content": "처리 결과 검증 및 요약 보고",
+    "status": "pending",
+    "id": "5"
+  }
+]

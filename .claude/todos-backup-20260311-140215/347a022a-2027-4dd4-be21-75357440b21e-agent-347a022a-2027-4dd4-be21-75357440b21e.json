@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Agent-4 파일 목록 처리 시작 (총 232개 파일)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "첫 50개 파일 처리 (003-RESOURCES/HR 디렉토리) - 32개 완료, 18개 처리 불가",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "51-100번 파일 처리 완료 - 총 90개 처리 (63개 완료, 27개 처리 불가)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "101-150번 파일 처리 (REFACTORING/Cases, CODE-SMELLS) - 150개까지 완료",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "151-200번 파일 처리 (REFACTORING/Technique, 레거시코드)",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "201-232번 파일 처리 (REFERENCES/Case Studies)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  }
+]

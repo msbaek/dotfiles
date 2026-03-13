@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Vault에서 소프트웨어 개발 관련 주제 검색",
+    "status": "completed",
+    "activeForm": "소프트웨어 개발 관련 주제 검색 중"
+  },
+  {
+    "content": "태그 체계 분석하여 개발/코딩 카테고리 파악",
+    "status": "in_progress",
+    "activeForm": "태그 체계 분석 중"
+  },
+  {
+    "content": "전체 문서 대비 개발 문서 비율 계산",
+    "status": "pending",
+    "activeForm": "비율 계산 중"
+  },
+  {
+    "content": "참조한 문서 목록 정리",
+    "status": "pending",
+    "activeForm": "참조 문서 목록 정리 중"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "content": "현재 실행 중인 MCP 프로세스 상태 자세히 확인",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "MCP proxy 로그 실시간 모니터링",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "IDE MCP 서버 포트 직접 테스트",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "nvm/node 버전 이슈 확인",
+    "status": "in_progress",
+    "id": "4"
+  },
+  {
+    "content": "대체 MCP 서버 버전 시도",
+    "status": "pending",
+    "id": "5"
+  }
+]

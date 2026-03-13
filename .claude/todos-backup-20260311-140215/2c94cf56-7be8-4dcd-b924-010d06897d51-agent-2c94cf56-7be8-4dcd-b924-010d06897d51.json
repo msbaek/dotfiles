@@ -1,0 +1,44 @@
+[
+  {
+    "content": "두 디렉토리의 파일 목록 수집 및 매칭 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "zettelkasten-expert를 사용하여 파일 구조 및 내용 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "파일 쌍별로 내용 비교 및 차이점 파악",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "vtt 디렉토리 파일들에 누락된 내용 merge",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "merge 결과 검증 및 보고서 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "클린 코더스 강의 시리즈 (1-18) 비교 및 merge",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "기타 매칭 파일들 (8개) 비교 및 merge",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  }
+]

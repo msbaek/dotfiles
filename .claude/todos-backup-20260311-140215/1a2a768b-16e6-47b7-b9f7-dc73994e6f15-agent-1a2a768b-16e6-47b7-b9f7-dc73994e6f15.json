@@ -1,0 +1,50 @@
+[
+  {
+    "content": "tmux 세션 'merge-vtt' 생성 및 기본 설정",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "5개의 tmux 창 생성 (Orchestrator + 4 Agents)",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "각 Agent 창에서 Claude 시작",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Agent 1에게 클린 코더스 1-5 파일 작업 할당",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Agent 2에게 클린 코더스 6-10 파일 작업 할당",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Agent 3에게 클린 코더스 11-15 파일 작업 할당",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "Agent 4에게 클린 코더스 16-18 및 기타 파일 작업 할당",
+    "status": "completed",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "전체 진행 상황 모니터링 및 조율",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "8"
+  }
+]

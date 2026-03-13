@@ -1,0 +1,27 @@
+[
+  {
+    "content": "작업 환경 확인 및 설정",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "첫 10개 파일 태그 정규화 (샘플 작업)",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "정규화 패턴 확인 및 규칙 검증",
+    "status": "in_progress",
+    "id": "3"
+  },
+  {
+    "content": "나머지 585개 파일 배치 처리",
+    "status": "pending",
+    "id": "4"
+  },
+  {
+    "content": "작업 완료 보고서 작성",
+    "status": "pending",
+    "id": "5"
+  }
+]

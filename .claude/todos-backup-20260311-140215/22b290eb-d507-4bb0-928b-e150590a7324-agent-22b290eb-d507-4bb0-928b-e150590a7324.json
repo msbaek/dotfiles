@@ -1,0 +1,38 @@
+[
+  {
+    "content": "소프트웨어 아키텍처의 명확한 정의 섹션 추가",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "아키텍처 스타일/패턴의 곈4층적 분류 체곀4 추가",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Screaming Architecture vs Infrastructure Architecture 비교 섹션 추가",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "배포 다이어그램과 인프라 아키텍처 설명 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Hexagonal Architecture 등 누락된 주요 패턴 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "prd-architecture-doc.md 파일 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  }
+]

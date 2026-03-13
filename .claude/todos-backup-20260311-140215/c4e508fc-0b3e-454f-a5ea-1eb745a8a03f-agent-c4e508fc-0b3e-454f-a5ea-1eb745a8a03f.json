@@ -1,0 +1,22 @@
+[
+  {
+    "content": "프로그래밍 역사 관련 키워드로 vault 검색",
+    "status": "completed",
+    "activeForm": "프로그래밍 역사 관련 키워드로 vault 검색 중"
+  },
+  {
+    "content": "검색 결과 분석 및 관련 문서 목록 작성",
+    "status": "completed",
+    "activeForm": "검색 결과 분석 및 관련 문서 목록 작성 중"
+  },
+  {
+    "content": "시대별 프로그래밍 발전사 구조화",
+    "status": "in_progress",
+    "activeForm": "시대별 프로그래밍 발전사 구조화 중"
+  },
+  {
+    "content": "Obsidian 문서 작성 계획 수립",
+    "status": "pending",
+    "activeForm": "Obsidian 문서 작성 계획 수립 중"
+  }
+]

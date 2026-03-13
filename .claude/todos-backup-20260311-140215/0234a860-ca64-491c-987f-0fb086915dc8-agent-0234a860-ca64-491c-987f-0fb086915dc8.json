@@ -1,0 +1,12 @@
+[
+  {
+    "content": "Batch 09 처리 (81-90)",
+    "status": "completed",
+    "activeForm": "Batch 09 파일 10개 병렬 분석 완료"
+  },
+  {
+    "content": "Batch 10-19 처리 (91-190)",
+    "status": "in_progress",
+    "activeForm": "Batch 10-19 병렬 처리 중"
+  }
+]

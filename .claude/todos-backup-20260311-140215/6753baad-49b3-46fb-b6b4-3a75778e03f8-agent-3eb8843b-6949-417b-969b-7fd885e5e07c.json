@@ -1,0 +1,20 @@
+[
+  {
+    "content": "AI 디렉토리 파일들의 hierarchical tag 개선 - 첫 번째 배치 완료 (15개 파일)",
+    "status": "completed",
+    "priority": "high",
+    "id": "ai-tag-improvement-1"
+  },
+  {
+    "content": "AI 디렉토리 파일들의 hierarchical tag 개선 - 두 번째 배치 완료 (10개 파일)",
+    "status": "completed",
+    "priority": "high",
+    "id": "ai-tag-improvement-2"
+  },
+  {
+    "content": "처리하지 않은 나머지 파일들 확인 및 분류",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "check-remaining-files"
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "content": "group1-files.txt 파일 내용 확인 및 첫 5개 파일 추출",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "improved-hierarchical-tags-guide.md 태그 규칙 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "첫 5개 파일 처리 (내용 분석, 태그 제거, 새 태그 부여)",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "agent1-progress.txt에 진행 상황 기록",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "첫 5개 파일 처리 결과 보고",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "품질 확인 후 나머지 571개 파일 처리",
+    "status": "in_progress",
+    "priority": "low",
+    "id": "6"
+  },
+  {
+    "content": "6-55번 파일 처리 (50개 배치)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "56-105번 파일 처리 (50개 배치)",
+    "status": "pending",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "오류 파일 error-log.txt에 기록",
+    "status": "pending",
+    "priority": "medium",
+    "id": "9"
+  }
+]

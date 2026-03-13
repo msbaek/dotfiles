@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Batch 26 (251-260) AI 활용 기법 추출",
+    "status": "completed",
+    "activeForm": "Batch 26 기법 추출 완료"
+  },
+  {
+    "content": "Batch 27 (261-270) AI 활용 기법 추출",
+    "status": "in_progress",
+    "activeForm": "Batch 27 기법 추출 중"
+  },
+  {
+    "content": "Batch 28 (271-280) AI 활용 기법 추출",
+    "status": "pending",
+    "activeForm": "Batch 28 기법 추출 중"
+  },
+  {
+    "content": "Batch 29 (281-286) AI 활용 기법 추출",
+    "status": "pending",
+    "activeForm": "Batch 29 기법 추출 중"
+  },
+  {
+    "content": "최종 결과 통합 및 보고서 작성",
+    "status": "pending",
+    "activeForm": "최종 보고서 작성 중"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "content": "003-RESOURCES/AGILE-Culture 디렉토리의 마크다운 파일들 태그 개선",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "이미 처리된 파일과 hierarchical tag 파일 제외",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "제외된 파일 목록 보고",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  }
+]

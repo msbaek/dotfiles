@@ -1,0 +1,22 @@
+[
+  {
+    "content": "003-RESOURCES 디렉토리 태그 분석 실행",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "분석 결과 검토 및 요약 작성",
+    "status": "pending",
+    "id": "2"
+  },
+  {
+    "content": "JSON 직렬화 오류 수정",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "수정된 코드로 재분석 실행",
+    "status": "in_progress",
+    "id": "4"
+  }
+]

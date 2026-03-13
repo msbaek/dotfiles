@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Process files 106-155 from group2-files.txt (50 files total) - currently at file 112",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "process-group2-files"
+  },
+  {
+    "content": "Log each completed file to completed-files.txt",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "completed-files-logging"
+  },
+  {
+    "content": "Log any errors to error-log.txt for files that cannot be processed",
+    "status": "pending",
+    "priority": "medium",
+    "id": "error-handling"
+  }
+]

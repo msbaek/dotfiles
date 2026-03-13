@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Korean Language Server 설치 확인 및 설치",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "nvim-lspconfig.lua에 korean-ls 설정 추가",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "keymaps.lua에서 한글 스펠링 언어 단축키 수정",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "설정 테스트 및 동작 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "한글 spell 파일 수동 설치",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "5"
+  }
+]

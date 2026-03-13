@@ -1,0 +1,47 @@
+[
+  {
+    "content": "Smart Connections embedding vector 파일 분석",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "PostgreSQL 벡터 데이터베이스 구조 확인",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "실제 embedding 데이터 활용 방법 탐색",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "Smart Connection 에뮬레이션 스크립트 작성",
+    "status": "completed",
+    "id": "4"
+  },
+  {
+    "content": "Smart Connections GitHub repo 조사",
+    "status": "completed",
+    "id": "5"
+  },
+  {
+    "content": "실제 .ajson 파일 포맷 파악 및 스크립트 수정",
+    "status": "completed",
+    "id": "6"
+  },
+  {
+    "content": "Smart Connection emulator 완성 및 TDD 오해 문서 분석 실행",
+    "status": "completed",
+    "id": "7"
+  },
+  {
+    "content": "향후 세션을 위한 context 문서 작성",
+    "status": "completed",
+    "id": "8"
+  },
+  {
+    "content": "TDD-오해-Smart-Connection-종합정리와 가장 유사한 문서 10개 찾기",
+    "status": "in_progress",
+    "id": "9"
+  }
+]

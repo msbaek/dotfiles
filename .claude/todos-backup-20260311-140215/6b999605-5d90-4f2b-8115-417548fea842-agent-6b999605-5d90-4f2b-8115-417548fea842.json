@@ -1,0 +1,68 @@
+[
+  {
+    "content": "tag 생성 규칙 문서 확인 및 이해",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-1"
+  },
+  {
+    "content": "파일 목록 확인 (2304개 파일) 및 병렬 처리 계획 수립",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-2"
+  },
+  {
+    "content": "tmux 세션 현황 파악 및 엔지니어 창 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-3"
+  },
+  {
+    "content": "엔지니어에게 작업 시작 요청 및 첫 번째 배치 작업 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-4"
+  },
+  {
+    "content": "15분마다 정기 체크인 스케줄 설정",
+    "status": "completed",
+    "priority": "medium",
+    "id": "todo-5"
+  },
+  {
+    "content": "작업 진행 상황 모니터링 및 오류 확인",
+    "status": "completed",
+    "priority": "medium",
+    "id": "todo-6"
+  },
+  {
+    "content": "완료된 파일 샘플 검증 - 태그가 올바르게 적용되었는지 확인",
+    "status": "completed",
+    "priority": "medium",
+    "id": "todo-7"
+  },
+  {
+    "content": "전체 작업 완료 확인 및 최종 보고서 작성",
+    "status": "completed",
+    "priority": "low",
+    "id": "todo-8"
+  },
+  {
+    "content": "긴급: 태그 구분자 오류 수정 - 콜론을 슬래시로 변경",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "todo-9"
+  },
+  {
+    "content": "수정 작업 진행 상황 모니터링",
+    "status": "pending",
+    "priority": "high",
+    "id": "todo-10"
+  },
+  {
+    "content": "수정 완료 후 최종 검증",
+    "status": "pending",
+    "priority": "medium",
+    "id": "todo-11"
+  }
+]

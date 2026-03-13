@@ -1,0 +1,38 @@
+[
+  {
+    "content": "스펙 문서 분석 완료 - 콜론 포함 태그 제거 작업",
+    "status": "completed",
+    "priority": "high",
+    "id": "tag-clean-1"
+  },
+  {
+    "content": "엔지니어에게 작업 브리핑 및 첫 단계 할당",
+    "status": "completed",
+    "priority": "high",
+    "id": "tag-clean-2"
+  },
+  {
+    "content": "Obsidian vault 위치 파악 및 파일 검색 모니터링",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "tag-clean-3"
+  },
+  {
+    "content": "콜론 포함 태그 식별 진행상황 확인",
+    "status": "pending",
+    "priority": "medium",
+    "id": "tag-clean-4"
+  },
+  {
+    "content": "태그 제거 작업 검증",
+    "status": "pending",
+    "priority": "medium",
+    "id": "tag-clean-5"
+  },
+  {
+    "content": "최종 문서 리스트 확인 및 완료 보고",
+    "status": "pending",
+    "priority": "high",
+    "id": "tag-clean-6"
+  }
+]

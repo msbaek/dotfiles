@@ -1,0 +1,32 @@
+[
+  {
+    "content": "003-RESOURCES 폴더의 마크다운 문서 제목/태그 검토 및 개선",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "첫 번째 10개 파일 검토 및 개선안 제시",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "사용자 피드백 반영 후 변경사항 적용",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "첫 번째 10개 파일의 태그 업데이트",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "commit message 작성 및 커밋",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  }
+]

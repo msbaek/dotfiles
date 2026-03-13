@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 08 처리 - 10개 문서에서 AI 활용 기법 추출",
+    "status": "completed",
+    "activeForm": "Batch 08 문서 10개 병렬 분석 완료"
+  },
+  {
+    "content": "Batch 08 결과 통합 및 저장",
+    "status": "in_progress",
+    "activeForm": "Batch 08 결과 통합 중"
+  },
+  {
+    "content": "진행 상태 파일 업데이트",
+    "status": "pending",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

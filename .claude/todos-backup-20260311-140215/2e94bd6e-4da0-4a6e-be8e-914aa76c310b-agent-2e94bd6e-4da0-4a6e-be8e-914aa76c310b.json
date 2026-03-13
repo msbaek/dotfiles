@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Phase 1: 초기 설정 - Backlog.md 마스터 태스크 생성",
+    "status": "completed",
+    "activeForm": "Backlog.md 마스터 태스크 생성 중"
+  },
+  {
+    "content": "Phase 1: 진행 상황 추적 파일 생성 (_COLLECTION_PROGRESS.md)",
+    "status": "in_progress",
+    "activeForm": "진행 상황 추적 파일 생성 중"
+  },
+  {
+    "content": "Phase 1: 결과 저장 구조 생성 (_BATCH_RESULTS 폴더)",
+    "status": "pending",
+    "activeForm": "결과 저장 구조 생성 중"
+  },
+  {
+    "content": "Phase 2: 첫 배치 테스트 (30개 문서 분석)",
+    "status": "pending",
+    "activeForm": "첫 배치 테스트 실행 중"
+  },
+  {
+    "content": "Phase 2: 테스트 결과 검토 및 사용자 승인",
+    "status": "pending",
+    "activeForm": "테스트 결과 검토 중"
+  }
+]

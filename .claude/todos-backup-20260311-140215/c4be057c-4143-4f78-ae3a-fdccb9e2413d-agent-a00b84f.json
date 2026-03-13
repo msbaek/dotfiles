@@ -1,0 +1,37 @@
+[
+  {
+    "content": "messages.json에서 이미지 URL 추출 및 분석",
+    "status": "completed",
+    "activeForm": "messages.json에서 이미지 URL 추출 및 분석"
+  },
+  {
+    "content": "Teams 채널로 이동",
+    "status": "completed",
+    "activeForm": "Teams 채널로 이동"
+  },
+  {
+    "content": "blob URL 문제 해결 - 현재 세션에서 이미지 다운로드",
+    "status": "in_progress",
+    "activeForm": "blob URL 문제 해결 - 현재 세션에서 이미지 다운로드"
+  },
+  {
+    "content": "날짜별 이미지 디렉토리 생성",
+    "status": "pending",
+    "activeForm": "날짜별 이미지 디렉토리 생성"
+  },
+  {
+    "content": "각 메시지의 이미지 다운로드",
+    "status": "pending",
+    "activeForm": "각 메시지의 이미지 다운로드"
+  },
+  {
+    "content": "이모티콘/아바타 필터링 (100px 미만 제외)",
+    "status": "pending",
+    "activeForm": "이모티콘/아바타 필터링 (100px 미만 제외)"
+  },
+  {
+    "content": "다운로드 결과 보고",
+    "status": "pending",
+    "activeForm": "다운로드 결과 보고"
+  }
+]

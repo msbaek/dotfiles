@@ -1,0 +1,17 @@
+[
+  {
+    "content": "대화 내용 분석 및 주제 분류",
+    "status": "completed",
+    "activeForm": "대화 내용 분석 및 주제 분류 중"
+  },
+  {
+    "content": "마크다운 문서 생성",
+    "status": "completed",
+    "activeForm": "마크다운 문서 생성 중"
+  },
+  {
+    "content": "Git repository에 commit & push",
+    "status": "in_progress",
+    "activeForm": "Git repository에 commit & push 중"
+  }
+]

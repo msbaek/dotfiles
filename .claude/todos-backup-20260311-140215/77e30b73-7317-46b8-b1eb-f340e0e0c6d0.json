@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Controller 클래스들을 찾아서 endpoint 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "HTTP 메서드별로 endpoint 분류",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "기능별로 endpoint 그룹화",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "문서화된 형태로 정리",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

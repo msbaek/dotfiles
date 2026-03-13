@@ -1,0 +1,44 @@
+[
+  {
+    "content": "현재 tmux 세션 상태 확인 및 작업 환경 검증",
+    "status": "pending",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "파일 목록을 여러 개의 배치로 분할 (각 에이전트당 약 300-400개 파일)",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "태그 처리 스크립트 작성 및 테스트",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Claude 에이전트들 배포 및 작업 할당",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "첫 번째 정기 점검 (15분 후)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "에이전트 진행상황 모니터링 및 오류 확인",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "작업 완료 확인 및 최종 검증",
+    "status": "pending",
+    "priority": "medium",
+    "id": "7"
+  }
+]

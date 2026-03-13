@@ -1,0 +1,56 @@
+[
+  {
+    "content": "Start Claude in analyst-4 window (window 6)",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Brief analyst-1 (window 3) for batch 1",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Brief analyst-2 (window 4) for batch 2",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Brief analyst-3 (window 5) for batch 3",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Brief analyst-4 (window 6) for batch 4",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Set up 30-minute monitoring schedule",
+    "status": "completed",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "Monitor analyst progress every 30 minutes",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "Remind analysts about Git commits if needed",
+    "status": "pending",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "Check for completion and prepare final report",
+    "status": "pending",
+    "priority": "medium",
+    "id": "9"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Project Manager에게 프로젝트 사양 전달 및 작업 시작 지시",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "30분마다 진행 상황 체크인 스케줄 설정",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Engineer 배치 및 작업 할당 모니터링",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "전체 프로젝트 진행률 추적 및 품질 검증",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "32개 VTT 파일 변환 진행 상황 추적",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "엔지니어별 작업 할당 현황 파악",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  }
+]

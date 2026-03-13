@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Tag cleaner 스크립트를 실행하여 파일 596-894 처리",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "처리 진행 상황 모니터링",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "오류 발생 시 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "처리 완료 후 결과 요약",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

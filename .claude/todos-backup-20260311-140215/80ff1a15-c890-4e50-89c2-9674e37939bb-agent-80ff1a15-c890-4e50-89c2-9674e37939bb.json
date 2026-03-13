@@ -1,0 +1,27 @@
+[
+  {
+    "content": "웹 페이지 내용을 playwright를 사용해서 읽기",
+    "status": "in_progress",
+    "activeForm": "웹 페이지 내용을 playwright를 사용해서 읽는 중"
+  },
+  {
+    "content": "이미지 파일들을 ATTACHMENTS 폴더로 다운로드",
+    "status": "pending",
+    "activeForm": "이미지 파일들을 ATTACHMENTS 폴더로 다운로드하는 중"
+  },
+  {
+    "content": "문서 번역 규칙에 따라 한글로 번역",
+    "status": "pending",
+    "activeForm": "문서 번역 규칙에 따라 한글로 번역하는 중"
+  },
+  {
+    "content": "hierarchical tagging 규칙에 따라 태그 적용",
+    "status": "pending",
+    "activeForm": "hierarchical tagging 규칙에 따라 태그 적용하는 중"
+  },
+  {
+    "content": "yaml frontmatter 포함한 obsidian 파일로 저장",
+    "status": "pending",
+    "activeForm": "yaml frontmatter 포함한 obsidian 파일로 저장하는 중"
+  }
+]

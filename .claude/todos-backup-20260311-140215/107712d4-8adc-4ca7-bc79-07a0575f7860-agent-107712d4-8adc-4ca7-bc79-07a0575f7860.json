@@ -1,0 +1,20 @@
+[
+  {
+    "content": "validateAndReturnSaleLimitReachedItems 메소드 리팩토링",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "각 검증 로직을 별도 메소드로 분리",
+    "status": "pending",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "코드 가독성 및 유지보수성 향상",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  }
+]

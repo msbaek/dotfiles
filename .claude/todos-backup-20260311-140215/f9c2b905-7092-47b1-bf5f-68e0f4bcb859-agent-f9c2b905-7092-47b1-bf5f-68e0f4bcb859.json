@@ -1,0 +1,22 @@
+[
+  {
+    "content": "O'Reilly 사이트 로그인",
+    "status": "completed",
+    "activeForm": "O'Reilly 사이트에 로그인하는 중"
+  },
+  {
+    "content": "Chapter 35 전체 내용 읽기",
+    "status": "completed",
+    "activeForm": "Chapter 35 전체 내용 읽는 중"
+  },
+  {
+    "content": "이미지 확인 및 다운로드",
+    "status": "completed",
+    "activeForm": "이미지 확인하고 다운로드하는 중"
+  },
+  {
+    "content": "내용 번역 및 요약, Obsidian 문서 생성",
+    "status": "in_progress",
+    "activeForm": "내용 번역하고 Obsidian 문서 생성하는 중"
+  }
+]

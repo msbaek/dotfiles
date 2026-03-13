@@ -1,0 +1,32 @@
+[
+  {
+    "content": "merge-vtt 디렉토리 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "26개 파일 목록 생성 및 그룹화",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "메인 병합 스크립트 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "각 파일별 병합 함수 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "병렬 처리를 위한 실행 스크립트 작성",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "5"
+  }
+]

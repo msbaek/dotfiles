@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 11 처리 (101-110)",
+    "status": "completed",
+    "activeForm": "Batch 11 처리 완료"
+  },
+  {
+    "content": "결과 파일 생성",
+    "status": "completed",
+    "activeForm": "결과 파일 생성 완료"
+  },
+  {
+    "content": "진행 상태 업데이트",
+    "status": "in_progress",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Convert 16_클린_코더스_강의_13._SRP(Single_Responsibility_Principle).vtt to Markdown",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Convert 17_클린_코더스_강의_14.1._OCP(Open-Closed_Principle).vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Convert 18_클린_코더스_강의_14.2._LSP(Liskov_Substitution_Principle).vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Convert 19_클린_코더스_강의_14.3._ISP(Interface_Segregation_Principle).vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Convert 20_클린_코더스_강의_15.1._DIP(Dependency_Inversion_Principle).vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Convert 21_클린_코더스_강의_15.2._SOLID_Case_Study.vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  }
+]

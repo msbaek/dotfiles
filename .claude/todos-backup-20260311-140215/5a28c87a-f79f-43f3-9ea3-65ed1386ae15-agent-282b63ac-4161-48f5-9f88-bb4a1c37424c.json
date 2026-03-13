@@ -1,0 +1,50 @@
+[
+  {
+    "content": "파일 31-35: BRUNCH 폴더 파일들 태그 재부여 (brunch-후보.md, coaching.md, interview.md, memo.md, sequence-of-work.md)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "task_1"
+  },
+  {
+    "content": "파일 36-38: BRUNCH 폴더 한글 파일들 태그 재부여 (글감.md, 장애처리-재고틀림.md, 최초 등록 운영자 패스워드 변경 강제하기.md)",
+    "status": "pending",
+    "priority": "high",
+    "id": "task_2"
+  },
+  {
+    "content": "파일 39-43: 기술 관련 파일들 태그 재부여 (Deadlines in The Forest.md, How to Test Multi-Threaded.md, I'm Tired of ChatGPT.md, Incredible performance increase.md, index.md)",
+    "status": "pending",
+    "priority": "high",
+    "id": "task_3"
+  },
+  {
+    "content": "파일 44-48: 개발도구 및 QA 관련 파일들 태그 재부여 (IntelliJ IDEA.md, Java Mutation Testing.md, LY의 QA 엔지니어.md, Model Context Protocol.md, n8n 역대급 업데이트.md)",
+    "status": "pending",
+    "priority": "high",
+    "id": "task_4"
+  },
+  {
+    "content": "파일 49: OKR 관련 파일 태그 재부여 (OKR이라는 환상이 가져다준 결과.md)",
+    "status": "pending",
+    "priority": "high",
+    "id": "task_5"
+  },
+  {
+    "content": "파일 50-54: Omnivore 2024-07-17~19 파일들 태그 재부여 (우선순위를 정한다는 것.md, A testing strategy.md, Obsidian의 신박한 새 플러그인.md, 싸워라 그리고 사과해라.md, A Loaf of Roadmap.md)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "task_6"
+  },
+  {
+    "content": "파일 55-58: Omnivore 2024-07-20~23 파일들 태그 재부여 (퍼스널 칸반.md, 훌륭한 멘토를 만나는 비결.md, 우리에게 미래가 있다고 생각하지 마세요.md, How To Create An Amazing Terminal Setup.md)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "task_7"
+  },
+  {
+    "content": "파일 59-60: Omnivore 2024-07-23~24 마지막 파일들 태그 재부여 (OKR이라는 환상.md, 팀 케미나 원칙.md)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "task_8"
+  }
+]

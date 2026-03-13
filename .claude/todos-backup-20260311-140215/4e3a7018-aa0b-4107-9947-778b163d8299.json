@@ -1,0 +1,20 @@
+[
+  {
+    "content": "PR 코드 리뷰 시 주요 체크 포인트 정리",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "깃 상태 확인 및 변경된 파일 확인",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "코드 리뷰 체크리스트 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  }
+]

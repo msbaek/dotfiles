@@ -1,0 +1,38 @@
+[
+  {
+    "content": "hierarchical tags 가이드 문서 읽고 태그 변환 규칙 이해",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "몇 개 샘플 파일들의 현재 태그 상태 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "TDD 관련 파일들에 적합한 hierarchical tags 체계 정의",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "각 파일의 YAML frontmatter 읽고 태그 변환 적용",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "변환 결과 검증 및 완료 파일 목록 정리",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "대량 파일 일괄 처리를 위한 전략 수립",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  }
+]

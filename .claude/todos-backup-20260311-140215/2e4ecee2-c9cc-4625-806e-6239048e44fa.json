@@ -1,0 +1,26 @@
+[
+  {
+    "content": "'Split by Unrelated Complexity' 예제 구현을 위한 코드 분석 및 리팩토링 대상 식별",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "2개의 의존 객체를 mock하는 테스트 코드 작성",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "테스트 코드 분리",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "프로덕션 코드 분리",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  }
+]

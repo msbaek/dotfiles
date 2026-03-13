@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Medium 기사 내용 읽기 (Playwright 사용)",
+    "status": "in_progress",
+    "activeForm": "Medium 기사 내용 읽는 중"
+  },
+  {
+    "content": "기사 내용 번역 및 요약",
+    "status": "pending",
+    "activeForm": "기사 내용 번역 및 요약하는 중"
+  },
+  {
+    "content": "이미지 다운로드 및 ATTACHMENTS 폴더에 저장",
+    "status": "pending",
+    "activeForm": "이미지 다운로드 및 저장하는 중"
+  },
+  {
+    "content": "Hierarchical tags 생성",
+    "status": "pending",
+    "activeForm": "Hierarchical tags 생성하는 중"
+  },
+  {
+    "content": "Obsidian 문서 작성 및 저장",
+    "status": "pending",
+    "activeForm": "Obsidian 문서 작성 및 저장하는 중"
+  }
+]

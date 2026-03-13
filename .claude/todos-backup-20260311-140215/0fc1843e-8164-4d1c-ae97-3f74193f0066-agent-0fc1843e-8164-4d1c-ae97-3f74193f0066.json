@@ -1,0 +1,27 @@
+[
+  {
+    "content": "화면에 보이는 Excel 파일 5개 다운로드",
+    "status": "in_progress",
+    "activeForm": "화면에 보이는 Excel 파일 5개 다운로드 중"
+  },
+  {
+    "content": "스크롤하여 01-08, 01-09 Excel 파일 찾기",
+    "status": "pending",
+    "activeForm": "01-08, 01-09 Excel 파일 찾는 중"
+  },
+  {
+    "content": "나머지 Excel 파일 2개 다운로드",
+    "status": "pending",
+    "activeForm": "나머지 Excel 파일 다운로드 중"
+  },
+  {
+    "content": "다운로드된 파일 확인 및 정리",
+    "status": "pending",
+    "activeForm": "다운로드된 파일 확인 및 정리 중"
+  },
+  {
+    "content": "Plan 파일 업데이트",
+    "status": "pending",
+    "activeForm": "Plan 파일 업데이트 중"
+  }
+]

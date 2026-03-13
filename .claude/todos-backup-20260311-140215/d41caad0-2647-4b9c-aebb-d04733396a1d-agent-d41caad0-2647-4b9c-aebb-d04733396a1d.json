@@ -1,0 +1,22 @@
+[
+  {
+    "content": "596개 파일의 태그 정규화 작업 - hierarchical tags 체계 적용 (4/596 처리완료)",
+    "status": "in_progress",
+    "id": "1"
+  },
+  {
+    "content": "다섯 번째 파일 Portal Center 주례.md 처리",
+    "status": "in_progress",
+    "id": "2"
+  },
+  {
+    "content": "효율적인 연속 처리를 위한 배치 전략 수립",
+    "status": "pending",
+    "id": "3"
+  },
+  {
+    "content": "처리 결과 및 진행 상황 로그 기록",
+    "status": "pending",
+    "id": "4"
+  }
+]

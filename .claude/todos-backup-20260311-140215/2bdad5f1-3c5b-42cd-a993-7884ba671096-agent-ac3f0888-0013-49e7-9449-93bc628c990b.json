@@ -1,0 +1,27 @@
+[
+  {
+    "content": "vault-intelligence로 개발/코딩 관련 문서 검색",
+    "status": "in_progress",
+    "activeForm": "개발/코딩 관련 문서 검색 중"
+  },
+  {
+    "content": "태그 기반으로 문서 카테고리 분석",
+    "status": "pending",
+    "activeForm": "태그 기반 문서 카테고리 분석 중"
+  },
+  {
+    "content": "디렉토리 구조로 문서 분류 확인",
+    "status": "pending",
+    "activeForm": "디렉토리 구조 문서 분류 확인 중"
+  },
+  {
+    "content": "통계 분석 및 비율 계산",
+    "status": "pending",
+    "activeForm": "통계 분석 및 비율 계산 중"
+  },
+  {
+    "content": "참조된 문서 목록 정리",
+    "status": "pending",
+    "activeForm": "참조된 문서 목록 정리 중"
+  }
+]

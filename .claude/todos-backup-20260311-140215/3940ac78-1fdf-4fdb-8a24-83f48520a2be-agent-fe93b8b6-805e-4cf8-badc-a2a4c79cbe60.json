@@ -1,0 +1,32 @@
+[
+  {
+    "content": "YouTube 영상 메타데이터 확인 및 정리",
+    "status": "completed",
+    "activeForm": "YouTube 영상 메타데이터 확인 및 정리 중"
+  },
+  {
+    "content": "트랜스크립트 다운로드 또는 사용자로부터 획득",
+    "status": "in_progress",
+    "activeForm": "트랜스크립트 다운로드 또는 사용자로부터 획득 중"
+  },
+  {
+    "content": "트랜스크립트 한국어 번역 및 요약",
+    "status": "pending",
+    "activeForm": "트랜스크립트 한국어 번역 및 요약 중"
+  },
+  {
+    "content": "hierarchical tags 적용",
+    "status": "pending",
+    "activeForm": "hierarchical tags 적용 중"
+  },
+  {
+    "content": "YAML frontmatter 포함한 완전한 Obsidian 문서 생성",
+    "status": "pending",
+    "activeForm": "YAML frontmatter 포함한 완전한 Obsidian 문서 생성 중"
+  },
+  {
+    "content": "적절한 위치에 문서 저장 (003-RESOURCES 또는 001-INBOX)",
+    "status": "pending",
+    "activeForm": "적절한 위치에 문서 저장 중"
+  }
+]

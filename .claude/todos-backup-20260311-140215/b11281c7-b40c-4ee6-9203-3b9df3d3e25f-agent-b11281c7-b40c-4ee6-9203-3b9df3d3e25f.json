@@ -1,0 +1,74 @@
+[
+  {
+    "content": "클린 코더스 강의 16.1 advanced tdd 1 - name inverter 파일 비교 및 통합",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "클린 코더스 강의 16.2 advanced tdd 2 - prime factors 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "클린 코더스 강의 17.1 test process 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "클린 코더스 강의 18. Transformation Priority Premise 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "OKKY 1월 세미나 한번 듣고 평생 써먹는 코드 리뷰 노하우 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "레거시코드에 테스트 추가를 위한 3가지 기법 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "레거시코드에 테스트 추가하는 또 하나의 방법 - Subclass and Override Method 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "Refactoring - Lift up conditionals 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "Refactoring - Split Phase 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "Presenting TDD 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "10"
+  },
+  {
+    "content": "Repeated Switch를 Polymorphic하게 리팩터링하기 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "11"
+  },
+  {
+    "content": "Vertical Slice 방식으로 GraphQL 어플리케이션을 TDD로 구현하기 파일 비교 및 통합",
+    "status": "pending",
+    "priority": "high",
+    "id": "12"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "content": "URL 문서에 Playwright로 접근하여 내용 읽기",
+    "status": "completed",
+    "activeForm": "URL 문서에 Playwright로 접근하여 내용 읽기"
+  },
+  {
+    "content": "문서 내용을 번역 및 요약 규칙에 따라 정리",
+    "status": "completed",
+    "activeForm": "문서 내용을 번역 및 요약 규칙에 따라 정리"
+  },
+  {
+    "content": "hierarchical tagging 규칙 적용하여 태그 설정",
+    "status": "in_progress",
+    "activeForm": "hierarchical tagging 규칙 적용하여 태그 설정"
+  },
+  {
+    "content": "이미지 파일들을 ATTACHMENTS 폴더에 저장",
+    "status": "pending",
+    "activeForm": "이미지 파일들을 ATTACHMENTS 폴더에 저장"
+  },
+  {
+    "content": "YAML frontmatter를 포함한 Obsidian 파일 생성",
+    "status": "pending",
+    "activeForm": "YAML frontmatter를 포함한 Obsidian 파일 생성"
+  }
+]

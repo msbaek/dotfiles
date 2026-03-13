@@ -1,0 +1,92 @@
+[
+  {
+    "content": "Day 6-7: 각 챕터 분량 균형 검토",
+    "status": "completed",
+    "priority": "high",
+    "id": "15"
+  },
+  {
+    "content": "Difficulty-Progression 제안사항을 TOC에 반영",
+    "status": "completed",
+    "priority": "high",
+    "id": "16"
+  },
+  {
+    "content": "중복 내용 식별 및 통합 계획",
+    "status": "completed",
+    "priority": "medium",
+    "id": "17"
+  },
+  {
+    "content": "부족한 부분 보강 계획 수립",
+    "status": "completed",
+    "priority": "medium",
+    "id": "18"
+  },
+  {
+    "content": "Content-Duplication-Integration-Plan.md의 실행 계획을 TODO.md에 반영",
+    "status": "completed",
+    "priority": "high",
+    "id": "19"
+  },
+  {
+    "content": "Obsidian 태그 시스템 구축",
+    "status": "completed",
+    "priority": "medium",
+    "id": "20"
+  },
+  {
+    "content": "기존 파일들에 태그 적용",
+    "status": "completed",
+    "priority": "medium",
+    "id": "21"
+  },
+  {
+    "content": "Tag-Application-Script.md 기반 단계별 태그 적용 (Phase 1: 핵심 30개)",
+    "status": "pending",
+    "priority": "high",
+    "id": "22"
+  },
+  {
+    "content": "Tag-Application-Script.md 기반 단계별 태그 적용 (Phase 2: 저자별 50개)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "23"
+  },
+  {
+    "content": "Tag-Application-Script.md 기반 단계별 태그 적용 (Phase 3: 주제별 보완)",
+    "status": "pending",
+    "priority": "low",
+    "id": "24"
+  },
+  {
+    "content": "Dataview 쿼리 작성",
+    "status": "completed",
+    "priority": "medium",
+    "id": "25"
+  },
+  {
+    "content": "Dataview 쿼리 오류 수정 (flatten → GROUP BY)",
+    "status": "completed",
+    "priority": "high",
+    "id": "27"
+  },
+  {
+    "content": "연결 관계 시각화 구성",
+    "status": "pending",
+    "priority": "low",
+    "id": "26"
+  },
+  {
+    "content": "E-commerce 주문 시스템 예제 상세 설계 논의",
+    "status": "pending",
+    "priority": "high",
+    "id": "28"
+  },
+  {
+    "content": "Week 4 예제 설계 작업 시작",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "29"
+  }
+]

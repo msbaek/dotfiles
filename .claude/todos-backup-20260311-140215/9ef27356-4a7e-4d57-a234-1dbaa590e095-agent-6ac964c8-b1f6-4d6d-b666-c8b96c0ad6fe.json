@@ -1,0 +1,20 @@
+[
+  {
+    "content": "301개 배치 파일 처리 완료를 위해 200번째 라인부터 끝까지 예비 처리",
+    "status": "completed",
+    "priority": "high",
+    "id": "continue_processing"
+  },
+  {
+    "content": "229개 파일 추가 처리 완료: 총 845개 파일 처리",
+    "status": "completed",
+    "priority": "medium",
+    "id": "track_progress"
+  },
+  {
+    "content": "배치 처리 완료 후 최종 요약 보고서 작성",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "final_summary"
+  }
+]

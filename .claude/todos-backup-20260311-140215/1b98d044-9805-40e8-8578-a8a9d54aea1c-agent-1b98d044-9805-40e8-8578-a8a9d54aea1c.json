@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Phase 1: Git History 정리 (.gitconfig.user BFG)",
+    "status": "completed",
+    "activeForm": "Git History 정리 완료"
+  },
+  {
+    "content": "Phase 2: .config/fabric 폴더 삭제",
+    "status": "completed",
+    "activeForm": ".config/fabric 폴더 삭제 완료"
+  },
+  {
+    "content": "Phase 3: Private Repo 생성",
+    "status": "completed",
+    "activeForm": "Private Repo 생성 완료"
+  },
+  {
+    "content": "Phase 4: Public Repo .gitconfig 수정",
+    "status": "completed",
+    "activeForm": "Public Repo .gitconfig 수정 완료"
+  },
+  {
+    "content": "Phase 5: 검증",
+    "status": "in_progress",
+    "activeForm": "검증 중"
+  }
+]

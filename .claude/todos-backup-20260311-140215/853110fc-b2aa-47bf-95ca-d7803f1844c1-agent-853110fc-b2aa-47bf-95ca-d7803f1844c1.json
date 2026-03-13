@@ -1,0 +1,164 @@
+[
+  {
+    "content": "Day 6-7: 각 챕터 분량 균형 검토",
+    "status": "completed",
+    "priority": "high",
+    "id": "15"
+  },
+  {
+    "content": "Difficulty-Progression 제안사항을 TOC에 반영",
+    "status": "completed",
+    "priority": "high",
+    "id": "16"
+  },
+  {
+    "content": "중복 내용 식별 및 통합 계획",
+    "status": "completed",
+    "priority": "medium",
+    "id": "17"
+  },
+  {
+    "content": "부족한 부분 보강 계획 수립",
+    "status": "completed",
+    "priority": "medium",
+    "id": "18"
+  },
+  {
+    "content": "Content-Duplication-Integration-Plan.md의 실행 계획을 TODO.md에 반영",
+    "status": "completed",
+    "priority": "high",
+    "id": "19"
+  },
+  {
+    "content": "Obsidian 태그 시스템 구축",
+    "status": "completed",
+    "priority": "medium",
+    "id": "20"
+  },
+  {
+    "content": "기존 파일들에 태그 적용",
+    "status": "completed",
+    "priority": "medium",
+    "id": "21"
+  },
+  {
+    "content": "Tag-Application-Script.md 기반 단계별 태그 적용 (Phase 1: 핵심 30개)",
+    "status": "pending",
+    "priority": "high",
+    "id": "22"
+  },
+  {
+    "content": "Tag-Application-Script.md 기반 단계별 태그 적용 (Phase 2: 저자별 50개)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "23"
+  },
+  {
+    "content": "Tag-Application-Script.md 기반 단계별 태그 적용 (Phase 3: 주제별 보완)",
+    "status": "pending",
+    "priority": "low",
+    "id": "24"
+  },
+  {
+    "content": "Dataview 쿼리 작성",
+    "status": "completed",
+    "priority": "medium",
+    "id": "25"
+  },
+  {
+    "content": "Dataview 쿼리 오류 수정 (flatten → GROUP BY)",
+    "status": "completed",
+    "priority": "high",
+    "id": "27"
+  },
+  {
+    "content": "연결 관계 시각화 구성",
+    "status": "pending",
+    "priority": "low",
+    "id": "26"
+  },
+  {
+    "content": "E-commerce 주문 시스템 예제 상세 설계 논의 (Day 7)",
+    "status": "pending",
+    "priority": "high",
+    "id": "28"
+  },
+  {
+    "content": "Week 4 예제 설계 작업 시작",
+    "status": "completed",
+    "priority": "high",
+    "id": "29"
+  },
+  {
+    "content": "TODO-Week4.md 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "30"
+  },
+  {
+    "content": "StringCalculator 예제 설계 문서 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "31"
+  },
+  {
+    "content": "Todo App 예제 설계 (Day 2)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "32"
+  },
+  {
+    "content": "Todo App 웹 유스케이스 TDD 설계 문서 작성",
+    "status": "completed",
+    "priority": "medium",
+    "id": "37"
+  },
+  {
+    "content": "Banking System 예제 설계 (Day 3)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "33"
+  },
+  {
+    "content": "TDD 기법 매핑 (Day 4)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "34"
+  },
+  {
+    "content": "GitHub 저장소 구조 설계 (Day 5)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "35"
+  },
+  {
+    "content": "예제 간 연결 설계 (Day 6)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "36"
+  },
+  {
+    "content": "Example-TDD-Mapping.md 파일 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "38"
+  },
+  {
+    "content": "기법별 예제 할당 매트릭스 작성",
+    "status": "completed",
+    "priority": "medium",
+    "id": "39"
+  },
+  {
+    "content": "챕터별 TDD 기법 배치 계획",
+    "status": "completed",
+    "priority": "medium",
+    "id": "40"
+  },
+  {
+    "content": "중복 제거 및 차별화 전략 문서화",
+    "status": "completed",
+    "priority": "medium",
+    "id": "41"
+  }
+]

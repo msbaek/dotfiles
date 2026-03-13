@@ -1,0 +1,26 @@
+[
+  {
+    "content": "current-batch.txt 파일 읽기",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "tagging-rule.md 파일 읽기",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "배치 파일 처리 (태그 재부여)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "처리 결과 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

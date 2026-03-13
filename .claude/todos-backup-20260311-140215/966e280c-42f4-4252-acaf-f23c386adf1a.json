@@ -1,0 +1,38 @@
+[
+  {
+    "content": "현재 프로젝트 프론트엔드 구조 분석",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "프론트엔드 환경 설정(React 또는 Vue.js)",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "장바구니 조회 UI 컴포넌트 구현",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "장바구니 생성 UI 컴포넌트 구현",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "청구서 조회 UI 컴포넌트 구현",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "백엔드 API 연동",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  }
+]

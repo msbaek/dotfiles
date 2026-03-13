@@ -1,0 +1,50 @@
+[
+  {
+    "content": "High Level Test 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "테스트 케이스 목록 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Walking Skeleton 구현",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "테스트 선택 및 작성",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "테스트 성공하도록 코드 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "테스트 추가 및 구현 반복",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "High Level Test 활성화",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "JPA Repository 구현",
+    "status": "pending",
+    "priority": "low",
+    "id": "8"
+  }
+]

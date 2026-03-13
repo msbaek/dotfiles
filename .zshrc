@@ -124,10 +124,6 @@ source ~/.zsh.after/ktown4u.zsh
 # Added by LM Studio CLI (lms)
 # export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 
-# Add JBang to environment
-alias j!=jbang
-export PATH="$HOME/.jbang/bin:$PATH"
-
 # bun completions (commented out to use npm global claude)
 # [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 

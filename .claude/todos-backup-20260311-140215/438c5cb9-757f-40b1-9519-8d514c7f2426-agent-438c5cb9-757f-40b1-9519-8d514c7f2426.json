@@ -1,0 +1,26 @@
+[
+  {
+    "content": "ARCHITECTURE 디렉토리 전체 파일 목록 재확인",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "각 파일의 현재 태그 상태 분석",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "태그 개선이 필요한 파일들 식별 및 개선",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "개선 완료 및 제외 파일 목록 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

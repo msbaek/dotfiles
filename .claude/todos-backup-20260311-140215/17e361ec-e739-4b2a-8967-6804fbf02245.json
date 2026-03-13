@@ -1,0 +1,32 @@
+[
+  {
+    "content": "현재 코드 분석하기",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "jMock 논문 핵심 내용 파악하기",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Mock 테스트 추가하기",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "리팩토링 시 깨지는 테스트 상황 만들기",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "예제 설명 및 개선 방안 제시",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  }
+]

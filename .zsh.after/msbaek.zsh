@@ -24,6 +24,10 @@ export PATH=":$PATH:$HOME/bin/ijhttp/"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+
 # start of alias expanding #
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/globalias/globalias.plugin.zsh
 #
@@ -228,7 +232,7 @@ alias tk='tmux kill-server'
 alias vi='nvim'
 alias gl='git log'
 # Headless mode aliases
-alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
+alias cld='CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=true claude --dangerously-skip-permissions --teammate-mode tmux'
 alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
 alias cc-commit-only='git commit --no-verify -F /tmp/commit_msg.txt'
 alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'
@@ -356,3 +360,4 @@ matrix() {
 disk-free() {
   df -k . | tail -1 | awk '{free=$4; printf "Free: %.2f GB (%.2f MB)\n", free/1024/1024, free/1024}'
 }
+# rtk init --global: run manually once for setup, not in shell rc

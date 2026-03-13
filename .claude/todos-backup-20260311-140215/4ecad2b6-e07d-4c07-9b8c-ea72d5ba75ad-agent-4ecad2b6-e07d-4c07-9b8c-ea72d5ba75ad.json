@@ -1,0 +1,14 @@
+[
+  {
+    "content": "전체 파일 태깅 작업 - 78% 완료 (262/334)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "남은 72개 파일 처리",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  }
+]

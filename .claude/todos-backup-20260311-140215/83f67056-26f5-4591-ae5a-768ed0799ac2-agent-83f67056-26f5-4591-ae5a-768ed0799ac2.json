@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Tmux 세션에서 엔지니어 창 5개 생성 (Windows 3-7)",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "각 엔지니어에게 VTT 파일 할당 및 브리햑",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "엔지니어들의 진행 상황 모니터링",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "변환된 마크다운 파일 품질 검증",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "30분마다 진행 상황을 Orchestrator에게 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "모든 엔지니어에게 30분마다 작업 커밋 리마인드",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  }
+]

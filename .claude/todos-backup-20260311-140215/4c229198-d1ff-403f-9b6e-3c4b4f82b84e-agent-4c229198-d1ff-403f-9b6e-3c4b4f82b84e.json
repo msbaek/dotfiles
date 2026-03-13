@@ -1,0 +1,26 @@
+[
+  {
+    "content": "엔지니어가 프로젝트 요구사항을 파악하고 구현 시작하는지 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "30분마다 엔지니어의 진행 상황 체크인",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "구현 중 발생하는 이슈나 질문 해결 지원",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "코드 품질과 요구사항 준수 여부 검증",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  }
+]

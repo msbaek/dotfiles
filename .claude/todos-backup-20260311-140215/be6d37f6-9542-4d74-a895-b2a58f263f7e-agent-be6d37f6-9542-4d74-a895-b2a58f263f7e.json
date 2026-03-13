@@ -1,0 +1,26 @@
+[
+  {
+    "content": "997-BOOKS 디렉토리 구조 파악 및 태그 상태 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "루트 레벨 파일들의 태그 검토 및 개선",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "하위 디렉토리별 파일들의 태그 개선",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "처리 제외된 파일 목록 정리",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

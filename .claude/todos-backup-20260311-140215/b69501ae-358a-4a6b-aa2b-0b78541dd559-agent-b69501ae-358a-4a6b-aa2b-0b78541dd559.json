@@ -1,0 +1,22 @@
+[
+  {
+    "content": "582개 파일의 YAML frontmatter 태그 개선 작업 - 40여개 파일 확인 완료, 대부분 이미 적절한 형태",
+    "status": "in_progress",
+    "id": "1"
+  },
+  {
+    "content": "각 파일 읽기 및 분석",
+    "status": "in_progress",
+    "id": "2"
+  },
+  {
+    "content": "태그 개선 규칙 적용",
+    "status": "in_progress",
+    "id": "3"
+  },
+  {
+    "content": "작업 로그 기록 - 85개 태그 개선 완료, 6개 YAML 오류 수정, 대부분의 실제 파일들은 이미 적절한 태그 형식",
+    "status": "in_progress",
+    "id": "4"
+  }
+]

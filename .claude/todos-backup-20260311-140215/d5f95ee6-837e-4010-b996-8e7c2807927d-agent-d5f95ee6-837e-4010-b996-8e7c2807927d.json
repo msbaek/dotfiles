@@ -1,0 +1,32 @@
+[
+  {
+    "content": "통합된 TDD 오해-이해 파일 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "create_merged_file"
+  },
+  {
+    "content": "원본 파일들과 통합 파일 비교하여 누락 내용 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "check_missing_content"
+  },
+  {
+    "content": "누락된 주요 내용들을 통합 파일에 추가",
+    "status": "completed",
+    "priority": "high",
+    "id": "add_missing_content"
+  },
+  {
+    "content": "원본 파일들 백업 또는 보관",
+    "status": "pending",
+    "priority": "medium",
+    "id": "backup_originals"
+  },
+  {
+    "content": "다른 파일들에서 이 파일을 참조하는 링크 업데이트",
+    "status": "pending",
+    "priority": "low",
+    "id": "update_links"
+  }
+]

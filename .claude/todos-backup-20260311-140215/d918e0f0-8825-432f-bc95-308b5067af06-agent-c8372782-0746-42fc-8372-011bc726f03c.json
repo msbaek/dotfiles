@@ -1,0 +1,62 @@
+[
+  {
+    "content": "003-RESOURCES/AI 디렉토리 hierarchical tag 개선 (우선순위 1)",
+    "status": "pending",
+    "priority": "high",
+    "id": "ai-dir-tagging"
+  },
+  {
+    "content": "AI 디렉토리 루트 레벨 파일들 태그 개선 (20개 완료/약 50개)",
+    "status": "pending",
+    "priority": "high",
+    "id": "ai-root-files"
+  },
+  {
+    "content": "AI 하위 디렉토리들 태그 개선 (PROMPTS, MCP, tools, MY_PROMPTS, Pair, Usage)",
+    "status": "pending",
+    "priority": "high",
+    "id": "ai-subdirs"
+  },
+  {
+    "content": "003-RESOURCES/DEVELOPMENT 디렉토리 hierarchical tag 개선 (우선순위 2)",
+    "status": "completed",
+    "priority": "high",
+    "id": "development-dir"
+  },
+  {
+    "content": "DEVELOPMENT 디렉토리 메인 파일들 태그 개선 (20개 완료)",
+    "status": "completed",
+    "priority": "high",
+    "id": "development-main-files"
+  },
+  {
+    "content": "DEVELOPMENT 하위 디렉토리들 태그 개선 (Spring, Kotlin, JPA, modulith 등 완료)",
+    "status": "completed",
+    "priority": "high",
+    "id": "development-subdirs"
+  },
+  {
+    "content": "003-RESOURCES/CLEAN_CODE 디렉토리 hierarchical tag 개선 (우선순위 3)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "clean-code-dir"
+  },
+  {
+    "content": "997-BOOKS 디렉토리 hierarchical tag 개선 (우선순위 4)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "books-dir"
+  },
+  {
+    "content": "003-RESOURCES/PPP-Culture 디렉토리 hierarchical tag 개선 (우선순위 5)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "ppp-culture-dir"
+  },
+  {
+    "content": "기타 소규모 디렉토리들 hierarchical tag 개선",
+    "status": "pending",
+    "priority": "low",
+    "id": "other-dirs"
+  }
+]

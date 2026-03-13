@@ -1,0 +1,22 @@
+[
+  {
+    "content": "USER_LOGIN 관련 Entity, Repository, Mapper 파일 찾기",
+    "status": "in_progress",
+    "activeForm": "USER_LOGIN 관련 파일 검색 중"
+  },
+  {
+    "content": "insert/save 메서드 호출 위치 찾기",
+    "status": "pending",
+    "activeForm": "insert/save 메서드 호출 위치 검색 중"
+  },
+  {
+    "content": "USER_LOGIN 데이터 생성 비즈니스 로직 파악",
+    "status": "pending",
+    "activeForm": "비즈니스 로직 분석 중"
+  },
+  {
+    "content": "Service 클래스의 호출 추적 및 결과 보고",
+    "status": "pending",
+    "activeForm": "서비스 로직 추적 및 결과 작성 중"
+  }
+]

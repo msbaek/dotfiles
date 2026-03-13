@@ -1,0 +1,27 @@
+[
+  {
+    "content": "build.gradle.kts에 Spring Boot, JPA, MyBatis 테스트 의존성 추가",
+    "status": "completed",
+    "activeForm": "테스트 의존성 추가 완료"
+  },
+  {
+    "content": "테스트용 application.yml 설정 파일 생성",
+    "status": "completed",
+    "activeForm": "설정 파일 생성 완료"
+  },
+  {
+    "content": "JPA 통합 테스트 작성 (Entity + Converter)",
+    "status": "completed",
+    "activeForm": "JPA 통합 테스트 작성 완료"
+  },
+  {
+    "content": "MyBatis 통합 테스트 작성 (Mapper + TypeHandler)",
+    "status": "completed",
+    "activeForm": "MyBatis 통합 테스트 작성 완료"
+  },
+  {
+    "content": "통합 테스트 실행 및 검증 (사용자 DB credentials 설정 필요)",
+    "status": "in_progress",
+    "activeForm": "통합 테스트 실행 대기 중"
+  }
+]

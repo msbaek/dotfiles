@@ -1,0 +1,26 @@
+[
+  {
+    "content": "분석 코드베이스 구조 및 주요 기능",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "README.md 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "장바구니 관련 기능 조사",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "장바구니 코드에서 문제점 분석",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "4"
+  }
+]

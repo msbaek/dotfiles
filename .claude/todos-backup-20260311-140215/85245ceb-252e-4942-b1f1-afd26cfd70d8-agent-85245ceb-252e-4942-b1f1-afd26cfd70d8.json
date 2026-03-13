@@ -1,0 +1,32 @@
+[
+  {
+    "content": "현재 시스템의 명령어 구조 분석 및 개선점 파악",
+    "status": "completed",
+    "activeForm": "현재 시스템의 명령어 구조 분석 중"
+  },
+  {
+    "content": "설정 파일 기반 vault path 관리 시스템 설계",
+    "status": "completed",
+    "activeForm": "설정 파일 기반 vault path 관리 시스템 설계 중"
+  },
+  {
+    "content": "편의성 향상을 위한 shell script/alias 시스템 구현",
+    "status": "in_progress",
+    "activeForm": "편의성 향상을 위한 shell script/alias 시스템 구현 중"
+  },
+  {
+    "content": "대화형 메뉴 시스템 구현으로 명령어 기억 부담 줄이기",
+    "status": "pending",
+    "activeForm": "대화형 메뉴 시스템 구현 중"
+  },
+  {
+    "content": "설정 관리 CLI 명령어 추가",
+    "status": "pending",
+    "activeForm": "설정 관리 CLI 명령어 추가 중"
+  },
+  {
+    "content": "문서 업데이트 및 사용법 가이드 작성",
+    "status": "pending",
+    "activeForm": "문서 업데이트 및 사용법 가이드 작성 중"
+  }
+]

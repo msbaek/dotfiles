@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Group3 파일들 (라인 6-55) 태그 재작업 - 50개 파일",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "group3-processing"
+  },
+  {
+    "content": "TDD 관련 파일들 (라인 6-26) 처리",
+    "status": "completed",
+    "priority": "high",
+    "id": "process-tdd-files"
+  },
+  {
+    "content": "TERMS 관련 파일들 (라인 27-44) 처리",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "process-terms-files"
+  },
+  {
+    "content": "나머지 파일들 (라인 45-55) 처리",
+    "status": "pending",
+    "priority": "high",
+    "id": "process-remaining-files"
+  }
+]

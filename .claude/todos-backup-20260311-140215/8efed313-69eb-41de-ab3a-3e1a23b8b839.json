@@ -1,0 +1,44 @@
+[
+  {
+    "content": "분석: 테스트와 코드 구조 파악하기",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "영수증 출력 기능(printBasketDetails) 분석 및 리팩토링 대상 식별하기",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "할인 계산 기능 분석 및 리팩토링 대상 식별하기",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "예제 코드로 리팩토링 방법 설명하기",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "새로운 기능(회원 등급별 할인) 테스트 구현 및 도메인으로 이동 예제 만들기",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "BasketController 메소드에 Composed Method 패턴 적용 예제 만들기",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "First Class Collection 패턴을 적용한 BasketItems 클래스 구현하기",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "7"
+  }
+]

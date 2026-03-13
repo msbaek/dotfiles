@@ -1,0 +1,12 @@
+[
+  {
+    "content": "YouTube API 인증 문제로 인한 yt-dlp 방식으로 변경",
+    "status": "in_progress",
+    "activeForm": "YouTube API 인증 문제로 인한 yt-dlp 방식으로 변경 중"
+  },
+  {
+    "content": "yt-dlp 패키지 설치 및 테스트",
+    "status": "pending",
+    "activeForm": "yt-dlp 패키지 설치 및 테스트 중"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "content": "oh-my-opencode 설치 (npx)",
+    "status": "completed",
+    "activeForm": "oh-my-opencode 설치 완료"
+  },
+  {
+    "content": "Claude Max 인증 설정",
+    "status": "in_progress",
+    "activeForm": "Claude Max 인증 설정 중"
+  },
+  {
+    "content": "Gemini 인증 설정",
+    "status": "pending",
+    "activeForm": "Gemini 인증 설정 중"
+  },
+  {
+    "content": "설정 확인",
+    "status": "pending",
+    "activeForm": "설정 확정 중"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Gmail에서 Kafka 문서 내용 추출",
+    "status": "completed",
+    "activeForm": "Gmail에서 Kafka 문서 내용 추출 중"
+  },
+  {
+    "content": "문서 내용을 한국어로 번역",
+    "status": "completed",
+    "activeForm": "문서 내용을 한국어로 번역 중"
+  },
+  {
+    "content": "이미지들을 ATTACHMENTS 폴더에 저장",
+    "status": "in_progress",
+    "activeForm": "이미지들을 ATTACHMENTS 폴더에 저장 중"
+  },
+  {
+    "content": "hierarchical tags 적용하여 Obsidian 문서 작성",
+    "status": "completed",
+    "activeForm": "hierarchical tags 적용하여 Obsidian 문서 작성 중"
+  }
+]

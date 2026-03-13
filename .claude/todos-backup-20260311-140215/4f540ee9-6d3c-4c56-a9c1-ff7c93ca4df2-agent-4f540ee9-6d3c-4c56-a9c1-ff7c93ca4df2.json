@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 18 처리 (10개 문서)",
+    "status": "completed",
+    "activeForm": "Batch 18 문서 10개 분석 완료"
+  },
+  {
+    "content": "결과 통합 및 저장",
+    "status": "in_progress",
+    "activeForm": "결과 통합 및 저장 중"
+  },
+  {
+    "content": "진행 상태 업데이트",
+    "status": "pending",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Batch 01 문서 분석 (1-10) - 44개 기법 추출",
+    "status": "completed",
+    "activeForm": "Batch 01 문서 분석 완료"
+  },
+  {
+    "content": "Batch 02 문서 분석 (11-20)",
+    "status": "pending",
+    "activeForm": "Batch 02 문서 분석 중"
+  },
+  {
+    "content": "Batch 03-29 문서 분석",
+    "status": "pending",
+    "activeForm": "Batch 03-29 문서 분석 중"
+  },
+  {
+    "content": "결과 수집 및 최종 보고서 작성",
+    "status": "pending",
+    "activeForm": "결과 수집 및 최종 보고서 작성 중"
+  }
+]

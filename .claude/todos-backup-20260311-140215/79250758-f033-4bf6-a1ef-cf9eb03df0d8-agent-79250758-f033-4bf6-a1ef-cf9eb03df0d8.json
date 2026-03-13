@@ -1,0 +1,17 @@
+[
+  {
+    "content": "현재 USB 연결 상태 확인",
+    "status": "completed",
+    "activeForm": "현재 USB 연결 상태 확인 중"
+  },
+  {
+    "content": "부트로더 모드 재진입 및 플래시 재시도",
+    "status": "in_progress",
+    "activeForm": "부트로더 모드 재진입 및 플래시 재시도 중"
+  },
+  {
+    "content": "VIA 설정 확인 및 키맵 테스트",
+    "status": "pending",
+    "activeForm": "VIA 설정 확인 및 키맵 테스트 중"
+  }
+]

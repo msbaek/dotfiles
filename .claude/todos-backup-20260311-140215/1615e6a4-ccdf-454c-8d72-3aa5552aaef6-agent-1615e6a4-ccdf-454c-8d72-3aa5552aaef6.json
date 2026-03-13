@@ -1,0 +1,27 @@
+[
+  {
+    "content": "TDD 진행 과정 분석 완료",
+    "status": "completed",
+    "activeForm": "TDD 진행 과정 분석 중"
+  },
+  {
+    "content": "Git commit log 및 코드 변화량 분석 완룈",
+    "status": "completed",
+    "activeForm": "Git commit log 및 코드 변화량 분석 중"
+  },
+  {
+    "content": "마이크로 TDD 개선안 작성",
+    "status": "completed",
+    "activeForm": "마이크로 TDD 개선안 작성 중"
+  },
+  {
+    "content": "Sub-agent 활용 방안 제시",
+    "status": "completed",
+    "activeForm": "Sub-agent 활용 방안 제시 중"
+  },
+  {
+    "content": "구체적인 워크플로우 예시 작성",
+    "status": "in_progress",
+    "activeForm": "구체적인 워크플로우 예시 작성 중"
+  }
+]

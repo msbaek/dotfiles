@@ -1,0 +1,27 @@
+[
+  {
+    "content": "두 문서 비교 분석 및 고유 내용 식별",
+    "status": "completed",
+    "activeForm": "두 문서 비교 분석 중"
+  },
+  {
+    "content": "masking-implementation-plan.md에 암호화/복호화 상세 예시 통합",
+    "status": "pending",
+    "activeForm": "암호화/복호화 예시 통합 중"
+  },
+  {
+    "content": "masking-implementation-plan.md에서 masking-encryption-plan.md 참조 링크 제거",
+    "status": "pending",
+    "activeForm": "참조 링크 제거 중"
+  },
+  {
+    "content": "masking-encryption-plan.md 파일 삭제",
+    "status": "pending",
+    "activeForm": "파일 삭제 중"
+  },
+  {
+    "content": "변경 사항 git commit",
+    "status": "pending",
+    "activeForm": "git commit 진행 중"
+  }
+]

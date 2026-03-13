@@ -1,0 +1,57 @@
+[
+  {
+    "content": "기존 smart_connection_emulator.py 분석 및 개선 계획 수립",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "기존 smart_connection_emulator.py 전체 코드 분석",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "AJSON 파서 최적화 및 에러 핸들링 개선",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "고급 검색 엔진 구현 (vector + keyword + hybrid)",
+    "status": "completed",
+    "id": "4"
+  },
+  {
+    "content": "문서 분석 도구 구현 (클러스터링, 시각화)",
+    "status": "completed",
+    "id": "5"
+  },
+  {
+    "content": "AJSON 파서 버그 수정 - 기존 로직 참고",
+    "status": "completed",
+    "id": "6"
+  },
+  {
+    "content": "TDD 오해 문서 클러스터링 분석 실행",
+    "status": "completed",
+    "id": "7"
+  },
+  {
+    "content": "유사도 매트릭스 생성 및 시각화",
+    "status": "completed",
+    "id": "8"
+  },
+  {
+    "content": "시각화 차트 생성 - TDD 분석 결과",
+    "status": "completed",
+    "id": "9"
+  },
+  {
+    "content": "AJSON 파일 파싱 문제 해결",
+    "status": "completed",
+    "id": "11"
+  },
+  {
+    "content": "FastAPI 기반 REST API 서버 프로토타입 구축",
+    "status": "pending",
+    "id": "10"
+  }
+]

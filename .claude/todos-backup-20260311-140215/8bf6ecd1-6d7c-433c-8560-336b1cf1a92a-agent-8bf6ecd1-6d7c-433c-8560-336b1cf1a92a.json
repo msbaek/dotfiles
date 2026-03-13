@@ -1,0 +1,17 @@
+[
+  {
+    "content": "마일리지 계산 로직을 Extract Method로 분리하기",
+    "status": "in_progress",
+    "activeForm": "마일리지 계산 로직을 Extract Method로 분리하는 중"
+  },
+  {
+    "content": "분리된 메서드를 CartGoods 클래스로 이동하기",
+    "status": "pending",
+    "activeForm": "분리된 메서드를 CartGoods 클래스로 이동하는 중"
+  },
+  {
+    "content": "Factory Method 패턴 적용하기",
+    "status": "pending",
+    "activeForm": "Factory Method 패턴을 적용하는 중"
+  }
+]

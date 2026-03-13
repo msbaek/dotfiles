@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Verify all analyst agents (1-4) are running Claude",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Check Tag PM status and ensure it's coordinating work",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Schedule hourly orchestrator check",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Verify Git branch is set up correctly",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Monitor overall progress and resolve any blockers",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Monitor error rates and identify patterns",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "Ensure 30-minute commits are happening",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  }
+]

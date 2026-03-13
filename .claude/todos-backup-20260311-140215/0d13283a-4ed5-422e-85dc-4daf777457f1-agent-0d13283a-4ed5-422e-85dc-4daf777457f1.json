@@ -1,0 +1,26 @@
+[
+  {
+    "content": "code-review 디렉토리의 모든 마크다운 문서 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "각 문서의 기존 태그와 내용 분석",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "hierarchical tag 구조로 태그 개선",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "제외된 파일 목록 정리",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

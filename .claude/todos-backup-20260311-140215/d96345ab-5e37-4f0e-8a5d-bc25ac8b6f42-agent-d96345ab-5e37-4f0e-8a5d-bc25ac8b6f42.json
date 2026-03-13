@@ -1,0 +1,38 @@
+[
+  {
+    "content": "agent-3-files.txt 파일 목록 처리 (총 232개 파일)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "50개 파일 처리 후 첫 번째 진행 상황 보고",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "100개 파일 처리 후 두 번째 진행 상황 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "150개 파일 처리 후 세 번째 진행 상황 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "200개 파일 처리 후 네 번째 진행 상황 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "232개 파일 모두 처리 완료 및 최종 보고",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  }
+]

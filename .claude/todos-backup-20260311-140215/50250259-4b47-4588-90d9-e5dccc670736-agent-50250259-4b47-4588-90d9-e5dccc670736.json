@@ -1,0 +1,37 @@
+[
+  {
+    "content": "[1/7] 12_cart.md 신규 생성 - 장바구니 도메인 (cart, guest_cart, cart_item 등 8개 테이블)",
+    "status": "completed",
+    "activeForm": "12_cart.md 장바구니 도메인 파일 생성 중"
+  },
+  {
+    "content": "[2/7] 07_system.md 수정 - state, shedlock 테이블 추가",
+    "status": "completed",
+    "activeForm": "07_system.md에 state, shedlock 테이블 추가 중"
+  },
+  {
+    "content": "[3/7] 01_order.md 수정 - CART_MST, CART_GOODS 참조를 12_cart.md로 이동 안내",
+    "status": "completed",
+    "activeForm": "01_order.md 장바구니 참조 정리 중"
+  },
+  {
+    "content": "[4/7] join_patterns.md 수정 - 장바구니 도메인 JOIN 패턴 5개 추가",
+    "status": "pending",
+    "activeForm": "join_patterns.md에 장바구니 JOIN 패턴 추가 중"
+  },
+  {
+    "content": "[5/7] table_relationships.md 수정 - 장바구니 ERD 및 FK 관계 추가",
+    "status": "pending",
+    "activeForm": "table_relationships.md에 장바구니 ERD 추가 중"
+  },
+  {
+    "content": "[6/7] README.md 수정 - 도메인 목록, 관계 요약, 변경 이력 v1.2 추가",
+    "status": "pending",
+    "activeForm": "README.md 업데이트 중"
+  },
+  {
+    "content": "[7/7] CLAUDE.md 수정 - v1.2 버전 정보 업데이트",
+    "status": "pending",
+    "activeForm": "CLAUDE.md 버전 정보 업데이트 중"
+  }
+]

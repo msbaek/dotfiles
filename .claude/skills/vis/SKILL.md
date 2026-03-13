@@ -229,6 +229,34 @@ vis reindex --include-folders 000-SLIPBOX 003-RESOURCES   # 특정 폴더만
 - 쿼리 확장: 동의어 + HyDE (Hypothetical Document Embedding)
 - SQLite 캐싱으로 빠른 반복 검색
 
+## 관련 문서 자동 제안 (Related Notes)
+
+`vis search` 또는 `vis related` 실행 후, 검색 대상 문서가 명확한 경우 **관련 문서 링크 추가를 자동으로 제안**한다.
+
+### 트리거 조건
+
+- 사용자가 특정 문서에 대해 검색하거나 (`vis related "문서.md"`)
+- 검색 결과에서 특정 문서와 관련된 문서들이 발견된 경우
+
+### 프로세스
+
+1. **후보 선별**: 검색 결과에서 daily notes, 자기 자신을 제외하고 관련도 높은 문서 목록 생성
+2. **사용자에게 제안**: 후보 목록을 번호와 함께 표시하고, 추가할 문서를 선택하도록 요청
+   - 각 후보에 한 줄 맥락 설명 포함
+3. **사용자 피드백 필수**: 선택된 문서만 Related Notes 섹션에 추가
+   - 맥락 설명도 사용자가 수정 가능
+4. **적용**: 문서 하단에 `## Related Notes` 섹션 추가 (Uncertainty Map 섹션이 있으면 그 앞에)
+   ```markdown
+   ## Related Notes
+   - [[문서명]] - 맥락 설명
+   ```
+5. **기존 Related Notes**: 이미 섹션이 있으면 중복 없이 항목을 추가
+
+### 주의사항
+
+- **반드시 사용자 승인 후 적용** — 자동으로 문서를 수정하지 않음
+- frontmatter의 `related:` 필드는 사용자가 명시적으로 요청한 경우에만 업데이트
+
 ## 자주 실수하는 옵션
 
 | 잘못된 옵션 | 올바른 사용법 |

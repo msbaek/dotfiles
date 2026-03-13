@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 09 처리 (81-90)",
+    "status": "completed",
+    "activeForm": "Batch 09 파일 10개 병렬 분석 완료"
+  },
+  {
+    "content": "결과 병합 및 저장",
+    "status": "in_progress",
+    "activeForm": "결과 파일 생성 중"
+  },
+  {
+    "content": "진행 상태 업데이트",
+    "status": "pending",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

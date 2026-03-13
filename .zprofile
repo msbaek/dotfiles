@@ -6,3 +6,6 @@ source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # Q post block. Keep at the bottom of this file.export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"

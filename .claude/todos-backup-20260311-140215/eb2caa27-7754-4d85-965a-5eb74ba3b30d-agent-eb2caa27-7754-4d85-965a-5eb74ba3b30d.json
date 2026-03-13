@@ -1,0 +1,44 @@
+[
+  {
+    "content": "REFACTORING/Cases 디렉토리 파일 목록 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "각 파일의 현재 태그 상태 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "태그 개선이 필요한 파일들 식별",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "계층적 태그 구조로 개선",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "최종 결과 보고 및 제외 파일 목록 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "우선순위 파일 태그 개선 완료 - 6개 파일 처리됨",
+    "status": "completed",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "나머지 빈 태그 파일들 처리 - 16개 파일 남음",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "7"
+  }
+]

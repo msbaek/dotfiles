@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 17 문서 분석 (161-170)",
+    "status": "completed",
+    "activeForm": "Batch 17 문서 분석 완료"
+  },
+  {
+    "content": "결과 파일 생성 (batch-17-results.md)",
+    "status": "in_progress",
+    "activeForm": "결과 파일 생성 중"
+  },
+  {
+    "content": "진행 상태 업데이트",
+    "status": "pending",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "content": "작업 준비: 필요한 파일들 확인 (all-md-files.md, improved-hierarchical-tags-guide.md)",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "마크다운 파일 목록을 여러 개의 배치로 분할",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "tmux 세션 생성 및 orchestrator 설정",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "각 배치별로 Claude agent 창 생성 및 태그 재부여 작업 할당",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "진행 상황 모니터링 및 완료 확인",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  }
+]

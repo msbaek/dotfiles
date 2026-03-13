@@ -1,0 +1,27 @@
+[
+  {
+    "content": "keymap.c에 커스텀 키코드 LANG_TOGGLE enum 추가",
+    "status": "completed",
+    "activeForm": "커스텀 키코드 LANG_TOGGLE enum 추가 중"
+  },
+  {
+    "content": "process_record_user에 LANG_TOGGLE 처리 로직 구현",
+    "status": "completed",
+    "activeForm": "LANG_TOGGLE 처리 로직 구현 중"
+  },
+  {
+    "content": "키맵에서 MT(MOD_RALT, KC_F18)를 LANG_TOGGLE로 교체",
+    "status": "completed",
+    "activeForm": "키맵에서 MT 키를 LANG_TOGGLE로 교체 중"
+  },
+  {
+    "content": "펌웨어 컴파일 및 테스트",
+    "status": "completed",
+    "activeForm": "펌웨어 컴파일 및 테스트 중"
+  },
+  {
+    "content": "필요시 타이밍 설정 최적화",
+    "status": "pending",
+    "activeForm": "타이밍 설정 최적화 중"
+  }
+]

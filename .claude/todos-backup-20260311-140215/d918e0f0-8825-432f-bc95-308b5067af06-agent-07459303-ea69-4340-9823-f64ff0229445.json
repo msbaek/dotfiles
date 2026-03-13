@@ -1,0 +1,62 @@
+[
+  {
+    "content": "003-RESOURCES/ARCHITECTURE 디렉토리 hierarchical tag 적용",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "003-RESOURCES/DDD 디렉토리 hierarchical tag 적용",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "003-RESOURCES/TDD 디렉토리 hierarchical tag 적용",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "003-RESOURCES/REFACTORING 디렉토리 hierarchical tag 적용",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "003-RESOURCES/DEVELOPMENT 디렉토리 hierarchical tag 적용",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "003-RESOURCES/CLEAN_CODE 디렉토리 hierarchical tag 적용",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "997-BOOKS 디렉토리 hierarchical tag 적용",
+    "status": "pending",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "003-RESOURCES/HR 디렉토리 hierarchical tag 적용",
+    "status": "pending",
+    "priority": "low",
+    "id": "8"
+  },
+  {
+    "content": "003-RESOURCES/ai 디렉토리 hierarchical tag 적용",
+    "status": "pending",
+    "priority": "low",
+    "id": "9"
+  },
+  {
+    "content": "검토 및 최종 정리",
+    "status": "pending",
+    "priority": "low",
+    "id": "10"
+  }
+]

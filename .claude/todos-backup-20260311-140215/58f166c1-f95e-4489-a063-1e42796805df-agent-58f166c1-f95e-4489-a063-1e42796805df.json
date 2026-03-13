@@ -1,0 +1,44 @@
+[
+  {
+    "content": "group3-files.txt 파일 읽기 및 파일 목록 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "improved-hierarchical-tags-guide.md 읽기 및 태그 규칙 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "첫 5개 파일 처리 및 품질 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "나머지 파일들 일괄 처리",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "agent3-progress.txt에 진행상황 기록",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "50개 파일마다 진행상황 업데이트",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "오류 발생 시 error-log.txt에 기록",
+    "status": "pending",
+    "priority": "low",
+    "id": "7"
+  }
+]

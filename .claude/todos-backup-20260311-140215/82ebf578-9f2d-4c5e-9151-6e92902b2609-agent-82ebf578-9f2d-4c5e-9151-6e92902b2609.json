@@ -1,0 +1,26 @@
+[
+  {
+    "content": "msbaek GitHub 저장소 목록 수집",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "각 저장소 상세 정보 분석",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "저장소 카테고리별 분류",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "마크다운 문서 작성",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  }
+]

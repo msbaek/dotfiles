@@ -1,0 +1,27 @@
+[
+  {
+    "content": "582개 파일의 태그 정리 작업 시작",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "첫 번째 파일 읽기 및 태그 분석",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "태그 정리 규칙 적용",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "MultiEdit으로 파일 수정",
+    "status": "completed",
+    "id": "4"
+  },
+  {
+    "content": "진행 상황 로그 기록",
+    "status": "in_progress",
+    "id": "5"
+  }
+]

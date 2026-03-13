@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Batch 14 파일 존재 확인 및 경로 검증",
+    "status": "completed",
+    "activeForm": "Batch 14 파일 존재 확인 중"
+  },
+  {
+    "content": "10개 에이전트로 병렬 처리하여 기법 추출",
+    "status": "completed",
+    "activeForm": "10개 에이전트로 병렬 처리 중"
+  },
+  {
+    "content": "결과 취합 및 batch-14-results.md 생성",
+    "status": "completed",
+    "activeForm": "결과 취합 및 파일 생성 중"
+  },
+  {
+    "content": "진행 상태 파일 업데이트",
+    "status": "in_progress",
+    "activeForm": "진행 상태 파일 업데이트 중"
+  }
+]

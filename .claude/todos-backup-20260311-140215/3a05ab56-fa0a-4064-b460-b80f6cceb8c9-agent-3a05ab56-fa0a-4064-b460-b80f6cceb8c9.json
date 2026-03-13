@@ -1,0 +1,17 @@
+[
+  {
+    "content": "터미널 설정 문제 진단 - iTerm2/Terminal.app Option 키 설정 확인",
+    "status": "pending",
+    "activeForm": "터미널 설정 문제 진단하는 중"
+  },
+  {
+    "content": "QMK 키맵에서 macOS 전용 키코드 시도",
+    "status": "pending",
+    "activeForm": "QMK 키맵에서 macOS 전용 키코드 시도하는 중"
+  },
+  {
+    "content": "Key Overrides 기능으로 Alt 키 조합 커스터마이징",
+    "status": "pending",
+    "activeForm": "Key Overrides 기능으로 Alt 키 조합 커스터마이징하는 중"
+  }
+]

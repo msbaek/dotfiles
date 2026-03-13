@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 02 파일 분석 (11-20)",
+    "status": "completed",
+    "activeForm": "Batch 02 파일 분석 완료"
+  },
+  {
+    "content": "batch-02-results.md 결과 파일 생성",
+    "status": "completed",
+    "activeForm": "결과 파일 생성 완료"
+  },
+  {
+    "content": "ai-practice-progress.md 진행 상태 업데이트",
+    "status": "in_progress",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

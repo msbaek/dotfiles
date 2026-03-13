@@ -285,6 +285,15 @@ Manual commits only when /commit skill is unavailable. In that case:
 Obsidian 문서 생성 시 반드시 `$VAULT_ROOT/001-INBOX/`에 저장.
 경로는 이 섹션을 Single Source of Truth로 삼는다.
 개별 skill/command/agent에서 경로를 하드코딩하지 않고 이 규칙을 따른다.
+
+<when-creating-obsidian-document>
+Obsidian 문서를 생성하거나 정리한 후, `vis search`로 관련 문서를 검색하여 Related Notes 섹션을 추가한다.
+1. `vis search "핵심 키워드" --search-method hybrid --rerank --top-k 10` 실행
+2. 자기 자신, daily notes 제외하고 관련도 높은 후보 선별
+3. **반드시 사용자 피드백을 받은 후** 적용 (백그라운드 모드에서는 상위 3-5개 자동 추가 후 완료 시 리뷰 안내)
+4. 문서 하단에 `## Related Notes` 섹션으로 추가 (각 링크에 한 줄 맥락 설명 포함)
+5. frontmatter `related:` 필드는 명시적 요청 시에만 업데이트
+</when-creating-obsidian-document>
 </obsidian_vault>
 
 ### LSP-First Development (Java 프로젝트 전용)
@@ -408,3 +417,13 @@ Recoverability:
 - Commit after each meaningful unit of work
 - Keep state rollback-friendly at all times
 </verification-before-completion>
+
+### Reference Projects
+
+<reference_projects>
+| 주제 | 경로 | 설명 |
+|------|------|------|
+| ISMS | `~/git/isms-docs` | ISMS 관련 문서. 정보보호 정책, 인증 기준 등 참조 시 활용 |
+</reference_projects>
+
+@RTK.md

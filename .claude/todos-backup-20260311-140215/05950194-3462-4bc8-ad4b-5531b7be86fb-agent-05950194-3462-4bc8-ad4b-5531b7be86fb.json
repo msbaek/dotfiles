@@ -1,0 +1,22 @@
+[
+  {
+    "content": "AI 한계와 개발자 관련 문서 검색",
+    "status": "completed",
+    "activeForm": "AI 한계와 개발자 관련 문서 검색 중"
+  },
+  {
+    "content": "검색 결과 분석 및 카테고리화",
+    "status": "in_progress",
+    "activeForm": "검색 결과 분석 및 카테고리화 중"
+  },
+  {
+    "content": "주제별 내용 정리 및 구조화",
+    "status": "pending",
+    "activeForm": "주제별 내용 정리 및 구조화 중"
+  },
+  {
+    "content": "최종 문서 작성 계획 수립",
+    "status": "pending",
+    "activeForm": "최종 문서 작성 계획 수립 중"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 12 문서 분석 (111-120번, 10개 문서)",
+    "status": "completed",
+    "activeForm": "Batch 12 문서 분석 완료"
+  },
+  {
+    "content": "결과 파일 생성 (batch-12-results.md)",
+    "status": "in_progress",
+    "activeForm": "결과 파일 생성 중"
+  },
+  {
+    "content": "진행 상태 파일 업데이트",
+    "status": "pending",
+    "activeForm": "진행 상태 파일 업데이트 중"
+  }
+]

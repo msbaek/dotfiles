@@ -1,0 +1,68 @@
+[
+  {
+    "content": "작업 디렉토리 생성 (results, logs)",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "파일 목록을 4개 그룹으로 분할하는 스크립트 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Tmux 세션 및 Agent 윈도우 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "각 Agent에 Claude 실행",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Agent별 작업 지시 스크립트 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "각 Agent에게 작업 지시 전달",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "작업 진행 상황 모니터링",
+    "status": "completed",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "결과 검증 및 통계 생성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "8"
+  },
+  {
+    "content": "10분마다 진행 상황 체크 (완료까지)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "Agent 1 재시작 및 완료 확인",
+    "status": "pending",
+    "priority": "high",
+    "id": "10"
+  },
+  {
+    "content": "모든 Agent 작업 완료 확인",
+    "status": "pending",
+    "priority": "high",
+    "id": "11"
+  }
+]

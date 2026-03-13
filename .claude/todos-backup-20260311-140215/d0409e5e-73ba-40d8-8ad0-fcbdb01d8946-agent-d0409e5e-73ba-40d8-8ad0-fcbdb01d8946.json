@@ -1,0 +1,27 @@
+[
+  {
+    "content": "TennisGame.md 파일에 TDD 절차 작성",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "테니스 게임 SRS(소프트웨어 요구사항 명세서) 작성",
+    "status": "pending",
+    "id": "2"
+  },
+  {
+    "content": "SRS를 잘 설명할 수 있는 예제 목록 작성",
+    "status": "pending",
+    "id": "3"
+  },
+  {
+    "content": "테스트 케이스 목록 작성",
+    "status": "pending",
+    "id": "4"
+  },
+  {
+    "content": "테스트 리스트에서 테스트 선택해서 구현하기",
+    "status": "pending",
+    "id": "5"
+  }
+]

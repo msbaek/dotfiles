@@ -1,0 +1,50 @@
+[
+  {
+    "content": "Day 5: GitHub-Repository-Structure.md 작성 - 디렉토리 구조, README 템플릿, 설정 스크립트, CI/CD 파이프라인 설계",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Day 6: Example-Connection-Design.md 작성 - Progressive Complexity, Cross-Reference Matrix, 코드 재사용 전략",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Phase 3 준비: Shared-Resources/ 작성 (6개 파일) - Fundamentals, Refactoring, Spring Boot, Quality, Legacy, Clean Code",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Phase 3 준비: Chapter-Specific/ 작성 (6개 파일) - Test Doubles, Patterns, Design, TestContainers, Troubleshooting, AI",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "Obsidian 태그 적용 - Phase 1: 핵심 파일 30개",
+    "status": "pending",
+    "priority": "low",
+    "id": "5"
+  },
+  {
+    "content": "GitHub 저장소 생성 및 초기 설정",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "MOC(Map of Contents) 페이지 생성",
+    "status": "pending",
+    "priority": "low",
+    "id": "7"
+  },
+  {
+    "content": "Day 7: Example-Design-Ecommerce.md 작성 (마지막에 진행)",
+    "status": "pending",
+    "priority": "low",
+    "id": "8"
+  }
+]

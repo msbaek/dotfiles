@@ -1,0 +1,22 @@
+[
+  {
+    "content": "첫 번째 슬라이드 캡처 및 분석",
+    "status": "completed",
+    "activeForm": "첫 번째 슬라이드 캡처 및 분석 완료"
+  },
+  {
+    "content": "모든 93개 슬라이드 순차적으로 캡처",
+    "status": "in_progress",
+    "activeForm": "슬라이드들 캡처 중 (1/93 완료)"
+  },
+  {
+    "content": "캡처한 이미지들을 ATTACHMENTS 폴더에 저장",
+    "status": "pending",
+    "activeForm": "이미지 저장 중"
+  },
+  {
+    "content": "옵시디안 문서 작성 (003-RESOURCES/databricks/ 폴더)",
+    "status": "pending",
+    "activeForm": "옵시디안 문서 작성 중"
+  }
+]

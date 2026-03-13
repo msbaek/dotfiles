@@ -1,0 +1,20 @@
+[
+  {
+    "content": "vault 내 모든 마크다운 파일에서 태그 추출",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "추출된 태그를 분석하여 카테고리별로 정리",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "태그 활용 방안 및 개선점 제안",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  }
+]

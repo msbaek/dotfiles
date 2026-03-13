@@ -1,0 +1,32 @@
+[
+  {
+    "content": "현재 로그인 프로세스 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "사용자 테이블 구조 파악",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "기기 정보 저장을 위한 DB 스키마 설계",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "로그인 API 수정 방안 수립",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "구현 계획 수립",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  }
+]

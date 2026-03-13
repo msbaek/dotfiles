@@ -1,0 +1,27 @@
+[
+  {
+    "content": "브라우저에서 문서 내용 읽어오기",
+    "status": "completed",
+    "activeForm": "브라우저에서 문서 내용 읽어오는 중"
+  },
+  {
+    "content": "문서 내용 분석 및 번역",
+    "status": "completed",
+    "activeForm": "문서 내용 분석 및 번역 중"
+  },
+  {
+    "content": "Hierarchical tags 설계",
+    "status": "completed",
+    "activeForm": "Hierarchical tags 설계 중"
+  },
+  {
+    "content": "YAML frontmatter 작성",
+    "status": "completed",
+    "activeForm": "YAML frontmatter 작성 중"
+  },
+  {
+    "content": "Obsidian 문서 생성",
+    "status": "in_progress",
+    "activeForm": "Obsidian 문서 생성 중"
+  }
+]

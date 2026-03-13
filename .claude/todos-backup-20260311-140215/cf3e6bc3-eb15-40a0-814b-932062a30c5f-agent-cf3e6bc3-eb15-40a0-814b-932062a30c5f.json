@@ -1,0 +1,86 @@
+[
+  {
+    "content": "파일 목록을 에이전트별로 분할 (각 에이전트당 약 230개 파일)",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Tmux 세션 're-tagging-vault' 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Orchestrator, PM, 10개 에이전트 윈도우 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "각 에이전트에 Claude 시작 및 작업 브리펑",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "초기 30초 동안 모든 에이전트 시작 확인",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "10분 단위로 진행 상황 모니터링 설정",
+    "status": "completed",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "PM에게 품질 검증 작업 지시",
+    "status": "completed",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "Usage limit 리셋 후 모든 에이전트 작업 재개",
+    "status": "completed",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "에이전트 재시작 후 진행 상형 모니터링",
+    "status": "completed",
+    "priority": "medium",
+    "id": "9"
+  },
+  {
+    "content": "작업 완료 후 존재하지 않는 파일 목록 정리",
+    "status": "completed",
+    "priority": "medium",
+    "id": "10"
+  },
+  {
+    "content": "모든 에이전트 작업 중단",
+    "status": "completed",
+    "priority": "high",
+    "id": "11"
+  },
+  {
+    "content": "전체 파일 처리 상태 분석",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "12"
+  },
+  {
+    "content": "처리 완료 파일 vs 미처리 파일 구분",
+    "status": "pending",
+    "priority": "high",
+    "id": "13"
+  },
+  {
+    "content": "최종 처리 결과 보고서 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "14"
+  }
+]

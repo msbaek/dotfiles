@@ -1,0 +1,92 @@
+[
+  {
+    "content": "003-RESOURCES 폴더 구조 파악 및 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "각 하위 폴더별로 마크다운 문서 목록 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "중복 가능성이 있는 문서들 식별",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "중복 문서 내용 비교 및 분석",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "통합 계획 수립 및 사용자 승인 받기",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Emergent Design & Evolutionary Architecture 문서들 내용 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "Emergent Design & Evolutionary Architecture 통합 문서 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "기존 중복 파일 삭제",
+    "status": "completed",
+    "priority": "medium",
+    "id": "8"
+  },
+  {
+    "content": "누락된 내용 추가 - Sonar, idiomatic patterns, ckjm, 짝 프로그래밍 등",
+    "status": "completed",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "추가 Emergent Design 관련 중복 문서 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "10"
+  },
+  {
+    "content": "추가 중복 파일 삭제",
+    "status": "completed",
+    "priority": "medium",
+    "id": "11"
+  },
+  {
+    "content": "다른 중복 문서 찾기",
+    "status": "completed",
+    "priority": "high",
+    "id": "12"
+  },
+  {
+    "content": "Does TDD Really Lead to Good Design? 중복 파일 통합",
+    "status": "completed",
+    "priority": "high",
+    "id": "13"
+  },
+  {
+    "content": "사용자가 통합 문서와 기존 문서 비교 확인할 수 있도록 안내",
+    "status": "completed",
+    "priority": "high",
+    "id": "14"
+  },
+  {
+    "content": "다른 중복 문서 계속 찾기 - HR 폴더 체크",
+    "status": "pending",
+    "priority": "high",
+    "id": "15"
+  }
+]

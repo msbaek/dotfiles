@@ -1,0 +1,57 @@
+[
+  {
+    "content": "build.gradle.kts 의존성 추가 (TestContainers, Spring Boot, MyBatis)",
+    "status": "completed",
+    "activeForm": "build.gradle.kts 의존성 추가 중"
+  },
+  {
+    "content": "스키마 SQL 파일 생성 (init/schema.sql)",
+    "status": "completed",
+    "activeForm": "스키마 SQL 파일 생성 중"
+  },
+  {
+    "content": "암호화 Converter 구현 (AbstractEncryptingConverter + 구체 클래스)",
+    "status": "completed",
+    "activeForm": "암호화 Converter 구현 중"
+  },
+  {
+    "content": "암호화 TypeHandler 구현 (AbstractEncryptingTypeHandler + 구체 클래스)",
+    "status": "completed",
+    "activeForm": "암호화 TypeHandler 구현 중"
+  },
+  {
+    "content": "TestContainers 설정 및 application-test.yml",
+    "status": "completed",
+    "activeForm": "TestContainers 설정 중"
+  },
+  {
+    "content": "JPA Entity/Repository 구현 (Member, MemberRepository)",
+    "status": "completed",
+    "activeForm": "JPA Entity/Repository 구현 중"
+  },
+  {
+    "content": "MyBatis Mapper 구현 (MemberMapper)",
+    "status": "completed",
+    "activeForm": "MyBatis Mapper 구현 중"
+  },
+  {
+    "content": "JPA Integration Test 작성",
+    "status": "completed",
+    "activeForm": "JPA Integration Test 작성 중"
+  },
+  {
+    "content": "MyBatis Integration Test 작성",
+    "status": "in_progress",
+    "activeForm": "MyBatis Integration Test 작성 중"
+  },
+  {
+    "content": "테스트 실행 및 검증",
+    "status": "pending",
+    "activeForm": "테스트 실행 및 검증 중"
+  },
+  {
+    "content": "docs/plan.md 업데이트",
+    "status": "pending",
+    "activeForm": "docs/plan.md 업데이트 중"
+  }
+]

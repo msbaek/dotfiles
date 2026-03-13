@@ -1,0 +1,22 @@
+[
+  {
+    "content": "관련 파일들 조사 (CreateShoppingBasketTest.md, git log, TDD 문서)",
+    "status": "completed",
+    "activeForm": "관련 파일들 조사 중"
+  },
+  {
+    "content": "Claude Code sub-agents와 slash commands 문서 조사",
+    "status": "completed",
+    "activeForm": "Claude Code 문서 조사 중"
+  },
+  {
+    "content": "1~5단계 전용 TDD 프로세스 개선안 작성",
+    "status": "in_progress",
+    "activeForm": "개선안 작성 중"
+  },
+  {
+    "content": "1~5단계 전용 Sub-agents와 slash commands 구현",
+    "status": "pending",
+    "activeForm": "구현 중"
+  }
+]

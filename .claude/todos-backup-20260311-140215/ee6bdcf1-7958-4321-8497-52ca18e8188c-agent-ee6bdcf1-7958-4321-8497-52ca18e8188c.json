@@ -1,0 +1,26 @@
+[
+  {
+    "content": "001-INBOX/BRUNCH 디렉토리의 모든 파일 스캔 및 현재 태그 상태 확인",
+    "status": "pending",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "이미 hierarchical tag가 적용된 문서들과 처리된 문서들을 식별하여 제외",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "각 파일의 내용을 분석하여 적절한 hierarchical tag 생성 및 적용",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "제외된 파일 목록 정리 및 최종 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "content": "TaskMaster 프로젝트 초기화",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "초기 작업 구조 생성",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "PRD.md 역할 재정의 및 업데이트",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "첫 번째 작업 배치 생성",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  }
+]

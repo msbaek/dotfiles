@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Martin Fowler Refactoring 1판과 2판 정보 수집",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "주요 리팩터링 기법들의 카테고리 분류",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "TDD와 리팩터링의 관계 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Working TDD 책 구조에서의 리팩터링 섹션 배치 계획 수립",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "저작권 고려사항 정리",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "단계별 작업 계획 수립",
+    "status": "completed",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "계획서를 working_tdd_refactoring_plan.md 파일로 작성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "7"
+  }
+]

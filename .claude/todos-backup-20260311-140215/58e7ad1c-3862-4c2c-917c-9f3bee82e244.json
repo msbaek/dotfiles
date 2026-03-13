@@ -1,0 +1,38 @@
+[
+  {
+    "content": "10,000원 초과 20,000원 미만 구매 시 5% 할인 적용 테스트 추가하기",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "테스트를 컴파일하기 위한 최소 코드 작성",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "5% 할인이 적용되도록 컨트롤러 구현하기",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "정확히 20,000원 구매 시 10% 할인 적용 테스트 추가하기",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "20,000원 이상 구매 시 10% 할인 적용 테스트 추가하기",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "High Level Test 활성화하기",
+    "status": "pending",
+    "priority": "low",
+    "id": "6"
+  }
+]

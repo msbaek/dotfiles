@@ -1,0 +1,32 @@
+[
+  {
+    "content": "처리할 파일 목록 확인 및 작업 준비 (총 231개 파일)",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-1"
+  },
+  {
+    "content": "첫 50개 파일 처리 (997-BOOKS/clean-coders-codecasts 폴더)",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-2"
+  },
+  {
+    "content": "51-100번 파일 처리 (clean-coders-my-youtube, DDD, Refactoring 등)",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-3"
+  },
+  {
+    "content": "처리 불가 파일 목록 정리 및 UNPROCESSED-FILES.md 업데이트",
+    "status": "completed",
+    "priority": "high",
+    "id": "todo-7"
+  },
+  {
+    "content": "존재하는 파일 찾아서 처리 계속하기",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "todo-8"
+  }
+]

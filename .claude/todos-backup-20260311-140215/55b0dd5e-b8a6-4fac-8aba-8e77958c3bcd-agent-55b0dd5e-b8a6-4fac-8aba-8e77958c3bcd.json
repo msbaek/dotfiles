@@ -1,0 +1,37 @@
+[
+  {
+    "content": "작업 디렉토리 생성 및 기본 구조 설정",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "Obsidian vault 파일 수집 스크립트 작성",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "태그 정리 로직 스크립트 작성",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "Agent 지시서 템플릿 작성",
+    "status": "completed",
+    "id": "4"
+  },
+  {
+    "content": "Tmux 세션 생성 및 Agent 배포",
+    "status": "completed",
+    "id": "5"
+  },
+  {
+    "content": "모니터링 시스템 구축",
+    "status": "completed",
+    "id": "6"
+  },
+  {
+    "content": "작업 실행 및 진행 상황 추적",
+    "status": "in_progress",
+    "id": "7"
+  }
+]

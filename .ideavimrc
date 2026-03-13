@@ -18,7 +18,7 @@ set commentary
 """ The Leader Key
 let mapleader=" "
 
-inoremap sa :action ShowIntentionActions<CR>
+" inoremap sa :action ShowIntentionActions<CR>
 nnoremap sa :action ShowIntentionActions<CR>
 
 inoremap jk <ESC>

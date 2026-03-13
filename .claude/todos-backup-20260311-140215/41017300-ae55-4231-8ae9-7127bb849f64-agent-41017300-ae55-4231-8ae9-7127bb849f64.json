@@ -1,0 +1,27 @@
+[
+  {
+    "content": "YouTube URL에서 메타데이터와 트랜스크립트 다운로드",
+    "status": "completed",
+    "activeForm": "YouTube URL에서 메타데이터와 트랜스크립트 다운로드 중"
+  },
+  {
+    "content": "다운로드된 메타데이터를 분석하여 문서 구조 설계",
+    "status": "completed",
+    "activeForm": "다운로드된 메타데이터를 분석하여 문서 구조 설계 중"
+  },
+  {
+    "content": "YouTube 설명 및 챕터 정보를 한국어로 정리",
+    "status": "in_progress",
+    "activeForm": "YouTube 설명 및 챕터 정보를 한국어로 정리 중"
+  },
+  {
+    "content": "hierarchical tagging 적용",
+    "status": "pending",
+    "activeForm": "hierarchical tagging 적용 중"
+  },
+  {
+    "content": "Obsidian 파일 생성 및 저장",
+    "status": "pending",
+    "activeForm": "Obsidian 파일 생성 및 저장 중"
+  }
+]

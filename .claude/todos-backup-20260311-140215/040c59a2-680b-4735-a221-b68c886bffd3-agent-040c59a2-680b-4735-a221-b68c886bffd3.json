@@ -1,0 +1,22 @@
+[
+  {
+    "content": "현재 키 순서 문제 원인 분석 완료",
+    "status": "completed",
+    "activeForm": "현재 키 순서 문제 원인 분석 완료"
+  },
+  {
+    "content": "MT(MOD_LGUI,KC_ENT) 키와 KC_LALT 동기화 개선",
+    "status": "in_progress",
+    "activeForm": "MT(MOD_LGUI,KC_ENT) 키와 KC_LALT 동기화 개선 중"
+  },
+  {
+    "content": "수정된 코드 컴파일 및 테스트",
+    "status": "pending",
+    "activeForm": "수정된 코드 컴파일 및 테스트 중"
+  },
+  {
+    "content": "키 순서 정상 동작 확인",
+    "status": "pending",
+    "activeForm": "키 순서 정상 동작 확인 중"
+  }
+]

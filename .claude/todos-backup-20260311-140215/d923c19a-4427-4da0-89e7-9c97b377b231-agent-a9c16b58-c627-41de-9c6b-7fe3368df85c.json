@@ -1,0 +1,26 @@
+[
+  {
+    "content": "000-SLIPBOX 디렉토리 파일들 (1-16) 태그 재부여",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "000-SLIPBOX 디렉토리 파일들 (17-26) 태그 재부여",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "001-INBOX 디렉토리 파일들 (27-30) 태그 재부여",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "처리 결과 보고서 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

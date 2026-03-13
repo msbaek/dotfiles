@@ -1,0 +1,37 @@
+[
+  {
+    "content": "Phase 1: 폴더 구조 생성 (docs/user, docs/dev/archive, archive/ai-practice)",
+    "status": "completed",
+    "activeForm": "폴더 구조 생성 중"
+  },
+  {
+    "content": "Phase 2: 기존 문서 이동",
+    "status": "completed",
+    "activeForm": "기존 문서 이동 중"
+  },
+  {
+    "content": "Phase 3: 신규 문서 작성 (AI-PRACTICE-SUMMARY.md, DEVELOPMENT.md)",
+    "status": "completed",
+    "activeForm": "신규 문서 작성 중"
+  },
+  {
+    "content": "Phase 4: README.md 문서 인덱스 추가",
+    "status": "completed",
+    "activeForm": "README.md 문서 인덱스 추가 중"
+  },
+  {
+    "content": "Phase 5: EXAMPLES.md 확장 (samples 통합 + 활용 사례)",
+    "status": "completed",
+    "activeForm": "EXAMPLES.md 확장 중"
+  },
+  {
+    "content": "Phase 6: CHANGELOG.md 형식 전환",
+    "status": "in_progress",
+    "activeForm": "CHANGELOG.md 형식 전환 중"
+  },
+  {
+    "content": "Phase 7: 정리 및 검증",
+    "status": "pending",
+    "activeForm": "정리 및 검증 중"
+  }
+]

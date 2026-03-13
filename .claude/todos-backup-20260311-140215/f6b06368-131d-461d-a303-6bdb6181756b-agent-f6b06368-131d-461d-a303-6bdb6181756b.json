@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 20 에이전트 실행 (10개 병렬)",
+    "status": "in_progress",
+    "activeForm": "Batch 20 에이전트 결과 수집 중"
+  },
+  {
+    "content": "결과 통합 및 batch-20-results.md 생성",
+    "status": "pending",
+    "activeForm": "결과 파일 생성 중"
+  },
+  {
+    "content": "진행 상태 파일 업데이트",
+    "status": "pending",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

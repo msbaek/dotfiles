@@ -1,0 +1,44 @@
+[
+  {
+    "content": "5PM 작업 재개 후 모든 에이전트 상태 확인",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "전체 진행률 및 처리 파일 수 재집계",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "처리된 파일 품질 검증 (샘플링)",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "파일 미존재 문제 현황 파악",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "문제 발견 시 해당 에이전트에게 피드백",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "오케스트레이터에게 진행 상황 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "파일 경로 문제 해결 방안 모색",
+    "status": "pending",
+    "priority": "medium",
+    "id": "7"
+  }
+]

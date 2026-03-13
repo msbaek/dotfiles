@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Alt + Cmd + arrow에서 Alt가 무시되는 문제 분석",
+    "status": "completed",
+    "activeForm": "Alt + Cmd + arrow에서 Alt가 무시되는 문제 분석 중"
+  },
+  {
+    "content": "GUI 키 임시 차단 로직 구현",
+    "status": "completed",
+    "activeForm": "GUI 키 임시 차단 로직 구현 중"
+  },
+  {
+    "content": "펌웨어 컴파일 및 테스트",
+    "status": "in_progress",
+    "activeForm": "펌웨어 컴파일 및 테스트 중"
+  }
+]

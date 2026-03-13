@@ -1,0 +1,32 @@
+[
+  {
+    "content": "현재 프로젝트 구조 및 orchestrate.py 분석",
+    "status": "completed",
+    "activeForm": "프로젝트 구조 및 orchestrate.py 분석 중"
+  },
+  {
+    "content": "templates/daily-logger/ 디렉토리 및 config.yaml 생성",
+    "status": "completed",
+    "activeForm": "config.yaml 생성 중"
+  },
+  {
+    "content": "templates/daily-logger/agent_template.py 생성",
+    "status": "completed",
+    "activeForm": "agent_template.py 생성 중"
+  },
+  {
+    "content": "orchestrate.py에 daily-logger 태스크 타입 추가",
+    "status": "completed",
+    "activeForm": "orchestrate.py 수정 중"
+  },
+  {
+    "content": "daily-work-logger 스킬 확인 및 필요시 수정",
+    "status": "completed",
+    "activeForm": "daily-work-logger 스킬 확인 중"
+  },
+  {
+    "content": "테스트 실행으로 동작 검증",
+    "status": "pending",
+    "activeForm": "테스트 실행 중"
+  }
+]

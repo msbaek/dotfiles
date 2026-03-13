@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Engineer-2의 part2 태그 추출 완료 대기",
+    "status": "pending",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Engineer-3의 part3 태그 추출 완료 대기",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "모든 부분 완료 후 결과 병합",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "최종 태그 통계 생성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

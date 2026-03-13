@@ -1,0 +1,44 @@
+[
+  {
+    "content": "authors/virtual_msbaek 디렉토리 구조 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "published_content.csv 파일 생성 및 콘텐츠 소스들 등록",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "YouTube 플레이리스트 콘텐츠 추가",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Brunch 블로그 콘텐츠 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "GitHub 주요 저장소/문서 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "빌드 스크립트 실행하여 콘텐츠 처리",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "MCP 리소스 생성 및 서버 테스트",
+    "status": "completed",
+    "priority": "medium",
+    "id": "7"
+  }
+]

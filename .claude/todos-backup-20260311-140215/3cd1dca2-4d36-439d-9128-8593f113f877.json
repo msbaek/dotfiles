@@ -1,0 +1,26 @@
+[
+  {
+    "content": "분석 general-tdd.md 파일",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "분석 tdd-rules.md 파일",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "분석 tdd-samples.md 파일",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "general-tdd.md의 참조 관계 파악하고 가시화",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  }
+]

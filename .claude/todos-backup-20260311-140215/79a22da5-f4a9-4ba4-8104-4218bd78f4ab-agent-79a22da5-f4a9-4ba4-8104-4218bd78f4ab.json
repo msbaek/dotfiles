@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Tidying 디렉토리의 파일들 태그 개선 작업 시작",
+    "status": "completed",
+    "priority": "medium",
+    "id": "1"
+  },
+  {
+    "content": "각 파일의 현재 태그 상태 확인 및 분석",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "계층적 태그 구조로 개선이 필요한 파일들 식별",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "Kent Beck의 Tidy First 관련 파일들 태그 개선",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "AI 및 소프트웨어 개발 관련 파일들 태그 개선",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "나머지 파일들도 계속 처리",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "처리 제외된 파일 목록 정리",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  }
+]

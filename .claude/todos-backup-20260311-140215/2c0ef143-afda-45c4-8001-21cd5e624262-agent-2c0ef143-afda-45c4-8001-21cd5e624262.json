@@ -1,0 +1,26 @@
+[
+  {
+    "content": "두 파일의 내용 분석 및 공통 주제 파악",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "중복 내용 식별 및 제거",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "내용 구조화 및 재구성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "통합된 아티팩트 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

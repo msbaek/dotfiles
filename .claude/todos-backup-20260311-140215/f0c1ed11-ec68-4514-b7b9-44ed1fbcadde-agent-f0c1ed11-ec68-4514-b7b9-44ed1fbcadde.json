@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Agent 3 작업 환경 확인 및 로그 설정",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "582개 파일 태그 정리 작업 (refine-tag-prd.md 기준)",
+    "status": "in_progress",
+    "id": "2"
+  },
+  {
+    "content": "작업 완료 로그 및 결과 정리",
+    "status": "pending",
+    "id": "3"
+  }
+]

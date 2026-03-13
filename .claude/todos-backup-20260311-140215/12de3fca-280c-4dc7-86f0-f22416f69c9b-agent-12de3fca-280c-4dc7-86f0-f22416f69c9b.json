@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Playwright로 Notion 페이지 접속 및 스냅샷 캡처",
+    "status": "completed",
+    "activeForm": "Playwright로 Notion 페이지 접속 중"
+  },
+  {
+    "content": "2025년 2월 주요 과제 및 성과 내용 추출",
+    "status": "in_progress",
+    "activeForm": "2025년 2월 주요 과제 및 성과 내용 추출 중"
+  },
+  {
+    "content": "마크다운 파일 작성 (105-PROJECTS/2025년 2월-주요-과제-및-성과.md)",
+    "status": "pending",
+    "activeForm": "마크다운 파일 작성 중"
+  }
+]

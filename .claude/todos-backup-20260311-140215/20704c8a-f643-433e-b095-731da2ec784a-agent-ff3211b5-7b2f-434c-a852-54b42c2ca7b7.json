@@ -1,0 +1,22 @@
+[
+  {
+    "content": "YouTube URL에서 메타데이터와 트랜스크립트 추출",
+    "status": "in_progress",
+    "activeForm": "YouTube URL에서 메타데이터와 트랜스크립트 추출 중"
+  },
+  {
+    "content": "트랜스크립트를 한국어로 번역 및 요약",
+    "status": "pending",
+    "activeForm": "트랜스크립트를 한국어로 번역 및 요약하기"
+  },
+  {
+    "content": "hierarchical tags 적용",
+    "status": "pending",
+    "activeForm": "hierarchical tags 적용하기"
+  },
+  {
+    "content": "Obsidian 문서 생성 및 저장",
+    "status": "pending",
+    "activeForm": "Obsidian 문서 생성 및 저장하기"
+  }
+]

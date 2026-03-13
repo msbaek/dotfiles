@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Facebook 페이지 스크롤하며 전체 게시물 수집",
+    "status": "in_progress",
+    "activeForm": "Facebook 페이지에서 게시물 수집 중"
+  },
+  {
+    "content": "수집된 게시물 주제별 분류 (Software Dev, AI, Leadership, Career)",
+    "status": "pending",
+    "activeForm": "게시물 주제별 분류 중"
+  },
+  {
+    "content": "일상 게시물 필터링 및 제외",
+    "status": "pending",
+    "activeForm": "일상 게시물 필터링 중"
+  },
+  {
+    "content": "003-RESOURCES/Facebook/ 폴더 생성 및 문서 작성",
+    "status": "pending",
+    "activeForm": "Obsidian 문서 작성 중"
+  },
+  {
+    "content": "기존 Twitter 문서와 중복 내용 병합",
+    "status": "pending",
+    "activeForm": "Twitter 문서에 병합 중"
+  },
+  {
+    "content": "종합 인덱스 문서 생성",
+    "status": "pending",
+    "activeForm": "인덱스 문서 생성 중"
+  }
+]

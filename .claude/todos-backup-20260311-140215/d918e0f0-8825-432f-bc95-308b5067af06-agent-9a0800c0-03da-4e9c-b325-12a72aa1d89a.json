@@ -1,0 +1,38 @@
+[
+  {
+    "content": "메인 디렉토리 개별 파일들 hierarchical tag 적용 (1차 배치: 4개 완료)",
+    "status": "completed",
+    "priority": "high",
+    "id": "hierarchical-tags-resources-1"
+  },
+  {
+    "content": "메인 디렉토리 개별 파일들 hierarchical tag 적용 (2차 배츄: 16개 모두 완료)",
+    "status": "completed",
+    "priority": "high",
+    "id": "hierarchical-tags-resources-2"
+  },
+  {
+    "content": "하위 디렉토리 대표 파일들 hierarchical tag 적용 (AI, CLEAN_CODE, TDD, ARCHITECTURE, DDD 디렉토리에서 5개 완료)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "hierarchical-tags-resources-3"
+  },
+  {
+    "content": "콜론(:) 및 비표준 슬래시(/) 태그 구조를 가진 파일들 표준화",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "hierarchical-tags-resources-4"
+  },
+  {
+    "content": "단일 태그만 가진 파일들에 hierarchical tag 적용",
+    "status": "pending",
+    "priority": "medium",
+    "id": "hierarchical-tags-resources-5"
+  },
+  {
+    "content": "품질 검토 및 태그 구조 일관성 확인",
+    "status": "pending",
+    "priority": "low",
+    "id": "hierarchical-tags-resources-6"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "content": "SRS(소프트웨어 요구사항 명세서) 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "SRS를 README.md 파일에 반영",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "SRS를 잘 설명할 수 있는 예제 목록 작성",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "예제 목록을 README.md 파일에 반영",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "High Level Test 작성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "High Level Test를 README.md에 반영",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "High Level Test 코드 물리적으로 추가하기(컴파일만 가능하게)",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  }
+]

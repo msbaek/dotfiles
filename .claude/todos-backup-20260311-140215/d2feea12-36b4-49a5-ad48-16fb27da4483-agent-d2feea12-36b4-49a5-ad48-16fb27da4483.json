@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Batch 04 파일 1-5 분석 (31-35)",
+    "status": "completed",
+    "activeForm": "Batch 04 파일 1-5 분석 완료"
+  },
+  {
+    "content": "Batch 04 파일 6-10 분석 (36-40)",
+    "status": "completed",
+    "activeForm": "Batch 04 파일 6-10 분석 완료"
+  },
+  {
+    "content": "Batch 04 결과 통합 및 저장",
+    "status": "completed",
+    "activeForm": "Batch 04 결과 통합 완료"
+  },
+  {
+    "content": "진행 상태 파일 업데이트",
+    "status": "in_progress",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

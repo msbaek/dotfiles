@@ -1,0 +1,12 @@
+[
+  {
+    "content": "compose.yaml 파일 개선",
+    "status": "completed",
+    "activeForm": "compose.yaml 파일 개선 중"
+  },
+  {
+    "content": "build.gradle 파일 개선",
+    "status": "in_progress",
+    "activeForm": "build.gradle 파일 개선 중"
+  }
+]

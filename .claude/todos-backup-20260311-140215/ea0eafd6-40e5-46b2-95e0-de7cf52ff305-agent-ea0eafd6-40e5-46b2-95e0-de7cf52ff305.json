@@ -1,0 +1,17 @@
+[
+  {
+    "content": "실제 테스트 실행 방식 확인",
+    "status": "completed",
+    "activeForm": "실제 테스트 실행 방식 확인 중"
+  },
+  {
+    "content": "JVM 시작 시간 측정",
+    "status": "completed",
+    "activeForm": "JVM 시작 시간 측정 중"
+  },
+  {
+    "content": "ApprovalTests 내부 동작 프로파일링",
+    "status": "pending",
+    "activeForm": "ApprovalTests 내부 동작 프로파일링 중"
+  }
+]

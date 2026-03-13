@@ -1,0 +1,26 @@
+[
+  {
+    "content": "TDD 관련 파일들의 YAML frontmatter tags를 hierarchical tags로 변환",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "tdd-tag-conversion"
+  },
+  {
+    "content": "현재 파일들의 YAML frontmatter에서 기존 태그 패턴 분석",
+    "status": "completed",
+    "priority": "medium",
+    "id": "analyze-current-tags"
+  },
+  {
+    "content": "TDD 관련 적절한 hierarchical tags 매핑 정의",
+    "status": "completed",
+    "priority": "medium",
+    "id": "define-tag-mapping"
+  },
+  {
+    "content": "MultiEdit 도구를 사용하여 모든 파일의 태그 변환 - 진행중 (약 20개 파일 완료)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "process-files"
+  }
+]

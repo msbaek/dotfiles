@@ -1,0 +1,12 @@
+[
+  {
+    "content": "개선 사항을 plan 문서에 반영",
+    "status": "completed",
+    "id": "update-plan-doc"
+  },
+  {
+    "content": "전체 폴더별 인덱싱 완료",
+    "status": "pending",
+    "id": "complete-folder-indexing"
+  }
+]

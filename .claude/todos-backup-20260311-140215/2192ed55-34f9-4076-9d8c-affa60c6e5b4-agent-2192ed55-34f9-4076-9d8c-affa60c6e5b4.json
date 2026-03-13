@@ -1,0 +1,50 @@
+[
+  {
+    "content": "Convert 27_레거시코드에_테스트_추가를_위한_3가지_기법.vtt to Markdown",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Convert 28_Refactoring_Lift_up_conditionals.vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Convert 29_Refactoring_Split_Phase.vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Convert 30_레거시코드에_테스트_추가하는_또_하나의_방법_Subclass_and_Override_Method.vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "Convert 31_Presenting_TDD.vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "Convert 32_Repeated_Switch를_Polymorphic하게_리팩터링하기.vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "Convert 33_Vertical_Slice_방식으로_GraphQL_어플리케이션을_TDD로_구현하기.vtt to Markdown",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "Commit work after 30 minutes",
+    "status": "pending",
+    "priority": "medium",
+    "id": "8"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "content": "repomix-output.xml 파일에서 주문 관련 SQL 쿼리들 분석",
+    "status": "pending",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "C# 코드에서 주문 관련 ActionSet 호출 패턴 분석",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "SELL 관련 테이블을 다루는 query_id들 식별",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "주문 관련 기능별 매핑 문서 작성 계획 수립",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

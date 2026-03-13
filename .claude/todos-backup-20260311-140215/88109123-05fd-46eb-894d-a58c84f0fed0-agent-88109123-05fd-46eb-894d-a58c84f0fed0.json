@@ -1,0 +1,56 @@
+[
+  {
+    "content": "프로젝트 구조 확인 및 테스트 환경 설정",
+    "status": "pending",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "첫 번째 실패하는 테스트 작성 (I -> 1)",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "최소한의 코드로 테스트 통과시키기",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "두 번째 테스트 추가 (V -> 5)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "코드 리팩토링 및 패턴 개선",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "추가 테스트 케이스 단계별 구현 (X, L, C, D, M)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "복합 로마 숫자 테스트 (II, III, IV, IX 등)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "복잡한 케이스 테스트 (MCMXC, MMCDXLIV 등)",
+    "status": "pending",
+    "priority": "low",
+    "id": "8"
+  },
+  {
+    "content": "엣지 케이스 및 에러 처리 테스트",
+    "status": "pending",
+    "priority": "low",
+    "id": "9"
+  }
+]

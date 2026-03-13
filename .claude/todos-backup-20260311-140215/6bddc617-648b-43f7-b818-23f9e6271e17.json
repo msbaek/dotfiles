@@ -1,0 +1,20 @@
+[
+  {
+    "content": "장바구니 관련 코드 및 API 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "장바구니 기능 요약 정리",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "장바구니 사용 예제 정리",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "3"
+  }
+]

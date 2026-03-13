@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Sentence Transformers CPU 모드 완전 통합",
+    "status": "pending",
+    "id": "1"
+  },
+  {
+    "content": "지식 그래프 CLI 명령어 추가 및 활성화",
+    "status": "pending",
+    "id": "2"
+  },
+  {
+    "content": "문서 자동 요약 기능 구현",
+    "status": "pending",
+    "id": "3"
+  },
+  {
+    "content": "중복 문서 자동 병합 기능 구현",
+    "status": "pending",
+    "id": "4"
+  },
+  {
+    "content": "다음 세션용 컨텍스트 문서 생성",
+    "status": "completed",
+    "id": "5"
+  }
+]

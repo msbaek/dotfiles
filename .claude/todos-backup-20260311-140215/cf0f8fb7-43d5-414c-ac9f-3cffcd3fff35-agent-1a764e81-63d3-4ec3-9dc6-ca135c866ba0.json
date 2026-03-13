@@ -1,0 +1,20 @@
+[
+  {
+    "content": "첫 10개 파일의 태그 업데이트 완료",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "모든 43개 파일의 태그 업데이트 완료",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "처리된 파일 목록과 새 태그들을 정리하여 보고서 작성",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "3"
+  }
+]

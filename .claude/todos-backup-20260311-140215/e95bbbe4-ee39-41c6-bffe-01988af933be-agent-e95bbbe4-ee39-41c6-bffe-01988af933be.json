@@ -1,0 +1,44 @@
+[
+  {
+    "content": "볼링 게임 프로젝트 구조 설정 (테스트 디렉토리, 소스 디렉토리)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "첫 번째 테스트 작성 - 모든 굴리기가 거터볼(0점)인 경우",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Game 클래스 구현 - 첫 번째 테스트 통과",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "두 번째 테스트 작성 - 모든 굴리기가 1핀인 경우",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "스페어 처리 테스트 작성 및 구현",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "스트라이크 처리 테스트 작성 및 구현",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "퍼펙트 게임(300점) 테스트 작성 및 구현",
+    "status": "pending",
+    "priority": "low",
+    "id": "7"
+  }
+]

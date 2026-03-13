@@ -1,0 +1,20 @@
+[
+  {
+    "content": "파일 291-301에 대해 태그 재부여 작업 수행",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "tag-reprocessing-291-301"
+  },
+  {
+    "content": "각 파일을 읽고 내용 분석하여 hierarchical 태그 도출",
+    "status": "pending",
+    "priority": "high",
+    "id": "read-files-291-301"
+  },
+  {
+    "content": "기존 태그를 삭제하고 새로운 hierarchical 태그로 교체",
+    "status": "pending",
+    "priority": "high",
+    "id": "update-tags-291-301"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "content": "git status와 git diff --cached로 변경사항 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "commit-message.md 파일 읽어서 커밋 메시지 규칙 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "변경사항 분석하여 적절한 커밋 메시지 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "git commit 실행",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "4"
+  }
+]

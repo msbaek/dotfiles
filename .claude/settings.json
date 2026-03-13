@@ -76,6 +76,17 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/rtk-rewrite.sh"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -117,14 +128,23 @@
     "cognitive-architecture@context-engineering-marketplace": true,
     "ralph-loop@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true
+    "pyright-lsp@claude-plugins-official": true,
+    "obsidian@obsidian-skills": true
   },
   "extraKnownMarketplaces": {
     "personal-os-skills": {
       "source": {
         "source": "github",
         "repo": "ArtemXTech/personal-os-skills"
-      }
+      },
+      "autoUpdate": true
+    },
+    "obsidian-skills": {
+      "source": {
+        "source": "github",
+        "repo": "kepano/obsidian-skills"
+      },
+      "autoUpdate": true
     }
   },
   "spinnerVerbs": {

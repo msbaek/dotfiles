@@ -1,0 +1,32 @@
+[
+  {
+    "content": "프로젝트 구조 파악하기",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "주요 기능 찾기",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "API 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "사용된 기술 스택 식별",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "README.md 작성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "5"
+  }
+]

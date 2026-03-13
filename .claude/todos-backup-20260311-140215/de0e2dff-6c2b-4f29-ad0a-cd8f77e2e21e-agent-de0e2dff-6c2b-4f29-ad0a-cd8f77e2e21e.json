@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Agent 1 할당된 파일 목록 확인",
+    "status": "completed",
+    "id": "check_assigned_files"
+  },
+  {
+    "content": "현재 태그 구조 분석",
+    "status": "in_progress",
+    "id": "analyze_current_tags"
+  },
+  {
+    "content": "새로운 계층적 태그 적용",
+    "status": "pending",
+    "id": "apply_new_tags"
+  },
+  {
+    "content": "변경사항 검증 및 확인",
+    "status": "pending",
+    "id": "verify_changes"
+  }
+]

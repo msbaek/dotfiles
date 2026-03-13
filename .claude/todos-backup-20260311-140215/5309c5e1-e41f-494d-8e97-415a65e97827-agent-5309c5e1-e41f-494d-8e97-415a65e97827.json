@@ -1,0 +1,56 @@
+[
+  {
+    "content": "Obsidian vault 위치 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "콜론이 포함된 태그 검색",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "콜론이 포함된 태그 제거",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "수정된 파일 리스트 제공",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "997-BOOKS 폴더 태그 제거",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "003-RESOURCES 폴더 태그 제거",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "work-log 폴더 태그 제거",
+    "status": "completed",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "vault-analysis 폴더 태그 제거",
+    "status": "completed",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "기타 폴더 태그 제거",
+    "status": "completed",
+    "priority": "high",
+    "id": "9"
+  }
+]

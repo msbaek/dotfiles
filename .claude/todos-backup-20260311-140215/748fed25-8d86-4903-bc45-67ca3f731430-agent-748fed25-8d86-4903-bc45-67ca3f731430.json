@@ -1,0 +1,26 @@
+[
+  {
+    "content": "current-batch.txt 파일 읽어서 처리할 파일 목록 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "tagging-rule.md 파일 읽어서 태그 규칙 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "각 파일 읽고 내용 분석하여 새 태그 적용",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "처리 완료된 파일들을 completed.txt에 추가",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "content": "Engineer 창 생성 및 프로젝트 초기 설정",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "30분 후 첫 번째 체크인 (진행상황 확인)",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "60분 후 두 번째 체크인",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "90분 후 세 번째 체크인",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "오류 원인 분석 및 스크립트 수정",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "5"
+  }
+]

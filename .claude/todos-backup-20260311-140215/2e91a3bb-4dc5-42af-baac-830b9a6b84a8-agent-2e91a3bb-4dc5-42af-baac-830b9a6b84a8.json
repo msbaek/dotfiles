@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 16 처리 시작 (151-160)",
+    "status": "completed",
+    "activeForm": "Batch 16 처리 완료"
+  },
+  {
+    "content": "배치 결과 파일 생성",
+    "status": "in_progress",
+    "activeForm": "배치 결과 파일 생성 중"
+  },
+  {
+    "content": "진행 상태 파일 업데이트",
+    "status": "pending",
+    "activeForm": "진행 상태 파일 업데이트 중"
+  }
+]

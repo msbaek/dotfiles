@@ -1,0 +1,134 @@
+[
+  {
+    "content": "검증 기준 확정 (기능/성능/데이터 정합성 기준 정의)",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase1-validation-criteria"
+  },
+  {
+    "content": "ProductReference 인터페이스 및 구현체 설계",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase1-interface-design"
+  },
+  {
+    "content": "핵심 클래스 구현 (ProductReference, LegacyProductReference, CommerceItemReference)",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase1-core-classes"
+  },
+  {
+    "content": "ProductReferenceResolver 서비스 구현",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase1-resolver-service"
+  },
+  {
+    "content": "테스트 프레임워크 구축 및 기본 테스트 케이스 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "phase1-test-framework"
+  },
+  {
+    "content": "저위험 도메인: 상품 조회 전용 로직 전환",
+    "status": "pending",
+    "priority": "medium",
+    "id": "phase2-readonly-queries"
+  },
+  {
+    "content": "저위험 도메인: 통계/리포트 조회 로직 전환",
+    "status": "pending",
+    "priority": "medium",
+    "id": "phase2-statistics"
+  },
+  {
+    "content": "Phase 2 검증: 성능 벤치마크 및 기능 테스트",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase2-validation"
+  },
+  {
+    "content": "중위험 도메인: Inventory 조회 로직 전환",
+    "status": "pending",
+    "priority": "medium",
+    "id": "phase3-inventory-query"
+  },
+  {
+    "content": "중위험 도메인: Inventory 업데이트 로직 전환 (InventoryLpnDiff 포함)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "phase3-inventory-update"
+  },
+  {
+    "content": "중위험 도메인: Shipping 조회 로직 전환",
+    "status": "pending",
+    "priority": "medium",
+    "id": "phase3-shipping-query"
+  },
+  {
+    "content": "중위험 도메인: Shipping 업데이트 로직 전환",
+    "status": "pending",
+    "priority": "medium",
+    "id": "phase3-shipping-update"
+  },
+  {
+    "content": "Phase 3 검증: 재고/배송 플로우 E2E 테스트",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase3-validation"
+  },
+  {
+    "content": "고위험 도메인: ItemOption 조회 로직 전환",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase4-itemoption-query"
+  },
+  {
+    "content": "고위험 도메인: ItemOption 생성/수정/삭제 로직 전환",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase4-itemoption-crud"
+  },
+  {
+    "content": "고위험 도메인: ItemOption 복합 쿼리 (QueryDSL) 전환",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase4-itemoption-complex"
+  },
+  {
+    "content": "고위험 도메인: HM Mall 연동 전환 준비 (테스트 환경 구축)",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase4-hm-mall-prep"
+  },
+  {
+    "content": "고위험 도메인: HM Mall 연동 로직 전환 (shadow 모드 → 실제 적용)",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase4-hm-mall-apply"
+  },
+  {
+    "content": "Phase 4 검증: ItemOption 및 HM Mall 연동 전체 테스트",
+    "status": "pending",
+    "priority": "high",
+    "id": "phase4-validation"
+  },
+  {
+    "content": "정리: 사용하지 않는 goodsId/goodsNo 직접 참조 코드 제거",
+    "status": "pending",
+    "priority": "low",
+    "id": "phase5-legacy-cleanup"
+  },
+  {
+    "content": "정리: 중복 로직 통합 및 코드 최적화",
+    "status": "pending",
+    "priority": "low",
+    "id": "phase5-optimization"
+  },
+  {
+    "content": "정리: ProductReference 사용법 가이드 작성 및 팀 교육 자료 준비",
+    "status": "pending",
+    "priority": "medium",
+    "id": "phase5-documentation"
+  }
+]

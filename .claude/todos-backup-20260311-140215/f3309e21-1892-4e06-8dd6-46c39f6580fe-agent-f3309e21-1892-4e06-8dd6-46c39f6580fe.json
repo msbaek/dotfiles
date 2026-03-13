@@ -1,0 +1,32 @@
+[
+  {
+    "content": "프로젝트 구조 파악 방법 설명",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "코드베이스 탐색 및 분석 방법 안내",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "주요 기능 이해 및 문서화 방법 설명",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "코드 품질 분석 및 개선점 찾기",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "실제 작업 예시 제공",
+    "status": "pending",
+    "priority": "low",
+    "id": "5"
+  }
+]

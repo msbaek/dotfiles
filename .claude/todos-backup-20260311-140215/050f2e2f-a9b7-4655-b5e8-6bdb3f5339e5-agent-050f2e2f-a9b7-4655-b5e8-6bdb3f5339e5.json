@@ -1,0 +1,27 @@
+[
+  {
+    "content": "현재 compose.yaml 파일 확인",
+    "status": "completed",
+    "activeForm": "현재 compose.yaml 파일 확인 중"
+  },
+  {
+    "content": "현재 build.gradle 파일 확인",
+    "status": "completed",
+    "activeForm": "현재 build.gradle 파일 확인 중"
+  },
+  {
+    "content": "snippets.md에서 관련 설정 확인",
+    "status": "completed",
+    "activeForm": "snippets.md에서 관련 설정 확인 중"
+  },
+  {
+    "content": "compose.yaml 개선사항 적용",
+    "status": "in_progress",
+    "activeForm": "compose.yaml 개선사항 적용 중"
+  },
+  {
+    "content": "build.gradle 개선사항 적용",
+    "status": "pending",
+    "activeForm": "build.gradle 개선사항 적용 중"
+  }
+]

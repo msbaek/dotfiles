@@ -1,0 +1,62 @@
+[
+  {
+    "content": "tagging-rule.md 파일 읽어서 태그 규칙 파악",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "current-batch.txt의 파일들을 10개씩 배치로 처리 (총 301개 파일)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "처리 완료 후 보고서 작성 (처리된 파일, 찾을 수 없는 파일)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "첫 번째 10개 파일 처리 (1-10번)",
+    "status": "completed",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "두 번째 10개 파일 처리 (11-20번)",
+    "status": "completed",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "세 번째 10개 파일 처리 (21-30번)",
+    "status": "completed",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "네 번째 10개 파일 처리 (31-40번)",
+    "status": "completed",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "다섯 번째 10개 파일 처리 (41-50번)",
+    "status": "completed",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "여섯 번째 10개 파일 처리 (51-60번)",
+    "status": "completed",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "일곱 번째 10개 파일 처리 (61-70번)",
+    "status": "pending",
+    "priority": "high",
+    "id": "10"
+  }
+]

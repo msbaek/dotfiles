@@ -1,0 +1,52 @@
+[
+  {
+    "content": "첫 번째 파일 'Bootiful Edge Services.md' 태그 정규화",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "할당된 596개 파일의 태그 정규화 (진행 상황 추적)",
+    "status": "in_progress",
+    "id": "2"
+  },
+  {
+    "content": "변환 불가능한 태그들에 대한 로그 작성",
+    "status": "pending",
+    "id": "3"
+  },
+  {
+    "content": "두 번째 파일 '번역 ISTIO 란 - 11번가 아키텍처 개선 TF - 11ST WIKI.md' 태그 정규화",
+    "status": "completed",
+    "id": "4"
+  },
+  {
+    "content": "세 번째 파일 'Cloudfoundry.md' 태그 정규화",
+    "status": "completed",
+    "id": "5"
+  },
+  {
+    "content": "네 번째 파일 'Josh Long - Kubernetes Native Java.md' 태그 정규화",
+    "status": "completed",
+    "id": "6"
+  },
+  {
+    "content": "다섯 번째 파일 'K8S_Overview.md' 태그 정규화",
+    "status": "completed",
+    "id": "7"
+  },
+  {
+    "content": "6-10번 파일 일괄 처리: karabiner-elements.md, nvim.md, nvim-by-josean.md, lazy.nvim.md, tmux-orchestrator-claude-md.md",
+    "status": "completed",
+    "id": "8"
+  },
+  {
+    "content": "11-15번 파일 일괄 처리: vim-seminar.md, tmux-orchestrator-pm-oversight-md.md, git-worktree.md, Postman.md, heroku.md",
+    "status": "completed",
+    "id": "9"
+  },
+  {
+    "content": "진행 상황 요약 단계: 15/596 파일 완료 (2.5%)",
+    "status": "completed",
+    "id": "10"
+  }
+]

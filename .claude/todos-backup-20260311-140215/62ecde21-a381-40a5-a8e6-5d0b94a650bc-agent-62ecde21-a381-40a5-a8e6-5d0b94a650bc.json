@@ -1,0 +1,32 @@
+[
+  {
+    "content": "git status로 변경된 파일 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "git diff --cached로 스테이징된 변경사항 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "commit-message.md 규칙 확인 및 커밋 메시지 생성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "생성된 메시지로 커밋 실행",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "커밋 결과 확인 및 출력",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  }
+]

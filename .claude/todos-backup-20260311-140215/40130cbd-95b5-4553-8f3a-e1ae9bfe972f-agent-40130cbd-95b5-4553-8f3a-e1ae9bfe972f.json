@@ -1,0 +1,38 @@
+[
+  {
+    "content": "current-batch.txt 파일 읽어 처리할 파일 목록 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "tagging-rule.md 파일 읽어 태그 규칙 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "파일 배치 처리 및 태그 재부여 작업 수행",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "진행 상황 보고 (30개 파일마다)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "작업 완료 후 전체 결과 요약 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "다음 배치 생성 및 실행",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "6"
+  }
+]

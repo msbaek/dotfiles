@@ -1,0 +1,14 @@
+[
+  {
+    "content": "Process files 56-105 from group2-files.txt (50 files total) - Progress: 18 files completed (56-73)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "process-files-56-105"
+  },
+  {
+    "content": "Continue processing files 74-105 following the same pattern - 32 files remaining",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "continue-through-105"
+  }
+]

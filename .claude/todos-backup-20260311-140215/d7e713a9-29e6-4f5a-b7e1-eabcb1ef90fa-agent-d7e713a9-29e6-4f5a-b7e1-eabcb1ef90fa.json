@@ -1,0 +1,38 @@
+[
+  {
+    "content": "클린 코더스 강의 1 - 소개 및 OOP VTT 파일 변환",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "클린 코더스 강의 2-6 (OOP, Function) VTT 파일 변환",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "클린 코더스 강의 7-12 (TDD) VTT 파일 변환",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "클린 코더스 강의 13-15 (Architecture, SOLID) VTT 파일 변환",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "클린 코더스 강의 16-18 (Advanced TDD, TPP) VTT 파일 변환",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "기타 강의 (OKKY 세미나, 레거시 코드, Refactoring) VTT 파일 변환",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  }
+]

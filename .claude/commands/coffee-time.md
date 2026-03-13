@@ -21,15 +21,19 @@ Git repository에 자동으로 commit & push합니다.
    - 중요 포인트 및 인사이트 추출
    - 액션 아이템과 향후 논의 사항 식별
 
-2. **마크다운 문서 생성**
+2. **Git pull (원격 변경사항 동기화)**
+
+   - 문서 생성 전에 `git pull`로 원격 저장소의 최신 변경사항 반영
+   - 브라우저에서 직접 수정한 내용이 있을 수 있으므로 반드시 pull 먼저 수행
+
+3. **마크다운 문서 생성**
 
    - 파일명: `YYYY-MM-DD.md` (예: `2025-09-09.md`)
    - 저장 위치: `~/git/kt4u/coffee-time/`
    - 주제별 섹션으로 구조화
    - 액션 아이템과 다음 논의 예정은 있을 경우에만 포함
 
-3. **Git 작업 자동화**
-   - 로컬 저장소 최신 상태 확인 (`git pull`)
+4. **Git 작업 자동화**
    - 새 문서 파일 추가 (`git add`)
    - 자동 커밋: `docs: add coffee time notes for YYYY-MM-DD`
    - 원격 저장소에 push (`git push`)
@@ -85,7 +89,16 @@ Git repository에 자동으로 commit & push합니다.
 - 향후 논의할 주제나 미해결 이슈 파악
 ```
 
-### 2단계: 문서 생성
+### 2단계: Git pull (원격 변경사항 동기화)
+
+```bash
+cd ~/git/kt4u/coffee-time
+git pull origin main
+```
+
+브라우저에서 직접 수정한 변경사항이 있을 수 있으므로, 문서 생성 전에 반드시 pull 수행.
+
+### 3단계: 문서 생성
 
 ```
 파싱된 날짜를 기준으로:
@@ -95,11 +108,9 @@ Git repository에 자동으로 commit & push합니다.
 - 문서 제목에는 한국어 날짜 형식 사용 (YYYY년 MM월 DD일)
 ```
 
-### 3단계: Git 자동화
+### 4단계: Git 자동화
 
 ```bash
-cd ~/git/kt4u/coffee-time
-git pull origin main
 git add [생성된 파일명]
 git commit -m "docs: add coffee time notes for [날짜]"
 git push origin main

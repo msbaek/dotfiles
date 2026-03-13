@@ -1,0 +1,20 @@
+[
+  {
+    "content": "Group2-files.txt (files 6-55) 처리 중 - 현재까지 28개 파일 완료 (6-33)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "group2-processing"
+  },
+  {
+    "content": "완료된 파일들을 completed-files.txt에 기록 - 업데이트 완료",
+    "status": "completed",
+    "priority": "medium",
+    "id": "completed-files-list"
+  },
+  {
+    "content": "improved-hierarchical-tags-guide.md 규칙에 따라 태그 재구성 - 진행 중",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "tag-restructuring"
+  }
+]

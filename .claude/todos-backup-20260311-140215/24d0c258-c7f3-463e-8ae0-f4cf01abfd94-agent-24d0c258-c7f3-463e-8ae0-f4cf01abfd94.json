@@ -1,0 +1,44 @@
+[
+  {
+    "content": "엔지니어와 프로젝트 시작 - 태그 클리너 요구사항 공유",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "vault 경로 확인 및 ':'이 포함된 태그가 있는 파일 검색",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "병렬 처리를 위한 파일 그룹 분할 계획",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "tmux-orchestrator를 활용한 병렬 처리 구현",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "처리 진행 상황 모니터링 (15분마다)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "처리 결과 검증 - 태그가 올바르게 삭제되었는지 확인",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "최종 처리된 문서 리스트 생성 및 제공",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  }
+]

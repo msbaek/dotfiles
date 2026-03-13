@@ -1,0 +1,32 @@
+[
+  {
+    "content": "596개 파일의 태그를 hierarchical tags 체계로 정규화",
+    "status": "in_progress",
+    "id": "tag-normalize-1"
+  },
+  {
+    "content": "첫 번째 파일 kiro.md 태그 분석 및 변환",
+    "status": "completed",
+    "id": "tag-normalize-2"
+  },
+  {
+    "content": "두 번째 파일 소프트웨어장인.md 처리",
+    "status": "completed",
+    "id": "tag-normalize-3"
+  },
+  {
+    "content": "세 번째 파일 Growing Object Oriented Software, Guided by Tests.md 처리",
+    "status": "completed",
+    "id": "tag-normalize-4"
+  },
+  {
+    "content": "네 번째 파일 Ch12. Deciding on an Architecture Style.md 처리",
+    "status": "completed",
+    "id": "tag-normalize-5"
+  },
+  {
+    "content": "다음 10개 파일 배치 처리 (5-14번)",
+    "status": "in_progress",
+    "id": "tag-normalize-6"
+  }
+]

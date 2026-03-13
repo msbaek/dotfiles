@@ -1,0 +1,50 @@
+[
+  {
+    "content": "group2-files.txt의 첫 5개 파일 처리 (JPA 관련 파일들)",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "agent2-progress.txt 파일에 진행 상황 기록",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "처리된 파일들의 품질 확인 및 보고",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "6-55번 파일 처리 (50개)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "56-105번 파일 처리 (50개)",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "106-155번 파일 처리 (50개)",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "156-205번 파일 처리 (50개)",
+    "status": "pending",
+    "priority": "high",
+    "id": "7"
+  },
+  {
+    "content": "나머지 파일들 처리",
+    "status": "pending",
+    "priority": "high",
+    "id": "8"
+  }
+]

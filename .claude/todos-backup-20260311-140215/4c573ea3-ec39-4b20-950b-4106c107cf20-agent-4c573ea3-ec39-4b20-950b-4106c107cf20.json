@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Teams 브라우저 상태 확인",
+    "status": "completed",
+    "activeForm": "Teams 브라우저 상태 확인 중"
+  },
+  {
+    "content": "Excel 파일 7개 다운로드",
+    "status": "in_progress",
+    "activeForm": "Excel 파일 다운로드 중"
+  },
+  {
+    "content": "Excel 파일 파싱 및 metrics.json 업데이트",
+    "status": "pending",
+    "activeForm": "Excel 파일 파싱 중"
+  },
+  {
+    "content": "Plan 파일 업데이트",
+    "status": "pending",
+    "activeForm": "Plan 파일 업데이트 중"
+  }
+]

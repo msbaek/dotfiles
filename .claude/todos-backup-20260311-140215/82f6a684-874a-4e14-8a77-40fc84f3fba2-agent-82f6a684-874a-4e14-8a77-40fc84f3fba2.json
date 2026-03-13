@@ -1,0 +1,32 @@
+[
+  {
+    "content": "tag-migration-0729 디렉토리 생성",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "전체 파일 목록을 tag-migration-0729/file-list.md에 저장",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "파일 처리 스크립트 작성 (100개씩 병렬 처리)",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "첫 배치(100개) 처리 및 테스트",
+    "status": "pending",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "전체 파일 처리 완료까지 반복 실행",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  }
+]

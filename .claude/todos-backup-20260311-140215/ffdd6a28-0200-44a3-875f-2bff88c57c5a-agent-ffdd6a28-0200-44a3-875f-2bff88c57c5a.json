@@ -1,0 +1,68 @@
+[
+  {
+    "content": "프로젝트 구조 설정 및 기본 디렉토리 생성",
+    "status": "pending",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Python 가상환경 설정 및 필요 라이브러리 설치 (GitPython, requests, Pillow, matplotlib, click, rich)",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "CLI 인터페이스 구현 (click 사용) - URL, local, commits 옵션 처리",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Git 저장소 처리 모듈 구현 (로컬/GitHub URL 지원)",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "커밋 정보 수집 및 정렬 기능 구현",
+    "status": "pending",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "Diff 이미지 생성 모듈 구현 (matplotlib 또는 diff2html-cli)",
+    "status": "pending",
+    "priority": "high",
+    "id": "6"
+  },
+  {
+    "content": "마크다운 문서 생성기 구현",
+    "status": "pending",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "진행 상황 표시 기능 구현 (rich 라이브러리)",
+    "status": "pending",
+    "priority": "low",
+    "id": "8"
+  },
+  {
+    "content": "오류 처리 및 로깅 시스템 구현",
+    "status": "pending",
+    "priority": "medium",
+    "id": "9"
+  },
+  {
+    "content": "테스트 작성 및 실행",
+    "status": "pending",
+    "priority": "medium",
+    "id": "10"
+  },
+  {
+    "content": "문서화 (README.md, 사용 예시)",
+    "status": "pending",
+    "priority": "low",
+    "id": "11"
+  }
+]

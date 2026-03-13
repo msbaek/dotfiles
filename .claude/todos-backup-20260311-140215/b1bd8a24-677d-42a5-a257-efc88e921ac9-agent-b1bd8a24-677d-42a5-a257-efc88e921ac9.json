@@ -1,0 +1,27 @@
+[
+  {
+    "content": "fred-brooks-sayings.md 파일 내용 분석",
+    "status": "completed",
+    "id": "1"
+  },
+  {
+    "content": "add-tag.md 파일 참조하여 태그 부여 방식 확인",
+    "status": "completed",
+    "id": "2"
+  },
+  {
+    "content": "적절한 hierarchical tags 부여",
+    "status": "completed",
+    "id": "3"
+  },
+  {
+    "content": "vault 구조 분석하여 적절한 디렉토리 결정",
+    "status": "completed",
+    "id": "4"
+  },
+  {
+    "content": "파일을 선택된 디렉토리로 이동",
+    "status": "in_progress",
+    "id": "5"
+  }
+]

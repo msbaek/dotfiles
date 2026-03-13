@@ -1,0 +1,74 @@
+[
+  {
+    "content": "핵심 문서 10개 선정 및 정독",
+    "status": "pending",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "TDD-오해와-올바른-이해.md 분석",
+    "status": "pending",
+    "priority": "high",
+    "id": "8.1"
+  },
+  {
+    "content": "Programming Like Kent Beck.md 분석",
+    "status": "pending",
+    "priority": "high",
+    "id": "8.2"
+  },
+  {
+    "content": "TDD, Where Did It All Go Wrong (Ian Cooper).md 분석",
+    "status": "pending",
+    "priority": "high",
+    "id": "8.3"
+  },
+  {
+    "content": "첫 장 예제 프로토타입 개발",
+    "status": "pending",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "예제 도메인 최종 선정",
+    "status": "pending",
+    "priority": "high",
+    "id": "9.1"
+  },
+  {
+    "content": "첫 번째 테스트 케이스 작성",
+    "status": "pending",
+    "priority": "high",
+    "id": "9.2"
+  },
+  {
+    "content": "Red-Green-Refactor 5회 사이클 구현",
+    "status": "pending",
+    "priority": "high",
+    "id": "9.3"
+  },
+  {
+    "content": "Obsidian 태그 시스템 구축",
+    "status": "pending",
+    "priority": "medium",
+    "id": "10"
+  },
+  {
+    "content": "태그 가이드라인 문서 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "10.1"
+  },
+  {
+    "content": "MOC(Map of Contents) 페이지 생성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "10.2"
+  },
+  {
+    "content": "챕터 템플릿 파일 생성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "10.3"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 10 (91-100) AI 활용 기법 추출",
+    "status": "completed",
+    "activeForm": "Batch 10 문서 10개 병렬 분석 완료"
+  },
+  {
+    "content": "batch-10-results.md 통합 결과 파일 생성",
+    "status": "completed",
+    "activeForm": "결과 파일 생성 완료"
+  },
+  {
+    "content": "진행 상태 파일 업데이트",
+    "status": "in_progress",
+    "activeForm": "진행 상태 업데이트 중"
+  }
+]

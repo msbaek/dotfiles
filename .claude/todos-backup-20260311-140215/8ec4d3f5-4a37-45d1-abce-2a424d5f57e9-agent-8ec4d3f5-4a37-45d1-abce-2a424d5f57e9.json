@@ -1,0 +1,68 @@
+[
+  {
+    "content": "엔지니어와 초기 브리핑 진행 - 스펙 이해도 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "전체 파일 목록(all-md-files.md)과 태그 가이드 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "병렬 처리를 위한 파일 분할 계획 검토",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "첫 번째 배치 처리 시작 및 모니터링",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "서버 로그 및 에러 모니터링 (정기 체크인)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "5"
+  },
+  {
+    "content": "처리 완료된 파일 검증 - 태그 규칙 준수 확인",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "전체 작업 완료 및 최종 검증",
+    "status": "in_progress",
+    "priority": "low",
+    "id": "7"
+  },
+  {
+    "content": "테스트 결과 확인 및 본격적인 배치 처리 시작",
+    "status": "completed",
+    "priority": "high",
+    "id": "8"
+  },
+  {
+    "content": "모든 엔지니어 작업 진행 현황 모니터링",
+    "status": "completed",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "에러 발생 시 즉시 대응",
+    "status": "completed",
+    "priority": "high",
+    "id": "10"
+  },
+  {
+    "content": "누락된 파일 확인 및 재처리",
+    "status": "pending",
+    "priority": "high",
+    "id": "11"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "content": "첫 번째 배치: 5-10번 파일 처리 - 완료",
+    "status": "completed",
+    "id": "tag-normalization-batch-1"
+  },
+  {
+    "content": "진행 상황 추적: 총 591개 파일 중 48개 처리 완료 (8.1%) - 실제 변경: 45개 - 배치 작업으로 대폭 효율성 향상!",
+    "status": "in_progress",
+    "id": "tag-normalization-progress"
+  },
+  {
+    "content": "다섯 번째 배치: 31-50번 파일 처리 - 완료 (48개까지)",
+    "status": "completed",
+    "id": "tag-normalization-batch-5"
+  },
+  {
+    "content": "여섯 번째 배치: 49-70번 파일 처리 - 대기업 속도로 배치 작업 가속화",
+    "status": "in_progress",
+    "id": "tag-normalization-batch-6"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "content": "Process files 256-305 from group3-files.txt - Clean Coders series, DDD, Architecture books",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "process-group3-files-256-305"
+  },
+  {
+    "content": "Process remaining Clean Coders files (many files completed, still some refactoring/other topics remaining)",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "clean-coders-remaining"
+  },
+  {
+    "content": "Process DDD Distilled chapter files - some completed",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "ddd-distilled-files"
+  },
+  {
+    "content": "Process Get Your Hands Dirty on Clean Architecture chapter files - Ch01 completed, Ch02-Ch07 remaining",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "clean-architecture-files"
+  },
+  {
+    "content": "Process individual book files (Code that fits in your head, Effective Software Testing, etc.)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "individual-books"
+  },
+  {
+    "content": "Log completion of each processed file",
+    "status": "in_progress",
+    "priority": "low",
+    "id": "progress-tracking"
+  }
+]

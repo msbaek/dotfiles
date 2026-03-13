@@ -1,0 +1,26 @@
+[
+  {
+    "content": "프로젝트 구조 및 코드 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "커밋 기록 분석",
+    "status": "completed",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "핵심 기능 및 요구사항 파악",
+    "status": "completed",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "PRD 문서 작성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "4"
+  }
+]

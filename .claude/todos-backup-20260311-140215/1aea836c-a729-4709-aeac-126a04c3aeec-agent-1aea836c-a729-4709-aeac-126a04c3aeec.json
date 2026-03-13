@@ -1,0 +1,26 @@
+[
+  {
+    "content": "TDD/EXAMPLES 디렉토리 내 파일들의 태그 상태 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "12"
+  },
+  {
+    "content": "TDD/EXAMPLES 디렉토리 내 계층적 태그가 필요한 파일들 식별",
+    "status": "completed",
+    "priority": "medium",
+    "id": "13"
+  },
+  {
+    "content": "TDD/EXAMPLES 디렉토리 내 파일들의 태그 개선 작업",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "14"
+  },
+  {
+    "content": "TDD/EXAMPLES 디렉토리 처리 제외된 파일 목록 정리",
+    "status": "pending",
+    "priority": "medium",
+    "id": "15"
+  }
+]

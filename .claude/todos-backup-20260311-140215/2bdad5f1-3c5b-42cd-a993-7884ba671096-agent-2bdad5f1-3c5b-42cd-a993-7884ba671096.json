@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Vault-intelligence 핵심 한글 검색 실행",
+    "status": "completed",
+    "activeForm": "Vault-intelligence 핵심 한글 검색 실행 중"
+  },
+  {
+    "content": "Vault-intelligence 보완 한글 검색 실행",
+    "status": "completed",
+    "activeForm": "Vault-intelligence 보완 한글 검색 실행 중"
+  },
+  {
+    "content": "Vault-intelligence 영어 검색 실행 (필요시)",
+    "status": "pending",
+    "activeForm": "Vault-intelligence 영어 검색 실행 중"
+  },
+  {
+    "content": "Obsidian MCP 태그 및 콘텐츠 검색",
+    "status": "in_progress",
+    "activeForm": "Obsidian MCP 태그 및 콘텐츠 검색 중"
+  },
+  {
+    "content": "검색 결과 통합 및 분석",
+    "status": "pending",
+    "activeForm": "검색 결과 통합 및 분석 중"
+  }
+]

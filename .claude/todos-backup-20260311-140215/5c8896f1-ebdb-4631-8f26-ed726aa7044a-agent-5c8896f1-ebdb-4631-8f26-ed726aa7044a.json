@@ -1,0 +1,14 @@
+[
+  {
+    "content": "004.Content-Classification-5.md 파일을 읽어서 현재 구조 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "각 파일에 해당하는 챕터 번호를 Chapters 컬럼에 추가",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "2"
+  }
+]

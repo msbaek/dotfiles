@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Navigate to the URL and read the article content",
+    "status": "in_progress",
+    "activeForm": "Navigating to the URL and reading the article content"
+  },
+  {
+    "content": "Download all images from the article to ATTACHMENTS folder",
+    "status": "pending",
+    "activeForm": "Downloading all images from the article to ATTACHMENTS folder"
+  },
+  {
+    "content": "Translate and summarize the article according to the rules",
+    "status": "pending",
+    "activeForm": "Translating and summarizing the article according to the rules"
+  },
+  {
+    "content": "Apply hierarchical tags following the vault tagging rules",
+    "status": "pending",
+    "activeForm": "Applying hierarchical tags following the vault tagging rules"
+  },
+  {
+    "content": "Create Obsidian file with YAML frontmatter and content",
+    "status": "pending",
+    "activeForm": "Creating Obsidian file with YAML frontmatter and content"
+  }
+]

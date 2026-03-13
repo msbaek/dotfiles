@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Week 3: 상세 목차(TOC-Draft.md) 초안 작성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "9"
+  },
+  {
+    "content": "각 챕터별 학습 목표(Learning Objectives) 정의",
+    "status": "pending",
+    "priority": "high",
+    "id": "10"
+  },
+  {
+    "content": "챕터 간 연결 고리 및 흐름도 설계",
+    "status": "pending",
+    "priority": "medium",
+    "id": "11"
+  },
+  {
+    "content": "난이도 진행 곡선 검토 및 조정",
+    "status": "pending",
+    "priority": "medium",
+    "id": "12"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "content": "settings.local.json의 hook 설정을 settings.json으로 이동",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "권한(permissions) 설정도 전역으로 이동할지 확인",
+    "status": "pending",
+    "priority": "medium",
+    "id": "2"
+  },
+  {
+    "content": "설정 이동 후 동작 확인",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  }
+]

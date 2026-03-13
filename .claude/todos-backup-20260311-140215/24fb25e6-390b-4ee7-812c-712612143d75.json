@@ -1,0 +1,38 @@
+[
+  {
+    "content": "GitHub 프로젝트 기본 정보 파악",
+    "status": "completed",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "코드 구조 분석",
+    "status": "completed",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "주요 기능과 API 정리",
+    "status": "completed",
+    "priority": "medium",
+    "id": "3"
+  },
+  {
+    "content": "기술 스택 및 의존성 분석",
+    "status": "completed",
+    "priority": "medium",
+    "id": "4"
+  },
+  {
+    "content": "배포 및 설정 방법 파악",
+    "status": "completed",
+    "priority": "low",
+    "id": "5"
+  },
+  {
+    "content": "최종 보고서 작성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "6"
+  }
+]

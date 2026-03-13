@@ -1,0 +1,32 @@
+[
+  {
+    "content": "프로젝트 현재 상태 파악 및 필요한 파일 확인",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Bowling Game에 대한 SRS 작성",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "SRS를 잘 설명할 수 있는 예제 목록 작성",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "테스트 케이스 목록 작성",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "테스트 리스트에서 테스트 선택해서 테스트 추가하기",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "content": "Obsidian vault 내 TDD/Refactoring 문서 전수 조사 및 카탈로그 작성",
+    "status": "pending",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "저자별 통찰 매핑 문서 작성 (Kent Beck, Dave Farley, Martin Fowler, Uncle Bob 등)",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "추가 TDD 전문가 리서치 및 자료 수집 (Chris Simon, James Shore, Nat Pryce 등)",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "TDD 기법 종합 목록 작성 (TPP, ZOMBIES, London/Chicago School 등)",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  },
+  {
+    "content": "첫 장 종합 예제 시나리오 설계 (모든 기법을 보여줄 프로젝트)",
+    "status": "pending",
+    "priority": "high",
+    "id": "5"
+  },
+  {
+    "content": "책 전체 구조 및 챕터 개요 작성",
+    "status": "pending",
+    "priority": "medium",
+    "id": "6"
+  },
+  {
+    "content": "Java/Spring 예제 코드 템플릿 준비",
+    "status": "pending",
+    "priority": "medium",
+    "id": "7"
+  },
+  {
+    "content": "웹 리서치로 최신 TDD 트렌드 및 기법 보충",
+    "status": "pending",
+    "priority": "medium",
+    "id": "8"
+  },
+  {
+    "content": "집필 일정 및 마일스톤 상세 계획 수립",
+    "status": "pending",
+    "priority": "medium",
+    "id": "9"
+  },
+  {
+    "content": "리뷰어 및 베타 리더 후보 리스트 작성",
+    "status": "pending",
+    "priority": "low",
+    "id": "10"
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "content": "vault-analysis 디렉토리 파일 처리 (10개)",
+    "status": "completed",
+    "priority": "high",
+    "id": "task-1"
+  },
+  {
+    "content": "work-log 최근 파일 처리 (12개)",
+    "status": "completed",
+    "priority": "high",
+    "id": "task-2"
+  },
+  {
+    "content": "work-log/2009-2012-DAUM_LOG 파일 처리 (19개)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "task-3"
+  },
+  {
+    "content": "work-log/2022 파일 처리 (24개)",
+    "status": "completed",
+    "priority": "medium",
+    "id": "task-4"
+  },
+  {
+    "content": "work-log/2023-2025 파일 처리 (50개)",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "task-5"
+  },
+  {
+    "content": "work-log/SK 직속주례 파일 처리 (69개)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "task-6"
+  },
+  {
+    "content": "work-log/SK 그룹주례 파일 처리 (24개)",
+    "status": "pending",
+    "priority": "medium",
+    "id": "task-7"
+  },
+  {
+    "content": "50개 파일 처리 후 진행 상황 보고",
+    "status": "completed",
+    "priority": "high",
+    "id": "task-8"
+  },
+  {
+    "content": "태그 형식 수정 완료 (# 접두사 추가)",
+    "status": "completed",
+    "priority": "high",
+    "id": "task-9"
+  }
+]

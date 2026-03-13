@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Teams 채널에서 2026-01-08~2026-01-14 메시지 수집",
+    "status": "completed",
+    "activeForm": "Teams 채널 메시지 수집 중"
+  },
+  {
+    "content": "수집된 데이터를 날짜별 마크다운 파일로 정리",
+    "status": "completed",
+    "activeForm": "마크다운 파일로 정리 중"
+  },
+  {
+    "content": "첨부된 Excel 파일 다운로드 및 처리",
+    "status": "pending",
+    "activeForm": "Excel 파일 처리 중"
+  },
+  {
+    "content": "metrics.json 업데이트",
+    "status": "pending",
+    "activeForm": "metrics.json 업데이트 중"
+  }
+]

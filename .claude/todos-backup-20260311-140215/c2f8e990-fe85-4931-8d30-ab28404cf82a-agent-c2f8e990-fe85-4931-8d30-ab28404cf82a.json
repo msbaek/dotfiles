@@ -1,0 +1,26 @@
+[
+  {
+    "content": "제외된 OOP 파일들 3개 처리",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "Parse, Don't Validate.md 태그 개선",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "Ports and fat adapters.md 태그 개선",
+    "status": "pending",
+    "priority": "high",
+    "id": "3"
+  },
+  {
+    "content": "Primitive Obsession.md 태그 개선",
+    "status": "pending",
+    "priority": "high",
+    "id": "4"
+  }
+]

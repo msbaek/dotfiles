@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Medium 문서 읽기 (대안 방법 시도)",
+    "status": "in_progress",
+    "activeForm": "Medium 문서 읽기 위한 대안 방법 시도 중"
+  },
+  {
+    "content": "문서 내용 번역 및 요약",
+    "status": "pending",
+    "activeForm": "문서 내용 번역 및 요약하는 중"
+  },
+  {
+    "content": "이미지 다운로드 및 저장",
+    "status": "pending",
+    "activeForm": "이미지 다운로드 및 저장하는 중"
+  },
+  {
+    "content": "Hierarchical tags 생성",
+    "status": "pending",
+    "activeForm": "Hierarchical tags 생성하는 중"
+  },
+  {
+    "content": "Obsidian 문서 생성 및 저장",
+    "status": "pending",
+    "activeForm": "Obsidian 문서 생성 및 저장하는 중"
+  }
+]

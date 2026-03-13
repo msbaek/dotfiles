@@ -1,0 +1,50 @@
+[
+  {
+    "content": "TDD 디렉토리 hierarchical tag 적용 - 중요 파일들 우선 처리",
+    "status": "completed",
+    "priority": "high",
+    "id": "tdd-processing"
+  },
+  {
+    "content": "CLEAN_CODE 디렉토리 스캔 및 미처리 파일 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "clean-code-scan"
+  },
+  {
+    "content": "REFACTORING 디렉토리 스캔 및 미처리 파일 확인",
+    "status": "completed",
+    "priority": "high",
+    "id": "refactoring-scan"
+  },
+  {
+    "content": "DDD 디렉토리 나머지 미처리 파일들 확인 및 처리",
+    "status": "pending",
+    "priority": "high",
+    "id": "ddd-remaining"
+  },
+  {
+    "content": "AI 디렉토리 스캔 및 처리 (MCP, PROMPTS, 등)",
+    "status": "in_progress",
+    "priority": "medium",
+    "id": "ai-scan"
+  },
+  {
+    "content": "ARCHITECTURE 디렉토리 스캔 및 처리",
+    "status": "pending",
+    "priority": "medium",
+    "id": "architecture-scan"
+  },
+  {
+    "content": "Tidying 디렉토리 스캔 및 처리",
+    "status": "pending",
+    "priority": "medium",
+    "id": "tidying-scan"
+  },
+  {
+    "content": "기타 디렉토리들 (DevOps, HR, TOOLS 등) 스캔 및 처리",
+    "status": "pending",
+    "priority": "low",
+    "id": "other-dirs-scan"
+  }
+]

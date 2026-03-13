@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Batch 21 처리 (201-210)",
+    "status": "in_progress",
+    "activeForm": "Batch 21 처리 중 (201-210)"
+  },
+  {
+    "content": "진행 상태 업데이트",
+    "status": "pending",
+    "activeForm": "진행 상태 업데이트 중"
+  },
+  {
+    "content": "Batch 22 처리 (211-220)",
+    "status": "pending",
+    "activeForm": "Batch 22 처리 중 (211-220)"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "content": "쿼리 실행 및 문제 진단",
+    "status": "completed",
+    "activeForm": "쿼리 실행하여 문제 확인 중"
+  },
+  {
+    "content": "테이블 존재 여부 및 데이터 확인",
+    "status": "completed",
+    "activeForm": "테이블 존재 여부 확인 중"
+  },
+  {
+    "content": "쿼리 수정 및 재실행",
+    "status": "in_progress",
+    "activeForm": "쿼리 수정 중"
+  }
+]

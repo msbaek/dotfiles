@@ -1,0 +1,22 @@
+[
+  {
+    "content": "Spec-Driven Development 문서 읽기",
+    "status": "completed",
+    "activeForm": "Spec-Driven Development 문서 읽는 중"
+  },
+  {
+    "content": "newsletters 폴더 생성",
+    "status": "in_progress",
+    "activeForm": "newsletters 폴더 생성 중"
+  },
+  {
+    "content": "뉴스레터 마크다운 작성",
+    "status": "pending",
+    "activeForm": "뉴스레터 마크다운 작성 중"
+  },
+  {
+    "content": "결과 검증",
+    "status": "pending",
+    "activeForm": "결과 검증 중"
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "content": "Playwright로 Medium 문서 접근 및 내용 읽기",
+    "status": "in_progress",
+    "activeForm": "Playwright로 Medium 문서 접근 및 내용 읽기"
+  },
+  {
+    "content": "문서 내용 번역 및 정리",
+    "status": "pending",
+    "activeForm": "문서 내용 번역 및 정리"
+  },
+  {
+    "content": "이미지 다운로드 및 ATTACHMENTS 폴더에 저장",
+    "status": "pending",
+    "activeForm": "이미지 다운로드 및 ATTACHMENTS 폴더에 저장"
+  },
+  {
+    "content": "hierarchical tags 생성",
+    "status": "pending",
+    "activeForm": "hierarchical tags 생성"
+  },
+  {
+    "content": "Obsidian 문서 생성 및 저장",
+    "status": "pending",
+    "activeForm": "Obsidian 문서 생성 및 저장"
+  }
+]

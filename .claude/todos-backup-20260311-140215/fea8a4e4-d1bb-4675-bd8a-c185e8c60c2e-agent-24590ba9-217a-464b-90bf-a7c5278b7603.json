@@ -1,0 +1,20 @@
+[
+  {
+    "content": "TDD 파일들 현재 태그 상태 분석 및 샘플 3-5개 파일 태그 변환 예시 작성",
+    "status": "in_progress",
+    "priority": "high",
+    "id": "1"
+  },
+  {
+    "content": "사용자 승인 후 전체 54개 파일의 YAML frontmatter tags를 hierarchical tags로 변환",
+    "status": "pending",
+    "priority": "high",
+    "id": "2"
+  },
+  {
+    "content": "변환 완료된 파일 목록 정리 및 보고",
+    "status": "pending",
+    "priority": "medium",
+    "id": "3"
+  }
+]
