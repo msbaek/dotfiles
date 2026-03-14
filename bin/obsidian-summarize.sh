@@ -46,6 +46,13 @@ validate_url() {
   [[ "$1" =~ ^https?:// ]]
 }
 
+validate_type() {
+  case "$1" in
+  youtube-en | youtube-kr | article) return 0 ;;
+  *) return 1 ;;
+  esac
+}
+
 get_skill_command() {
   local type="$1" url="$2"
   case "$type" in
@@ -150,22 +157,15 @@ run_executor() {
   log "Working directory: $(pwd)"
   log "Running claude..."
   local exit_code=0
-  local profile_log="/tmp/obsidian-profile-$(date +%H%M%S).jsonl"
   OBSIDIAN_EXEC=1 claude --dangerously-skip-permissions --output-format stream-json -p "$skill_cmd" 2>&1 \
     | while IFS= read -r line; do
-        event_type=$(echo "$line" | jq -r '.type // empty' 2>/dev/null)
-        case "$event_type" in
-          content_block_start)
-            tool=$(echo "$line" | jq -r '.content_block.name // empty' 2>/dev/null)
-            [[ -n "$tool" ]] && log "  🔧 $tool"
-            ;;
-          result)
-            cost=$(echo "$line" | jq -r '.cost_usd // empty' 2>/dev/null)
-            duration=$(echo "$line" | jq -r '.duration_seconds // empty' 2>/dev/null)
-            [[ -n "$cost" ]] && log "  💰 \$$cost (${duration}s)"
-            ;;
-        esac
-        echo "$line" >> "$profile_log"
+        # Lightweight parsing with grep — no jq fork per line
+        if [[ "$line" == *'"content_block_start"'* && "$line" == *'"tool_use"'* ]]; then
+          tool=$(echo "$line" | sed -n 's/.*"name":"\([^"]*\)".*/\1/p')
+          [[ -n "$tool" ]] && log "  🔧 $tool"
+        elif [[ "$line" == *'"result"'* && "$line" == *'"cost_usd"'* ]]; then
+          log "  ✅ Complete"
+        fi
       done
   exit_code=${PIPESTATUS[0]}
 
@@ -209,20 +209,8 @@ launch_tmux_window() {
 
 run_with_url() {
   local type="$1" url="$2"
-
-  case "$type" in
-  youtube-en | youtube-kr | article) ;;
-  *)
-    echo "Unknown type: $type"
-    exit 1
-    ;;
-  esac
-
-  if ! validate_url "$url"; then
-    echo "Invalid URL: $url"
-    exit 1
-  fi
-
+  validate_type "$type" || { echo "Unknown type: $type"; exit 1; }
+  validate_url "$url" || { echo "Invalid URL: $url"; exit 1; }
   launch_tmux_window "$type" "$url"
 }
 
@@ -230,14 +218,10 @@ run_with_url() {
 
 run_launcher() {
   local type="$1"
-
-  case "$type" in
-  youtube-en | youtube-kr | article) ;;
-  *)
+  validate_type "$type" || {
     send_notification "Obsidian Summarize ❌" "Unknown type: $type"
     exit 1
-    ;;
-  esac
+  }
 
   if [[ ! -d "$VAULT_ROOT/001-INBOX" ]]; then
     send_notification "Obsidian Summarize ❌" "INBOX directory not found"

@@ -21,9 +21,12 @@ if [[ "${1:-}" == "stop" ]]; then
 fi
 
 # Already running?
-if [[ -f "$PID_FILE" ]] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
-  echo "Playwright MCP server already running (PID: $(cat "$PID_FILE"))"
-  exit 0
+if [[ -f "$PID_FILE" ]]; then
+  existing_pid=$(cat "$PID_FILE")
+  if kill -0 "$existing_pid" 2>/dev/null; then
+    echo "Playwright MCP server already running (PID: $existing_pid)"
+    exit 0
+  fi
 fi
 
 # Stale PID file cleanup
@@ -40,7 +43,7 @@ for i in $(seq 1 30); do
     echo "Playwright MCP server started (PID: $PID, log: $LOG_FILE)"
     exit 0
   fi
-  sleep 1
+  [[ $i -lt 30 ]] && sleep 1
 done
 
 echo "ERROR: Server failed to start within 30s (check $LOG_FILE)"
