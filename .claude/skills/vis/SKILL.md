@@ -28,10 +28,10 @@ vis daemon 서버가 실행 중이면 **`curl`로 HTTP API를 직접 호출**한
 ~/bin/vis-daemon.sh stop      # 중지
 
 # 검색 (0.3초, CLI의 vis search는 import만 8초)
-curl -s "http://localhost:8741/search?query=키워드&search_method=hybrid&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
+curl -s --get --data-urlencode "query=키워드" "http://localhost:8741/search?search_method=hybrid&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
 
 # rerank 포함 검색
-curl -s "http://localhost:8741/search?query=키워드&search_method=hybrid&rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
+curl -s --get --data-urlencode "query=키워드" "http://localhost:8741/search?search_method=hybrid&rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
 ```
 
 서버 미실행 시: `~/bin/vis-daemon.sh start`로 시작 후 재시도. fallback: `vis search "키워드"`

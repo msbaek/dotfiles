@@ -62,7 +62,7 @@ source: 원본 URL
 1. 콘텐츠 추출 후, 번역/요약 전에 핵심 개념 키워드 5-10개를 먼저 추출
 2. 각 키워드로 vis daemon HTTP API를 호출 (CLI import 8초 회피):
    ```bash
-   curl -s "http://localhost:8741/search?query=키워드&search_method=hybrid&top_k=3" | jq -r '.results[] | "\(.score) \(.path)"'
+   curl -s --get --data-urlencode "query=키워드" "http://localhost:8741/search?search_method=hybrid&top_k=3" | jq -r '.results[] | "\(.score) \(.path)"'
    ```
    서버 미실행 시 fallback: `vis search "키워드" --search-method hybrid --top-k 3`
 3. 검색 결과 중 유사도가 높고 **실제 존재하는 노트**만 선별 → wikilink 후보 목록 확정
@@ -94,7 +94,7 @@ source: 원본 URL
 
 1. 생성된 문서의 제목과 핵심 키워드로 vis daemon HTTP API 호출:
    ```bash
-   curl -s "http://localhost:8741/search?query=키워드&search_method=hybrid&rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
+   curl -s --get --data-urlencode "query=키워드" "http://localhost:8741/search?search_method=hybrid&rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
    ```
    서버 미실행 시 fallback: `vis search "키워드" --search-method hybrid --rerank --top-k 10`
 2. 자기 자신, daily notes(`notes/dailies/`) 제외, 유사도가 낮은 문서 제외
