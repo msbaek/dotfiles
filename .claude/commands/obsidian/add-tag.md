@@ -46,6 +46,9 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
    - 본문 내 인라인 태그도 함께 관리
 6. author
    - author는 "Ian Cooper"의 경우 "ian-cooper" 형식으로 변환해줘
+7. **관련 문서(Related Notes) 추가**
+   - CLAUDE.md의 `<when-creating-obsidian-document>` 규칙을 따라 수행
+   - `--recursive` 모드에서는 이 단계를 건너뜀
 
 ## 옵션 설명
 
@@ -105,6 +108,7 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
   수정: #development → #development/practices
   제거: (없음)
 ✅ 태그 업데이트 완료
+🔗 관련 문서: 5개 후보 검색됨 → 사용자 확인 후 추가
 ```
 
 ## 주요 태그 카테고리

@@ -29,6 +29,8 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
    - `--dry-run` 옵션 사용 시 실제 이동 없이 결과만 표시
    - 선택된 디렉토리로 파일 이동
    - 이동 후 확인 및 결과 보고
+4. **관련 문서(Related Notes) 추가**
+   - CLAUDE.md의 `<when-creating-obsidian-document>` 규칙을 따라 수행
 
 ## 옵션 설명
 
@@ -68,6 +70,7 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
 ✅ 파일 분석 완료: git-worktree.md
 📋 부여된 태그: #git/features/worktree #guide #complete
 📁 이동: 001-INBOX/ → 003-RESOURCES/TOOLS/
+🔗 관련 문서: 5개 후보 검색됨 → 사용자 확인 후 추가
 ```
 
 ## 특수 케이스 처리
