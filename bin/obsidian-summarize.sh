@@ -139,11 +139,7 @@ run_executor() {
   }
 
   # Ensure vis daemon server is running (speeds up vis search from ~15s to ~0.1s)
-  if ! curl -s http://localhost:8741/health > /dev/null 2>&1; then
-    log "🔄 Starting vis daemon server..."
-    nohup vis serve > /tmp/vis-server.log 2>&1 &
-    sleep 3
-  fi
+  ~/bin/vis-daemon.sh start 2>/dev/null | while read -r line; do log "  $line"; done
 
   send_notification "Obsidian Summarize" "Started: $type — $url"
 
@@ -159,11 +155,12 @@ run_executor() {
   local exit_code=0
   OBSIDIAN_EXEC=1 claude --dangerously-skip-permissions --output-format stream-json -p "$skill_cmd" 2>&1 \
     | while IFS= read -r line; do
-        # Lightweight parsing with grep — no jq fork per line
-        if [[ "$line" == *'"content_block_start"'* && "$line" == *'"tool_use"'* ]]; then
-          tool=$(echo "$line" | sed -n 's/.*"name":"\([^"]*\)".*/\1/p')
+        # Log tool_use from assistant messages
+        if [[ "$line" == *'"tool_use"'* && "$line" == *'"name"'* ]]; then
+          tool=$(echo "$line" | sed -n 's/.*"tool_use".*"name":"\([^"]*\)".*/\1/p')
+          [[ -z "$tool" ]] && tool=$(echo "$line" | grep -o '"name":"[^"]*"' | head -1 | sed 's/"name":"//;s/"//')
           [[ -n "$tool" ]] && log "  🔧 $tool"
-        elif [[ "$line" == *'"result"'* && "$line" == *'"cost_usd"'* ]]; then
+        elif [[ "$line" == *'"type":"result"'* ]]; then
           log "  ✅ Complete"
         fi
       done
