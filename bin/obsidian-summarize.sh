@@ -113,7 +113,17 @@ run_executor() {
     flock 9
   fi
 
-  # Ensure Playwright MCP server is running
+  # Ensure Playwright MCP server is fresh and responsive
+  # Restart if server has been running for more than 1 hour (prevents stale connections)
+  local pid_file="/tmp/playwright-mcp-server.pid"
+  if [[ -f "$pid_file" ]]; then
+    local server_age=$(( $(date +%s) - $(stat -f%m "$pid_file") ))
+    if (( server_age > 3600 )); then
+      log "🔄 Server running for ${server_age}s, restarting..."
+      ~/bin/playwright-mcp-server.sh stop
+      sleep 1
+    fi
+  fi
   ~/bin/playwright-mcp-server.sh || {
     flock -u 9
     log "❌ Playwright MCP server failed to start"
