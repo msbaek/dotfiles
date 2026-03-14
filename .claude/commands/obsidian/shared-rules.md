@@ -101,9 +101,9 @@ source: 원본 URL
 ## 백그라운드 실행 모델
 
 ### 실행 모드 판단
-- `OBSIDIAN_EXEC=1` 환경변수가 설정됨 (tmux 경유 실행) → **동기 모드** (이미 별도 프로세스에서 실행 중)
+- `OBSIDIAN_EXEC=1` 환경변수가 설정됨 (obsidian-summarize.sh 경유) → **동기 모드**
 - subagent 내부에서 호출 (batch-summarize-urls 등) → **동기 모드**
-- 위 조건에 해당하지 않는 직접 호출 → **백그라운드 모드**
+- Claude 세션에서 직접 호출 → **백그라운드 모드** (subagent로 위임, 컨텍스트 캐시 활용)
 
 ### 백그라운드 모드 프로세스
 

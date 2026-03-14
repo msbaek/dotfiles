@@ -8,24 +8,6 @@ color: yellow
 
 기술 문서 URL을 받아 번역/정리하여 Obsidian 문서를 생성합니다.
 
-## 실행 모드 결정
-
-먼저 환경변수를 확인한다:
-
-```bash
-echo "${OBSIDIAN_EXEC:-}"
-```
-
-- 출력이 `1`이면: **inline 모드** — 아래 규칙에 따라 직접 실행
-- 출력이 비어 있으면: **tmux 위임 모드** — 아래 명령 실행 후 즉시 반환:
-
-```bash
-~/bin/obsidian-summarize.sh --with-url article {$ARGUMENTS에서 추출한 URL}
-```
-
-안내: "`obsidian` tmux 세션에서 진행 확인: `tmux attach -t obsidian`"
-tmux 위임 후 이 스킬의 나머지 내용은 실행하지 않는다.
-
 ## 공통 규칙
 
 `~/.claude/commands/obsidian/shared-rules.md`의 모든 규칙을 따른다.

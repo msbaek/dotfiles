@@ -8,28 +8,6 @@ color: yellow
 
 YouTube URL 또는 트랜스크립트를 받아 번역/정리하여 Obsidian 문서를 생성합니다.
 
-## 실행 모드 결정
-
-먼저 환경변수를 확인한다:
-
-```bash
-echo "${OBSIDIAN_EXEC:-}"
-```
-
-- 출력이 `1`이면: **inline 모드** — 아래 규칙에 따라 직접 실행
-- 출력이 비어 있으면 **그리고** $ARGUMENTS에 YouTube URL(`https://`로 시작)이 포함되어 있으면: **tmux 위임 모드**
-
-  $ARGUMENTS에서 언어 옵션(`kr`/`en`)과 URL을 파싱하여:
-  ```bash
-  ~/bin/obsidian-summarize.sh --with-url youtube-{lang} {URL}
-  ```
-  (언어 미지정 시 `youtube-en` 사용)
-
-  안내: "`obsidian` tmux 세션에서 진행 확인: `tmux attach -t obsidian`"
-  tmux 위임 후 이 스킬의 나머지 내용은 실행하지 않는다.
-
-- 출력이 비어 있고 트랜스크립트가 직접 전달된 경우: **inline 모드** — 아래 규칙에 따라 직접 실행
-
 ## 공통 규칙
 
 `~/.claude/commands/obsidian/shared-rules.md`의 모든 규칙을 따른다.
