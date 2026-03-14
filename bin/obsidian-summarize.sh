@@ -131,6 +131,13 @@ run_executor() {
     return 1
   }
 
+  # Ensure vis daemon server is running (speeds up vis search from ~15s to ~0.1s)
+  if ! curl -s http://localhost:8741/health > /dev/null 2>&1; then
+    log "🔄 Starting vis daemon server..."
+    nohup vis serve > /tmp/vis-server.log 2>&1 &
+    sleep 3
+  fi
+
   send_notification "Obsidian Summarize" "Started: $type — $url"
 
   # Run claude from VAULT_ROOT so skills save files to the correct vault
