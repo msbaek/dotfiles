@@ -1,0 +1,62 @@
+#!/bin/bash
+# vis — thin wrapper for vault-intelligence CLI
+# Uses HTTP API for search when daemon server is running (0.3s vs 9s)
+# Falls through to full Python CLI for all other commands
+
+VIS_SERVER="http://localhost:8741"
+VIS_CLI="$HOME/.local/bin/vis"
+
+# Only intercept "search" subcommand when server is running
+if [[ "${1:-}" == "search" && -n "${2:-}" ]] && curl -sf "$VIS_SERVER/health" > /dev/null 2>&1; then
+  shift  # remove "search"
+
+  # Parse arguments
+  query="" top_k=10 threshold=0.3 rerank=false search_method=hybrid output_file=""
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --top-k)       top_k="$2"; shift 2 ;;
+      --threshold)   threshold="$2"; shift 2 ;;
+      --rerank)      rerank=true; shift ;;
+      --search-method) search_method="$2"; shift 2 ;;
+      --output)      output_file="${2:--}"; shift; [[ "${1:-}" != -* && -n "${1:-}" ]] && shift ;;
+      --expand|--no-synonyms|--no-hyde|--with-centrality|--sample-size|--centrality-weight)
+        # These options are not supported via HTTP — fall back to full CLI
+        exec "$VIS_CLI" search "$query" "$@" ;;
+      -*)            exec "$VIS_CLI" search "$@" ;;  # Unknown flag → fallback
+      *)             query="$1"; shift ;;
+    esac
+  done
+
+  [[ -z "$query" ]] && { echo "Error: query required"; exit 1; }
+
+  # URL-encode the query (pure bash, no python fork)
+  encoded_query=$(printf '%s' "$query" | jq -sRr @uri 2>/dev/null || echo "$query")
+
+  # HTTP API call
+  result=$(curl -sf "$VIS_SERVER/search?query=$encoded_query&top_k=$top_k&threshold=$threshold&search_method=$search_method&rerank=$rerank")
+
+  if [[ $? -ne 0 ]]; then
+    # Server error → fallback
+    exec "$VIS_CLI" search "$query" --top-k "$top_k" --threshold "$threshold" --search-method "$search_method" ${rerank:+--rerank}
+  fi
+
+  # Output
+  count=$(echo "$result" | jq -r '.total // (.results | length)')
+  echo ""
+  echo "📄 검색 결과 (${count}개) [서버 모드 - fast]:"
+  echo "--------------------------------------------------------------------------------"
+  echo "$result" | jq -r '.results[] | "\(.rank // 0). [\(.score | tostring | .[0:6])] \(.path)"'
+
+  # Write to file if --output specified
+  if [[ -n "$output_file" ]]; then
+    if [[ "$output_file" == "-" ]]; then
+      echo "$result" | jq '.'
+    else
+      echo "$result" | jq '.' > "$output_file"
+      echo "📁 결과 저장: $output_file"
+    fi
+  fi
+else
+  # All other commands → pass through to full CLI
+  exec "$VIS_CLI" "$@"
+fi
