@@ -15,14 +15,22 @@ description: |
 vis는 BGE-M3 기반 시맨틱 검색 엔진으로 Obsidian vault의 지식 관리를 지원하는 CLI 도구.
 사용자의 요청을 분석하여 최적의 vis 명령어와 옵션을 자동 선택하여 실행.
 
-## daemon 서버 모드
+## daemon 서버 모드 (성능 최적화)
 
-vis daemon 서버가 실행 중이면 `vis search`는 자동으로 HTTP 경로를 사용한다 (15초 → 0.1초).
-vis 명령 실행 전에 서버가 떠있는지 확인하고, 없으면 시작한다:
+vis daemon 서버가 실행 중이면 **`curl`로 HTTP API를 직접 호출**한다 (CLI import 8초 회피).
 
 ```bash
+# 서버 상태 확인 (없으면 시작)
 curl -s http://localhost:8741/health > /dev/null 2>&1 || nohup vis serve > /tmp/vis-server.log 2>&1 &
+
+# 검색 (0.3초, CLI의 vis search는 import만 8초)
+curl -s "http://localhost:8741/search?query=키워드&search_method=hybrid&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
+
+# rerank 포함 검색
+curl -s "http://localhost:8741/search?query=키워드&search_method=hybrid&rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
 ```
+
+서버 미실행 시 fallback: `vis search "키워드"` (느리지만 동작)
 
 ## 사용자 의도 → vis 명령어 매핑
 

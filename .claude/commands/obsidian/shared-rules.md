@@ -60,7 +60,11 @@ source: 원본 URL
 ### 프로세스
 
 1. 콘텐츠 추출 후, 번역/요약 전에 핵심 개념 키워드 5-10개를 먼저 추출
-2. 각 키워드로 `vis search "키워드" --search-method hybrid --top-k 3` 실행
+2. 각 키워드로 vis daemon HTTP API를 호출 (CLI import 8초 회피):
+   ```bash
+   curl -s "http://localhost:8741/search?query=키워드&search_method=hybrid&top_k=3" | jq -r '.results[] | "\(.score) \(.path)"'
+   ```
+   서버 미실행 시 fallback: `vis search "키워드" --search-method hybrid --top-k 3`
 3. 검색 결과 중 유사도가 높고 **실제 존재하는 노트**만 선별 → wikilink 후보 목록 확정
 4. 번역/요약 시 wikilink 후보 목록을 프롬프트에 포함하여, 해당 개념이 처음 등장하는 위치에 `[[노트명]]`을 삽입하도록 지시
 5. 존재하지 않는 노트는 링크하지 않음 (빈 링크 방지)
@@ -88,7 +92,11 @@ source: 원본 URL
 
 문서 생성 완료 후, `vis search`를 사용하여 관련 문서를 찾고 Related Notes 섹션을 추가한다.
 
-1. 생성된 문서의 제목과 핵심 키워드로 `vis search "키워드" --search-method hybrid --rerank --top-k 10` 실행
+1. 생성된 문서의 제목과 핵심 키워드로 vis daemon HTTP API 호출:
+   ```bash
+   curl -s "http://localhost:8741/search?query=키워드&search_method=hybrid&rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
+   ```
+   서버 미실행 시 fallback: `vis search "키워드" --search-method hybrid --rerank --top-k 10`
 2. 자기 자신, daily notes(`notes/dailies/`) 제외, 유사도가 낮은 문서 제외
 3. 상위 3-5개 문서를 문서 하단에 추가:
    ```markdown
