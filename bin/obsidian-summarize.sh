@@ -153,16 +153,16 @@ run_executor() {
   local profile_log="/tmp/obsidian-profile-$(date +%H%M%S).jsonl"
   OBSIDIAN_EXEC=1 claude --dangerously-skip-permissions --output-format stream-json -p "$skill_cmd" 2>&1 \
     | while IFS= read -r line; do
-        # Extract tool_use events and log with timestamp
-        local event_type=$(echo "$line" | jq -r '.type // empty' 2>/dev/null)
+        event_type=$(echo "$line" | jq -r '.type // empty' 2>/dev/null)
         case "$event_type" in
           content_block_start)
-            local tool=$(echo "$line" | jq -r '.content_block.name // empty' 2>/dev/null)
-            [[ -n "$tool" ]] && log "  🔧 Tool: $tool"
+            tool=$(echo "$line" | jq -r '.content_block.name // empty' 2>/dev/null)
+            [[ -n "$tool" ]] && log "  🔧 $tool"
             ;;
           result)
-            local cost=$(echo "$line" | jq -r '.cost_usd // empty' 2>/dev/null)
-            [[ -n "$cost" ]] && log "  💰 Cost: \$$cost"
+            cost=$(echo "$line" | jq -r '.cost_usd // empty' 2>/dev/null)
+            duration=$(echo "$line" | jq -r '.duration_seconds // empty' 2>/dev/null)
+            [[ -n "$cost" ]] && log "  💰 \$$cost (${duration}s)"
             ;;
         esac
         echo "$line" >> "$profile_log"
