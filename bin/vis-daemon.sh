@@ -8,7 +8,27 @@ HEALTH_URL="http://localhost:$PORT/health"
 
 mkdir -p "$(dirname "$LOG_FILE")"
 
-case "${1:-start}" in
+show_usage() {
+  echo "Usage: vis-daemon.sh <command>"
+  echo ""
+  echo "Commands:"
+  echo "  start          Start vis daemon server (default if already has subcommand)"
+  echo "  stop           Stop running server"
+  echo "  restart        Stop then start"
+  echo "  status         Show PID, document count, index state"
+  echo "  logs [N]       Show last N lines of log (default: 30)"
+  echo ""
+  echo "Config:"
+  echo "  Port:     $PORT"
+  echo "  PID file: $PID_FILE"
+  echo "  Log file: $LOG_FILE"
+}
+
+case "${1:---help}" in
+  -h|--help|"")
+    show_usage
+    exit 0
+    ;;
   stop)
     if [[ -f "$PID_FILE" ]]; then
       pid=$(cat "$PID_FILE")
@@ -81,7 +101,8 @@ case "${1:-start}" in
     ;;
 
   *)
-    echo "Usage: vis-daemon.sh [start|stop|restart|status|logs [N]]"
+    echo "Unknown command: $1"
+    show_usage
     exit 1
     ;;
 esac
