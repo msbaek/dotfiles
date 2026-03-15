@@ -136,6 +136,7 @@
       "autoUpdate": true
     }
   },
+  "language": "ko",
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
@@ -161,11 +162,15 @@
       "연결고리 찾는 중"
     ]
   },
+  "voiceEnabled": true,
   "autoMemoryEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "mcpServers": {
     "playwright": {
-      "url": "http://localhost:8931/mcp"
+      "url": "http://localhost:8931/mcp",
+      "args": [
+        "@playwright/mcp@0.0.68"
+      ]
     }
   },
   "feedbackSurveyState": {
