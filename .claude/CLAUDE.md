@@ -290,7 +290,7 @@ Obsidian 문서 생성 시 반드시 `$VAULT_ROOT/001-INBOX/`에 저장.
 Obsidian 문서를 생성하거나 정리한 후, vis daemon HTTP API로 관련 문서를 검색하여 Related Notes 섹션을 추가한다.
 1. `curl -s --get --data-urlencode "query=핵심 키워드" "http://localhost:8741/search?search_method=hybrid&rerank=true&top_k=10"` 실행 (서버 미실행 시 fallback: `vis search`)
 2. 자기 자신, daily notes 제외하고 관련도 높은 후보 선별
-3. **반드시 사용자 피드백을 받은 후** 적용 (백그라운드 모드에서는 상위 3-5개 자동 추가 후 완료 시 리뷰 안내)
+3. 상위 5개를 자동 추가 (사용자가 inbox 검토 시 수정하므로 별도 승인 불필요)
 4. 문서 하단에 `## Related Notes` 섹션으로 추가 (각 링크에 한 줄 맥락 설명 포함)
 5. frontmatter `related:` 필드는 명시적 요청 시에만 업데이트
 </when-creating-obsidian-document>
