@@ -139,7 +139,7 @@ run_executor() {
   }
 
   # Ensure vis daemon server is running (speeds up vis search from ~15s to ~0.1s)
-  ~/bin/vis-daemon.sh start 2>/dev/null | while read -r line; do log "  $line"; done
+  visd start 2>/dev/null | while read -r line; do log "  $line"; done
 
   send_notification "Obsidian Summarize" "Started: $type — $url"
 

@@ -90,21 +90,20 @@ source: 원본 URL
 
 ## Related Notes
 
-문서 생성 완료 후, `vis search`를 사용하여 관련 문서를 찾고 Related Notes 섹션을 추가한다.
+문서 생성 완료 후, `vis search`를 사용하여 관련 문서를 찾고 Related Notes 섹션을 **자동으로** 추가한다.
+사용자가 inbox 검토 시 수정하므로 별도 승인 단계 없이 바로 적용한다.
 
-1. 생성된 문서의 제목과 핵심 키워드로 vis daemon HTTP API 호출:
+1. 생성된 문서의 제목과 핵심 키워드 2-3개로 vis daemon HTTP API 호출:
    ```bash
    curl -s --get --data-urlencode "query=키워드" "http://localhost:8741/search?search_method=hybrid&rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
    ```
    서버 미실행 시 fallback: `vis search "키워드" --search-method hybrid --rerank --top-k 10`
 2. 자기 자신, daily notes(`notes/dailies/`) 제외, 유사도가 낮은 문서 제외
-3. 상위 3-5개 문서를 문서 하단에 추가:
+3. 상위 5개 문서를 문서 하단에 자동 추가 (승인 불필요):
    ```markdown
    ## Related Notes
-   - [[문서명]] - 맥락 설명
+   - [[문서명]] — 맥락 설명
    ```
-4. 백그라운드 모드: 자동 추가 후 완료 알림 시 리뷰 안내
-5. 동기 모드: 후보 목록을 보여주고 사용자 승인 후 적용
 
 ## 백그라운드 실행 모델
 

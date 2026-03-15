@@ -1,5 +1,5 @@
 #!/bin/bash
-# vis daemon server management (start/stop/status/logs)
+# visd — vis daemon server management (start/stop/status/restart/logs)
 
 PORT=8741
 PID_FILE="$HOME/.vis-server.pid"
@@ -9,10 +9,10 @@ HEALTH_URL="http://localhost:$PORT/health"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 show_usage() {
-  echo "Usage: vis-daemon.sh <command>"
+  echo "Usage: visd <command>"
   echo ""
   echo "Commands:"
-  echo "  start          Start vis daemon server (default if already has subcommand)"
+  echo "  start          Start vis daemon server"
   echo "  stop           Stop running server"
   echo "  restart        Stop then start"
   echo "  status         Show PID, document count, index state"
@@ -34,7 +34,7 @@ case "${1:---help}" in
       pid=$(cat "$PID_FILE")
       kill "$pid" 2>/dev/null
       rm -f "$PID_FILE"
-      echo "vis daemon stopped (PID: $pid)"
+      echo "visd stopped (PID: $pid)"
     else
       echo "No running server found"
     fi
@@ -46,11 +46,11 @@ case "${1:---help}" in
       info=$(curl -sf "$HEALTH_URL")
       docs=$(echo "$info" | jq -r '.document_count // "?"')
       indexed=$(echo "$info" | jq -r '.indexed // "?"')
-      echo "✅ vis daemon running (PID: $pid, port: $PORT)"
+      echo "✅ visd running (PID: $pid, port: $PORT)"
       echo "   Documents: $docs, Indexed: $indexed"
       echo "   Log: $LOG_FILE"
     else
-      echo "❌ vis daemon not running"
+      echo "❌ visd not running"
     fi
     ;;
 
@@ -68,18 +68,18 @@ case "${1:---help}" in
     "$0" start
     ;;
 
-  start|"")
+  start)
     # Already running?
     if curl -sf "$HEALTH_URL" > /dev/null 2>&1; then
       pid=$(cat "$PID_FILE" 2>/dev/null || echo "?")
-      echo "vis daemon already running (PID: $pid)"
+      echo "visd already running (PID: $pid)"
       exit 0
     fi
 
     # Stale PID cleanup
     rm -f "$PID_FILE"
 
-    echo "Starting vis daemon on port $PORT..."
+    echo "Starting visd on port $PORT..."
     nohup vis serve >> "$LOG_FILE" 2>&1 &
     pid=$!
     echo "$pid" > "$PID_FILE"
@@ -88,13 +88,13 @@ case "${1:---help}" in
     for i in $(seq 1 60); do
       if curl -sf "$HEALTH_URL" > /dev/null 2>&1; then
         docs=$(curl -sf "$HEALTH_URL" | jq -r '.document_count // "?"')
-        echo "vis daemon started (PID: $pid, docs: $docs, log: $LOG_FILE)"
+        echo "visd started (PID: $pid, docs: $docs, log: $LOG_FILE)"
         exit 0
       fi
       sleep 1
     done
 
-    echo "ERROR: vis daemon failed to start within 60s (check $LOG_FILE)"
+    echo "ERROR: visd failed to start within 60s (check $LOG_FILE)"
     kill "$pid" 2>/dev/null
     rm -f "$PID_FILE"
     exit 1
