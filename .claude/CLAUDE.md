@@ -285,6 +285,7 @@ Before marking any task as complete, verify:
 - [ ] Update global INDEX.md status (active/completed/paused) if it exists
 - [ ] Context recorded for next session
 - [ ] Git worktree isolation confirmed (if applicable)
+- [ ] 아키텍처/기술 결정이 있었다면 ADR 작성 여부 확인
 
 Recoverability:
 - Commit after each meaningful unit of work
@@ -388,6 +389,10 @@ For complex development tasks, follow this sequence:
 TDD enforcement:
 - NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 - Code written before test? Delete and start over.
+
+ADR trigger:
+- brainstorming에서 2개 이상의 대안을 비교하고 하나를 선택했다면 ADR 작성을 제안
+- 기존 아키텍처/기술 스택을 변경하는 결정이 있다면 ADR 작성을 제안
 </superpowers-workflow>
 
 ### Diary (Session Journal)
