@@ -209,58 +209,17 @@ Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
 - If something goes sideways, STOP and re-plan immediately
 - Use plan mode for verification steps, not just building
 - When using APIs, SDKs, or libraries, use CONTEXT7 MCP tool to verify correct usage before proceeding
+- Plan 문서 형식, task 분해, 실행, 리뷰는 Superpowers 스킬(writing-plans, executing-plans, subagent-driven-development)에 위임
 
-Plan Folder Structure:
-- Create `PROJECT_ROOT/.claude/plans/YYYY-MM-DD-kebab-case-topic/` folder for new tasks.
-  - Date: task start date
-  - Topic: Claude auto-generates 3-5 word kebab-case name from task content
-  - Example: `.claude/plans/2026-02-14-plan-folder-isolation/`
-- Store plan files and `INDEX.md` inside the folder.
-- Update the plan as work progresses.
-- Use INDEX.md Progress section for task tracking (instead of tasks/todo.md)
-- Record change summaries at each step
+Plan 저장 경로 (역할별 분리):
+- `.claude/plans/YYYY-MM-DD-topic/`: 세션 관리용 (INDEX.md, Resume Point). git 추적 불필요
+- `docs/plans/`: Superpowers writing-plans가 생성한 plan 문서. git 추적 대상
 
-Per-folder INDEX.md:
-- Manages the status of that task. Resume from this file at session start.
-- Structure:
-  ```
-  # Plan: Task Title
-  Created: YYYY-MM-DD
-  Status: active|completed|paused
-
-  ## Progress
-  - [x] Completed task
-  - [ ] Pending task
-
-  ## Resume Point
-  Specific resume point (filename, step number, remaining work)
-
-  ## Files
-  - plan-file.md — description
-  ```
-- Resume point must be specific enough to continue immediately in a new session
-
-Global INDEX.md (`PROJECT_ROOT/.claude/plans/INDEX.md`):
-- Maintains folder list with one-line summaries (reference only)
-- Structure:
-  ```
-  # Plans Index
-  Last updated: YYYY-MM-DD
-
-  ## Active
-  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — summary
-
-  ## Completed
-  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — summary | completed: YYYY-MM-DD
-
-  ## Paused
-  - [YYYY-MM-DD-topic/](YYYY-MM-DD-topic/) — summary | reason
-  ```
-- Update whenever a plan folder is created, completed, or paused
-
-Backward compatibility:
-- Existing root plan files (.claude/plans/*.md) are preserved
-- Projects without date folders operate in legacy mode
+세션 간 연속성 (Superpowers가 다루지 않는 영역):
+- Per-folder INDEX.md: Status(active|completed|paused), Resume Point, Progress 체크리스트 관리
+- Global INDEX.md (`PROJECT_ROOT/.claude/plans/INDEX.md`): 전체 plan 목록과 상태 요약
+- Resume Point는 새 세션에서 즉시 작업을 재개할 수 있을 만큼 구체적으로 기술
+- Plan 폴더 생성/완료/일시정지 시 Global INDEX.md도 함께 업데이트
 </work_patterns>
 
 ### Git Workflow
@@ -276,15 +235,10 @@ Manual commits only when /commit skill is unavailable. In that case:
 ### Verification (Completion Gate)
 
 <verification-before-completion>
-Before marking any task as complete, verify:
-- [ ] All tests pass
-- [ ] Plan/todo documents reflect completed status
-- [ ] Diff behavior between main and changes
-- [ ] "Would a staff engineer approve this?"
-- [ ] Update per-folder INDEX.md progress (resume point, status, task counts)
-- [ ] Update global INDEX.md status (active/completed/paused) if it exists
-- [ ] Context recorded for next session
-- [ ] Git worktree isolation confirmed (if applicable)
+Superpowers verification-before-completion 스킬의 검증(테스트, 빌드, diff 확인 등)에 추가로 확인:
+- [ ] Per-folder INDEX.md 업데이트 (resume point, status, progress)
+- [ ] Global INDEX.md 상태 업데이트 (active/completed/paused)
+- [ ] 다음 세션을 위한 컨텍스트 기록
 - [ ] 아키텍처/기술 결정이 있었다면 ADR 작성 여부 확인
 
 Recoverability:
