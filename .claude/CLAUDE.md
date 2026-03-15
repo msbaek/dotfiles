@@ -1,7 +1,10 @@
 ## Ground Rule
 
 > **Tag convention:** `<when-*>` = conditional trigger | other `<tags>` = always-on rules
-> **Priority:** P0 (`investigate_then_act`, `tool_preferences`) every interaction | P1 (`active_partner`, `context_health`, `verification-before-completion`) most interactions | P2 (`elegance_check`, `large_scale_changes`, `offload_deterministic`) when applicable
+> **Section Priority:** Tags inherit their section's priority.
+> P0 (every interaction): Tool Preferences, Action Principles, Quality Control
+> P1 (most interactions): Augmented Coding Principles, Context Health, Verification, Communication
+> P2 (when applicable): Long-running Tasks, Collaboration Patterns, Large-scale Changes, Learning, Diary
 
 ### Session Management
 
@@ -16,16 +19,13 @@
 </when-starting-a-new-session>
 
 <session-start-hook>
-  <EXTREMELY_IMPORTANT>
-  You have Superpowers.
-
-**RIGHT NOW, go read**: @/Users/msbaek/.claude/plugins/cache/claude-plugins-official/superpowers/4.2.0/skills/using-superpowers/SKILL.md
-</EXTREMELY_IMPORTANT>
+Superpowers 스킬이 활성화되어 있음을 확인하고, 모든 작업에서 관련 skill을 우선 탐색할 것.
 </session-start-hook>
 
 
 <when-executing-a-new-task>
-Each task is executed by launching a new sub-agent, preventing context exhaustion in the main session.
+Plan의 독립적 구현 단계(implementation step)는 sub-agent로 실행하여 메인 세션의 컨텍스트를 보호한다.
+단순 조회, 파일 하나 수정, 질의응답 등은 메인 세션에서 직접 처리.
 </when-executing-a-new-task>
 
 ### Tool Preferences
@@ -273,6 +273,24 @@ Manual commits only when /commit skill is unavailable. In that case:
 2. `git commit -F <file>` then clean up
 </git_commit_messages>
 
+### Verification (Completion Gate)
+
+<verification-before-completion>
+Before marking any task as complete, verify:
+- [ ] All tests pass
+- [ ] Plan/todo documents reflect completed status
+- [ ] Diff behavior between main and changes
+- [ ] "Would a staff engineer approve this?"
+- [ ] Update per-folder INDEX.md progress (resume point, status, task counts)
+- [ ] Update global INDEX.md status (active/completed/paused) if it exists
+- [ ] Context recorded for next session
+- [ ] Git worktree isolation confirmed (if applicable)
+
+Recoverability:
+- Commit after each meaningful unit of work
+- Keep state rollback-friendly at all times
+</verification-before-completion>
+
 ### Obsidian Vault
 
 <obsidian_vault>
@@ -401,22 +419,6 @@ EVERY session, you MUST append an entry to the monthly journal.
   printf '## 2026-01-19 13:30 | project\nContent...\n\n' >> "~/.claude/journals/2026-01.journal.md"
   ```
 </diary>
-
-<verification-before-completion>
-Before marking any task as complete, verify:
-- [ ] All tests pass
-- [ ] Plan/todo documents reflect completed status
-- [ ] Diff behavior between main and changes
-- [ ] "Would a staff engineer approve this?"
-- [ ] Update per-folder INDEX.md progress (resume point, status, task counts)
-- [ ] Update global INDEX.md status (active/completed/paused) if it exists
-- [ ] Context recorded for next session
-- [ ] Git worktree isolation confirmed (if applicable)
-
-Recoverability:
-- Commit after each meaningful unit of work
-- Keep state rollback-friendly at all times
-</verification-before-completion>
 
 ### Reference Projects
 
