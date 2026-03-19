@@ -1,6 +1,6 @@
 # Recall Workflow
 
-Load context from vault memory - temporal queries use agf (history.jsonl), topic queries use vis semantic search.
+Load context from vault memory - temporal queries use agf (history.jsonl), topic queries use vis + qmd semantic search.
 
 ## Step 1: Classify Query
 
@@ -45,26 +45,48 @@ python3 ~/.claude/skills/agf/show.py SESSION_ID_PREFIX
 show.py 출력에서 META/CONV/HISTORY 섹션을 파싱하여 세션 상세 + AI 요약을 제공합니다.
 (상세 절차는 `/agf show` 스킬 참조)
 
-## Step 2B: Topic Recall (vis Semantic Search)
+## Step 2B: Topic Recall (vis + qmd Semantic Search)
 
-vis는 BGE-M3 시맨틱 검색 엔진으로, 키워드 매칭이 아닌 의미적 유사도로 검색합니다. 동의어/유사 표현을 자동으로 처리하므로 별도 쿼리 확장이 불필요합니다.
+vis(vault 문서)와 qmd(세션 전용)를 **병행**합니다. 각각의 강점이 다릅니다:
+- **vis**: vault 전체(노트, 데일리, 세션) — 문서 중심 의미 검색
+- **qmd**: `claude-sessions` 컬렉션 — 세션 대화 내용 중심 의미 검색
 
-**Step 2B.1: vis search 실행**
+**Step 2B.0: qmd 색인 신선도 확인**
+
+qmd 검색 전 반드시 색인 신선도를 확인합니다:
 
 ```bash
-# vis daemon 서버 실행 시 HTTP API 직접 호출 (0.4초)
-curl -s --get --data-urlencode "query=QUERY" "http://localhost:8741/search?rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
-
-# 서버 미실행 시 fallback
-vis search "QUERY" --rerank --top-k 10
+qmd collection list 2>/dev/null | grep -A1 "claude-sessions"
 ```
 
-- HTTP API 우선 사용 (9초 → 0.4초)
-- `--rerank`: 재순위화로 정확도 향상 (권장)
+출력에서 `Updated:` 값이 **1일 이상 경과**하면 자동으로 색인을 갱신합니다:
+
+```bash
+qmd update && qmd embed
+```
+
+> **주의:** `qmd embed`은 신규 문서 수에 따라 수십 초~수 분 소요될 수 있습니다. 색인이 최신이면 이 단계를 건너뜁니다.
+
+**Step 2B.1: vis search + qmd query 병렬 실행**
+
+```bash
+# vis: vault 문서 의미 검색
+curl -s --get --data-urlencode "query=QUERY" "http://localhost:8741/search?rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
+# 서버 미실행 시 fallback: vis search "QUERY" --rerank --top-k 10
+
+# qmd: 세션 의미 검색 (병렬 실행)
+qmd query "QUERY" 2>/dev/null | head -20
+```
+
+- vis: HTTP API 우선 사용 (0.4초), `--rerank` 권장
+- qmd: hybrid search (BM25 + vector) + auto reranking
 
 결과에서 `claude-session/` 경로는 세션, `notes/` 경로는 노트, `dailies/` 경로는 데일리로 분류.
 
-**Step 2B.2: Deduplicate and filter** — 유사도가 낮은 결과(음수 점수)는 제외. 상위 5개 유의미한 결과만 사용.
+**Step 2B.2: Deduplicate and merge** — 두 검색 결과를 합칩니다:
+- 동일 파일 경로 중복 제거 (vis와 qmd 모두 발견한 항목은 관련도 높음으로 우선)
+- 유사도가 낮은 결과(음수 점수)는 제외
+- 상위 5~10개 유의미한 결과만 사용
 
 ## Step 3: Fetch Full Documents (Topic path only)
 
@@ -172,6 +194,8 @@ Session nodes colored by day, file nodes colored by folder. Clusters와 shared f
 
 - Temporal queries go through `agf/list.py` + `agf/show.py` (history.jsonl 인덱스 활용, 빠르고 정확)
 - Graph queries go through `session-graph.py` (NetworkX + pyvis)
-- Topic queries use `vis search` (BGE-M3 semantic search) with `--rerank` for accuracy
-- vis는 vault 전체(세션, 노트, 데일리)를 단일 검색으로 커버 — 별도 컬렉션 분리 불필요
+- Topic queries use **vis search** (vault 전체) + **qmd query** (세션 전용) 병행
+- vis는 vault 전체(세션, 노트, 데일리)를 단일 검색으로 커버
+- qmd는 `claude-sessions` 컬렉션에 특화된 세션 의미 검색 — 키워드가 다르게 표현된 세션도 발견 가능
 - 결과 경로의 디렉토리명으로 자동 분류: `claude-session/` = 세션, `notes/dailies/` = 데일리, 그 외 = 노트
+- **qmd 색인 신선도**: `qmd collection list`의 Updated 값이 1일 이상이면 `qmd update && qmd embed` 실행

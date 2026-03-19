@@ -168,6 +168,32 @@ python3 ~/.claude/skills/agf/show.py <SESSION_PREFIX>
 
 ---
 
+## qmd 병행 검색 (세션 탐색 시 권장)
+
+세션을 키워드로 검색할 때 agf `search --deep`과 함께 **qmd semantic 검색을 병행**하면 키워드 매칭에 안 걸리는 세션도 발견할 수 있습니다.
+
+### qmd 색인 신선도 확인
+
+```bash
+qmd collection list 2>/dev/null | grep -A1 "claude-sessions"
+```
+
+`Updated:` 값이 **1일 이상 경과**하면 자동으로 갱신:
+
+```bash
+qmd update && qmd embed
+```
+
+### qmd 검색
+
+```bash
+qmd query "검색어" 2>/dev/null | head -20
+```
+
+agf 결과와 qmd 결과를 합쳐서 중복 제거 후 분석합니다.
+
+---
+
 ## 에러 처리
 
 - `history.jsonl` 파일 없음 → "~/.claude/history.jsonl 파일을 찾을 수 없습니다" 출력
