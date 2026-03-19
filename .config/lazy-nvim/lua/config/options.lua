@@ -2,6 +2,75 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
+-- Fix: use pbcopy/pbpaste directly, bypassing the tmux clipboard provider.
+-- nvim auto-detects $TMUX and switches to 'tmux save-buffer', which can interfere.
+-- tmux copy-mode 'y' uses 'copy-pipe-and-cancel pbcopy' so both stay in sync.
+vim.g.clipboard = {
+  name = "pbcopy",
+  copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
+  paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
+  cache_enabled = 0,
+}
+
+-- STARTUP INPUT GUARD
+-- Prevents spurious text inserted at line 1 when running 'nvim <filename>' in tmux+Ghostty.
+--
+-- Root causes:
+--   1. Ghostty XTVERSION response leaks as keystrokes via tmux DCS passthrough
+--   2. Clipboard/tmux-buffer content arrives as bracketed paste (bypasses keymaps)
+--
+-- Guard 1 – vim.on_key(): intercepts ALL keystrokes at the lowest level (below keymaps).
+--           Returns "" to swallow the key entirely.
+-- Guard 2 – vim.paste() override: discards bracketed paste (\033[200~...\033[201~).
+--           Re-applied on UIEnter/BufReadPost in case a plugin overrides it first.
+-- Both restored at VimEnter + 500 ms.
+if vim.fn.argc() > 0 then
+  local _guard_ns = vim.api.nvim_create_namespace("startup_input_guard")
+  local _guard_active = true
+
+  -- Guard 1: swallow every keystroke until startup is done
+  vim.on_key(function()
+    if _guard_active then return "" end
+  end, _guard_ns)
+
+  -- Guard 2: discard bracketed paste (all phases)
+  local _orig_paste = vim.paste
+  local _guard_paste = function(_lines, _phase)
+    vim.schedule(function()
+      if vim.fn.mode() ~= "n" then pcall(vim.cmd, "stopinsert") end
+    end)
+    return true
+  end
+  vim.paste = _guard_paste
+
+  -- Re-apply Guard 2 if a plugin (e.g. mini.pairs) overrides vim.paste() before VimEnter
+  local _pg = vim.api.nvim_create_augroup("StartupPasteGuard", { clear = true })
+  for _, ev in ipairs({ "UIEnter", "BufReadPre", "BufReadPost", "BufEnter" }) do
+    vim.api.nvim_create_autocmd(ev, {
+      group = _pg,
+      callback = function()
+        if _guard_active and vim.paste ~= _guard_paste then
+          _orig_paste = vim.paste   -- save plugin version for later restoration
+          vim.paste = _guard_paste  -- reapply our guard
+        end
+      end,
+    })
+  end
+
+  vim.api.nvim_create_autocmd("VimEnter", {
+    once = true,
+    callback = function()
+      vim.defer_fn(function()
+        _guard_active = false
+        vim.on_key(nil, _guard_ns)
+        vim.paste = _orig_paste
+        pcall(vim.api.nvim_del_augroup_by_id, _pg)
+        pcall(vim.cmd, "normal! gg")
+      end, 500)
+    end,
+  })
+end
+
 -- This add the bar that shows the file path on the top right
 -- vim.opt.winbar = "%=%m %f"
 --
