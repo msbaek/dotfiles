@@ -51,22 +51,6 @@ vis(vault 문서)와 qmd(세션 전용)를 **병행**합니다. 각각의 강점
 - **vis**: vault 전체(노트, 데일리, 세션) — 문서 중심 의미 검색
 - **qmd**: `claude-sessions` 컬렉션 — 세션 대화 내용 중심 의미 검색
 
-**Step 2B.0: qmd 색인 신선도 확인**
-
-qmd 검색 전 반드시 색인 신선도를 확인합니다:
-
-```bash
-qmd collection list 2>/dev/null | grep -A1 "claude-sessions"
-```
-
-출력에서 `Updated:` 값이 **1일 이상 경과**하면 자동으로 색인을 갱신합니다:
-
-```bash
-qmd update && qmd embed
-```
-
-> **주의:** `qmd embed`은 신규 문서 수에 따라 수십 초~수 분 소요될 수 있습니다. 색인이 최신이면 이 단계를 건너뜁니다.
-
 **Step 2B.1: vis search + qmd query 병렬 실행**
 
 ```bash
@@ -74,8 +58,8 @@ qmd update && qmd embed
 curl -s --get --data-urlencode "query=QUERY" "http://localhost:8741/search?rerank=true&top_k=10" | jq -r '.results[] | "\(.score) \(.path)"'
 # 서버 미실행 시 fallback: vis search "QUERY" --rerank --top-k 10
 
-# qmd: 세션 의미 검색 (병렬 실행)
-qmd query "QUERY" 2>/dev/null | head -20
+# qmd: 세션 의미 검색 (qmd-search가 색인 자동 갱신 후 검색)
+qmd-search "QUERY" 2>/dev/null | head -20
 ```
 
 - vis: HTTP API 우선 사용 (0.4초), `--rerank` 권장
@@ -198,4 +182,4 @@ Session nodes colored by day, file nodes colored by folder. Clusters와 shared f
 - vis는 vault 전체(세션, 노트, 데일리)를 단일 검색으로 커버
 - qmd는 `claude-sessions` 컬렉션에 특화된 세션 의미 검색 — 키워드가 다르게 표현된 세션도 발견 가능
 - 결과 경로의 디렉토리명으로 자동 분류: `claude-session/` = 세션, `notes/dailies/` = 데일리, 그 외 = 노트
-- **qmd 색인 신선도**: `qmd collection list`의 Updated 값이 1일 이상이면 `qmd update && qmd embed` 실행
+- **qmd 색인 신선도**: `qmd-search`가 파일 수 비교로 자동 관리 (수동 갱신 불필요)
