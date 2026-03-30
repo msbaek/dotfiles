@@ -12,12 +12,12 @@ Three modes: temporal (date-based session timeline), topic (vis semantic search 
 ## What It Does
 
 - **Temporal queries** ("yesterday", "last week", "what was I doing"): agf 스크립트(history.jsonl 인덱스)를 활용하여 날짜별 세션 목록을 빠르게 조회. 세션 상세 보기도 agf show로 처리.
-- **Topic queries** ("authentication", "TDD"): vis semantic search (vault 전체) + qmd semantic search (세션 전용) 병행. qmd 색인이 1일 이상 경과 시 자동 갱신.
+- **Topic queries** ("authentication", "TDD"): vis semantic search (vault 전체) + qmd semantic search (세션 전용) 병행. `qmd-search`가 색인 신선도를 자동 관리.
 - **Graph queries** ("graph yesterday", "graph last week"): Generates an interactive HTML graph showing sessions as nodes connected to files they touched. Sessions colored by day, files colored by folder. Clusters reveal related work streams, shared files show cross-session dependencies.
 - **One Thing synthesis**: After presenting results, synthesizes the single most impactful next action based on what has momentum, what's blocked, and what's closest to done. Not generic - specific and actionable.
 
 No custom setup needed for temporal recall - agf가 history.jsonl 인덱스를 활용하여 빠르게 조회합니다.
-Topic recall은 vis + qmd를 병행합니다. qmd 색인이 오래된 경우 `qmd update && qmd embed`로 자동 갱신합니다.
+Topic recall은 vis + qmd를 병행합니다. `qmd-search`가 색인 신선도를 자동으로 확인하고 필요 시 갱신합니다.
 
 ## Usage
 
