@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# qmd-search: Auto-index wrapper for qmd query
+# Compares actual session file count with qmd index count,
+# runs qmd update && qmd embed if new files exist, then searches.
+
+set -euo pipefail
+
+SESSIONS_DIR="$HOME/git/claude-sessions"
+SKIP_UPDATE=false
+
+# Parse --skip-update flag
+if [[ "${1:-}" == "--skip-update" ]]; then
+  SKIP_UPDATE=true
+  shift
+fi
+
+# Validate: search query required
+if [[ $# -eq 0 ]]; then
+  echo "Usage: qmd-search [--skip-update] <query>" >&2
+  exit 1
+fi
+
+# Check qmd binary exists
+if ! command -v qmd &>/dev/null; then
+  echo "Error: qmd not found in PATH" >&2
+  exit 1
+fi
+
+# Freshness check (skip if --skip-update)
+if [[ "$SKIP_UPDATE" == false ]]; then
+  if [[ -d "$SESSIONS_DIR" ]]; then
+    actual_count=$(fd -e md . "$SESSIONS_DIR" 2>/dev/null | wc -l | tr -d ' ')
+    indexed_count=$(qmd collection list 2>/dev/null | grep "Files:" | awk '{print $2}' || echo "0")
+
+    if [[ "$actual_count" -gt "$indexed_count" ]]; then
+      new_files=$((actual_count - indexed_count))
+      echo "qmd-search: ${new_files} new files detected (actual: ${actual_count}, indexed: ${indexed_count}). Updating index..." >&2
+      if ! qmd update 2>/dev/null; then
+        echo "qmd-search: Warning: qmd update failed, searching with existing index" >&2
+      elif ! qmd embed 2>/dev/null; then
+        echo "qmd-search: Warning: qmd embed failed, searching with existing index" >&2
+      fi
+    fi
+  else
+    echo "qmd-search: Warning: $SESSIONS_DIR not found, skipping freshness check" >&2
+  fi
+fi
+
+# Execute search
+exec qmd query "$@"
