@@ -51,7 +51,7 @@ vis(vault 문서)와 qmd(세션 전용)를 **병행**합니다. 각각의 강점
 - **vis**: vault 전체(노트, 데일리, 세션) — 문서 중심 의미 검색
 - **qmd**: `claude-sessions` 컬렉션 — 세션 대화 내용 중심 의미 검색
 
-**Step 2B.1: vis search + qmd query 병렬 실행**
+**Step 2B.1: vis search + qmd-search 병렬 실행**
 
 ```bash
 # vis: vault 문서 의미 검색
@@ -178,7 +178,7 @@ Session nodes colored by day, file nodes colored by folder. Clusters와 shared f
 
 - Temporal queries go through `agf/list.py` + `agf/show.py` (history.jsonl 인덱스 활용, 빠르고 정확)
 - Graph queries go through `session-graph.py` (NetworkX + pyvis)
-- Topic queries use **vis search** (vault 전체) + **qmd query** (세션 전용) 병행
+- Topic queries use **vis search** (vault 전체) + **qmd-search** (세션 전용) 병행
 - vis는 vault 전체(세션, 노트, 데일리)를 단일 검색으로 커버
 - qmd는 `claude-sessions` 컬렉션에 특화된 세션 의미 검색 — 키워드가 다르게 표현된 세션도 발견 가능
 - 결과 경로의 디렉토리명으로 자동 분류: `claude-session/` = 세션, `notes/dailies/` = 데일리, 그 외 = 노트
