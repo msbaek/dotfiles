@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Combined Claude Code statusline:
+#   ccstatusline (model, tokens, cost) + usage quota (5h%, 7d%)
+#
+# Reads stdin JSON from Claude Code, pipes to ccstatusline,
+# then appends quota info from OAuth API.
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Read stdin once and share it
+stdin_data=$(cat)
+
+# Get ccstatusline output
+cc_output=$(echo "$stdin_data" | npx -y ccstatusline@latest 2>/dev/null) || cc_output=""
+
+# Get quota output
+quota_output=$("$SCRIPT_DIR/claude-usage-statusline" 2>/dev/null) || quota_output=""
+
+# Combine
+if [[ -n "$cc_output" && -n "$quota_output" ]]; then
+  echo "${cc_output} | ${quota_output}"
+elif [[ -n "$cc_output" ]]; then
+  echo "$cc_output"
+elif [[ -n "$quota_output" ]]; then
+  echo "$quota_output"
+fi

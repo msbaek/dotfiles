@@ -1,0 +1,158 @@
+#!/usr/bin/env bash
+# Claude Code statusline: shows subscription quota usage from OAuth API
+# Reads stdin JSON from Claude Code, combines with usage API data
+#
+# Cache: /tmp/claude-usage-cache.json (refreshed every 60s)
+# Token source: macOS Keychain > ~/.claude/.credentials.json
+
+set -euo pipefail
+
+CACHE_FILE="/tmp/claude-usage-cache.json"
+CACHE_TTL=60  # seconds
+
+# --- Token extraction ---
+get_token() {
+  # Try Keychain first (usually fresher)
+  local token
+  token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null \
+    | python3 -c "import sys,json; print(json.load(sys.stdin)['claudeAiOauth']['accessToken'])" 2>/dev/null) \
+    && { echo "$token"; return; }
+
+  # Fallback to credentials file
+  python3 -c "
+import json, os
+with open(os.path.expanduser('~/.claude/.credentials.json')) as f:
+    print(json.load(f)['claudeAiOauth']['accessToken'])
+" 2>/dev/null
+}
+
+# --- Usage API with caching ---
+fetch_usage() {
+  local now
+  now=$(date +%s)
+
+  # Use cache if fresh enough
+  if [[ -f "$CACHE_FILE" ]]; then
+    local cached_at
+    cached_at=$(python3 -c "
+import json, os
+with open('$CACHE_FILE') as f:
+    print(json.load(f).get('_cached_at', 0))
+" 2>/dev/null || echo 0)
+    if (( now - cached_at < CACHE_TTL )); then
+      cat "$CACHE_FILE"
+      return
+    fi
+  fi
+
+  # Fetch fresh data
+  local token
+  token=$(get_token) || return 1
+
+  local response
+  response=$(curl -s --connect-timeout 3 --max-time 5 \
+    -H "Authorization: Bearer $token" \
+    -H "anthropic-beta: oauth-2025-04-20" \
+    "https://api.anthropic.com/api/oauth/usage" 2>/dev/null) || return 1
+
+  # Check for errors
+  if echo "$response" | python3 -c "import sys,json; d=json.load(sys.stdin); sys.exit(0 if 'five_hour' in d else 1)" 2>/dev/null; then
+    # Add cache timestamp and save
+    echo "$response" | python3 -c "
+import sys, json, time
+d = json.load(sys.stdin)
+d['_cached_at'] = int(time.time())
+json.dump(d, sys.stdout)
+" > "$CACHE_FILE" 2>/dev/null
+    cat "$CACHE_FILE"
+  else
+    # On error, use stale cache if available
+    [[ -f "$CACHE_FILE" ]] && cat "$CACHE_FILE"
+  fi
+}
+
+# --- Format reset time ---
+# mode: "duration" = 4h27m (for 5h window), "weekday" = FRI 18:00 (for 7d window)
+format_reset() {
+  python3 -c "
+import sys, json
+from datetime import datetime, timezone, timedelta
+
+data = json.loads(sys.argv[1])
+section = sys.argv[2]
+mode = sys.argv[3] if len(sys.argv) > 3 else 'duration'
+
+if section not in data or data[section] is None:
+    print('--')
+    sys.exit(0)
+
+resets_at = data[section]['resets_at']
+utilization = data[section]['utilization']
+
+reset_dt = datetime.fromisoformat(resets_at)
+
+if mode == 'weekday':
+    # Convert to local time (KST = UTC+9)
+    local_dt = reset_dt + timedelta(hours=9)
+    day_name = local_dt.strftime('%a').upper()
+    time_str = f'{day_name} {local_dt.strftime(\"%H:%M\")}'
+else:
+    now = datetime.now(timezone.utc)
+    diff = reset_dt - now
+    hours = int(diff.total_seconds() // 3600)
+    minutes = int((diff.total_seconds() % 3600) // 60)
+    if hours > 0:
+        time_str = f'{hours}h{minutes:02d}m'
+    else:
+        time_str = f'{minutes}m'
+
+print(f'{utilization:.0f}%({time_str})')
+" "$1" "$2" "$3" 2>/dev/null || echo "--"
+}
+
+# --- Color helpers (ANSI) ---
+color_by_pct() {
+  local pct=$1 text=$2
+  if (( pct >= 80 )); then
+    echo -e "\033[31m${text}\033[0m"  # red
+  elif (( pct >= 50 )); then
+    echo -e "\033[33m${text}\033[0m"  # yellow
+  else
+    echo -e "\033[32m${text}\033[0m"  # green
+  fi
+}
+
+# --- Main ---
+main() {
+  # Read Claude Code's stdin JSON (session data) - consume but don't block
+  local stdin_data=""
+  if read -t 0.1 -r stdin_data 2>/dev/null; then
+    :  # consumed
+  fi
+
+  local usage
+  usage=$(fetch_usage 2>/dev/null)
+
+  if [[ -z "$usage" ]]; then
+    echo "quota: unavailable"
+    return
+  fi
+
+  # Extract values
+  local five_hr seven_day
+  five_hr=$(format_reset "$usage" "five_hour" "duration")
+  seven_day=$(format_reset "$usage" "seven_day" "weekday")
+
+  # Extract raw percentages for coloring
+  local five_pct seven_pct
+  five_pct=$(echo "$usage" | python3 -c "import sys,json; print(int(json.load(sys.stdin).get('five_hour',{}).get('utilization',0)))" 2>/dev/null || echo 0)
+  seven_pct=$(echo "$usage" | python3 -c "import sys,json; print(int(json.load(sys.stdin).get('seven_day',{}).get('utilization',0)))" 2>/dev/null || echo 0)
+
+  local five_colored seven_colored
+  five_colored=$(color_by_pct "$five_pct" "$five_hr")
+  seven_colored=$(color_by_pct "$seven_pct" "$seven_day")
+
+  echo "5h: ${five_colored} | 7d: ${seven_colored}"
+}
+
+main "$@"
