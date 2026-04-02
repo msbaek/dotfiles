@@ -10,7 +10,8 @@
     "BASH_DEFAULT_TIMEOUT_MS": "120000",
     "BASH_MAX_TIMEOUT_MS": "600000",
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
-    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
+    "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
+    "CLAUDE_CODE_NO_FLICKER": "1"
   },
   "permissions": {
     "allow": [
@@ -43,7 +44,9 @@
       "mcp__filesystem__directory_tree",
       "mcp__filesystem__read_multiple_files",
       "Bash(vis search \"test는 버그가 없다는 것을 보장하지 못한다\" --rerank --top-k 10)",
-      "Bash(vis search \"canon TDD 설계 design\" --search-method hybrid --rerank --top-k 10)"
+      "Bash(vis search \"canon TDD 설계 design\" --search-method hybrid --rerank --top-k 10)",
+      "Bash(vis)",
+      "Bash(curl:*)"
     ],
     "deny": [
       "Bash(rm -rf /)"
@@ -80,7 +83,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "npx -y ccstatusline@latest",
+    "command": "/Users/msbaek/dotfiles/bin/claude-statusline-combined",
     "padding": 0
   },
   "enabledPlugins": {
@@ -93,7 +96,7 @@
     "kotlin-lsp@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
+    "github@claude-plugins-official": false,
     "feature-dev@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
     "serena@claude-plugins-official": true,
@@ -162,6 +165,7 @@
       "연결고리 찾는 중"
     ]
   },
+  "effortLevel": "high",
   "voiceEnabled": true,
   "autoMemoryEnabled": true,
   "skipDangerousModePermissionPrompt": true,
@@ -169,13 +173,20 @@
     "playwright": {
       "url": "http://localhost:8931/mcp",
       "args": [
-        "@playwright/mcp@0.0.68"
+        "@playwright/mcp@0.0.70"
       ]
+    },
+    "CodeGraphContext": {
+      "command": "/Users/msbaek/.pyenv/shims/cgc",
+      "args": [
+        "mcp",
+        "start"
+      ],
+      "disabled": false
     }
   },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   },
-  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault",
-  "model": "opusplan"
+  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault"
 }

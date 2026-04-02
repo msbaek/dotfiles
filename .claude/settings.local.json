@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Bash(qmd-search)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(~/dotfiles/bin/claude-usage-statusline:*)"
     ]
   },
   "enabledPlugins": {}
