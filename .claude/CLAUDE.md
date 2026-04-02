@@ -38,6 +38,9 @@ Plan의 독립적 구현 단계(implementation step)는 sub-agent로 실행하�
 | File finding | `fd` | Fast, intuitive |
 | Web content | Playwright MCP first | Dynamic/auth content, Cloudflare bypass |
 | Large files (>500 lines) | Serena/LSP symbolic tools | More efficient than Read |
+| GitHub operations | `gh` CLI (Bash tool) | Reliable, auth built-in |
+
+**GitHub:** Always use `gh` CLI via Bash tool. Never use GitHub MCP (`mcp__github__*`). `gh` is authoritative for PRs, issues, repos, code search, and all GitHub API access.
 
 **Web Content:** Playwright MCP → WebFetch (static only). Never fetch/curl/wget.
 
