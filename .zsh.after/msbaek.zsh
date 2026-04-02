@@ -232,7 +232,7 @@ alias tk='tmux kill-server'
 alias vi='nvim'
 alias gl='git log'
 # Headless mode aliases
-alias cld='CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=true claude --dangerously-skip-permissions --teammate-mode tmux'
+alias cld='CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CODE_EFFORT_LEVEL=high CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=true claude --dangerously-skip-permissions --teammate-mode tmux'
 alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
 alias cc-commit-only='git commit --no-verify -F /tmp/commit_msg.txt'
 alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'

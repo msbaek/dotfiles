@@ -178,6 +178,7 @@ eval "$(agf init zsh)"
 
 # Private environment variables
 [ -f ~/dotfiles-private/.env.ktown4u ] && source ~/dotfiles-private/.env.ktown4u
+[ -f ~/dotfiles-private/.env.github ] && source ~/dotfiles-private/.env.github
 
 # Shell GPT with Cerebras AI
 ai() {
