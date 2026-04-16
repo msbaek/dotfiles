@@ -131,8 +131,6 @@ source ~/.zsh.after/ktown4u.zsh
 # export BUN_INSTALL="$HOME/.bun"
 # export PATH="$BUN_INSTALL/bin:$PATH"
 
-source $HOME/.config/broot/launcher/bash/br
-
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
 # Task Master aliases added on 2025. 7. 17.

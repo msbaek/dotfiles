@@ -211,7 +211,9 @@ export ENABLE_LSP_TOOLS=1
 # https://github.com/anthropics/claude-code/issues/12836
 export ENABLE_TOOL_SEARCH=true
 export VAULT_ROOT=$HOME/DocumentsLocal/msbaek_vault/
+export DISABLE_AUTOUPDATER=1
 
+# rm을 trash로 대체. 플래그(-rf 등)는 무시하고 파일만 휴지통으로 이동
 rm() {
   local args=()
   for arg in "$@"; do
@@ -357,6 +359,68 @@ matrix() {
   }'
 }
 
+# 현재 디렉토리의 디스크 여유 공간 표시 (GB/MB)
 disk-free() {
   df -k . | tail -1 | awk '{free=$4; printf "Free: %.2f GB (%.2f MB)\n", free/1024/1024, free/1024}'
+}
+
+# ── Git repository health commands (https://news.hada.io/topic?id=28324) ──
+
+# 최근 1년간 가장 많이 변경된 상위 20개 파일 출력. 변경 빈도와 버그 집중 영역 파악
+git-churn() {
+  git log --format=format: --name-only --since="1 year ago" | sort | uniq -c | sort -nr | head -20
+}
+
+# 기여자별 커밋 수 순위 (merge 제외). 버스 팩터·지식 단절 위험 점검
+git-contributors() {
+  git shortlog -sn --no-merges
+}
+
+# fix/bug/broken 키워드 커밋에서 자주 수정된 상위 20개 파일. 취약 영역 식별
+git-buggy-files() {
+  git log -i -E --grep='\b(fix|fixed|fixes|bug|broken)\b' --name-only --format='' | sort | uniq -c | sort -nr | head -20
+}
+
+# 월별 커밋 수 추세. 팀 개발 동력·속도 변화 추적
+git-timeline() {
+  git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c
+}
+
+# 최근 1년간 revert/hotfix/emergency/rollback 커밋 조회. 배포 안정성 평가
+git-hotfixes() {
+  git log --oneline --since="1 year ago" | grep -iE 'revert|hotfix|emergency|rollback'
+}
+
+# ── Help ──
+
+# msbaek.zsh의 alias/function을 fzf로 검색. Enter=커맨드라인 붙여넣기
+mshelp() {
+  local file="$HOME/.zsh.after/msbaek.zsh"
+  local cmd
+  cmd=$(awk '
+    /^# ──/ { desc=""; next }
+    /^# (export|alias|eval|unalias) / { desc=""; next }
+    /^unalias / { next }
+    /^# / && !/^##/ { if (desc == "") desc=substr($0, 3); next }
+    /^[a-zA-Z][a-zA-Z0-9_-]*\(\)/ {
+      name=$0; gsub(/\(\) *\{?/, "", name)
+      if (name !~ /^_/ && desc != "")
+        printf "\033[36m%-22s\033[0m %s\n", name, desc
+      desc=""
+      next
+    }
+    /^alias [a-zA-Z]/ {
+      name=$0; sub(/^alias /, "", name); sub(/=.*/, "", name)
+      val=$0; sub(/^[^=]+=[\047\042]?/, "", val); sub(/[\047\042]?$/, "", val)
+      if (length(val) > 55) val=substr(val, 1, 52) "..."
+      if (desc != "") printf "\033[33m%-22s\033[0m %s\n", name, desc
+      else printf "\033[33m%-22s\033[0m %s\n", name, val
+      desc=""
+      next
+    }
+    /^[^#[:space:]]/ { desc="" }
+  ' "$file" | fzf --ansi \
+    --header="alias=yellow func=cyan │ Enter=커맨드라인 붙여넣기" \
+    --preview-window=hidden --reverse)
+  [[ -n "$cmd" ]] && print -z "${cmd%% *}"
 }
