@@ -2,9 +2,11 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "ENABLE_LSP_TOOL": "1",
+    "MAX_THINKING_TOKENS": "16000",
     "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "128000",
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
     "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-5-20250929",
     "BASH_DEFAULT_TIMEOUT_MS": "120000",
     "BASH_MAX_TIMEOUT_MS": "600000",
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
@@ -50,7 +52,9 @@
       "Bash(vis)",
       "Bash(curl:*)"
     ],
-    "deny": ["Bash(rm -rf /)"],
+    "deny": [
+      "Bash(rm -rf /)"
+    ],
     "ask": [],
     "defaultMode": "plan"
   },
@@ -281,14 +285,20 @@
   "autoMemoryEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "voiceEnabled": true,
+  "autoUpdates": true,
   "mcpServers": {
     "playwright": {
       "url": "http://localhost:8931/mcp",
-      "args": ["@playwright/mcp@0.0.70"]
+      "args": [
+        "@playwright/mcp@0.0.70"
+      ]
     },
     "CodeGraphContext": {
       "command": "/Users/msbaek/.pyenv/shims/cgc",
-      "args": ["mcp", "start"],
+      "args": [
+        "mcp",
+        "start"
+      ],
       "disabled": false
     },
     "databricks": {
