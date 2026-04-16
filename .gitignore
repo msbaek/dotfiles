@@ -104,3 +104,7 @@ node_modules/
 .claude/session-env
 .claude/.credentials.json
 .claude/skills/recall/output
+.claude/sessions
+.claude/dashboard/
+.claude/settings.json.bak.*
+.secrets.baseline
