@@ -107,4 +107,3 @@ node_modules/
 .claude/sessions
 .claude/dashboard/
 .claude/settings.json.bak.*
-.secrets.baseline
