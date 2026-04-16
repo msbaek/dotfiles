@@ -7,10 +7,8 @@ const ACTIVE_DIR = process.env.ACTIVE_DIR
   ?? path.join(process.env.HOME ?? '', '.claude', 'dashboard', 'active');
 
 // Read JSON payload from stdin synchronously
-// Guard: skip if stdin is a TTY (no pipe) to avoid blocking indefinitely
 let raw;
 try {
-  if (process.stdin.isTTY) process.exit(0);
   raw = JSON.parse(fs.readFileSync(0, 'utf8'));
 } catch {
   process.exit(0);

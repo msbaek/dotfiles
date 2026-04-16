@@ -11,7 +11,11 @@
     "BASH_MAX_TIMEOUT_MS": "600000",
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
-    "CLAUDE_CODE_NO_FLICKER": "1"
+    "CLAUDE_CODE_NO_FLICKER": "1",
+    "DISABLE_ERROR_REPORTING": "1",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max",
+    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
+    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1"
   },
   "permissions": {
     "allow": [
@@ -68,6 +72,15 @@
             "timeout": 10
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
       }
     ],
     "UserPromptSubmit": [
@@ -76,6 +89,101 @@
           {
             "type": "command",
             "command": "python3 ~/.claude/hooks/UserPromptSubmit/append_ultrathink.py"
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/msbaek/.ai-dev-kit/repo/.claude-plugin/check_update.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
           }
         ]
       }
@@ -121,7 +229,8 @@
     "ralph-loop@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "obsidian@obsidian-skills": true
+    "obsidian@obsidian-skills": true,
+    "caveman@caveman": true
   },
   "extraKnownMarketplaces": {
     "personal-os-skills": {
@@ -137,6 +246,12 @@
         "repo": "kepano/obsidian-skills"
       },
       "autoUpdate": true
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
     }
   },
   "language": "ko",
@@ -166,9 +281,11 @@
     ]
   },
   "effortLevel": "high",
-  "voiceEnabled": true,
+  "advisorModel": "opus",
   "autoMemoryEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "voiceEnabled": true,
+  "autoUpdates": true,
   "mcpServers": {
     "playwright": {
       "url": "http://localhost:8931/mcp",
@@ -183,6 +300,15 @@
         "start"
       ],
       "disabled": false
+    },
+    "databricks": {
+      "command": "/Users/msbaek/.ai-dev-kit/.venv/bin/python",
+      "args": [
+        "/Users/msbaek/.ai-dev-kit/repo/databricks-mcp-server/run_server.py"
+      ],
+      "env": {
+        "DATABRICKS_CONFIG_PROFILE": "DEFAULT"
+      }
     }
   },
   "feedbackSurveyState": {
