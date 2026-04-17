@@ -84,5 +84,31 @@ class TestPrompters(unittest.TestCase):
         self.assertIsNone(decision)
 
 
+class TestState(unittest.TestCase):
+    def test_save_and_load_state(self):
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+            path = Path(f.name)
+        path.unlink()
+        try:
+            state = {"cursor": 5, "processed": ["a", "b"]}
+            skills_curate.save_state(path, state)
+            loaded = skills_curate.load_state(path)
+            self.assertEqual(loaded, state)
+        finally:
+            if path.exists():
+                path.unlink()
+
+    def test_load_missing_returns_empty(self):
+        loaded = skills_curate.load_state(Path("/nonexistent/state.json"))
+        self.assertEqual(loaded, {"cursor": 0, "processed": []})
+
+    def test_clear_state_removes_file(self):
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+            path = Path(f.name)
+        skills_curate.save_state(path, {"cursor": 1, "processed": []})
+        skills_curate.clear_state(path)
+        self.assertFalse(path.exists())
+
+
 if __name__ == "__main__":
     unittest.main()

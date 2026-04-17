@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
@@ -110,6 +111,29 @@ def prompt_overlap(item: dict, responder=input) -> tuple[str | None, str]:
         note_raw = responder("  note (enter to skip): ") if not needs_note else responder("  note: ")
         note = note_raw.strip()
     return decision, note
+
+
+DEFAULT_STATE = {"cursor": 0, "processed": []}
+
+
+def load_state(path: Path) -> dict:
+    """Load resume state, return DEFAULT_STATE if missing."""
+    if not path.exists():
+        return dict(DEFAULT_STATE)
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return dict(DEFAULT_STATE)
+
+
+def save_state(path: Path, state: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, indent=2), encoding="utf-8")
+
+
+def clear_state(path: Path) -> None:
+    if path.exists():
+        path.unlink()
 
 
 if __name__ == "__main__":
