@@ -167,7 +167,60 @@ def render_markdown(index: dict) -> str:
     return "\n".join(lines)
 
 
+DEFAULT_ROOTS = [
+    Path.home() / ".claude" / "skills",
+    Path.home() / ".claude" / "plugins" / "cache",
+]
+INDEX_JSON = Path.home() / ".claude" / "skills-index.json"
+INDEX_MD = Path.home() / ".claude" / "SKILLS-INDEX.md"
+
+
+def _cmd_default(args) -> int:
+    index = build_index(DEFAULT_ROOTS)
+    import json
+    INDEX_JSON.write_text(json.dumps(index, indent=2, ensure_ascii=False), encoding="utf-8")
+    INDEX_MD.write_text(render_markdown(index), encoding="utf-8")
+    print(f"Wrote {INDEX_MD} ({index['total']} skills)")
+    return 0
+
+
+def _cmd_json(args) -> int:
+    import json
+    index = build_index(DEFAULT_ROOTS)
+    print(json.dumps(index, indent=2, ensure_ascii=False))
+    return 0
+
+
+def _cmd_diff(args) -> int:
+    import json
+    if not INDEX_JSON.exists():
+        print("No previous index. Run scanner first.")
+        return 1
+    prev = json.loads(INDEX_JSON.read_text(encoding="utf-8"))
+    curr = build_index(DEFAULT_ROOTS)
+    prev_ids = {s["id"] for s in prev["skills"]}
+    curr_ids = {s["id"] for s in curr["skills"]}
+    added = sorted(curr_ids - prev_ids)
+    removed = sorted(prev_ids - curr_ids)
+    print(f"Added ({len(added)}):")
+    for s in added:
+        print(f"  + {s}")
+    print(f"Removed ({len(removed)}):")
+    for s in removed:
+        print(f"  - {s}")
+    return 0
+
+
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Skill catalog scanner")
+    parser.add_argument("--json", action="store_true", help="print JSON to stdout")
+    parser.add_argument("--diff", action="store_true", help="compare with previous index")
+    args = parser.parse_args()
+
     import sys
-    print("Not implemented yet", file=sys.stderr)
-    sys.exit(1)
+    if args.json:
+        sys.exit(_cmd_json(args))
+    if args.diff:
+        sys.exit(_cmd_diff(args))
+    sys.exit(_cmd_default(args))
