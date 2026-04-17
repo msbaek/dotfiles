@@ -55,5 +55,34 @@ class TestDecisionsLog(unittest.TestCase):
             path.unlink()
 
 
+class TestPrompters(unittest.TestCase):
+    def test_prompt_unused_keep(self):
+        item = {"skill": "foo", "last": None, "mtime": "2026-01-01"}
+        decision, note = skills_curate.prompt_unused(item, responder=lambda _: "k")
+        self.assertEqual(decision, "keep")
+
+    def test_prompt_unused_archive(self):
+        item = {"skill": "foo", "last": None, "mtime": "2026-01-01"}
+        decision, note = skills_curate.prompt_unused(item, responder=lambda _: "a")
+        self.assertEqual(decision, "archive")
+
+    def test_prompt_unused_note_collected(self):
+        item = {"skill": "foo", "last": None, "mtime": "2026-01-01"}
+        responses = iter(["n", "연 2회 사용"])
+        decision, note = skills_curate.prompt_unused(item, responder=lambda _: next(responses))
+        self.assertEqual(decision, "note")
+        self.assertEqual(note, "연 2회 사용")
+
+    def test_prompt_overlap_distinct(self):
+        item = {"pair": ["a", "b"], "similarity": 0.8, "shared_keywords": ["x"]}
+        decision, note = skills_curate.prompt_overlap(item, responder=lambda _: "d")
+        self.assertEqual(decision, "distinct")
+
+    def test_prompt_skip_returns_none(self):
+        item = {"skill": "foo", "last": None, "mtime": "2026-01-01"}
+        decision, note = skills_curate.prompt_unused(item, responder=lambda _: "s")
+        self.assertIsNone(decision)
+
+
 if __name__ == "__main__":
     unittest.main()
