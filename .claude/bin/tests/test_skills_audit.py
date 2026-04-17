@@ -107,5 +107,41 @@ class TestComputeStale(unittest.TestCase):
         self.assertIn("unused-skill", names)
 
 
+OVERLAP_CATALOG = {
+    "skills": [
+        {"id": "a", "name": "find-session", "plugin": None, "source": "user",
+         "description": "자연어로 이전 Claude Code 세션을 검색하고 요약",
+         "category": "session", "mtime": "2026-04-01T00:00:00+00:00", "parse_error": False,
+         "path": "..."},
+        {"id": "b", "name": "agf", "plugin": None, "source": "user",
+         "description": "Claude Code 세션 탐색 및 분석, 세션 검색",
+         "category": "session", "mtime": "2026-04-01T00:00:00+00:00", "parse_error": False,
+         "path": "..."},
+        {"id": "c", "name": "unrelated", "plugin": None, "source": "user",
+         "description": "Completely unrelated kitchen sink tool",
+         "category": "misc", "mtime": "2026-04-01T00:00:00+00:00", "parse_error": False,
+         "path": "..."},
+    ]
+}
+
+
+class TestComputeOverlap(unittest.TestCase):
+    def test_detects_similar_pair(self):
+        overlap = skills_audit.compute_overlap(OVERLAP_CATALOG, threshold=0.4)
+        pairs = [tuple(sorted(o["pair"])) for o in overlap]
+        self.assertIn(("agf", "find-session"), pairs)
+
+    def test_excludes_low_similarity(self):
+        overlap = skills_audit.compute_overlap(OVERLAP_CATALOG, threshold=0.9)
+        self.assertEqual(overlap, [])
+
+    def test_returns_shared_keywords(self):
+        overlap = skills_audit.compute_overlap(OVERLAP_CATALOG, threshold=0.3)
+        self.assertGreater(len(overlap), 0)
+        for entry in overlap:
+            self.assertIn("similarity", entry)
+            self.assertIn("shared_keywords", entry)
+
+
 if __name__ == "__main__":
     unittest.main()

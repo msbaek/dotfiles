@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -106,6 +107,51 @@ def compute_stale(agg: dict, catalog: dict, months: int = 6, now: str | None = N
                 "calls": 0,
             })
     return result
+
+
+STOPWORDS = {
+    "the", "a", "an", "and", "or", "for", "to", "of", "in", "on", "at",
+    "is", "are", "was", "were", "be", "been", "with", "from", "use", "used",
+    "this", "that", "these", "those", "it", "its", "as", "by", "can", "not",
+    "및", "등", "으로", "에서", "하는", "하고", "또는",
+}
+
+
+def _tokenize(text: str) -> set[str]:
+    tokens = re.findall(r"[\w가-힣]+", text.lower())
+    return {t for t in tokens if len(t) >= 3 and t not in STOPWORDS}
+
+
+def _jaccard(a: set, b: set) -> float:
+    if not a and not b:
+        return 0.0
+    return len(a & b) / len(a | b)
+
+
+def compute_overlap(catalog: dict, threshold: float = 0.7) -> list[dict]:
+    """Find skill pairs whose description token overlap ≥ threshold."""
+    skills = catalog.get("skills", [])
+    results = []
+    tokens_cache = {
+        _catalog_skill_id(s): _tokenize(s.get("description", ""))
+        for s in skills
+    }
+
+    ids = sorted(tokens_cache)
+    for i, a_id in enumerate(ids):
+        a_tokens = tokens_cache[a_id]
+        for b_id in ids[i + 1:]:
+            b_tokens = tokens_cache[b_id]
+            sim = _jaccard(a_tokens, b_tokens)
+            if sim >= threshold:
+                shared = sorted(a_tokens & b_tokens)[:8]
+                results.append({
+                    "pair": [a_id, b_id],
+                    "similarity": round(sim, 3),
+                    "shared_keywords": shared,
+                })
+    results.sort(key=lambda x: -x["similarity"])
+    return results
 
 
 if __name__ == "__main__":
