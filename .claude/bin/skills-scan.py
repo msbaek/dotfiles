@@ -51,6 +51,42 @@ def find_skill_files(roots: list[Path]) -> list[Path]:
     return sorted(results)
 
 
+CATEGORY_PREFIXES = {
+    "obsidian": ["obsidian:", "obsidian-"],
+    "databricks": ["databricks-", "databricks:"],
+    "tdd": ["tdd-", ":tdd-", "msbaek-tdd:", "tdp:"],
+    "superpowers": ["superpowers:"],
+    "mlflow": ["mlflow-", "-mlflow"],
+    "plugin-dev": ["plugin-dev:"],
+    "augmented": ["augmented:"],
+    "caveman": ["caveman", ":caveman"],
+    "atlassian": ["atlassian:", "jira"],
+    "github": ["github", "gh"],
+}
+
+CATEGORY_KEYWORDS = {
+    "git": ["git", "commit", "branch"],
+    "test": ["test", "unittest", "pytest"],
+    "docs": ["documentation", "readme", "api reference"],
+    "debug": ["debug", "troubleshoot"],
+}
+
+
+def infer_category(name: str, description: str) -> str:
+    """Infer category from skill name prefix or description keywords."""
+    lower_name = name.lower()
+    for category, prefixes in CATEGORY_PREFIXES.items():
+        if any(lower_name.startswith(p) or p in lower_name for p in prefixes):
+            return category
+
+    lower_desc = description.lower()
+    for category, keywords in CATEGORY_KEYWORDS.items():
+        if any(kw in lower_desc for kw in keywords):
+            return category
+
+    return "uncategorized"
+
+
 if __name__ == "__main__":
     import sys
     print("Not implemented yet", file=sys.stderr)

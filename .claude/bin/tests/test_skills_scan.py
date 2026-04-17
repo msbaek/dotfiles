@@ -50,5 +50,37 @@ class TestFindSkillFiles(unittest.TestCase):
         self.assertEqual(paths, [])
 
 
+class TestInferCategory(unittest.TestCase):
+    def test_prefix_obsidian(self):
+        self.assertEqual(
+            skills_scan.infer_category("obsidian:summarize-article", "..."),
+            "obsidian"
+        )
+
+    def test_prefix_databricks(self):
+        self.assertEqual(
+            skills_scan.infer_category("databricks-jobs", "..."),
+            "databricks"
+        )
+
+    def test_prefix_tdd(self):
+        self.assertEqual(
+            skills_scan.infer_category("msbaek-tdd:tdd-rgb", "..."),
+            "tdd"
+        )
+
+    def test_keyword_in_description(self):
+        self.assertEqual(
+            skills_scan.infer_category("random-name", "Helps with git workflow and commits"),
+            "git"
+        )
+
+    def test_unknown_returns_uncategorized(self):
+        self.assertEqual(
+            skills_scan.infer_category("xyz", "something weird"),
+            "uncategorized"
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
