@@ -82,5 +82,33 @@ class TestInferCategory(unittest.TestCase):
         )
 
 
+class TestBuildIndex(unittest.TestCase):
+    def test_index_structure(self):
+        result = skills_scan.build_index([FIXTURES])
+        self.assertIn("generated_at", result)
+        self.assertIn("total", result)
+        self.assertIn("skills", result)
+        self.assertGreaterEqual(result["total"], 3)
+
+    def test_parse_error_flag_preserved(self):
+        result = skills_scan.build_index([FIXTURES])
+        malformed = [s for s in result["skills"] if "malformed" in s["path"]]
+        self.assertEqual(len(malformed), 1)
+        self.assertTrue(malformed[0]["parse_error"])
+
+
+class TestRenderMarkdown(unittest.TestCase):
+    def test_markdown_contains_category_headers(self):
+        index = skills_scan.build_index([FIXTURES])
+        md = skills_scan.render_markdown(index)
+        self.assertIn("# Skills Index", md)
+        self.assertIn("## ", md)  # at least one category header
+
+    def test_markdown_contains_skill_names(self):
+        index = skills_scan.build_index([FIXTURES])
+        md = skills_scan.render_markdown(index)
+        self.assertIn("sample-valid", md)
+
+
 if __name__ == "__main__":
     unittest.main()

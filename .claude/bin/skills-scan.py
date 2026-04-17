@@ -87,6 +87,86 @@ def infer_category(name: str, description: str) -> str:
     return "uncategorized"
 
 
+from collections import defaultdict
+from datetime import datetime, timezone
+
+
+def _classify_source(path: Path) -> tuple[str, str | None]:
+    """Determine (source, plugin_name) from path."""
+    parts = path.parts
+    if "plugins" in parts and "cache" in parts:
+        try:
+            idx = parts.index("cache")
+            plugin = parts[idx + 2] if idx + 2 < len(parts) else None
+            return "plugin", plugin
+        except (ValueError, IndexError):
+            return "plugin", None
+    return "user", None
+
+
+def build_index(roots: list[Path]) -> dict:
+    """Scan roots and build the full skill index dict."""
+    paths = find_skill_files(roots)
+    skills = []
+    source_counts: dict[str, int] = defaultdict(int)
+
+    for path in paths:
+        parsed = parse_frontmatter(path)
+        source, plugin = _classify_source(path)
+        source_counts[source] += 1
+
+        name = parsed.get("name") or path.parent.name
+        description = parsed.get("description") or ""
+        prefixed_name = f"{plugin}:{name}" if plugin else name
+
+        skills.append({
+            "id": f"{source}/{prefixed_name}",
+            "name": name,
+            "source": source,
+            "plugin": plugin,
+            "path": str(path).replace(str(Path.home()), "~"),
+            "description": description,
+            "category": infer_category(prefixed_name, description),
+            "mtime": datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc).isoformat(),
+            "parse_error": parsed.get("parse_error", False),
+        })
+
+    return {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "total": len(skills),
+        "sources": dict(source_counts),
+        "skills": skills,
+    }
+
+
+def render_markdown(index: dict) -> str:
+    """Render index dict to markdown catalog."""
+    lines = [
+        "# Skills Index",
+        "",
+        f"_Generated: {index['generated_at']}_",
+        f"_Total: {index['total']} skills_",
+        "",
+    ]
+
+    by_category: dict[str, list] = defaultdict(list)
+    for skill in index["skills"]:
+        by_category[skill["category"]].append(skill)
+
+    for category in sorted(by_category):
+        lines.append(f"## {category}")
+        lines.append("")
+        for skill in sorted(by_category[category], key=lambda s: s["name"]):
+            prefix = "⚠️ " if skill["parse_error"] else ""
+            desc_preview = skill["description"][:120]
+            if len(skill["description"]) > 120:
+                desc_preview += "..."
+            lines.append(f"- **{prefix}{skill['name']}** ({skill['source']}) — {desc_preview}")
+        lines.append("")
+
+    return "\n".join(lines)
+
+
 if __name__ == "__main__":
     import sys
     print("Not implemented yet", file=sys.stderr)
