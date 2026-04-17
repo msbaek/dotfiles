@@ -1,6 +1,7 @@
+import json
 import sys
-import unittest
 import tempfile
+import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -108,6 +109,46 @@ class TestState(unittest.TestCase):
         skills_curate.save_state(path, {"cursor": 1, "processed": []})
         skills_curate.clear_state(path)
         self.assertFalse(path.exists())
+
+
+class TestBatchMode(unittest.TestCase):
+    def test_batch_processes_items_and_writes_decisions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            batch_path = Path(tmp) / "batch.json"
+            decisions_path = Path(tmp) / "decisions.md"
+            state_path = Path(tmp) / "state.json"
+
+            batch = {
+                "items": [
+                    {"kind": "unused", "data": {"skill": "old-tool", "last": None, "mtime": "2025-10-01"}},
+                    {"kind": "overlap", "data": {"pair": ["a", "b"], "similarity": 0.8, "shared_keywords": ["x"]}},
+                ],
+                "responses": [
+                    "a",       # archive for unused
+                    "old 6mo", # note for archive
+                    "d",       # distinct for overlap
+                    "different roles",  # note
+                ],
+            }
+            batch_path.write_text(json.dumps(batch), encoding="utf-8")
+
+            # patch module-level paths
+            orig_decisions = skills_curate.DECISIONS_PATH
+            orig_state = skills_curate.STATE_PATH
+            skills_curate.DECISIONS_PATH = decisions_path
+            skills_curate.STATE_PATH = state_path
+            try:
+                responses = iter(batch["responses"])
+                state = {"cursor": 0, "processed": []}
+                skills_curate._interactive_loop(
+                    batch["items"], state, responder=lambda _: next(responses)
+                )
+                text = decisions_path.read_text(encoding="utf-8")
+                self.assertIn("[archive] old-tool", text)
+                self.assertIn("[distinct] a ↔ b", text)
+            finally:
+                skills_curate.DECISIONS_PATH = orig_decisions
+                skills_curate.STATE_PATH = orig_state
 
 
 if __name__ == "__main__":

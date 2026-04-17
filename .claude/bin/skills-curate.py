@@ -3,8 +3,12 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
+import subprocess
+import sys
+from datetime import date
 from pathlib import Path
 
 
@@ -136,7 +140,91 @@ def clear_state(path: Path) -> None:
         path.unlink()
 
 
+AUDIT_SCRIPT = Path.home() / ".claude" / "bin" / "skills-audit.py"
+DECISIONS_PATH = Path.home() / ".claude" / "SKILLS-DECISIONS.md"
+STATE_PATH = Path.home() / ".claude" / ".skills-curate-state.json"
+
+
+def _run_audit_json() -> dict:
+    result = subprocess.run(
+        ["python3", str(AUDIT_SCRIPT), "--json"],
+        capture_output=True, text=True, check=True,
+    )
+    return json.loads(result.stdout)
+
+
+def _build_items(report: dict, decisions: dict) -> list[dict]:
+    """Combine unused + overlap into single queue, skipping already-decided."""
+    items = []
+    for u in report.get("unused", []):
+        if u["skill"] in decisions:
+            continue
+        items.append({"kind": "unused", "data": u})
+    for o in report.get("overlap", []):
+        key = f"{o['pair'][0]} ↔ {o['pair'][1]}"
+        if key in decisions:
+            continue
+        items.append({"kind": "overlap", "data": o})
+    return items
+
+
+def _interactive_loop(items: list[dict], state: dict, responder=input) -> None:
+    today = date.today().isoformat()
+    cursor = state.get("cursor", 0)
+
+    for i in range(cursor, len(items)):
+        item = items[i]
+        print(f"\n[{i + 1}/{len(items)}]")
+
+        if item["kind"] == "unused":
+            decision, note = prompt_unused(item["data"], responder=responder)
+            subject = item["data"]["skill"]
+        else:
+            decision, note = prompt_overlap(item["data"], responder=responder)
+            a, b = item["data"]["pair"]
+            subject = f"{a} ↔ {b}"
+
+        if decision is None:
+            print("  skipped")
+        else:
+            append_decision(DECISIONS_PATH, today, decision, subject, note or "(no note)")
+            state["processed"].append(subject)
+            print(f"  recorded: [{decision}] {subject}")
+
+        state["cursor"] = i + 1
+        save_state(STATE_PATH, state)
+
+        if decision == "quit":
+            break
+
+    if state["cursor"] >= len(items):
+        clear_state(STATE_PATH)
+        print("\nAll items processed.")
+
+
 if __name__ == "__main__":
-    import sys
-    print("Not implemented yet", file=sys.stderr)
-    sys.exit(1)
+    parser = argparse.ArgumentParser(description="Interactive skill curation")
+    parser.add_argument("--resume", action="store_true", help="resume from saved cursor")
+    parser.add_argument("--reset", action="store_true", help="clear saved state before starting")
+    parser.add_argument("--batch", type=str, help="JSON file with {items:[...], responses:[...]} for testing")
+    args = parser.parse_args()
+
+    if args.reset:
+        clear_state(STATE_PATH)
+
+    if args.batch:
+        batch = json.loads(Path(args.batch).read_text(encoding="utf-8"))
+        items = batch["items"]
+        responses = iter(batch["responses"])
+        state = {"cursor": 0, "processed": []}
+        _interactive_loop(items, state, responder=lambda _: next(responses))
+    else:
+        report = _run_audit_json()
+        decisions = load_decisions(DECISIONS_PATH)
+        items = _build_items(report, decisions)
+        if not items:
+            print("No pending items. All audit findings already decided.")
+            sys.exit(0)
+        state = load_state(STATE_PATH) if args.resume else {"cursor": 0, "processed": []}
+        _interactive_loop(items, state)
+    sys.exit(0)
