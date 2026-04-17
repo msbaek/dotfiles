@@ -50,7 +50,9 @@
       "Bash(vis)",
       "Bash(curl:*)"
     ],
-    "deny": ["Bash(rm -rf /)"],
+    "deny": [
+      "Bash(rm -rf /)"
+    ],
     "ask": [],
     "defaultMode": "plan"
   },
@@ -136,6 +138,15 @@
           {
             "type": "command",
             "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/bin/skills-log.sh"
           }
         ]
       }
@@ -284,11 +295,16 @@
   "mcpServers": {
     "playwright": {
       "url": "http://localhost:8931/mcp",
-      "args": ["@playwright/mcp@0.0.70"]
+      "args": [
+        "@playwright/mcp@0.0.70"
+      ]
     },
     "CodeGraphContext": {
       "command": "/Users/msbaek/.pyenv/shims/cgc",
-      "args": ["mcp", "start"],
+      "args": [
+        "mcp",
+        "start"
+      ],
       "disabled": false
     },
     "databricks": {
