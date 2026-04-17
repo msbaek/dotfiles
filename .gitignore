@@ -107,3 +107,11 @@ node_modules/
 .claude/sessions
 .claude/dashboard/
 .claude/settings.json.bak.*
+
+# ======================
+# Skills Catalog runtime artifacts
+# ======================
+.claude/SKILLS-INDEX.md
+.claude/skills-index.json
+.claude/SKILLS-DECISIONS.md
+.claude/.skills-curate-state.json
