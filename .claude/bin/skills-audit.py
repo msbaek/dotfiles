@@ -154,7 +154,87 @@ def compute_overlap(catalog: dict, threshold: float = 0.7) -> list[dict]:
     return results
 
 
+def format_report(report: dict, mode: str = "text") -> str:
+    if mode == "json":
+        return json.dumps(report, indent=2, ensure_ascii=False)
+
+    lines = [
+        f"# Skills Audit — last {report['period_days']} days",
+        f"Total calls: {report['total_calls']}",
+        "",
+        "## Top Skills",
+    ]
+    if not report["top"]:
+        lines.append("  (none)")
+    for item in report["top"]:
+        lines.append(f"  {item['calls']:4d}  {item['skill']}  (last: {item['last']})")
+
+    lines.append("")
+    lines.append("## Unused")
+    if not report["unused"]:
+        lines.append("  (none)")
+    for item in report["unused"]:
+        last = item["last"] or "never"
+        lines.append(f"  - {item['skill']}  (last: {last})")
+
+    lines.append("")
+    lines.append("## Overlap")
+    if not report["overlap"]:
+        lines.append("  (none)")
+    for item in report["overlap"]:
+        a, b = item["pair"]
+        lines.append(f"  {item['similarity']:.2f}  {a} ↔ {b}  shared: {', '.join(item['shared_keywords'])}")
+
+    lines.append("")
+    lines.append("## Stale (mtime > 6mo + 0 calls)")
+    if not report["stale"]:
+        lines.append("  (none)")
+    for item in report["stale"]:
+        lines.append(f"  - {item['skill']}  (mtime: {item['mtime']})")
+
+    return "\n".join(lines)
+
+
+USAGE_PATH = Path.home() / ".claude" / "logs" / "skills-usage.jsonl"
+INDEX_PATH = Path.home() / ".claude" / "skills-index.json"
+
+
+def _build_report(days: int, threshold: float) -> dict:
+    events = load_usage(USAGE_PATH)
+    agg = aggregate(events)
+
+    catalog = {"skills": []}
+    if INDEX_PATH.exists():
+        catalog = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+
+    return {
+        "period_days": days,
+        "total_calls": sum(s["calls"] for s in agg.values()),
+        "top": compute_top(agg, n=10),
+        "unused": compute_unused(agg, catalog, days=days),
+        "overlap": compute_overlap(catalog, threshold=threshold),
+        "stale": compute_stale(agg, catalog, months=6),
+    }
+
+
 if __name__ == "__main__":
+    import argparse
     import sys
-    print("Not implemented yet", file=sys.stderr)
-    sys.exit(1)
+    parser = argparse.ArgumentParser(description="Skill usage audit")
+    parser.add_argument("--days", type=int, default=30, help="lookback window in days")
+    parser.add_argument("--overlap-threshold", type=float, default=0.7)
+    parser.add_argument("--json", action="store_true")
+    parser.add_argument("--unused-only", action="store_true")
+    args = parser.parse_args()
+
+    report = _build_report(args.days, args.overlap_threshold)
+
+    if args.unused_only:
+        report = {k: v for k, v in report.items() if k in ("period_days", "unused")}
+        report["top"] = []
+        report["overlap"] = []
+        report["stale"] = []
+        report["total_calls"] = 0
+
+    print(format_report(report, mode="json" if args.json else "text"))
+    sys.exit(0)

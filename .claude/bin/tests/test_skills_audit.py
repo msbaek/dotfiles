@@ -143,5 +143,28 @@ class TestComputeOverlap(unittest.TestCase):
             self.assertIn("shared_keywords", entry)
 
 
+class TestFormatReport(unittest.TestCase):
+    def test_text_report_has_sections(self):
+        report = {
+            "period_days": 30,
+            "total_calls": 100,
+            "top": [{"skill": "foo", "calls": 50, "last": "2026-04-17T00:00:00Z"}],
+            "unused": [{"skill": "bar", "last": None, "mtime": "2026-01-01"}],
+            "overlap": [{"pair": ["x", "y"], "similarity": 0.8, "shared_keywords": ["session"]}],
+            "stale": [],
+        }
+        text = skills_audit.format_report(report, mode="text")
+        self.assertIn("Top Skills", text)
+        self.assertIn("Unused", text)
+        self.assertIn("Overlap", text)
+
+    def test_json_report_roundtrip(self):
+        report = {"period_days": 30, "total_calls": 0, "top": [], "unused": [], "overlap": [], "stale": []}
+        text = skills_audit.format_report(report, mode="json")
+        import json as _json
+        parsed = _json.loads(text)
+        self.assertEqual(parsed["period_days"], 30)
+
+
 if __name__ == "__main__":
     unittest.main()
