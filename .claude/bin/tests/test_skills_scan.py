@@ -31,5 +31,24 @@ class TestParseFrontmatter(unittest.TestCase):
         self.assertTrue(result["parse_error"])
 
 
+class TestFindSkillFiles(unittest.TestCase):
+    def test_finds_fixture_skills(self):
+        paths = skills_scan.find_skill_files([FIXTURES])
+        names = {p.parent.name for p in paths}
+        self.assertIn("valid", names)
+        self.assertIn("malformed", names)
+        self.assertIn("no_frontmatter", names)
+
+    def test_empty_root_returns_empty(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = skills_scan.find_skill_files([Path(tmp)])
+            self.assertEqual(paths, [])
+
+    def test_nonexistent_root_skipped(self):
+        paths = skills_scan.find_skill_files([Path("/nonexistent/xyz123")])
+        self.assertEqual(paths, [])
+
+
 if __name__ == "__main__":
     unittest.main()

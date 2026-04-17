@@ -39,6 +39,18 @@ def parse_frontmatter(path: Path) -> dict:
     }
 
 
+def find_skill_files(roots: list[Path]) -> list[Path]:
+    """Walk roots recursively, return all SKILL.md files found."""
+    results = []
+    for root in roots:
+        if not root.exists():
+            continue
+        for path in root.rglob("SKILL.md"):
+            if path.is_file():
+                results.append(path)
+    return sorted(results)
+
+
 if __name__ == "__main__":
     import sys
     print("Not implemented yet", file=sys.stderr)
