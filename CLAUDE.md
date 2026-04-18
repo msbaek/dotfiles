@@ -86,6 +86,15 @@ When making changes to configurations:
 4. Update Brewfile if new packages are added
 5. Consider compatibility across different macOS versions
 
+## Pre-commit Hooks
+
+This repo has hooks that auto-modify files (requiring re-stage after failure):
+- `end-of-file-fixer`, `trailing-whitespace` — fix formatting in-place
+- `update-brewfile` — always runs, updates Brewfile on every commit
+- `detect-secrets`, `detect-private-key` — block commits with secrets
+
+When a hook modifies files: re-stage the changed files and commit again.
+
 ## Important Notes
 
 - This repository contains personal configurations and may need adaptation for other users
