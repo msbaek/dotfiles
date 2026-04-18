@@ -10,10 +10,7 @@
     "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1",
     "CLAUDE_CODE_NO_FLICKER": "1",
-    "DISABLE_ERROR_REPORTING": "1",
-    "CLAUDE_CODE_EFFORT_LEVEL": "max",
-    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
-    "CLAUDE_CODE_DISABLE_1M_CONTEXT": "1"
+    "DISABLE_ERROR_REPORTING": "1"
   },
   "permissions": {
     "allow": [
@@ -50,9 +47,7 @@
       "Bash(vis)",
       "Bash(curl:*)"
     ],
-    "deny": [
-      "Bash(rm -rf /)"
-    ],
+    "deny": ["Bash(rm -rf /)"],
     "ask": [],
     "defaultMode": "plan"
   },
@@ -219,7 +214,7 @@
     "pr-review-toolkit@claude-plugins-official": true,
     "atlassian@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "explanatory-output-style@claude-plugins-official": true,
+    "explanatory-output-style@claude-plugins-official": false,
     "claude-md-management@claude-plugins-official": true,
     "greptile@claude-plugins-official": true,
     "Notion@claude-plugins-official": true,
@@ -236,8 +231,7 @@
     "ralph-loop@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "obsidian@obsidian-skills": true,
-    "caveman@caveman": true
+    "obsidian@obsidian-skills": true
   },
   "extraKnownMarketplaces": {
     "personal-os-skills": {
@@ -253,12 +247,6 @@
         "repo": "kepano/obsidian-skills"
       },
       "autoUpdate": true
-    },
-    "caveman": {
-      "source": {
-        "source": "github",
-        "repo": "JuliusBrussee/caveman"
-      }
     }
   },
   "language": "ko",
@@ -287,24 +275,21 @@
       "연결고리 찾는 중"
     ]
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "advisorModel": "opus",
   "autoMemoryEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
+  "autoUpdates": true,
   "mcpServers": {
     "playwright": {
       "url": "http://localhost:8931/mcp",
-      "args": [
-        "@playwright/mcp@0.0.70"
-      ]
+      "args": ["@playwright/mcp@0.0.70"]
     },
     "CodeGraphContext": {
       "command": "/Users/msbaek/.pyenv/shims/cgc",
-      "args": [
-        "mcp",
-        "start"
-      ],
+      "args": ["mcp", "start"],
       "disabled": false
     },
     "databricks": {
