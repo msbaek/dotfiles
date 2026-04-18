@@ -3,11 +3,7 @@
     "allow": [
       "Bash(npx:*)",
       "Bash(qmd-search)",
-      "Bash(echo \"exit: $?\")",
-      "Bash(~/dotfiles/bin/claude-usage-statusline:*)",
-      "Bash(sed -i.bak '17,22d' .claude/journals/2026-04.journal.md)",
-      "Bash(sed -i.bak '/^>>>>>>> theirs$/d' .claude/journals/2026-04.journal.md)",
-      "Bash(rm .claude/journals/2026-04.journal.md.bak)"
+      "Bash(~/dotfiles/bin/claude-usage-statusline:*)"
     ]
   },
   "enabledPlugins": {}

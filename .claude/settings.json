@@ -32,8 +32,6 @@
       "Bash(ls:*)",
       "Bash(python3 -m markitdown:*)",
       "Bash(markitdown:*)",
-      "Bash(for file in ~/DocumentsLocal/msbaek_vault/STUDY/DataBricks/공식강의/2.Data-Privacy/labs/*.html)",
-      "Bash(done)",
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_close",
       "mcp__playwright__browser_wait_for",
@@ -42,9 +40,7 @@
       "mcp__filesystem__list_directory",
       "mcp__filesystem__directory_tree",
       "mcp__filesystem__read_multiple_files",
-      "Bash(vis search \"test는 버그가 없다는 것을 보장하지 못한다\" --rerank --top-k 10)",
-      "Bash(vis search \"canon TDD 설계 design\" --search-method hybrid --rerank --top-k 10)",
-      "Bash(vis)",
+      "Bash(vis:*)",
       "Bash(curl:*)"
     ],
     "deny": ["Bash(rm -rf /)"],
@@ -57,21 +53,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "terminal-notifier -title \"Claude Code - Stop\" -message \"🚨🚨🚨 Claude 응답이 완료되었습니다 🚨🚨🚨\" -sound default -timeout 30"
-          },
-          {
-            "type": "command",
             "command": "/Users/msbaek/dotfiles/bin/claude-sessions sync",
             "timeout": 10
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
           }
         ]
       }
@@ -84,27 +67,9 @@
             "command": "python3 ~/.claude/hooks/UserPromptSubmit/append_ultrathink.py"
           }
         ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
-          }
-        ]
       }
     ],
     "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
-          }
-        ]
-      },
       {
         "hooks": [
           {
@@ -115,77 +80,13 @@
         ]
       }
     ],
-    "PreToolUse": [
-      {
-        "matcher": ".*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
-      {
-        "matcher": ".*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
-          }
-        ]
-      },
       {
         "matcher": "Skill",
         "hooks": [
           {
             "type": "command",
             "command": "/Users/msbaek/.claude/bin/skills-log.sh"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
-          }
-        ]
-      }
-    ],
-    "SessionEnd": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
-          }
-        ]
-      }
-    ],
-    "SubagentStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
           }
         ]
       }
