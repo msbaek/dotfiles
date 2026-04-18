@@ -1,6 +1,7 @@
 ---
 description: Convert review comments to Conventional Comments format
 argument-hint: <review comment>
+model: haiku
 ---
 
 # Conventional Review Comment Formatter

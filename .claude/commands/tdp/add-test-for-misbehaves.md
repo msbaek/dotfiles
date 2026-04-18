@@ -1,6 +1,7 @@
 ---
 argument-hint: "[method-name]"
 description: "Most AI-generated tests are happy-path only. They test if things work when everything is perfect. But when’s the last time production was perfect?"
+model: sonnet
 ---
 
 Add the following prompt

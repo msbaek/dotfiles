@@ -2,6 +2,7 @@
 argument-hint: "[url]"
 description: "기술 문서 URL → 백그라운드로 번역/정리 → obsidian 문서 생성"
 color: yellow
+model: sonnet
 ---
 
 # Article Summarize - $ARGUMENTS

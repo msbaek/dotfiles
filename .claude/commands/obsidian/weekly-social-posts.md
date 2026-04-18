@@ -1,6 +1,7 @@
 ---
 argument-hint: "[--complete] [--days 숫자] [--filter 키워드] [--tag 태그명]"
 description: "Things 메모를 수집하여 소셜 미디어 포스트로 변환하고 Obsidian에 저장"
+model: sonnet
 ---
 
 # 주간 소셜 미디어 포스트 생성 $ARGUMENTS

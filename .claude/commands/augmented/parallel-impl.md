@@ -1,5 +1,6 @@
 ---
 description: "체크포인트 후 git worktree로 복수 구현 동시 진행. 불확실한 접근법 시 호출."
+model: haiku
 ---
 
 # Parallel Implementations - 병렬 구현

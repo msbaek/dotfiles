@@ -1,5 +1,6 @@
 ---
 description: "코드 전에 마크다운으로 AI를 에이전트처럼 활용해 프로토타이핑. 요구사항 불확실할 때 호출."
+model: haiku
 ---
 
 # Softest Prototype - 마크다운 프로토타이핑

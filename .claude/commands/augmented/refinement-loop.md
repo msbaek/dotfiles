@@ -1,5 +1,6 @@
 ---
 description: "반복적 개선 패스로 레이어별 노이즈 제거. 리팩토링/품질 개선 시 호출."
+model: haiku
 ---
 
 # Refinement Loop - 반복적 정제

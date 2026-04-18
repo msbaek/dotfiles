@@ -1,5 +1,6 @@
 ---
 description: 설치된 모든 Claude Code 스킬 카탈로그를 재생성하고 표시
+model: haiku
 ---
 
 현재 설치된 모든 스킬을 스캔하여 `~/.claude/SKILLS-INDEX.md`를 재생성하고 카테고리별 요약을 표시한다.

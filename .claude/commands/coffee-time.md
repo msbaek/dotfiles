@@ -1,6 +1,7 @@
 ---
 argument-hint: "[YYYY-MM-DD] [대화 내용]"
 description: "팀 커피타임 대화를 정리하여 GitHub에 자동 저장"
+model: sonnet
 ---
 
 # 커피타임 대화 정리 - $ARGUMENTS

@@ -2,6 +2,7 @@
 argument-hint: "[파일명 또는 경로] [--duration 분]"
 description: "Obsidian 문서를 Advanced Slides 프리젠테이션으로 변환"
 color: purple
+model: sonnet
 ---
 
 # Obsidian 문서를 프리젠테이션 슬라이드로 변환 - $ARGUMENTS

@@ -1,6 +1,7 @@
 ---
 argument-hint: "[파일명] [--dry-run] [--preserve-tags]"
 description: "Obsidian 파일을 분석하여 태그 부여 및 적절한 디렉토리로 이동"
+model: sonnet
 ---
 
 # Obsidian 파일 정리 - $ARGUMENTS

@@ -1,6 +1,7 @@
 ---
 argument-hint: "--task [retag|summarize|analyze] --source [files/directory/pattern] [options]"
 description: "Obsidian vault 파일들을 대량으로 처리하는 통합 명령어 (Tmux Orchestrator 활용)"
+model: sonnet
 ---
 
 # Obsidian Batch Process - $ARGUMENTS

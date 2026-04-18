@@ -1,6 +1,7 @@
 ---
 argument-hint: "[--amend] [--push] [--no-verify]"
 description: "`### 메시지 구조` 에 정의된 규칙에 따라 자동으로 커밋 메시지를 생성하고 커밋 실행"
+model: sonnet
 ---
 
 # Git 커밋 자동화 - $ARGUMENTS

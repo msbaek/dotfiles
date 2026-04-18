@@ -1,6 +1,7 @@
 ---
 argument-hint: "[주제명] [--include-code] [--format markdown|summary]"
 description: "세션 작업 내역을 정리하여 cc-logs 폴더에 저장"
+model: sonnet
 ---
 
 # 세션 작업 정리 - $ARGUMENTS

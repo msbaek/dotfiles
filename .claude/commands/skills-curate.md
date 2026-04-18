@@ -1,5 +1,6 @@
 ---
 description: audit 결과 기반 대화형 skill 정리 (unused/overlap 결정 기록)
+model: sonnet
 ---
 
 최근 audit에서 발견된 unused/overlap 건에 대해 하나씩 결정하고 `SKILLS-DECISIONS.md`에 기록한다.

@@ -1,5 +1,6 @@
 ---
 description: 최근 N일 skill 사용량 감사 리포트 (top/unused/overlap/stale)
+model: haiku
 ---
 
 스킬 사용 통계를 리포트한다.

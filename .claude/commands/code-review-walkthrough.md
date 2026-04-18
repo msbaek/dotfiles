@@ -1,6 +1,7 @@
 ---
 argument-hint: "<base-branch> [--base-commit <hash>]"
 description: "오프라인 코드 리뷰 워크스루 설계 — 태그 기반 IntelliJ diff + 디버거 구성"
+model: sonnet
 ---
 
 # 오프라인 코드 리뷰 워크스루 설계

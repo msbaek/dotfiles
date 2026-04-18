@@ -1,6 +1,7 @@
 ---
 argument-hint: "[method-name]"
 description: "AI tools love assuming perfect inputs. But the world isn’t that kind. Users (and even services) send garbage all the time."
+model: sonnet
 ---
 
 Add the following prompt

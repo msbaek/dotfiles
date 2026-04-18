@@ -2,6 +2,7 @@
 description: Analyze current session for CLAUDE.md improvements and apply them interactively
 allowed-tools: [Read, Write, Edit, Bash]
 argument-hint: (no arguments needed)
+model: sonnet
 ---
 
 # Analyze Current Session for CLAUDE.md Improvements

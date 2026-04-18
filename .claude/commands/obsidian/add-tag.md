@@ -1,6 +1,7 @@
 ---
 argument-hint: "[파일명] [--recursive] [--dry-run]"
 description: "Obsidian 파일의 내용을 분석하여 적절한 hierarchical tag를 부여하거나 개선"
+model: sonnet
 ---
 
 # Obsidian 태그 추가 및 개선 - $ARGUMENTS

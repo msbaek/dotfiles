@@ -1,6 +1,7 @@
 ---
 description: Convert files to Markdown using Microsoft MarkItDown
 argument-hint: <file_path>
+model: haiku
 ---
 
 # MarkItDown File Converter

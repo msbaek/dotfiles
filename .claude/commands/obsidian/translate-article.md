@@ -3,6 +3,7 @@ argument-hint: "[url]"
 description: "기술 문서 URL을 입력받아 번역해서 obsidian 문서로 저장"
 allowed-tools: playwright
 color: yellow
+model: sonnet
 ---
 
 # translate article - $ARGUMENTS

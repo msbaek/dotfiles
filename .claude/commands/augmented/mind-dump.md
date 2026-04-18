@@ -1,5 +1,6 @@
 ---
 description: "비구조화된 사고를 AI에 쏟아내고 구조화된 출력 획득. 아이디어 초기 단계에 호출."
+model: haiku
 ---
 
 # Mind Dump - 비구조화 사고 캡처

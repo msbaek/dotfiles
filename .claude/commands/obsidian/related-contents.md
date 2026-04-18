@@ -1,6 +1,7 @@
 ---
 argument-hint: "[파일명]"
 description: "Obsidian 파일의 내용을 분석하여 적절한 관련 노트 섹션 생성"
+model: sonnet
 ---
 
 # Obsidian 문서의 관련 문서 추가 및 개선 - $ARGUMENTS

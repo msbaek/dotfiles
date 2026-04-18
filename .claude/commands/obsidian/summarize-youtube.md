@@ -2,6 +2,7 @@
 argument-hint: "[kr|en] [transcript or YouTube URL]"
 description: "Youtube URL 또는 트랜스크립트 → 백그라운드로 번역/정리 → obsidian 문서 생성 (첫 번째 인자로 언어 지정: kr|en, 기본값: en)"
 color: yellow
+model: sonnet
 ---
 
 # YouTube Summarize - $ARGUMENTS

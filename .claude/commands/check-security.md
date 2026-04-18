@@ -1,6 +1,7 @@
 ---
 argument-hint: "[파일/디렉토리] [--fix] [--severity high|medium|low] [--report]"
 description: "코드의 보안 취약점을 검사하고 개선 사항 제안"
+model: sonnet
 ---
 
 # 보안 검사 - $ARGUMENTS

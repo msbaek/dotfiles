@@ -1,6 +1,7 @@
 ---
 argument-hint: "[method-name]"
 description: "Sometimes AI writes utility methods that unexpectedly mutate input. Or it quietly modifies shared state."
+model: sonnet
 ---
 
 Add the following prompt

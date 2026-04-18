@@ -1,5 +1,6 @@
 ---
 description: "AI 코드 폐기 결정 지원. 구현이 꼬였을 때 revert 후 재시도 가이드."
+model: haiku
 ---
 
 # Happy to Delete - 과감한 폐기와 재시작

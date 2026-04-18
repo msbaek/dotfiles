@@ -1,5 +1,6 @@
 ---
 description: "첫 번째 해결책에 안주하지 않고 대안을 적극 탐색. 설계/의사결정 시 호출."
+model: haiku
 ---
 
 # Cast Wide - 대안 탐색 강제

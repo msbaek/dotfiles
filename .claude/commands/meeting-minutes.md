@@ -1,6 +1,7 @@
 ---
 argument-hint: "[YYYY-MM-DD] [회의 녹취록]"
 description: "회의 녹취록을 분석하여 체계적인 회의록 마크다운 문서로 변환"
+model: sonnet
 ---
 
 # 회의록 작성 - $ARGUMENTS

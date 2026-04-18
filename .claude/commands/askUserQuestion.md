@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Interactive Code Assistant with User Clarification
 
 대화형 질문을 통해 사용자의 정확한 요구사항을 파악하고 맞춤형 솔루션을 제공하는 도우미입니다.

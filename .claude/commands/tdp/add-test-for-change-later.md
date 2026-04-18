@@ -1,6 +1,7 @@
 ---
 argument-hint: "[method-name]"
 description: "This prompt forces AI to think like a maintainer. Not just a builder."
+model: sonnet
 ---
 
 Add the following prompt

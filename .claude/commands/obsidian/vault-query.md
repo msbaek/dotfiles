@@ -2,6 +2,7 @@
 argument-hint: "[검색어 또는 명령어]"
 description: "Vault Intelligence System을 활용한 Obsidian vault 지능형 검색 및 분석"
 color: cyan
+model: haiku
 ---
 
 # Vault Intelligence 검색 - $ARGUMENTS

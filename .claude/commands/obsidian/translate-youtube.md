@@ -2,6 +2,7 @@
 argument-hint: "[transcript or YouTube URL]"
 description: "Youtube URL 또는 트랜스크립트를 입력받아 번역해서 obsidian 문서로 저장"
 color: yellow
+model: sonnet
 ---
 
 # translate youtube - $ARGUMENTS

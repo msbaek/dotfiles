@@ -2,6 +2,7 @@
 argument-hint:
   "[--depth shallow|deep] [--focus area] [--format summary|detailed] [--include-patterns] [--exclude-patterns]"
 description: "프로젝트 구조와 목적을 체계적으로 분석하여 종합적인 온보딩 정보 제공"
+model: sonnet
 ---
 
 # /on-boarding $ARGUMENTS

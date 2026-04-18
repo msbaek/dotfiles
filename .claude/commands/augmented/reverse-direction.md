@@ -1,5 +1,6 @@
 ---
 description: "대화 방향 전환 - AI에게 제안/질문 역할 위임. 의사결정 막힐 때 호출."
+model: haiku
 ---
 
 # Reverse Direction - 대화 방향 전환
