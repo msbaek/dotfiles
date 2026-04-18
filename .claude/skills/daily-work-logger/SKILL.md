@@ -4,6 +4,7 @@ description: |
   매일 아침 업무 시작 전 어제 작업 내역을 정리하여 Daily Note에 반영.
   서브 에이전트 기반 병렬 처리로 메인 컨텍스트 절약.
   "어제 작업 정리해줘", "daily log", "업무 내역 정리" 등의 요청 시 자동 적용.
+model: sonnet
 ---
 
 # Daily Work Logger Skill
@@ -96,7 +97,7 @@ DAILY_NOTE="$VAULT_ROOT/notes/dailies/${TARGET_DATE}.md"
 |---------|-----|
 | description | "Vault 파일 분석" |
 | subagent_type | "general-purpose" |
-| model | "haiku" |
+| model | "sonnet" |
 
 **프롬프트 (TARGET_DATE, NEXT_DATE 치환 필요):**
 
@@ -139,7 +140,7 @@ DAILY_NOTE="$VAULT_ROOT/notes/dailies/${TARGET_DATE}.md"
 |---------|-----|
 | description | "Claude 세션 및 학습 분석" |
 | subagent_type | "general-purpose" |
-| model | "haiku" |
+| model | "sonnet" |
 
 **프롬프트 (TARGET_DATE 치환 필요):**
 
@@ -235,7 +236,7 @@ for sid, info in sorted(sessions.items(), key=lambda x: x[1]['project']):
 |---------|-----|
 | description | "미팅 노트 분석" |
 | subagent_type | "general-purpose" |
-| model | "haiku" |
+| model | "sonnet" |
 
 **프롬프트 (TARGET_DATE 치환 필요):**
 
@@ -279,7 +280,7 @@ for sid, info in sorted(sessions.items(), key=lambda x: x[1]['project']):
 |---------|-----|
 | description | "Things 활동 분석" |
 | subagent_type | "general-purpose" |
-| model | "haiku" |
+| model | "sonnet" |
 
 **프롬프트 (TARGET_DATE 치환 필요):**
 

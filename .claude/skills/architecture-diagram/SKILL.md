@@ -5,6 +5,7 @@ license: MIT
 metadata:
   version: "1.0"
   author: Cocoon AI (hello@cocoon-ai.com)
+model: sonnet
 ---
 
 # Architecture Diagram Skill

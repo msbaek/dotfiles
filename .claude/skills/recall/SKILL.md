@@ -2,6 +2,7 @@
 name: recall
 description: Load context from vault memory. Temporal queries (yesterday, last week, session history) use agf (history.jsonl) for fast session lookup. Topic queries use vis semantic search. "recall graph" generates interactive temporal graph of sessions and files. Every recall ends with "One Thing" - the single highest-leverage next action synthesized from results. Use when user says "recall", "what did we work on", "load context about", "remember when we", "prime context", "yesterday", "what was I doing", "last week", "session history", "recall graph", "session graph".
 argument-hint: [yesterday|today|last week|this week|TOPIC|graph DATE_EXPR]
+model: haiku
 allowed-tools: Bash(vis:*), Bash(python3:*)
 ---
 

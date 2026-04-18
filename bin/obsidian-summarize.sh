@@ -153,7 +153,7 @@ run_executor() {
   log "Working directory: $(pwd)"
   log "Running claude..."
   local exit_code=0
-  OBSIDIAN_EXEC=1 claude --dangerously-skip-permissions --output-format stream-json -p "$skill_cmd" 2>&1 \
+  OBSIDIAN_EXEC=1 claude --dangerously-skip-permissions --model claude-sonnet-4-6 --output-format stream-json -p "$skill_cmd" 2>&1 \
     | while IFS= read -r line; do
         # Log tool_use from assistant messages
         if [[ "$line" == *'"tool_use"'* && "$line" == *'"name"'* ]]; then

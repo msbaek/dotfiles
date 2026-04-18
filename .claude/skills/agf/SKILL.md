@@ -3,6 +3,7 @@ name: agf
 description: |
   Claude Code 세션 탐색 및 분석. agf 데이터 소스(history.jsonl)를 활용한 세션 리스트 조회, 검색 및 상세 분석.
   "세션 목록", "session list", "세션 검색", "session search", "agf" 등의 요청 시 자동 적용.
+model: haiku
 ---
 
 # agf - Session Explorer Skill

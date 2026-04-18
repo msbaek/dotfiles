@@ -2,6 +2,7 @@
 name: graphify
 description: any input (code, docs, papers, images) → knowledge graph → clustered communities → HTML + JSON + audit report
 trigger: /graphify
+model: sonnet
 ---
 
 # /graphify

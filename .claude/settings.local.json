@@ -3,8 +3,12 @@
     "allow": [
       "Bash(npx:*)",
       "Bash(qmd-search)",
-      "Bash(~/dotfiles/bin/claude-usage-statusline:*)"
+      "Bash(~/dotfiles/bin/claude-usage-statusline:*)",
+      "Bash(rm -rf /Users/msbaek/.claude/plugins/cache/agenticnotetaking)",
+      "Bash(rm -rf \"/Users/msbaek/.claude/plugins/data/arscontexta-agenticnotetaking\")"
     ]
   },
-  "enabledPlugins": {}
+  "enabledPlugins": {
+    "arscontexta@agenticnotetaking": false
+  }
 }

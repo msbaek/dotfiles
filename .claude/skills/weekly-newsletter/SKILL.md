@@ -5,6 +5,7 @@ description: |
   서브 에이전트 기반 병렬 처리로 메인 컨텍스트 절약.
   기술적, 리더십적으로 외부에 공유할 만한 내용을 선별하여 정리.
   "뉴스레터 만들어줘", "이번 주 글 정리해줘", "weekly digest" 등의 요청 시 자동 적용.
+model: sonnet
 ---
 
 # Weekly Newsletter Skill
@@ -147,7 +148,7 @@ OUTPUT_FILE="$VAULT_ROOT/newsletters/${WEEK_NUM}-newsletter.md"
 |---------|-----|
 | description | "Daily Notes 분석" |
 | subagent_type | "general-purpose" |
-| model | "haiku" |
+| model | "sonnet" |
 
 **프롬프트 (SATURDAY, FRIDAY, NEXT_DAY 치환 필요):**
 
@@ -199,7 +200,7 @@ OUTPUT_FILE="$VAULT_ROOT/newsletters/${WEEK_NUM}-newsletter.md"
 |---------|-----|
 | description | "Coffee-time 분석" |
 | subagent_type | "general-purpose" |
-| model | "haiku" |
+| model | "sonnet" |
 
 **프롬프트 (SATURDAY, FRIDAY, NEXT_DAY 치환 필요):**
 
@@ -253,7 +254,7 @@ OUTPUT_FILE="$VAULT_ROOT/newsletters/${WEEK_NUM}-newsletter.md"
 |---------|-----|
 | description | "주간 문서 분석" |
 | subagent_type | "general-purpose" |
-| model | "haiku" |
+| model | "sonnet" |
 
 **프롬프트 (SATURDAY, FRIDAY, NEXT_DAY 치환 필요):**
 

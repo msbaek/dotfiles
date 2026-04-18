@@ -6,6 +6,7 @@ description: |
   중복 감지, 학습 리뷰 등 vault 지식 관리 전반을 지원하는 skill.
   vault 검색, 문서 정리, 태그, MOC, 관련 문서, 주제 수집, 중복 검사, 학습 리뷰,
   지식 공백, 클러스터링, 인덱싱, 주제별 문서 연결, 태그 통계 관련 작업 시 자동 적용.
+model: haiku
 ---
 
 # Vault Intelligence System (vis) Skill
