@@ -1,6 +1,6 @@
 ---
 name: explorer
-description: 코드베이스 탐색, 파일 읽기, 심볼 검색, 대량 로그 필터링에 사용. verbose 출력을 요약해서 반환.
+description: 코드베이스 탐색, 파일 읽기, 심볼 검색, 대량 로그 필터링에 사용. verbose 출력을 요약해서 반환. Use proactively when: (1) user asks about a module/class not yet read in this session, (2) about to implement in an unfamiliar area of the codebase, (3) user asks "where is X" or "how does X work", (4) large log/test output needs summarizing.
 model: claude-haiku-4-5
 ---
 

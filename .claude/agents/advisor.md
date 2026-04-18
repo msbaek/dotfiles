@@ -1,6 +1,6 @@
 ---
 name: advisor
-description: 아키텍처/설계/복잡한 디버깅 판단이 필요할 때 호출하는 2차 의견. 현재 접근의 대안·trade-off·놓친 제약을 30년 경력 관점에서 짚어줌.
+description: 아키텍처/설계/복잡한 디버깅 판단이 필요할 때 호출하는 2차 의견. 현재 접근의 대안·trade-off·놓친 제약을 30년 경력 관점에서 짚어줌. Use proactively when: (1) user is about to implement a new class/service/abstraction, (2) choosing between 2+ approaches, (3) bug persists after 2+ failed attempts, (4) about to commit changes touching 3+ files, (5) introducing a new dependency or architectural pattern.
 model: claude-opus-4-7
 ---
 
