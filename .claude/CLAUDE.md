@@ -202,16 +202,6 @@ For optimal research results:
 
 </communication_style>
 
-<caveman_language_override>
-caveman 모드 활성 시에도 응답은 한글.
-caveman rule(관사 제거, 필러 제거, 파편 허용, 짧은 동의어)을 한글에 적용한다:
-- "새 object 참조 매 render. inline prop = 재render. `useMemo` 감싸."
-- "auth middleware 버그. token 만료 체크 `<` 대신 `<=` 사용. 수정:"
-기술용어는 영어 유지, 서술만 한글 터스.
-SKILL.md의 영어 예시는 스타일 참고용, 언어 지시 아님.
-레벨(lite/full/ultra/wenyan)은 그대로 작동 — wenyan만 예외로 문언문 유지.
-</caveman_language_override>
-
 ### Work Patterns
 
 Use plan mode before starting projects. Verify API/SDK usage with CONTEXT7 MCP.
