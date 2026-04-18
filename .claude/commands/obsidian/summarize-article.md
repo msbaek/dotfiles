@@ -48,7 +48,56 @@ color: yellow
 `mcp__playwright__browser_navigate`로 URL에 접근.
 실패 시: 에러 보고 후 중단 (progress 파일을 `failed`로 업데이트)
 
-### Step 2: 메타데이터 추출
+### Step 2: 페이지 확장 (Show more 클릭)
+
+스냅샷 전에 숨겨진 콘텐츠를 모두 노출시킨다. 누락된 본문/스레드/댓글을 방지.
+
+대상 패턴 (부분 일치, 대소문자 무시):
+- 영어: "Show more", "Read more", "Continue reading", "See more", "Load more", "Expand", "Show this thread", "See full thread"
+- 한국어: "더 보기", "더보기", "전체 보기", "펼치기"
+
+`mcp__playwright__browser_run_code`로 반복 클릭 (최대 10 iteration, 더 이상 클릭 가능 요소 없으면 종료):
+
+```javascript
+async (page) => {
+  const labels = [
+    'Show more', 'Read more', 'Continue reading', 'See more',
+    'Load more', 'Expand', 'Show this thread', 'See full thread',
+    '더 보기', '더보기', '전체 보기', '펼치기'
+  ];
+  let totalClicks = 0;
+  for (let i = 0; i < 10; i++) {
+    let clickedThisRound = 0;
+    for (const label of labels) {
+      const locators = await page.locator(
+        `[role="button"]:has-text("${label}"), a:has-text("${label}"), span:has-text("${label}"), button:has-text("${label}")`
+      ).all();
+      for (const el of locators) {
+        try {
+          if (await el.isVisible({ timeout: 500 })) {
+            await el.click({ timeout: 2000 });
+            clickedThisRound++;
+            totalClicks++;
+            await page.waitForTimeout(400);
+          }
+        } catch (e) { /* stale/covered — skip */ }
+      }
+    }
+    if (clickedThisRound === 0) break;
+  }
+  // Scroll to bottom to trigger lazy-load
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await page.waitForTimeout(800);
+  return { totalClicks };
+}
+```
+
+원칙:
+- 링크가 더 이상 없을 때까지 반복 (계층/중첩 확장)
+- 외부 링크/이미지 전체보기 등 **같은 페이지 확장이 아닌 네비게이션 유발 버튼은 제외** — 위 라벨만 사용
+- 실패 시 snapshot만으로 계속 진행 (치명적 오류 아님)
+
+### Step 3: 메타데이터 추출
 
 `mcp__playwright__browser_run_code`로 title, author, 이미지 목록 추출.
 
@@ -74,13 +123,13 @@ async (page) => {
 
 실패 시: snapshot만으로 진행
 
-### Step 3: 본문 추출
+### Step 4: 본문 추출
 
 `mcp__playwright__browser_snapshot`으로 페이지 콘텐츠를 파일로 저장.
 - `filename` 파라미터 사용: `/tmp/article-snapshot-{timestamp}.md`
 - 저장된 파일을 Read tool로 읽어서 번역/요약에 사용
 
-### Step 4: 로그인 wall 감지
+### Step 5: 로그인 wall 감지
 
 `~/.claude/auth-registry.json` 파일이 존재하면 로그인 wall을 감지한다.
 
@@ -89,7 +138,7 @@ async (page) => {
 3. 패턴이 감지되면: 사용자에게 `login_guide` 메시지 표시, 로그인 완료 후 재시도
 4. 미등록 사이트에서 snapshot 본문이 200자 미만이면: 로그인 필요 가능성 안내
 
-### Step 5: 탭 정리
+### Step 6: 탭 정리
 
 작업 완료 후 `mcp__playwright__browser_close`로 현재 페이지를 닫는다.
 브라우저 프로세스는 HTTP 서버가 관리하므로 별도 종료 불필요.
@@ -104,14 +153,16 @@ async (page) => {
 
 1. (백그라운드 모드 시) Progress 파일 생성 → subagent 시작 → 즉시 반환
 2. Playwright MCP 서버 확인
-3. Playwright로 콘텐츠 추출 (메타데이터 + 본문 + 이미지)
-4. 로그인 wall 감지
-5. 탭 정리
-6. Wikilink 후보 파악 (vis search)
-7. 번역/요약 (shared-rules + article 구조, wikilink 포함)
-8. 이미지 다운로드
-9. 문서 저장 ($VAULT_ROOT/001-INBOX/)
-10. Related Notes 추가 (vis search)
-11. Atomic Note 후보 추가
-12. (백그라운드 모드 시) Progress 파일 업데이트
-13. 임시 파일 정리
+3. 페이지 접근
+4. **페이지 확장 (Show more 반복 클릭)**
+5. Playwright로 콘텐츠 추출 (메타데이터 + 본문 + 이미지)
+6. 로그인 wall 감지
+7. 탭 정리
+8. Wikilink 후보 파악 (vis search)
+9. 번역/요약 (shared-rules + article 구조, wikilink 포함)
+10. 이미지 다운로드
+11. 문서 저장 ($VAULT_ROOT/001-INBOX/)
+12. Related Notes 추가 (vis search)
+13. Atomic Note 후보 추가
+14. (백그라운드 모드 시) Progress 파일 업데이트
+15. 임시 파일 정리
