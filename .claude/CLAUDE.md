@@ -102,9 +102,13 @@ Delegate research, exploration, parallel analysis. One task per subagent. Multi-
 
 ### Work Patterns
 
-- Plan mode before any project. STOP and re-plan if sideways. CONTEXT7 MCP for APIs/SDKs.
-- Plan docs → Superpowers (writing-plans, executing-plans, subagent-driven-development)
-- Paths: `.claude/plans/YYYY-MM-DD-topic/` (session mgmt) | `docs/plans/` (Superpowers, git tracked)
+- 작업 규모별 계획 시스템 선택 — Plan Mode와 writing-plans 동시 사용 금지 (같은 게이트):
+  - 단순(버그픽스 등): 직접 실행
+  - 중간(기존 기능 수정): Plan Mode만
+  - 복잡(신규 기능, 대규모 리팩토링): brainstorming → writing-plans → executing-plans (Plan Mode 생략)
+- STOP and re-plan if sideways. CONTEXT7 MCP for APIs/SDKs.
+- Paths: `docs/superpowers/plans/` (writing-plans 출력, git 추적) | `.claude/plans/YYYY-MM-DD-topic/` (세션 상태 포인터, 내용 복제 금지)
+- INDEX.md Resume Point: writing-plans 문서의 다음 Task 위치 직접 참조
 - INDEX.md: per-folder (Status/Resume Point/Progress) + Global. Update both on create/complete/pause.
 - Large-scale: show sample first, confirm before full rollout
 
@@ -158,6 +162,8 @@ Each task: Output Format + Failure Conditions. Plan: Goal (testable) + Constrain
 <superpowers-workflow>
 Complex tasks: brainstorming → writing-plans → executing-plans (first 3 → feedback → autonomous)
 TDD: NO PRODUCTION CODE WITHOUT FAILING TEST FIRST. ADR: 2+ alternatives → suggest ADR.
+showClearContextOnPlanAccept 대응: writing-plans 완료 후 /clear → 실행 단계 진입. subagent-driven-development 사용 시 각 Task가 자동으로 fresh context에서 실행되므로 /clear 불필요.
+Plugin 파일 수정 금지: ~/.claude/plugins/ 직접 편집 금지. 커스터마이징은 이 파일의 context 태그(<*-context>)로만.
 </superpowers-workflow>
 
 ### Diary (Session Journal)

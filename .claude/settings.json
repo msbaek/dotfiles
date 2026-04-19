@@ -177,6 +177,7 @@
       "연결고리 찾는 중"
     ]
   },
+  "showClearContextOnPlanAccept": true,
   "effortLevel": "high",
   "advisorModel": "claude-opus-4-7",
   "autoMemoryEnabled": true,
