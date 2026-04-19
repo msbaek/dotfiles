@@ -55,7 +55,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/msbaek/dotfiles/bin/claude-sessions sync",
+            "command": "sh -c '[ -f \"$HOME/dotfiles/bin/claude-sessions\" ] && \"$HOME/dotfiles/bin/claude-sessions\" sync; exit 0'",
             "timeout": 10
           }
         ]
@@ -66,7 +66,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 ~/.claude/hooks/UserPromptSubmit/append_ultrathink.py"
+            "command": "sh -c '[ -f \"$HOME/.claude/hooks/UserPromptSubmit/append_ultrathink.py\" ] && python3 \"$HOME/.claude/hooks/UserPromptSubmit/append_ultrathink.py\"; exit 0'"
           }
         ]
       }
@@ -76,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/msbaek/.ai-dev-kit/repo/.claude-plugin/check_update.sh",
+            "command": "sh -c '[ -f \"$HOME/.ai-dev-kit/repo/.claude-plugin/check_update.sh\" ] && bash \"$HOME/.ai-dev-kit/repo/.claude-plugin/check_update.sh\"; exit 0'",
             "timeout": 5
           }
         ]
@@ -88,7 +88,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/msbaek/.claude/bin/skills-log.sh"
+            "command": "sh -c '[ -f \"$HOME/.claude/bin/skills-log.sh\" ] && \"$HOME/.claude/bin/skills-log.sh\"; exit 0'"
           }
         ]
       }
