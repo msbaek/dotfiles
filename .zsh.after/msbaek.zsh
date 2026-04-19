@@ -319,7 +319,6 @@ FZF-EOF" --preview-window=right:60%
 }
 
 # git 히스토리에서 한 커밋 뒤로 이동 (변경사항 초기화 후 부모 커밋으로 checkout)
-unalias gb
 gb() {
   git checkout .
   git clean -fd
@@ -327,7 +326,6 @@ gb() {
 }
 
 # git 히스토리에서 한 커밋 앞으로 이동. usage: gf [target-branch] (기본: main)
-unalias gf
 gf() {
   local BR
   if [ $# -eq 1 ]; then
