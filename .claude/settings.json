@@ -61,17 +61,7 @@
         ]
       }
     ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "sh -c '[ -f \"$HOME/.claude/hooks/UserPromptSubmit/append_ultrathink.py\" ] && python3 \"$HOME/.claude/hooks/UserPromptSubmit/append_ultrathink.py\"; exit 0'"
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
+"SessionStart": [
       {
         "hooks": [
           {
