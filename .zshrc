@@ -182,3 +182,6 @@ eval "$(agf init zsh)"
 ai() {
   OPENAI_API_KEY="$CEREBRAS_API_KEY" sgpt -s "$*"
 }
+
+# Atuin - Shell history manager
+eval "$(atuin init zsh)"
