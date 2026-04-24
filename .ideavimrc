@@ -19,7 +19,6 @@ set commentary
 let mapleader=" "
 
 " inoremap sa :action ShowIntentionActions<CR>
-nnoremap sa :action ShowIntentionActions<CR>
 
 inoremap jk <ESC>
 nnoremap \e :e ~/.ideavimrc<CR>
@@ -28,7 +27,10 @@ nnoremap H :action RecentFiles<CR>
 nnoremap <c-f> :action ReformatCode<CR>
 inoremap <c-f> :action ReformatCode<CR>
 nnoremap <leader>e :action SelectInProjectView<CR>
-nnoremap <leader>a :action $SelectAll<CR>
+" nnoremap <leader>a :action $SelectAll<CR>
+" nnoremap sa :action <CR>
+nnoremap <leader>a :action ShowIntentionActions<CR>
+inoremap <leader>a :action ShowIntentionActions<CR>
 
 nnoremap <leader>x :action Console.Jdbc.Execute<CR>
 " nnoremap <c-q> :action ActivateProjectToolWindow<CR>

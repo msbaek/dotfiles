@@ -44,11 +44,12 @@
       "Bash(vis:*)",
       "Bash(curl:*)"
     ],
-    "deny": ["Bash(rm -rf /)"],
+    "deny": [
+      "Bash(rm -rf /)"
+    ],
     "ask": [],
     "defaultMode": "plan"
   },
-  "model": "claude-sonnet-4-6",
   "hooks": {
     "Stop": [
       {
@@ -61,7 +62,7 @@
         ]
       }
     ],
-"SessionStart": [
+    "SessionStart": [
       {
         "hooks": [
           {
@@ -167,22 +168,34 @@
       "연결고리 찾는 중"
     ]
   },
-  "showClearContextOnPlanAccept": true,
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "advisorModel": "claude-opus-4-7",
+  "showClearContextOnPlanAccept": true,
   "autoMemoryEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "theme": "light-daltonized",
+  "editorMode": "vim",
+  "verbose": true,
+  "preferredNotifChannel": "ghostty",
+  "teammateMode": "tmux",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
   "autoUpdates": true,
   "mcpServers": {
     "playwright": {
       "url": "http://localhost:8931/mcp",
-      "args": ["@playwright/mcp@0.0.70"]
+      "args": [
+        "@playwright/mcp@0.0.70"
+      ]
     },
     "CodeGraphContext": {
       "command": "/Users/msbaek/.pyenv/shims/cgc",
-      "args": ["mcp", "start"],
+      "args": [
+        "mcp",
+        "start"
+      ],
       "disabled": false
     },
     "databricks": {
