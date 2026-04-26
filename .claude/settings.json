@@ -42,7 +42,8 @@
       "mcp__filesystem__directory_tree",
       "mcp__filesystem__read_multiple_files",
       "Bash(vis:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(pytest *)"
     ],
     "deny": [
       "Bash(rm -rf /)"
@@ -71,6 +72,15 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/.claude/hooks/session-start-context.sh",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -80,6 +90,18 @@
           {
             "type": "command",
             "command": "sh -c '[ -f \"$HOME/.claude/bin/skills-log.sh\" ] && \"$HOME/.claude/bin/skills-log.sh\"; exit 0'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Skill|ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $HOME/.claude/hooks/skill-model-advisor.py",
+            "timeout": 5
           }
         ]
       }
@@ -211,5 +233,6 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   },
-  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault"
+  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault",
+  "model": "sonnet[1m]"
 }
