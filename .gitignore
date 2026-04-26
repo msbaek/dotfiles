@@ -116,3 +116,4 @@ node_modules/
 .claude/SKILLS-DECISIONS.md
 .claude/.skills-curate-state.json
 .playwright-mcp/
+.playwright-mcp/
