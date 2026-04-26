@@ -23,6 +23,7 @@ background vis-backlink job (새 Obsidian 문서 생성 시 역방향 Related No
 
 ## Procedure
 
+0. Bash: `[ -f ~/.claude/state/vis-backlink/.disabled ] && echo OFF || echo ON` → 활성화 상태.
 1. Bash: `ls ~/.claude/state/vis-backlink/active/*.json 2>/dev/null` → 활성 목록.
 2. Bash: `ls -t ~/.claude/state/vis-backlink/history/*.json 2>/dev/null | head -5` → 최근 history.
 3. 각 JSON 파일을 Read.
@@ -30,6 +31,7 @@ background vis-backlink job (새 Obsidian 문서 생성 시 역방향 Related No
 
 ```
 === vis-backlink 상태 (YYYY-MM-DD HH:MM:SS) ===
+활성화: ON   (또는: OFF — backward 비활성화, /vis-backlink-toggle on 으로 재활성화)
 
 활성 (N):
   [20260415-104523-new-doc] phase=processing
@@ -90,3 +92,4 @@ report: "cleared N failed jobs → history/"
 
 - Spec: `~/git/vault-intelligence/docs/superpowers/specs/2026-04-15-vis-backlink-reverse-update-design.md` (§C11)
 - Hook: `~/.claude/CLAUDE.md` `<when-creating-obsidian-document>` backward 블록
+- Toggle: `/vis-backlink-toggle` (on/off 사용자 토글)
