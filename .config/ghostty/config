@@ -3,7 +3,8 @@ font-family = Sarasa Term K
 # font-family = Noto Sans CJK KR
 # font-family = JetBrains Mono
 font-size = 16
-theme = GitHub Light Default
+# theme = GitHub Light Default
+theme = Atom One Light
 
 # GitHub Light Default theme provides good contrast for terminal tools
 # Other GitHub Light variants: GitHub Light Colorblind, GitHub Light High Contrast

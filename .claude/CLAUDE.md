@@ -54,6 +54,8 @@ agf=정확한 검색(키워드/ID), qmd=세션 semantic 검색, vis=vault 문서
 - Opus 주간 quota 50% 도달 시: `/model claude-sonnet-4-6`으로 전환
 - Fast mode는 **절대** 쓰지 말 것 (extra-usage billing, Max plan 미포함)
 
+<when-plan-complete>계획/설계/advisor 상담이 끝나고 구현·커밋·테스트·문서 업데이트 같은 기계적 작업으로 넘어가는 전환 지점에서 `/model claude-sonnet-4-6` 전환을 능동적으로 제안할 것. hook `~/.claude/hooks/skill-model-advisor.py`가 `ExitPlanMode`와 writing-plans/executing-plans/subagent-driven-development skills만 자동 커버하므로, 그 밖의 경로(일반 대화로 계획이 완성된 경우 등)는 어시스턴트가 직접 안내해야 함. 사용자가 Opus 유지 결정하면 재제안 금지.</when-plan-complete>
+
 ### Action Principles
 
 <investigate_then_act>
@@ -133,7 +135,121 @@ Recoverability: commit after each meaningful unit; keep state rollback-friendly.
 Vault: `~/DocumentsLocal/msbaek_vault/` | Save: `001-INBOX/` | Attachments: `ATTACHMENTS/`
 
 <when-creating-obsidian-document>
-After creating: `curl -s --get --data-urlencode "query=키워드" "http://localhost:8741/search?search_method=hybrid&rerank=true&top_k=10"` (fallback: `vis search`). Add top 5 as `## Related Notes` (exclude self/daily, 1-line context each). No `related:` frontmatter unless asked.
+Obsidian 문서 A 를 생성하거나 정리한 후 수행한다. forward 는 기존과 동일, backward 는 신규.
+
+### Forward (A 자체에 Related Notes 추가)
+
+1. `curl -s --get --data-urlencode "query=핵심 키워드" "http://localhost:8741/search?search_method=hybrid&rerank=true&top_k=10"` 실행 (서버 미실행 시 fallback: `vis search`)
+2. 자기 자신, daily notes 제외하고 관련도 높은 후보 선별
+3. 상위 5개를 자동 추가 (사용자가 inbox 검토 시 수정하므로 별도 승인 불필요)
+4. 문서 하단에 `## Related Notes` 섹션으로 추가 (각 링크에 한 줄 맥락 설명 포함)
+5. frontmatter `related:` 필드는 명시적 요청 시에만 업데이트
+
+### Backward (A 의 Top 5 각각에 대해 역방향 Related Notes full refresh)
+
+**Config (변경 시 이 블록만 수정):**
+- `top_k`: 5
+- `bootstrap_mode`: `"minimal"` (없는 섹션은 A 링크 1 줄만 신설. `"full"` 로 전환 시 Top 5 전체 신설)
+- `exclude_patterns`: `["work-log/*.md", "ATTACHMENTS/**", "<A-path>", "frontmatter.draft == true"]`
+- `first_run_policy`: `"sync_dryrun_once"` (`.trusted` 없으면 강제 동기 dry-run)
+- `concurrency`: `"sequential"` (active/*.json polling)
+- `state_dir`: `~/.claude/state/vis-backlink/`
+- `log_path`: `~/.claude/logs/vis-backlink-YYYYMMDD.log` (자동 rollover, append-only)
+
+**사전 가드 (모두 통과해야 backward 진입):**
+
+1. git dirty tree 체크: `cd <vault_root> && git status --porcelain` 결과가 비어있지 않으면 `ENV_DIRTY_TREE` → backward 스킵, forward 는 유지, 사용자에게 "vault dirty → backward 생략" 인라인 고지.
+2. `state_dir` 부트스트랩: `mkdir -p ~/.claude/state/vis-backlink/{active,history}` (이미 있으면 noop).
+3. 동시성 체크: `ls ~/.claude/state/vis-backlink/active/*.json 2>/dev/null` 에 결과가 있으면 2초 주기 polling. 5초 경과 후에도 대기 중이면 "선행 backward job 대기 중" 1회 알림. `phase in {completed, failed, partial_failure, crashed}` 가 되면 해제.
+
+**분기 (.trusted 마커로 1회 gate):**
+
+- `.trusted` 부재 → 동기 dry-run (Flow 1). 아래 "Dry-run 프로시저" 수행.
+- `.trusted` 존재 → 비동기 dispatch (Flow 2). 아래 "Async dispatch 프로시저" 수행.
+
+**Dry-run 프로시저 (Flow 1, 첫 실행 한 번):**
+
+1. vis `/search` 호출: `curl -s --get --data-urlencode "query=<A 핵심 키워드>" "http://localhost:8741/search?search_method=hybrid&rerank=true&top_k=5"`
+2. 응답의 각 후보 X 에 대해 `exclude_patterns` 적용. A 자신은 무조건 제외.
+3. 각 X 에 대해 "X 처리 서브루틴" 을 **드라이런 모드** 로 수행 (실제 쓰기 없이 diff 계산).
+4. 대화 내 C6 포맷으로 diff 출력:
+   ```
+   역방향 Related Notes 업데이트 미리보기
+   새 문서: A = <A_path>
+   역방향 대상 (vis Top 5, 자동 제외 적용 후):
+     [1] B = ... (섹션 있음)
+     [2] C = ... (섹션 없음 → bootstrap minimal)
+     [3] D = ... (제외: work-log/**)
+     ...
+   실제 수정 대상: B, C
+   B 변경안 diff: ...
+   [계속 적용 / 취소 / 선택 적용]
+   ```
+5. 사용자 승인 → MultiEdit 순차 적용 → `touch ~/.claude/state/vis-backlink/.trusted`.
+6. 사용자 거부 → 변경 없음, `.trusted` 생성 안 함. 다음 새 문서 생성 시 다시 dry-run.
+
+**Async dispatch 프로시저 (Flow 2, `.trusted` 이후):**
+
+1. `job_id=$(date +%Y%m%d-%H%M%S)-$(basename A .md)` 형태로 생성.
+2. `~/.claude/state/vis-backlink/active/<job_id>.json` 에 초기 state 기록 (atomic: tmp → rename):
+   ```json
+   {"job_id": "...", "source": "<A_path>", "started_at": "<ISO8601>",
+    "updated_at": "<ISO8601>", "phase": "dispatched",
+    "subagent_name": "vis-backlink-<hash>",
+    "progress": {"total": 0, "done": 0, "failed": 0},
+    "targets": [],
+    "log_path": "~/.claude/logs/vis-backlink-<date>.log"}
+   ```
+3. Agent 도구로 subagent dispatch:
+   - `subagent_type`: `"general-purpose"`
+   - `name`: `"vis-backlink-<short-hash>"`
+   - `run_in_background`: `true`
+   - `prompt`: "X 처리 서브루틴" 섹션 전체 + config + state JSON 경로 + 대상 후보 (Top 5, 제외 적용 후) 를 인용. subagent 는 반드시 (a) atomic state rewrite, (b) C3 파서 규칙, (c) 에러 카탈로그 대응 수행.
+4. 메인 Claude 는 즉시 해제. 사용자는 다음 forward 작업 가능. 2초 이내 해제되어야 함 (T3).
+
+**X 처리 서브루틴 (C2, subagent 또는 dry-run 메인이 수행):**
+
+입력: `X_path`. 출력: X 수정 또는 skip 이유 + state update.
+
+1. `Read X_path` → 원본 전체.
+2. C3 파서로 섹션 분해: `(before, related_lines, after)`.
+   - 섹션 시작: `^## Related Notes\s*$`
+   - 섹션 종료: 다음 `^## ` 또는 EOF
+   - 각 줄 문법: `^-\s+\[\[(?P<link>[^\]]+)\]\](\s+—\s+(?P<desc>.+))?$`
+   - 일탈 줄 (멀티라인 desc, 주석, `![[...]]` 이미지 링크, 확장자 있는 링크): **해당 파일 skip**. state `targets[X].status="skipped_parse"`, 사유 기록.
+3. vis `/search` 호출 (`top_k=5`, `rerank=true`) → X 의 최신 Top 5. `exclude_patterns` 적용 (X 자신은 무조건 제외).
+4. 각 링크 L 에 대해 설명(desc) 결정:
+   - L 이 기존 related_lines 에 있음 → 기존 desc 보존
+   - L 이 신규 → LLM 생성 (1-2 문장 맥락 설명). 실패 → vis 응답의 snippet fallback, state 에 `llm_desc_fail` 플래그.
+5. `bootstrap_mode=="minimal"` and 기존 섹션 없음 → new lines = `[- [[A]] — <A 요약>]` 단 1줄. `"full"` → Top 5 전체.
+6. `assembled = before + "## Related Notes\n\n" + "\n".join(new_lines) + "\n" + after`.
+7. `MultiEdit(X_path, old=원본, new=assembled)`.
+8. state atomic update: `targets[X].status="done"`, `duration_ms`, `changes={added, preserved, removed}`.
+
+**완료 · 정리:**
+
+- 모든 targets 처리 완료 → state `phase="completed"`, `mv active/<id>.json history/<id>.json`.
+- 일부 실패 → `phase="partial_failure"`, active/ 유지.
+- `history/` 30개 초과 → 가장 오래된 것 삭제 (`ls -t | tail -n +31 | xargs rm`).
+- 로그: `[DONE] <job_id> total=N done=N failed=N skipped=N duration=...s` append.
+
+**에러 카탈로그 (spec §8 E1 요약, subagent 는 엄격 준수):**
+
+| 코드 | 감지 | 처리 |
+|---|---|---|
+| `ENV_DIRTY_TREE` | git status | backward 중단, forward 유지, 인라인 안내 |
+| `ENV_VIS_DOWN` | curl timeout 5s | Abort, notification |
+| `ENV_NO_TRUSTED` | `.trusted` 부재 | 동기 dry-run 진입 |
+| `DATA_PARSE_FAIL` | C3 일탈 | 해당 X skip, 로그 |
+| `DATA_FILE_MISSING` | Read 실패 | skip |
+| `DATA_SELF_REFERENCE` | filter | 조용히 제외 |
+| `LLM_CONTEXT_FULL` | 내부 | Abort, notification |
+| `LLM_DESC_GEN_FAIL` | 응답 파싱 | snippet fallback |
+| `IO_WRITE_FAIL` | MultiEdit | skip, notification |
+| `CONCURRENT_DISPATCH` | active/ 존재 | polling |
+| `SUBAGENT_CRASH` | Claude Code | phase=crashed, 수동 정리 힌트 (`/vis-backlink-status --clear-failed` 안내, 인라인 알림 즉시 출력) |
+
+**상태 조회:** `/vis-backlink-status` 스킬 사용 (별도 파일).
 </when-creating-obsidian-document>
 
 ### LSP-First Development (Java 프로젝트 전용)

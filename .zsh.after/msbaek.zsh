@@ -233,6 +233,7 @@ alias ta='tmux attach -t work'
 alias tk='tmux kill-server'
 alias vi='nvim'
 alias gl='git log'
+alias lgit='lazygit'
 # Headless mode aliases
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
 alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
@@ -247,7 +248,6 @@ alias find-largest-file='du -ah * | sort -rn'
 alias listening-port='sudo lsof -PiTCP -sTCP:LISTEN'
 alias pid-by-port='sudo lsof -i TCP:'
 alias find_wifi_pwd='security find-generic-password -wa '
-
 
 # ── ~/bin migrated functions ──
 

@@ -5,7 +5,20 @@
       "Bash(qmd-search)",
       "Bash(~/dotfiles/bin/claude-usage-statusline:*)",
       "Bash(rm -rf /Users/msbaek/.claude/plugins/cache/agenticnotetaking)",
-      "Bash(rm -rf \"/Users/msbaek/.claude/plugins/data/arscontexta-agenticnotetaking\")"
+      "Bash(rm -rf \"/Users/msbaek/.claude/plugins/data/arscontexta-agenticnotetaking\")",
+      "Bash(mkdir -p ~/.claude/skills/humanize-korean/references)",
+      "Bash(mkdir -p ~/.claude/agents)",
+      "Bash(mkdir -p ~/.claude/skills/write-in-my-voice)",
+      "Bash(mkdir -p /tmp/humanize-ko)",
+      "Bash(cp /tmp/im-not-ai/.claude/skills/humanize-korean/SKILL.md ~/.claude/skills/humanize-korean/SKILL.md)",
+      "Bash(cp /tmp/im-not-ai/.claude/skills/humanize-korean/references/ai-tell-taxonomy.md ~/.claude/skills/humanize-korean/references/)",
+      "Bash(cp /tmp/im-not-ai/.claude/skills/humanize-korean/references/rewriting-playbook.md ~/.claude/skills/humanize-korean/references/)",
+      "Bash(cp /tmp/im-not-ai/.claude/skills/humanize-korean/references/web-service-spec.md ~/.claude/skills/humanize-korean/references/)",
+      "Bash(cp /tmp/im-not-ai/.claude/agents/ai-tell-detector.md ~/.claude/agents/)",
+      "Bash(cp /tmp/im-not-ai/.claude/agents/korean-style-rewriter.md ~/.claude/agents/)",
+      "Bash(cp /tmp/im-not-ai/.claude/agents/content-fidelity-auditor.md ~/.claude/agents/)",
+      "Bash(cp /tmp/im-not-ai/.claude/agents/naturalness-reviewer.md ~/.claude/agents/)",
+      "Bash(cp /tmp/im-not-ai/.claude/agents/humanize-web-architect.md ~/.claude/agents/)"
     ]
   },
   "enabledPlugins": {
