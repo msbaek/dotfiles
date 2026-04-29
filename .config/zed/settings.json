@@ -1,4 +1,21 @@
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "theme": "Dracula Light (Alucard)",
   "base_keymap": "VSCode",
   "buffer_font_family": "BerkeleyMono Nerd Font",

@@ -18,7 +18,14 @@
       "Bash(cp /tmp/im-not-ai/.claude/agents/korean-style-rewriter.md ~/.claude/agents/)",
       "Bash(cp /tmp/im-not-ai/.claude/agents/content-fidelity-auditor.md ~/.claude/agents/)",
       "Bash(cp /tmp/im-not-ai/.claude/agents/naturalness-reviewer.md ~/.claude/agents/)",
-      "Bash(cp /tmp/im-not-ai/.claude/agents/humanize-web-architect.md ~/.claude/agents/)"
+      "Bash(cp /tmp/im-not-ai/.claude/agents/humanize-web-architect.md ~/.claude/agents/)",
+      "Bash(mkdir -p /Users/msbaek/dotfiles/docs/snapshots/2026-04-29)",
+      "Bash(cp /Users/msbaek/.claude/settings.json /Users/msbaek/dotfiles/docs/snapshots/2026-04-29/settings-global.json)",
+      "Bash(cp /Users/msbaek/.claude/settings.local.json /Users/msbaek/dotfiles/docs/snapshots/2026-04-29/settings-local.json)",
+      "Bash(cp /Users/msbaek/.claude/plugins/installed_plugins.json /Users/msbaek/dotfiles/docs/snapshots/2026-04-29/installed_plugins.json)",
+      "Bash(cp /Users/msbaek/bin/.mcp.json /Users/msbaek/dotfiles/docs/snapshots/2026-04-29/mcp-bin.json)",
+      "Bash(echo '{\"mcpServers\": {}}')",
+      "Bash(python3 -c ' *)"
     ]
   },
   "enabledPlugins": {

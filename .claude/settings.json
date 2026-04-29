@@ -297,7 +297,13 @@
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
   "autoUpdates": true,
-  "mcpServers": {},
+  "mcpServers": {
+    "playwright": {
+      "args": [
+        "@playwright/mcp@0.0.71"
+      ]
+    }
+  },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   },
