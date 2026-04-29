@@ -50,6 +50,10 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
 7. **관련 문서(Related Notes) 추가**
    - CLAUDE.md의 `<when-creating-obsidian-document>` 규칙을 따라 수행
    - `--recursive` 모드에서는 이 단계를 건너뜀
+8. **Backward Related Notes 트리거** (관련 문서들의 Related Notes 갱신)
+   - 위 단계 완료 후 `vis-backlink-trigger` 스킬을 invoke (`Skill: vis-backlink-trigger`, args=처리한 파일의 절대 경로)
+   - 휴리스틱 평가 결과에 따라 자동 진행 또는 사용자 prompt
+   - `--recursive` 모드에서는 이 단계 skip (대량 처리 시 vis daemon 부하 ↑, 발화 가치 ↓)
 
 ## 옵션 설명
 

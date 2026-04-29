@@ -32,6 +32,9 @@ $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
    - 이동 후 확인 및 결과 보고
 4. **관련 문서(Related Notes) 추가**
    - CLAUDE.md의 `<when-creating-obsidian-document>` 규칙을 따라 수행
+5. **Backward Related Notes 트리거** (관련 문서들의 Related Notes 갱신)
+   - 위 단계 완료 후 `vis-backlink-trigger` 스킬을 invoke (`Skill: vis-backlink-trigger`, args=이동 완료된 파일의 절대 경로)
+   - 휴리스틱 평가 결과에 따라 자동 진행 또는 사용자 prompt
 
 ## 옵션 설명
 
