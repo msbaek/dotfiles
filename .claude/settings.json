@@ -51,6 +51,7 @@
     "ask": [],
     "defaultMode": "plan"
   },
+  "model": "claude-sonnet-4-6",
   "hooks": {
     "Stop": [
       {
@@ -59,6 +60,15 @@
             "type": "command",
             "command": "sh -c '[ -f \"$HOME/dotfiles/bin/claude-sessions\" ] && \"$HOME/dotfiles/bin/claude-sessions\" sync; exit 0'",
             "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
           }
         ]
       }
@@ -81,6 +91,15 @@
             "timeout": 5
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -90,6 +109,15 @@
           {
             "type": "command",
             "command": "sh -c '[ -f \"$HOME/.claude/bin/skills-log.sh\" ] && \"$HOME/.claude/bin/skills-log.sh\"; exit 0'"
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
           }
         ]
       }
@@ -102,6 +130,70 @@
             "type": "command",
             "command": "python3 $HOME/.claude/hooks/skill-model-advisor.py",
             "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
           }
         ]
       }
@@ -233,6 +325,5 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   },
-  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault",
-  "model": "sonnet[1m]"
+  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault"
 }
