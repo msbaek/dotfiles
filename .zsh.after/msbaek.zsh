@@ -233,7 +233,7 @@ alias ta='tmux attach -t work'
 alias tk='tmux kill-server'
 alias vi='nvim'
 alias gl='git log'
-alias lgit='lazygit'
+alias lg='lazygit'
 # Headless mode aliases
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
 alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
