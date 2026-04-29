@@ -12,6 +12,25 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # Read stdin once and share it
 stdin_data=$(cat)
 
+# Feed abtop rate-limit collector (writes ~/.claude/abtop-rate-limits.json)
+printf '%s' "$stdin_data" | python3 -c "
+import sys, json, time, os
+data = json.load(sys.stdin)
+rl = data.get('rate_limits')
+if not rl:
+    sys.exit(0)
+out = {'source': 'claude', 'updated_at': int(time.time())}
+fh = rl.get('five_hour')
+if fh:
+    out['five_hour'] = {'used_percentage': fh.get('used_percentage', 0), 'resets_at': fh.get('resets_at', 0)}
+sd = rl.get('seven_day')
+if sd:
+    out['seven_day'] = {'used_percentage': sd.get('used_percentage', 0), 'resets_at': sd.get('resets_at', 0)}
+config_dir = os.environ.get('CLAUDE_CONFIG_DIR', os.path.join(os.path.expanduser('~'), '.claude'))
+with open(os.path.join(config_dir, 'abtop-rate-limits.json'), 'w') as f:
+    json.dump(out, f)
+" 2>/dev/null || true
+
 # Get ccstatusline output
 cc_output=$(echo "$stdin_data" | npx -y ccstatusline@latest 2>/dev/null) || cc_output=""
 
