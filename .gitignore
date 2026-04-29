@@ -118,3 +118,4 @@ node_modules/
 .playwright-mcp/
 .playwright-mcp/
 .claude/state/
+.claude/abtop-rate-limits.json
