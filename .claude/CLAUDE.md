@@ -1,23 +1,23 @@
 ## Context
 
 ### Who I work with
-<!--
-사용자 직접 보완 — 다음 항목을 채울 것:
 
-- [ ] 역할 / 경력
-- [ ] 도메인 전문성
-- [ ] 풀 프로파일 경로 (예: ~/git/aboutme/AI-PROFILE.md)
-- [ ] Tooling 환경 (모델·플랜)
-- [ ] 협업 톤 선호도
-- [ ] 한국어 응답 / English code comments / Technical terms English-first
--->
+- 역할 / 경력: k-pop goods를 전세계로 판매/배송하는 ktown4u의 CTO. science를 전공. 1995년 부터 Software Engineer로 커리어 시작
+- 도메인 전문성: ktown4u는 e-commerce, wms, oms를 하고 있음
+- 풀 프로파일 경로: ~/git/aboutme/AI-PROFILE.md
+- Tooling 환경: claude code max 100
+- 협업 톤 선호도: agile하게 가볍고 빠르게 실험하는 것을 선호. TDD, Refactoring을
+  매우 좋아함
+- 한국어 응답 / English code comments / Technical terms English-first
 
 ### What we're building (across all projects)
+
 - **안전하고 가역적인 협업** — 결정 · 구현 · 검증을 분리해 reversibility 우선
 - **Superpowers 워크플로우** — brainstorming → writing-plans → executing-plans
 - **PKM + Dev 자동화** — Obsidian vault (지식 누적) + dotfiles (환경 자동화)
 
 ### Constraints (non-negotiable)
+
 - Korean responses · English code comments · Technical terms English-first
 - Plugin 파일(~/.claude/plugins/) 직접 수정 금지 → 이 파일의 `<*-context>` 태그로만 보강
 - Fast mode 사용 금지 (Max plan 미포함, extra-usage billing 발생)
@@ -25,13 +25,11 @@
 - 결정적 규약(tools/paths/git)은 아래 `Deterministic rules` 섹션 따름
 
 ### What "good" looks like
-- **Problem-first**: 승인 조건 먼저 정의 → 분해 → E2E 우선 동작 → 개선
-  (TDD test-first의 일반화. 처음부터 완벽 추구 X)
-- 모호하면 추측 말고 질문 — 4.7의 "literal interpretation"과 "honesty" 본성을 신뢰
-- 첫 turn 완전 명세 → diff 검토보다 plan 검토 (코드 작성 전 의도 오해 포착)
+
+- **Problem-first 워크플로우** (상세는 Section 2): 승인 조건 → 분해 → E2E → 개선
+- 모호하면 추측 말고 질문 — 4.7의 "literal interpretation"·"honesty" 본성 신뢰
 - 같은 가이드 두 번 받지 않음 — 새 패턴 발견 시 ai-learnings.md 즉시 업데이트
 - 작은 commit 단위 + rollback-friendly 상태 유지
-- "위임 받은 엔지니어" 모드 — 라인별 지시받는 페어 프로그래머 아님
 
 ---
 
@@ -44,17 +42,18 @@
 1. **문제 정의** — 무엇을 / 왜 / 누구를 위해. 모호하면 질문.
 2. **승인 조건(acceptance criteria) 명시** — "끝났다"의 정의. TDD test-first의 일반화.
 3. **시나리오 분해 (Test List)** — 처리할 시나리오·슬라이스 단위로 나열 (happy path · edge cases).
-   *컴포넌트·계층 분해 아님 — 그건 4단계에서 자연스럽게 드러남.*
+   _컴포넌트·계층 분해 아님 — 그건 4단계에서 자연스럽게 드러남._
 4. **Walking Skeleton** — 가장 단순한 시나리오를 E2E로 먼저 동작.
-   *모든 계층 연결 + 각 계층 최소 구현. 완벽주의 금지.*
+   _모든 계층 연결 + 각 계층 최소 구현. 완벽주의 금지._
 5. **슬라이스 추가로 정교화** — 한 번에 하나씩. 직전 슬라이스 동작 확인 후 다음.
 6. **전체 개선** — 모든 슬라이스 E2E 동작 후에만 ("Make it right, make it fast").
 
-**왜 분해와 E2E가 충돌 없이 결합되는가**: 분해는 *너비*(시나리오), E2E는 *깊이*(계층 관통). 두 축은 직교. "잘게 쪼갠 시나리오를 하나씩 E2E로 처리"가 결합 방식.
+**왜 분해와 E2E가 충돌 없이 결합되는가**: 분해는 _너비_(시나리오), E2E는 _깊이_(계층 관통). 두 축은 직교. "잘게 쪼갠 시나리오를 하나씩 E2E로 처리"가 결합 방식.
 
 **왜 4.7과 잘 맞는가**: literal interpretation × 승인 조건 / less default-verbose × E2E 우선 / ask don't guess × 시나리오 분해 / plan 검토 > diff 검토 × 단계 1-3.
 
 **Superpowers / TDD 매핑**:
+
 - brainstorming = ①·②·③ / writing-plans = ③·④·⑤·⑥ 명세 / executing-plans = ④·⑤·⑥ 실행
 - TDD = ② 승인 조건 → ④ 첫 test 통과 → ⑤ 다음 test → ⑥ refactor
 
@@ -67,23 +66,18 @@
 
 ### Effort & Thinking
 
-- **기본 effort**: `xhigh` (Claude Code 신규 기본값). API 설계·스키마 설계·레거시 마이그레이션·대규모 리뷰에 권장. `max`는 의도적으로만 (overthinking + runaway token 위험).
-- **Effort 작업 중 토글**: 동일 작업 내 effort 전환으로 토큰/reasoning 관리 가능.
-- **Adaptive thinking** (고정 budget 폐지):
-  - 더 많은 사고: "응답 전에 신중하고 단계적으로 생각하라; 이 문제는 보이는 것보다 어렵다"
-  - 더 적은 사고: "깊이 생각하기보다 빠른 응답 우선. 확신 안 서면 직접 응답"
+- **기본 effort**: `xhigh` (Claude Code 신규 기본값). `max`는 의도적으로만 (overthinking 위험). 작업 중 토글 가능.
+- **Adaptive thinking**: 더 많은 사고는 "신중하고 단계적으로 생각", 더 적은 사고는 "확신 안 서면 직접 응답".
 
 ### Tool usage shifts (4.7 default 동작 인식)
 
-- **Tool 호출 줄어듦**: 적극적 search/file read 원하면 "언제·왜 tool을 사용해야 하는지" 명시
-- **Subagent 생성 줄어듦**: 병렬 fan-out이 이점인 경우 명시적 지시. 예시: "여러 파일 읽거나 fan-out할 때는 같은 turn 내 여러 subagent 생성"
+- **Tool 호출 줄어듦**: 적극적 search 원하면 "언제·왜 tool 사용" 명시.
+- **Subagent 생성 줄어듦**: 병렬 fan-out 이점 시 "같은 turn 내 여러 subagent 생성" 명시.
 
 ### Skill + model boundary (사용자 발견 규약)
 
-- skill 파일의 frontmatter에 `model` 필드를 명시한 경우, **main context에서 호출하면 현재 세션 모델로 실행됨** (frontmatter `model` 필드 무시)
-- 지정한 모델로 실행하려면 **sub-agent 경유 필요** — Agent 도구로 해당 skill을 sub-agent에 위임
-- 비용 의도가 의미 있을 때(예: Haiku로 실행할 의도) sub-agent 위임. 단순 대화에서는 main context 그대로 OK
-- 워크플로우: skill 호출 전 frontmatter `model` 필드 확인 → 비용 의도 의미 있으면 sub-agent로 위임
+- skill frontmatter `model` 필드는 main context 호출 시 **무시됨** — 현재 세션 모델로 실행.
+- 비용 의도(예: Haiku로 실행할 의도) 의미 있으면 **sub-agent 경유** (Agent 도구로 위임). 단순 대화는 main context OK.
 
 ---
 
@@ -93,7 +87,7 @@ Superpowers 미트리거 시(짧은 Q&A · 단순 수정)에도 적용되는 톤
 
 - **Investigate then act**: 읽지 않은 코드 추측 금지. 모호하면 정보·질문·권장사항 먼저.
 - **Active partner**: 모호하거나 잘못된 지시는 push back. "I don't know"는 정직하게.
-  *더 나은 접근·대안이 보이면 먼저 제안 후 사용자 결정에 따라 진행* (사용자가 모르는 영역일 수 있음).
+  _더 나은 접근·대안이 보이면 먼저 제안 후 사용자 결정에 따라 진행_ (사용자가 모르는 영역일 수 있음).
   침묵으로 추가 작업·우회·shortcut 금지.
 - **No overengineering**: 요청 범위 내 구현. internal 코드 신뢰, system boundary에서만 validate.
   50+ 라인 변경 시 "더 단순한 방법 없나?" 자문 (있으면 위 Active partner 패턴으로 제안).
@@ -108,14 +102,13 @@ Superpowers 미트리거 시(짧은 Q&A · 단순 수정)에도 적용되는 톤
 ### Tools (선호도)
 
 - **Syntax-aware search**: `sg --lang <lang> -p '<pattern>'`
-- **Text search**: `rg` (ripgrep)
-- **File finding**: `fd`
+- **Text search**: `rg` (ripgrep) | **File finding**: `fd`
 - **Web content**: Playwright MCP first, then WebFetch (fetch/curl/wget 사용 안 함)
-- **Large files (>500 lines)**: Serena (`mcp__serena__*` symbolic tools)
-- **Java**: 단일 프로젝트 → Serena. 다수 프로젝트 동시 → `sg --lang java`
-- **GitHub**: `gh` CLI only via Bash (`mcp__github__*` 사용 안 함)
-- **Files >1000 lines**: Read with offset/limit
+- **Large files (>500 lines)**: Serena (`mcp__serena__*`). Serena 부재 시 Read with offset/limit.
+- **GitHub**: `gh` CLI via Bash (`mcp__github__*` 사용 안 함)
 - **Edit 전**: old_string uniqueness 검증
+
+(Java 도구 분담은 `java-structural-ops` skill 참조)
 
 ### Paths
 
@@ -130,7 +123,7 @@ Superpowers 미트리거 시(짧은 Q&A · 단순 수정)에도 적용되는 톤
 
 ---
 
-## Session lifecycle (when-* hooks)
+## Session lifecycle (when-\* hooks)
 
 <when-starting-a-new-session>
 1. `PROJECT_ROOT/.claude/plans/`에서 `YYYY-MM-DD-*` 폴더 중 INDEX.md `Status: active` 확인
@@ -143,6 +136,10 @@ Superpowers 미트리거 시(짧은 Q&A · 단순 수정)에도 적용되는 톤
 <when-plan-complete>
 계획·설계·advisor 상담이 끝나고 구현·커밋·테스트·문서 업데이트 같은 기계적 작업으로 전환되는 시점에서 `/model claude-sonnet-4-6` 전환을 능동적으로 제안. hook `~/.claude/hooks/skill-model-advisor.py`는 `ExitPlanMode`와 writing-plans/executing-plans/subagent-driven-development skills만 자동 커버하므로, 그 외 경로(일반 대화로 계획 완성된 경우 등)는 직접 안내. 사용자가 Opus 유지 결정 시 재제안 금지.
 </when-plan-complete>
+
+<when-completing-task>
+완료 전: per-folder INDEX.md + Global INDEX.md 갱신, 다음 세션용 context 기록, 아키텍처 결정 시 ADR 제안. 의미 단위마다 commit하여 rollback-friendly 상태 유지. (superpowers `verification-before-completion` 미트리거 시의 보호망)
+</when-completing-task>
 
 ---
 
@@ -172,7 +169,3 @@ Format: `## YYYY-MM-DD HH:MM | [project] | [context]\n[2-10 lines]`
 Triggers: milestone, a-ha moment, end signal ("good night", "done", "I'm off"). NOT: "thanks", "ok".
 Rules: append-only, system clock only, sub-agents don't journal. Use `printf '...\n\n' >>` for safety.
 </diary>
-
-# graphify
-- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
-When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.
