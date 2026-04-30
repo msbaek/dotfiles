@@ -6,6 +6,8 @@ allowed-tools: Read, Bash, Grep, Glob, Write
 
 # 브런치 글쓰기 워크플로우 (Seed-to-Tree)
 
+<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
+
 ## 핵심 원칙
 
 > **Claude는 정원사, 사용자는 나무**

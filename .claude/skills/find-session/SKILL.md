@@ -10,6 +10,8 @@ description: |
 
 # Find Session
 
+<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
+
 이전 Claude Code 세션을 자연어 설명으로 검색하여 찾고, 상세 정보와 요약을 제공하는 스킬.
 agf(키워드 매칭)와 qmd-search(의미 검색)를 병행하여 누락을 최소화한다.
 
