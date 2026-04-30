@@ -5,6 +5,13 @@ description: Use when user asks about background vis-backlink (reverse Related N
 
 # vis-backlink-status
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=skill 호출 인자, 옵션=`--clear-failed`, `--json`, `--follow`)
+
+main context에서 직접 실행 금지.
+
 background vis-backlink job (새 Obsidian 문서 생성 시 역방향 Related Notes 업데이트) 의 진행 상태를 보고한다. LLM 호출 없음, vis daemon 비의존.
 
 ## When to use

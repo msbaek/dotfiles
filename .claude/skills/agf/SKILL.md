@@ -8,6 +8,13 @@ model: haiku
 
 # agf - Session Explorer Skill
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=skill 호출 인자, 옵션=`list`, `show`, `search`, `--deep`)
+
+main context에서 직접 실행 금지.
+
 ## 개요
 
 agf(AI Agent Session Finder)의 데이터 소스인 `~/.claude/history.jsonl`과 세션 JSONL 파일을 활용하여 Claude Code 세션을 프로그래밍 방식으로 탐색·분석하는 skill.

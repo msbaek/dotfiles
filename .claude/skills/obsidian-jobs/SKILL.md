@@ -8,6 +8,13 @@ user_invocable: true
 
 # obsidian-jobs - Obsidian Summarize 작업 상태 확인
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=skill 호출 인자, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 ## 개요
 
 Alfred 핫키로 실행된 `obsidian-summarize.sh` 작업들의 진행 상태를 확인하는 skill.

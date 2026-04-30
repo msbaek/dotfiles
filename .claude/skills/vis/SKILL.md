@@ -11,6 +11,13 @@ model: haiku
 
 # Vault Intelligence System (vis) Skill
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=skill 호출 인자, 옵션=`--search-method`, `--rerank`, `--expand`, `--top-k`, `--output`, `--dry-run`, `--recursive`)
+
+main context에서 직접 실행 금지.
+
 ## 개요
 
 vis는 BGE-M3 기반 시맨틱 검색 엔진으로 Obsidian vault의 지식 관리를 지원하는 CLI 도구.

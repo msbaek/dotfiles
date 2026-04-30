@@ -9,6 +9,13 @@ description: >
 
 # SQL Log Extractor
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=skill 호출 인자, 옵션=`--all`, `--json`, `-o`)
+
+main context에서 직접 실행 금지.
+
 서버 로그에서 SQL을 추출하고 포맷팅하며 ISMS 마스킹 컴플라이언스를 분석하는 스킬.
 
 ## When to Use

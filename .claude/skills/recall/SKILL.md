@@ -8,6 +8,13 @@ allowed-tools: Bash(vis:*), Bash(python3:*)
 
 # Recall Skill
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=skill 호출 인자, 옵션=`yesterday`, `last week`, `graph`, `--min-files`, `--all-projects`)
+
+main context에서 직접 실행 금지.
+
 Three modes: temporal (date-based session timeline), topic (vis semantic search across vault), and graph (interactive visualization of session-file relationships). Every recall ends with the **One Thing** - a concrete, highest-leverage next action synthesized from the results.
 
 ## What It Does
