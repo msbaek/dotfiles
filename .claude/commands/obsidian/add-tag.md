@@ -10,6 +10,20 @@ model: sonnet
 
 $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
 
+## 실행 모델 (필수)
+
+**이 작업은 반드시 sonnet-4.6 sub-agent에 동기 위임으로 실행한다. main context에서 직접 실행하지 말 것.**
+
+호출 방법:
+- Tool: `Agent` (Task)
+- `subagent_type: "general-purpose"`
+- `model: "sonnet"` — main context 모델과 무관하게 sonnet-4.6 고정 (비용 최적화)
+- `run_in_background: false` — 사용자가 결과를 동기적으로 받음
+- `prompt`: 아래 "작업 프로세스" 전체 + `$ARGUMENTS` 값 + 파일 경로를 그대로 전달
+- 사용자 옵션(`--dry-run`, `--recursive`)도 prompt에 포함
+
+sub-agent 결과를 받으면 "작업 결과 형식"에 맞춰 사용자에게 보고. 단, sub-agent 위임 외의 추가 분석/실행은 하지 말 것.
+
 ## 작업 프로세스
 
 1. **파일 검증**

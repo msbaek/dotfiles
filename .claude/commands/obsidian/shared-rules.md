@@ -115,7 +115,10 @@ source: 원본 URL
 ### 백그라운드 모드 프로세스
 
 1. Progress 파일 생성 (`.claude/summarize-progress/`)
-2. Task tool로 백그라운드 subagent 시작 (`run_in_background: true`)
+2. Task tool로 백그라운드 subagent 시작:
+   - `subagent_type: "general-purpose"`
+   - `model: "sonnet"` — 비용 최적화 (main context 모델과 무관하게 sonnet-4.6으로 고정)
+   - `run_in_background: true`
 3. 사용자에게 알림 후 즉시 반환
 
 ### Progress 파일
