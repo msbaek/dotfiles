@@ -5,6 +5,13 @@ model: haiku
 
 스킬 사용 통계를 리포트한다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=$ARGUMENTS, 옵션=`--unused`, `--overlap`)
+
+main context에서 직접 실행 금지.
+
 ## Arguments
 
 - `$1`: lookback days (기본 30). 숫자만 지정. 예: `/skills-audit 60`

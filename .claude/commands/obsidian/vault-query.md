@@ -9,6 +9,13 @@ model: haiku
 
 vault-intelligence 시스템을 활용하여 Obsidian vault 문서를 검색하고 분석합니다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=$ARGUMENTS, 옵션=`--search-method`, `--rerank`, `--expand`, `--top-k`, `--threshold`, `--with-centrality`, `--output`)
+
+main context에서 직접 실행 금지.
+
 ## 🎯 사용 방법 (간단!)
 
 ### 방법 1: 검색어만 입력 (가장 간단, 권장)

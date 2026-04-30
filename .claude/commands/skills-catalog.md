@@ -5,6 +5,13 @@ model: haiku
 
 현재 설치된 모든 스킬을 스캔하여 `~/.claude/SKILLS-INDEX.md`를 재생성하고 카테고리별 요약을 표시한다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=$ARGUMENTS, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 ## 실행
 
 ```bash

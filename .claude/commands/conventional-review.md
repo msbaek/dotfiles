@@ -6,6 +6,13 @@ model: haiku
 
 # Conventional Review Comment Formatter
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 B 적용**
+(model="haiku", run_in_background=false, args=$ARGUMENTS, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 Transform code review comments into structured Conventional Comments format for clearer, more actionable feedback.
 
 ## Task
