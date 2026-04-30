@@ -18,7 +18,12 @@ when_to_use: >
 
 # Session Handoff
 
-<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=skill 호출 인자, 옵션=없음)
+
+main context에서 직접 실행 금지.
 
 세션에서 수행한 작업 내역을 plan, INDEX, 메모리, 저널에 반영하고, 다음 세션에서 즉시 재개할 수 있는 프롬프트를 제공한다.
 
