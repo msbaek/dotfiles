@@ -1,7 +1,8 @@
 ---
 description: audit 결과 기반 대화형 skill 정리 (unused/overlap 결정 기록)
-model: sonnet
 ---
+
+<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
 
 최근 audit에서 발견된 unused/overlap 건에 대해 하나씩 결정하고 `SKILLS-DECISIONS.md`에 기록한다.
 

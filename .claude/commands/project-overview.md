@@ -2,10 +2,11 @@
 argument-hint:
   "[--depth shallow|deep] [--focus area] [--format summary|detailed] [--include-patterns] [--exclude-patterns]"
 description: "프로젝트 구조와 목적을 체계적으로 분석하여 종합적인 온보딩 정보 제공"
-model: sonnet
 ---
 
 # /on-boarding $ARGUMENTS
+
+<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
 
 현재 프로젝트의 구조, 목적, 기술 스택을 체계적으로 분석하여 종합적인 온보딩 정보를 제공합니다. 새로운 개발자가 프로젝트를 빠르게 이해하고 기여할 수 있도록 돕습니다.
 

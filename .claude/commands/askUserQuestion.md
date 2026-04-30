@@ -1,8 +1,9 @@
 ---
-model: sonnet
 ---
 
 # Interactive Code Assistant with User Clarification
+
+<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
 
 대화형 질문을 통해 사용자의 정확한 요구사항을 파악하고 맞춤형 솔루션을 제공하는 도우미입니다.
 

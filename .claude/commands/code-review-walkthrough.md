@@ -1,10 +1,11 @@
 ---
 argument-hint: "<base-branch> [--base-commit <hash>]"
 description: "오프라인 코드 리뷰 워크스루 설계 — 태그 기반 IntelliJ diff + 디버거 구성"
-model: sonnet
 ---
 
 # 오프라인 코드 리뷰 워크스루 설계
+
+<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
 
 현재 브랜치의 변경사항을 분석하여 오프라인 코드 리뷰용 워크스루를 설계합니다.
 

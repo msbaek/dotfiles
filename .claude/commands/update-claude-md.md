@@ -2,10 +2,11 @@
 description: Analyze current session for CLAUDE.md improvements and apply them interactively
 allowed-tools: [Read, Write, Edit, Bash]
 argument-hint: (no arguments needed)
-model: sonnet
 ---
 
 # Analyze Current Session for CLAUDE.md Improvements
+
+<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
 
 ## Phase 1: Session Analysis
 현재 대화를 분석하여 다음 패턴을 찾아주세요:
