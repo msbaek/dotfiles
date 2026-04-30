@@ -7,6 +7,13 @@ model: sonnet
 
 # Article Summarize - $ARGUMENTS
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 C 적용**
+(model="sonnet", run_in_background=true, args=$ARGUMENTS, 옵션=[url])
+
+main context에서 직접 실행 금지. 즉시 progress 파일 생성 후 사용자 알림.
+
 기술 문서 URL을 받아 번역/정리하여 Obsidian 문서를 생성합니다.
 
 ## 공통 규칙

@@ -6,6 +6,13 @@ model: sonnet
 
 # 커피타임 대화 정리 - $ARGUMENTS
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 C 적용**
+(model="sonnet", run_in_background=true, args=$ARGUMENTS, 옵션=[YYYY-MM-DD] [대화 내용])
+
+main context에서 직접 실행 금지. 즉시 progress 파일 생성 후 사용자 알림.
+
 팀 커피타임 대화 내용을 주제별로 정리하여 마크다운 문서로 생성하고
 Git repository에 자동으로 commit & push합니다.
 
