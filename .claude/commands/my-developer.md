@@ -1,9 +1,9 @@
 ---
 ---
 
-<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
-
 My developer wrote up this plan. Give me feedback on it - high level and down to the nitty gritty.
+
+<!-- Execution: interactive (main context). frontmatter `model:` 필드는 main context 호출 시 무시되므로 제거. multi-turn 대화 유지를 위해 sub-agent 위임 안 함. -->
 
 How can we improve it? Are there any big architectural changes we should make?
 
