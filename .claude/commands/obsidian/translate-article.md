@@ -10,6 +10,13 @@ model: sonnet
 
 지정된 문서를 읽고, 요약하지 말고 한글로 번역해서 원문과 동일한 문서 구조를 갖는 obsidian 문서로 작성해줘.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 ## 작업 프로세스
 
 1. $ARGUMENTS 로 전달된 url의 문서를 **반드시 playwright tool로만** 읽어서

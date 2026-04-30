@@ -9,6 +9,13 @@ model: sonnet
 
 제공되는 YouTube URL 또는 트랜스크립트를 요약하지 말고 한글로 번역해서 원문과 동일한 문서 구조를 갖는 obsidian 문서로 작성해줘.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 먼저 입력 데이터 타입을 확인하겠습니다:
 
 ```bash

@@ -10,6 +10,13 @@ model: sonnet
 
 $ARGUMENTS가 제공되지 않은 경우, 세션 내용을 자동으로 분석하여 주제를 추출합니다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=`--include-code`, `--format markdown|summary`)
+
+main context에서 직접 실행 금지.
+
 ## 작업 프로세스
 
 1. **세션 정보 수집**

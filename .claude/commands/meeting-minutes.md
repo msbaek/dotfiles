@@ -11,6 +11,13 @@ model: sonnet
 **첫 번째 인자**: 날짜 (YYYY-MM-DD 형식, 선택사항 - 생략시 오늘 날짜 사용)
 **두 번째 인자**: 회의 녹취록 내용
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 ## 작업 프로세스
 
 1. **인자 파싱 및 녹취록 분석**

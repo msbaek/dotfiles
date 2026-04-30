@@ -9,6 +9,13 @@ model: sonnet
 대량의 Obsidian 파일에 대해 다양한 작업을 병렬로 수행합니다.
 Tmux Orchestrator를 활용하여 여러 Claude Agent를 동시에 운영합니다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=`--task`, `--source`, `--agents`, `--config`, `--preset`, `--keep-session`, `--dry-run`)
+
+main context에서 직접 실행 금지.
+
 ## 사용법
 
 ### 기본 구조

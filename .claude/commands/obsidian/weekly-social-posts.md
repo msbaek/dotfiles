@@ -9,6 +9,13 @@ model: sonnet
 Things에서 최근 메모들을 수집하여 주제별로 분류하고, 소셜 미디어에 올릴 수 있는
 포스트로 변환합니다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=`--complete`, `--days 숫자`, `--filter 키워드`, `--tag 태그명`)
+
+main context에서 직접 실행 금지.
+
 ## 작업 프로세스
 
 1. **옵션 파싱**

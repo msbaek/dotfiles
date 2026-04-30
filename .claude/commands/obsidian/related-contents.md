@@ -10,6 +10,13 @@ model: sonnet
 
 $ARGUMENTS가 제공되지 않은 경우, 이 도움말을 표시합니다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 ## 작업 프로세스
 
 1. **파일 검증**

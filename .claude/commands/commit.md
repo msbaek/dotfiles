@@ -9,6 +9,13 @@ model: sonnet
 현재 변경사항을 분석하여 아래 정의된 규칙(`### 메시지 구조`)에 따라
 커밋 메시지를 자동으로 생성하고 커밋을 실행합니다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=`--amend`, `--push`, `--no-verify`)
+
+main context에서 직접 실행 금지.
+
 ## 작업 프로세스
 
 1. **변경사항 분석**

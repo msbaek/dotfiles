@@ -10,6 +10,13 @@ model: sonnet
 
 $ARGUMENTS가 제공되지 않은 경우, 최근 변경된 파일들을 대상으로 검사합니다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=$ARGUMENTS, 옵션=`--fix`, `--severity high|medium|low`, `--report`)
+
+main context에서 직접 실행 금지.
+
 ## 작업 프로세스
 
 1. **검사 대상 결정**
