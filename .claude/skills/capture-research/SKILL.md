@@ -35,6 +35,13 @@ arguments:
 
 # Capture Session Research to Obsidian Vault
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=skill 호출 인자, 옵션=--brief|--standard|--detailed)
+
+main context에서 직접 실행 금지.
+
 현재 세션의 조사/분석/연구/평가/비교/권고 결과를 Obsidian vault의 `001-INBOX/` 폴더에 자세한 한국어 마크다운 문서로 저장합니다.
 
 ## Inputs

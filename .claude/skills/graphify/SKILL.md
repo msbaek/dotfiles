@@ -7,6 +7,13 @@ model: sonnet
 
 # /graphify
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=skill 호출 인자, 옵션=--mode deep|--update|--directed|--whisper-model|--cluster-only|--no-viz|--svg|--graphml|--neo4j|--neo4j-push|--mcp|--watch|--wiki|--obsidian|--obsidian-dir)
+
+main context에서 직접 실행 금지.
+
 Turn any folder of files into a navigable knowledge graph with community detection, an honest audit trail, and three outputs: interactive HTML, GraphRAG-ready JSON, and a plain-language GRAPH_REPORT.md.
 
 ## Usage

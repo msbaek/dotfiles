@@ -10,6 +10,13 @@ model: sonnet
 
 # Architecture Diagram Skill
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=skill 호출 인자, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 Create professional technical architecture diagrams as self-contained HTML files with inline SVG graphics and CSS styling.
 
 ## Design System

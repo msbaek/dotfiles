@@ -8,6 +8,13 @@ description: |
 
 # Claude Code Release Tracker
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용**
+(model="sonnet", run_in_background=false, args=skill 호출 인자, 옵션=--backfill)
+
+main context에서 직접 실행 금지.
+
 ## 개요
 
 X(@claudecodelog)에서 Claude Code 릴리스 노트를 수집하여 한글로 번역/구조화하고
