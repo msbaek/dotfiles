@@ -9,7 +9,7 @@ model: sonnet
 
 ## 실행 모델 (필수)
 
-**~/.claude/templates/delegation.md 변형 C 적용**
+**~/.claude/templates/delegation.md 변형 C 적용** — 단, `subagent_type`은 `general-purpose` 대신 **`article-obsidian-summarizer`** 사용 (전용 sub-agent).
 (model="sonnet", run_in_background=true, args=$ARGUMENTS, 옵션=[url])
 
 main context에서 직접 실행 금지. 즉시 progress 파일 생성 후 사용자 알림.
