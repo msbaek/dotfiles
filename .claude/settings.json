@@ -299,7 +299,7 @@
   "mcpServers": {
     "playwright": {
       "args": [
-        "@playwright/mcp@0.0.71"
+        "@playwright/mcp@0.0.73"
       ]
     }
   },
