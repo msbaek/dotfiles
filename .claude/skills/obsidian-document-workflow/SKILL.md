@@ -12,6 +12,13 @@ description: |
 
 Obsidian 문서 A를 생성·정리한 직후 자동 실행.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용** — 단, `subagent_type`은 `general-purpose` 대신 **`obsidian-forward-related-injector`** 사용 (전용 sub-agent).
+(model="sonnet", run_in_background=false, args=A 문서 경로, 옵션=없음)
+
+main context에서 직접 실행 금지.
+
 ## Forward Related Notes 추가 절차
 
 1. **검색**: vault-intelligence hybrid search 호출

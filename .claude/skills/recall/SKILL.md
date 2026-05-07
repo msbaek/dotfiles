@@ -10,7 +10,7 @@ allowed-tools: Bash(vis:*), Bash(python3:*)
 
 ## 실행 모델 (필수)
 
-**~/.claude/templates/delegation.md 변형 B 적용**
+**~/.claude/templates/delegation.md 변형 B 적용** — 단, `subagent_type`은 `general-purpose` 대신 **`vault-recall-runner`** 사용 (전용 sub-agent).
 (model="haiku", run_in_background=false, args=skill 호출 인자, 옵션=`yesterday`, `last week`, `graph`, `--min-files`, `--all-projects`)
 
 main context에서 직접 실행 금지.
