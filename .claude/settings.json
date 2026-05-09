@@ -299,8 +299,12 @@
   "mcpServers": {
     "playwright": {
       "args": [
-        "@playwright/mcp@0.0.73"
+        "@playwright/mcp@0.0.75"
       ]
+    },
+    "financial-datasets": {
+      "type": "http",
+      "url": "https://mcp.financialdatasets.ai"
     }
   },
   "feedbackSurveyState": {

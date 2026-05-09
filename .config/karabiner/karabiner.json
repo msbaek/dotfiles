@@ -181,7 +181,17 @@
             "is_keyboard": true,
             "product_id": 448,
             "vendor_id": 13364
-          }
+          },
+          "simple_modifications": [
+            {
+              "from": { "key_code": "f14" },
+              "to": [{ "consumer_key_code": "display_brightness_decrement" }]
+            },
+            {
+              "from": { "key_code": "f15" },
+              "to": [{ "consumer_key_code": "display_brightness_increment" }]
+            }
+          ]
         },
         {
           "disable_built_in_keyboard_if_exists": true,
