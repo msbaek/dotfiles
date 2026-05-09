@@ -91,9 +91,9 @@
                         "description": "apple internal keyboad"
                       },
                       {
-                        "vendor_id": 2131,
-                        "product_id": 256,
-                        "description": "HHKB Professional"
+                        "vendor_id": 13364,
+                        "product_id": 448,
+                        "description": "Keychron Q60"
                       }
                     ],
                     "type": "device_if"
@@ -116,9 +116,9 @@
                         "description": "apple internal keyboad"
                       },
                       {
-                        "vendor_id": 2131,
-                        "product_id": 256,
-                        "description": "HHKB Professional"
+                        "vendor_id": 13364,
+                        "product_id": 448,
+                        "description": "Keychron Q60"
                       }
                     ],
                     "type": "device_if"
@@ -129,24 +129,6 @@
                   "modifiers": { "mandatory": ["right_shift"] }
                 },
                 "to": [{ "key_code": "f18" }],
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Right Option to Hyper Key on Internal Keyboard",
-            "manipulators": [
-              {
-                "from": {
-                  "key_code": "right_command",
-                  "modifiers": { "optional": ["any"] }
-                },
-                "to": [
-                  {
-                    "key_code": "left_control",
-                    "modifiers": ["left_shift", "left_command", "left_option"]
-                  }
-                ],
                 "type": "basic"
               }
             ]
@@ -195,20 +177,10 @@
       "devices": [
         {
           "disable_built_in_keyboard_if_exists": true,
-          "fn_function_keys": [
-            {
-              "from": { "key_code": "f1" },
-              "to": [{ "consumer_key_code": "display_brightness_decrement" }]
-            },
-            {
-              "from": { "key_code": "f2" },
-              "to": [{ "consumer_key_code": "display_brightness_increment" }]
-            }
-          ],
           "identifiers": {
             "is_keyboard": true,
-            "product_id": 256,
-            "vendor_id": 2131
+            "product_id": 448,
+            "vendor_id": 13364
           }
         },
         {
