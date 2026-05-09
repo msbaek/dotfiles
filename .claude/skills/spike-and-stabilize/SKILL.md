@@ -78,6 +78,8 @@ Phase 1 시작. 범위: [happy path 1개 설명]. 예상: [세션 수 / 시간]
 - 구조적 결함 (계층 꼬임, 책임 혼재, 도메인 모델 오류)
 - in-place refactor 가능성 직관 평가: **high / medium / low**
 
+> _구현 단계(절차 3)는 `spike-implementer` agent로 dispatch한다. main context는 절차 1·2(약식 brainstorming, acceptance test 정의)와 절차 5 직후 Transition Gate를 책임진다._
+
 ### Phase 1 위반 신호 (즉시 중단)
 
 - Phase 1에서 unit test 작성 -> Phase 2로 미루기
