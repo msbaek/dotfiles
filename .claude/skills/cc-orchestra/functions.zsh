@@ -26,3 +26,11 @@ ccdown() {
   [[ $# -ne 1 ]] && { echo "Usage: ccdown <task>" >&2; return 1; }
   "${_CC_SCRIPTS}/down.sh" "$1"
 }
+
+# ccadd <proj> <path> — add pane to current task (requires CC_ORCHESTRA_TASK)
+ccadd() {
+  local task="${CC_ORCHESTRA_TASK:-}"
+  [[ -z "$task" ]] && { echo "ccadd: set CC_ORCHESTRA_TASK first" >&2; return 1; }
+  [[ $# -ne 2 ]] && { echo "Usage: ccadd <proj> <path>" >&2; return 1; }
+  "${_CC_SCRIPTS}/add.sh" "$task" "$@"
+}
