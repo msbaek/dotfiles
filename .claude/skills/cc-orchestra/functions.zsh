@@ -15,3 +15,8 @@ ccsend() {
   [[ $# -lt 2 ]] && { echo "Usage: ccsend <proj> <prompt>" >&2; return 1; }
   "${_CC_SCRIPTS}/send.sh" "$task" "$@"
 }
+
+# cclist — show all active tasks and panes
+cclist() {
+  "${_CC_SCRIPTS}/list.sh" "$@"
+}
