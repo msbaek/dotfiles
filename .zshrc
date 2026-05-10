@@ -76,3 +76,6 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship prompt
 eval "$(starship init zsh)"
+
+# cc-orchestra
+source ~/.claude/skills/cc-orchestra/functions.zsh
