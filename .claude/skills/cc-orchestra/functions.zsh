@@ -56,7 +56,7 @@ ccup() {
   "${_CC_SCRIPTS}/up.sh" "$@"
   if [[ $? -eq 0 && -n "${task:-}" ]]; then
     export CC_ORCHESTRA_TASK="$task"
-    [[ "$scope_flag" == "--window" ]] && export CC_ORCHESTRA_SCOPE="window" || true
+    [[ -n "$scope_flag" ]] && export CC_ORCHESTRA_SCOPE="${scope_flag#--}" || true
     echo "cc-orchestra: CC_ORCHESTRA_TASK=${task}"
   fi
 }
