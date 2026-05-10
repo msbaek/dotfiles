@@ -34,3 +34,11 @@ ccadd() {
   [[ $# -ne 2 ]] && { echo "Usage: ccadd <proj> <path>" >&2; return 1; }
   "${_CC_SCRIPTS}/add.sh" "$task" "$@"
 }
+
+# ccrm <proj> — remove pane from current task (requires CC_ORCHESTRA_TASK)
+ccrm() {
+  local task="${CC_ORCHESTRA_TASK:-}"
+  [[ -z "$task" ]] && { echo "ccrm: set CC_ORCHESTRA_TASK first" >&2; return 1; }
+  [[ $# -ne 1 ]] && { echo "Usage: ccrm <proj>" >&2; return 1; }
+  "${_CC_SCRIPTS}/remove.sh" "$task" "$1"
+}
