@@ -20,3 +20,9 @@ ccsend() {
 cclist() {
   "${_CC_SCRIPTS}/list.sh" "$@"
 }
+
+# ccdown <task> — tear down task environment
+ccdown() {
+  [[ $# -ne 1 ]] && { echo "Usage: ccdown <task>" >&2; return 1; }
+  "${_CC_SCRIPTS}/down.sh" "$1"
+}
