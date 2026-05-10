@@ -42,3 +42,21 @@ ccrm() {
   [[ $# -ne 1 ]] && { echo "Usage: ccrm <proj>" >&2; return 1; }
   "${_CC_SCRIPTS}/remove.sh" "$task" "$1"
 }
+
+# ccup [--window|--session] <task> <main> <main-path> [sub sub-path ...]
+# Auto-sets CC_ORCHESTRA_TASK on success
+ccup() {
+  local scope_flag=""
+  if [[ "${1:-}" == "--window" || "${1:-}" == "--session" ]]; then
+    scope_flag="$1"
+  fi
+  local offset=0
+  [[ -n "$scope_flag" ]] && offset=1
+  local task="${@:$((offset + 1)):1}"
+  "${_CC_SCRIPTS}/up.sh" "$@"
+  if [[ $? -eq 0 && -n "${task:-}" ]]; then
+    export CC_ORCHESTRA_TASK="$task"
+    [[ "$scope_flag" == "--window" ]] && export CC_ORCHESTRA_SCOPE="window" || true
+    echo "cc-orchestra: CC_ORCHESTRA_TASK=${task}"
+  fi
+}
