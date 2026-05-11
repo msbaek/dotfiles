@@ -1,4 +1,5 @@
 tap "databricks/tap"
+tap "detachhead/tap"
 tap "dlvhdr/formulae"
 tap "f/textream"
 tap "felixkratz/formulae"
