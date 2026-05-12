@@ -13,6 +13,19 @@ description: |
 Java 소스의 선언(메서드·클래스·생성자·람다 등)을 AST 정규화 후 Jaccard 유사도로 비교하여
 중복 후보를 발견하고 리팩터링 우선순위를 제시한다.
 
+## 실행 모델 (필수)
+
+**~/.claude/templates/delegation.md 변형 A 적용** — `subagent_type: "dry4java-analyzer"` (전용 sub-agent).
+(model="sonnet", run_in_background=false, args=$ARGUMENTS)
+
+`dry4java-analyzer` agent에 다음을 포함해 위임:
+- 현재 작업 디렉토리 (프로젝트 루트, 즉 `pom.xml` 또는 `build.gradle`이 있는 경로)
+- `$ARGUMENTS` — 경로·`--threshold`·`--min-lines` 등 옵션 플래그 그대로 전달
+
+main context에서 직접 실행 금지.
+
+---
+
 ## 유사도 계산 방식
 
 ```
@@ -134,7 +147,7 @@ java -jar ~/git/uncle-bob/dry4java/target/dry4java-0.1.0-SNAPSHOT.jar src/main/j
 - AST 노드 수가 `--min-nodes`(기본 20) 미만인 선언도 제외
 - JAR 미존재 시: `cd ~/git/uncle-bob/dry4java && mvn -q -DskipTests package`로 빌드
 
-## Sub-agent 위임
+## 참고: dry4java-analyzer agent
 
-분석 + 상세 해석 + 리팩터링 계획이 필요하면 `dry4java-analyzer` agent에 위임:
-→ 결과 파싱, 소스 코드 검사, 리팩터링 우선순위 전체를 처리.
+위임 대상 agent(`dry4java-analyzer`)의 전체 워크플로우:
+JAR 검증 → scope 확인 → 실행 → 🔴/🟡/🟢 tier 분류 → 소스 검사 → 리팩터링 계획 → 우선순위 정렬.
