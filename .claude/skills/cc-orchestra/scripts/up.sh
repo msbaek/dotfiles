@@ -129,6 +129,32 @@ done
 # --- Focus main pane ---
 tmux select-pane -t "$MAIN_PANE"
 
+# --- Check main project's CLAUDE.md for Auto-Dispatch section ---
+MAIN_CLAUDE_MD="${MAIN_PATH}/CLAUDE.md"
+TEMPLATE_PATH="${HOME}/.claude/skills/cc-orchestra/templates/auto-dispatch.md"
+if [[ -f "$MAIN_CLAUDE_MD" ]]; then
+  if ! grep -q "Auto-Dispatch" "$MAIN_CLAUDE_MD"; then
+    SIBLING_LIST=""
+    if [[ ${#SUB_PROJS[@]} -gt 0 ]]; then
+      SIBLING_LIST=$(IFS=,; echo "${SUB_PROJS[*]}")
+      SIBLING_LIST="${SIBLING_LIST//,/, }"
+    fi
+    cc_info ""
+    cc_info "ℹ️  ${MAIN_PROJ}/CLAUDE.md 에 Auto-Dispatch 섹션이 없습니다."
+    cc_info "    메인 pane CC 가 자동 dispatch 룰을 인지하려면 다음 템플릿을 참조해 추가하세요:"
+    cc_info "    ${TEMPLATE_PATH}"
+    if [[ -n "$SIBLING_LIST" ]]; then
+      cc_info "    현재 task 의 sibling: ${SIBLING_LIST}"
+    fi
+    cc_info ""
+  fi
+elif [[ -d "$MAIN_PATH" ]]; then
+  cc_info ""
+  cc_info "ℹ️  ${MAIN_PROJ}/CLAUDE.md 가 없습니다. 메인 CC 동작 룰 명시를 위해 생성을 고려하세요."
+  cc_info "    템플릿: ${TEMPLATE_PATH}"
+  cc_info ""
+fi
+
 # --- Done ---
 cc_info "orchestra up: task=${TASK} scope=${SCOPE} projs=${MAIN_PROJ}$(printf ' %s' "${SUB_PROJS[@]:-}")"
 if [[ "$SCOPE" == "session" ]]; then
