@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — Interactive Review</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg: #0a0e1a; --bg-elev: #131826; --bg-elev-2: #1a2032;
+  --border: #1f2937; --border-hi: #374151;
+  --text: #e5e7eb; --text-dim: #9ca3af; --text-faint: #6b7280;
+  --accept: #10b981; --question: #f59e0b; --modify: #3b82f6; --reject: #ef4444;
+  --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.65; display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+aside { position: sticky; top: 0; max-height: 100vh; overflow-y: auto; background: var(--bg-elev); border-right: 1px solid var(--border); padding: 24px 18px; }
+aside h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 14px; font-weight: 600; }
+aside h2:not(:first-child) { margin-top: 24px; }
+aside ol { list-style: none; }
+aside li { margin-bottom: 4px; }
+aside a { color: var(--text-dim); text-decoration: none; font-size: 13px; display: flex; justify-content: space-between; padding: 7px 10px; border-radius: 6px; transition: background 0.15s, color 0.15s; }
+aside a:hover { background: var(--bg-elev-2); color: var(--text); }
+aside a.current { background: var(--bg-elev-2); color: var(--text); border-left: 2px solid var(--modify); padding-left: 8px; }
+.filters { display: flex; gap: 5px; flex-wrap: wrap; }
+.filters button { background: var(--bg-elev-2); color: var(--text-dim); border: 1px solid var(--border); padding: 5px 9px; border-radius: 5px; font-size: 11px; cursor: pointer; font-family: var(--mono); transition: all 0.15s; }
+.filters button:hover { color: var(--text); }
+.filters button.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+main { padding: 36px 56px 220px; max-width: 1100px; }
+header.hero { margin-bottom: 36px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+header.hero h1 { font-size: 26px; margin-bottom: 10px; letter-spacing: -0.01em; }
+header.hero .meta { font-size: 13px; color: var(--text-dim); font-family: var(--mono); }
+header.hero .meta b { color: var(--text); }
+section.s { margin-bottom: 56px; }
+section.s > h2 { font-size: 21px; margin-bottom: 6px; }
+section.s > .lede { font-size: 14px; color: var(--text-dim); margin-bottom: 22px; max-width: 760px; }
+.item { background: var(--bg-elev); border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; margin-bottom: 14px; border-left: 4px solid transparent; transition: border-color 0.15s; }
+.item:hover { border-color: var(--border-hi); }
+.item.state-accept { border-left-color: var(--accept); }
+.item.state-question { border-left-color: var(--question); }
+.item.state-modify { border-left-color: var(--modify); }
+.item.state-reject { border-left-color: var(--reject); opacity: 0.7; }
+.item-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+.item-head-left { flex: 1; min-width: 280px; }
+.item-id { font-family: var(--mono); font-size: 11px; color: var(--text-faint); display: block; margin-bottom: 4px; }
+.item-title { font-size: 16px; font-weight: 600; }
+.item-actions { display: flex; gap: 5px; flex-shrink: 0; }
+.action { background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--text-dim); padding: 6px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.15s; font-family: var(--mono); user-select: none; }
+.action:hover { color: var(--text); border-color: var(--border-hi); }
+.action.on.accept { background: var(--accept); color: #042f1d; border-color: var(--accept); font-weight: 700; }
+.action.on.question { background: var(--question); color: #3b2a08; border-color: var(--question); font-weight: 700; }
+.action.on.modify { background: var(--modify); color: #0a1c3a; border-color: var(--modify); font-weight: 700; }
+.action.on.reject { background: var(--reject); color: #3b0a0a; border-color: var(--reject); font-weight: 700; }
+.item-body { color: var(--text-dim); font-size: 14px; }
+.item-body code { background: var(--bg-elev-2); padding: 2px 5px; border-radius: 3px; font-family: var(--mono); font-size: 12.5px; color: var(--text); }
+.item-body b, .item-body strong { color: var(--text); font-weight: 600; }
+.item-body ul, .item-body ol { margin-left: 20px; margin-top: 6px; margin-bottom: 6px; }
+.item-body li { margin-bottom: 4px; }
+.item-body p { margin-bottom: 8px; }
+.item-body p:last-child { margin-bottom: 0; }
+.item-body pre { background: var(--bg-elev-2); padding: 12px; border-radius: 6px; margin: 8px 0; overflow-x: auto; font-family: var(--mono); font-size: 12px; line-height: 1.5; border: 1px solid var(--border); }
+.item-body table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12.5px; }
+.item-body th, .item-body td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+.item-body th { background: var(--bg-elev-2); font-weight: 600; }
+.item-comment { margin-top: 12px; }
+.item-comment textarea { width: 100%; background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--text); padding: 10px 12px; border-radius: 6px; font-family: var(--sans); font-size: 13px; line-height: 1.55; resize: vertical; min-height: 56px; transition: border 0.15s; }
+.item-comment textarea:focus { outline: none; border-color: var(--modify); }
+.item-comment .hint { font-size: 11px; color: var(--text-faint); margin-top: 4px; font-family: var(--mono); }
+.export-bar { position: fixed; bottom: 0; left: 280px; right: 0; background: rgba(19,24,38,0.95); border-top: 1px solid var(--border-hi); padding: 14px 56px; display: flex; gap: 16px; align-items: center; justify-content: space-between; z-index: 100; backdrop-filter: blur(12px); }
+.summary { display: flex; gap: 20px; font-family: var(--mono); font-size: 12px; color: var(--text-dim); flex-wrap: wrap; }
+.summary span { display: inline-flex; align-items: center; gap: 4px; }
+.summary b { font-size: 14px; margin-left: 2px; }
+.summary .c-accept b { color: var(--accept); }
+.summary .c-question b { color: var(--question); }
+.summary .c-modify b { color: var(--modify); }
+.summary .c-reject b { color: var(--reject); }
+.export-buttons { display: flex; gap: 8px; flex-shrink: 0; }
+.export-buttons button { background: var(--modify); color: white; border: none; padding: 9px 14px; border-radius: 7px; font-size: 12.5px; cursor: pointer; font-family: var(--mono); font-weight: 600; transition: all 0.15s; }
+.export-buttons button.secondary { background: var(--bg-elev-2); color: var(--text); border: 1px solid var(--border); }
+.export-buttons button:hover { transform: translateY(-1px); opacity: 0.92; }
+.toast { position: fixed; top: 24px; right: 24px; background: var(--accept); color: #052e1e; padding: 12px 18px; border-radius: 8px; font-family: var(--mono); font-size: 13px; font-weight: 600; opacity: 0; transition: opacity 0.2s, transform 0.2s; transform: translateY(-10px); z-index: 200; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateY(0); }
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 300; align-items: center; justify-content: center; padding: 32px; }
+.modal.show { display: flex; }
+.modal-content { background: var(--bg-elev); border: 1px solid var(--border-hi); border-radius: 12px; max-width: 920px; width: 100%; max-height: 80vh; display: flex; flex-direction: column; }
+.modal-head { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.modal-head h3 { font-size: 14px; }
+.modal-head .modal-actions { display: flex; gap: 8px; }
+.modal-head button { background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--text); cursor: pointer; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-family: var(--mono); }
+.modal-head button.primary { background: var(--modify); border-color: var(--modify); color: white; }
+.modal-body { padding: 18px 20px; overflow-y: auto; flex: 1; }
+.modal-body textarea { width: 100%; min-height: 480px; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 14px; border-radius: 6px; font-family: var(--mono); font-size: 12.5px; line-height: 1.65; resize: vertical; }
+@media (max-width: 980px) {
+  body { grid-template-columns: 1fr; }
+  aside { position: static; max-height: none; }
+  main { padding: 24px 20px 240px; }
+  .export-bar { left: 0; padding: 12px 16px; flex-direction: column; gap: 10px; align-items: stretch; }
+}
+</style>
+</head>
+<body>
+<aside>
+  <h2>Sections</h2>
+  <ol id="toc"></ol>
+  <h2>Filter</h2>
+  <div class="filters">
+    <button data-filter="all" class="active">All</button>
+    <button data-filter="pending">Pending</button>
+    <button data-filter="accept">👍</button>
+    <button data-filter="question">🤔</button>
+    <button data-filter="modify">🔁</button>
+    <button data-filter="reject">❌</button>
+  </div>
+</aside>
+<main>
+  <header class="hero">
+    <h1>{{TITLE}} — Interactive Review</h1>
+    <div class="meta">
+      <b id="total-count">0</b> reviewable items ·
+      피드백 자동 저장 (LocalStorage) ·
+      저장: <span id="last-saved">—</span>
+    </div>
+  </header>
+  <div id="sections"></div>
+</main>
+<div class="export-bar">
+  <div class="summary">
+    <span class="c-accept">👍 채택<b id="c-accept">0</b></span>
+    <span class="c-question">🤔 의문<b id="c-question">0</b></span>
+    <span class="c-modify">🔁 수정<b id="c-modify">0</b></span>
+    <span class="c-reject">❌ 거절<b id="c-reject">0</b></span>
+    <span>📝 코멘트<b id="c-comment">0</b></span>
+    <span>⏳ 미결<b id="c-pending">0</b></span>
+  </div>
+  <div class="export-buttons">
+    <button class="secondary" id="btn-reset">🗑 초기화</button>
+    <button class="secondary" id="btn-export-md">📋 Markdown</button>
+    <button id="btn-export-prompt">📋 Copy as next prompt</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <div class="modal-head">
+      <h3 id="modal-title">Export</h3>
+      <div class="modal-actions">
+        <button id="modal-copy" class="primary">📋 클립보드로 복사</button>
+        <button id="modal-close">닫기</button>
+      </div>
+    </div>
+    <div class="modal-body"><textarea id="modal-text" readonly></textarea></div>
+  </div>
+</div>
+<script>
+const STORAGE_KEY = '{{STORAGE_KEY}}';
+/*
+ * SECURITY NOTE: REVIEW_DATA is authored entirely by the agent (trusted content).
+ * Item body HTML is generated markup — no user input is passed through createContextualFragment.
+ * User comments are read/written via textarea.value only (never rendered as HTML).
+ */
+const REVIEW_DATA = {{REVIEW_DATA}};
+
+function saveState() {
+  const state = {};
+  document.querySelectorAll('.item').forEach(el => {
+    const id = el.dataset.id;
+    const action = el.dataset.action || '';
+    const comment = el.querySelector('textarea')?.value || '';
+    if (action || comment) state[id] = { action, comment };
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  document.getElementById('last-saved').textContent = new Date().toLocaleTimeString('ko-KR');
+  updateCounts();
+}
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+}
+
+function applyState() {
+  const state = loadState();
+  Object.entries(state).forEach(([id, { action, comment }]) => {
+    const el = document.querySelector(`.item[data-id="${id}"]`);
+    if (!el) return;
+    if (action) {
+      el.dataset.action = action;
+      el.classList.add(`state-${action}`);
+      el.querySelector(`.action[data-action="${action}"]`)?.classList.add('on', action);
+    }
+    const ta = el.querySelector('textarea');
+    if (ta && comment) ta.value = comment;
+  });
+}
+
+function renderItem(item, secTitle) {
+  const div = document.createElement('div');
+  div.className = 'item';
+  div.dataset.id = item.id;
+
+  const head = document.createElement('div');
+  head.className = 'item-head';
+
+  const left = document.createElement('div');
+  left.className = 'item-head-left';
+  const idSpan = document.createElement('span');
+  idSpan.className = 'item-id';
+  idSpan.textContent = item.id;
+  const titleDiv = document.createElement('div');
+  titleDiv.className = 'item-title';
+  titleDiv.textContent = item.title;
+  left.append(idSpan, titleDiv);
+
+  const actions = document.createElement('div');
+  actions.className = 'item-actions';
+  [['accept','👍'],['question','🤔'],['modify','🔁'],['reject','❌']].forEach(([act, emoji]) => {
+    const btn = document.createElement('button');
+    btn.className = 'action';
+    btn.dataset.action = act;
+    btn.textContent = emoji;
+    actions.appendChild(btn);
+  });
+
+  head.append(left, actions);
+
+  /* body: agent-authored HTML rendered via createContextualFragment (no script execution) */
+  const body = document.createElement('div');
+  body.className = 'item-body';
+  const range = document.createRange();
+  range.selectNodeContents(body);
+  body.appendChild(range.createContextualFragment(item.body));
+
+  const comment = document.createElement('div');
+  comment.className = 'item-comment';
+  const ta = document.createElement('textarea');
+  ta.placeholder = '코멘트 입력 (선택)…';
+  ta.rows = 2;
+  const hint = document.createElement('div');
+  hint.className = 'hint';
+  hint.textContent = 'Ctrl+Enter → 저장';
+  comment.append(ta, hint);
+
+  div.append(head, body, comment);
+  return div;
+}
+
+function renderSections() {
+  const container = document.getElementById('sections');
+  let total = 0;
+  REVIEW_DATA.forEach(sec => {
+    const secEl = document.createElement('section');
+    secEl.className = 's';
+    secEl.id = sec.id;
+    const h2 = document.createElement('h2');
+    h2.textContent = sec.title;
+    secEl.appendChild(h2);
+    if (sec.lede) {
+      const lede = document.createElement('div');
+      lede.className = 'lede';
+      lede.textContent = sec.lede;
+      secEl.appendChild(lede);
+    }
+    sec.items.forEach(item => { total++; secEl.appendChild(renderItem(item, sec.title)); });
+    container.appendChild(secEl);
+  });
+  document.getElementById('total-count').textContent = total;
+}
+
+function renderTOC() {
+  const toc = document.getElementById('toc');
+  REVIEW_DATA.forEach(sec => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#' + sec.id;
+    a.textContent = sec.title;
+    li.appendChild(a);
+    toc.appendChild(li);
+  });
+}
+
+function attachEvents() {
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.action');
+    if (!btn) return;
+    const item = btn.closest('.item');
+    const act = btn.dataset.action;
+    const isOn = btn.classList.contains('on');
+    item.querySelectorAll('.action').forEach(b => b.classList.remove('on','accept','question','modify','reject'));
+    item.classList.remove('state-accept','state-question','state-modify','state-reject');
+    if (!isOn) { btn.classList.add('on', act); item.classList.add(`state-${act}`); item.dataset.action = act; }
+    else delete item.dataset.action;
+    saveState();
+  });
+  document.addEventListener('input', e => { if (e.target.tagName === 'TEXTAREA' && e.target.closest('.item')) saveState(); });
+  document.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter' && e.target.closest('.item')) saveState(); });
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    if (confirm('모든 피드백을 초기화할까요?')) { localStorage.removeItem(STORAGE_KEY); location.reload(); }
+  });
+  document.getElementById('btn-export-md').addEventListener('click', () => openExport('md'));
+  document.getElementById('btn-export-prompt').addEventListener('click', () => openExport('prompt'));
+  document.getElementById('modal-close').addEventListener('click', () => document.getElementById('modal').classList.remove('show'));
+  document.getElementById('modal-copy').addEventListener('click', () => {
+    navigator.clipboard.writeText(document.getElementById('modal-text').value).then(() => showToast('클립보드에 복사됐습니다'));
+  });
+  document.querySelectorAll('.filters button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.item').forEach(el => {
+        el.style.display = (f === 'all' || (f === 'pending' && !el.dataset.action) || el.dataset.action === f) ? '' : 'none';
+      });
+    });
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting)
+        document.querySelectorAll('#toc a').forEach(a => a.classList.toggle('current', a.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('section.s').forEach(s => observer.observe(s));
+}
+
+function updateCounts() {
+  const c = { accept:0, question:0, modify:0, reject:0, comment:0, pending:0 };
+  document.querySelectorAll('.item').forEach(el => {
+    const act = el.dataset.action;
+    if (act) c[act]++; else c.pending++;
+    if (el.querySelector('textarea')?.value.trim()) c.comment++;
+  });
+  ['accept','question','modify','reject','comment','pending'].forEach(k => {
+    const el = document.getElementById(`c-${k}`);
+    if (el) el.textContent = c[k];
+  });
+}
+
+function collectByAction() {
+  const g = { accept:[], question:[], modify:[], reject:[], pending:[] };
+  document.querySelectorAll('.item').forEach(el => {
+    const act = el.dataset.action || 'pending';
+    const comment = el.querySelector('textarea')?.value.trim() || '';
+    const secTitle = el.closest('section.s')?.querySelector('h2')?.textContent || '';
+    g[act].push({ id: el.dataset.id, title: el.querySelector('.item-title')?.textContent, section: secTitle, comment });
+  });
+  return g;
+}
+
+function buildMarkdown() {
+  const g = collectByAction();
+  const title = document.querySelector('header.hero h1').textContent;
+  const lines = [`# ${title} — 피드백 (${new Date().toISOString().slice(0,10)})`, ''];
+  [['👍 채택', g.accept],['🤔 의문', g.question],['🔁 수정 요청', g.modify],['❌ 거절', g.reject],['📝 코멘트만', g.pending.filter(i=>i.comment)]].forEach(([t,items]) => {
+    if (!items.length) return;
+    lines.push(`## ${t} (${items.length})`);
+    items.forEach(it => { lines.push(`- **[${it.id}] ${it.title}**`); if (it.comment) it.comment.split('\n').forEach(c => lines.push(`  > ${c}`)); });
+    lines.push('');
+  });
+  return lines.join('\n');
+}
+
+function buildPrompt() {
+  const g = collectByAction();
+  const title = document.querySelector('header.hero h1').textContent;
+  const lines = [`다음은 "${title}" 에 대한 피드백입니다.`, ''];
+  [['👍 채택 — 그대로 진행', g.accept],['🤔 의문 — 추가 명세 필요', g.question],['🔁 수정 요청', g.modify],['❌ 거절', g.reject]].forEach(([t,items]) => {
+    if (!items.length) return;
+    lines.push(`## ${t} — ${items.length}개`);
+    items.forEach(it => { lines.push(`- [${it.id}] ${it.title}`); if (it.comment) it.comment.split('\n').forEach(c => lines.push(`  > ${c}`)); });
+    lines.push('');
+  });
+  lines.push('---','','이 피드백을 반영해서:','',
+    '1. **채택** — 그대로 진행.',
+    '2. **의문** — 추가 명세·예시·trade-off 보강 후 재제안.',
+    '3. **수정** — 코멘트 반영, 변경 전후 diff 형태로.',
+    '4. **거절** — risk surface 1-2개 + minimal alternative 1개.',
+    '5. **다음 액션 한 줄** 추천.','');
+  return lines.join('\n');
+}
+
+function openExport(kind) {
+  const text = kind === 'md' ? buildMarkdown() : buildPrompt();
+  document.getElementById('modal-title').textContent = kind === 'md' ? '📋 Markdown export' : '📋 Copy as next prompt';
+  document.getElementById('modal-text').value = text;
+  document.getElementById('modal').classList.add('show');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+renderTOC(); renderSections(); applyState(); attachEvents(); updateCounts();
+</script>
+</body>
+</html>
