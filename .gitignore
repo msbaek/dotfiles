@@ -107,7 +107,7 @@ node_modules/
 .claude/skills/recall/output
 .claude/sessions
 .claude/dashboard/
-.claude/settings.json.bak.*
+.claude/settings.json.bak*
 
 # ======================
 # Skills Catalog runtime artifacts
@@ -120,3 +120,10 @@ node_modules/
 .playwright-mcp/
 .claude/state/
 .claude/abtop-rate-limits.json
+.claude/daemon.lock
+.claude/daemon.status.json
+.claude/daemon.json
+.claude/daemon.log
+.claude/daemon/
+.claude/jobs/
+.claude/.last-cleanup
