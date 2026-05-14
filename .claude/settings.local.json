@@ -27,7 +27,9 @@
       "Bash(echo '{\"mcpServers\": {}}')",
       "Bash(python3 -c ' *)",
       "Bash(cp ~/.claude/CLAUDE.md ~/.claude/CLAUDE.md.bak.2026-04-30)",
-      "Read(//Users/msbaek/.claude/**)"
+      "Read(//Users/msbaek/.claude/**)",
+      "Bash(claude --version)",
+      "Read(//Users/msbaek/.local/share/claude/versions/**)"
     ]
   },
   "enabledPlugins": {
