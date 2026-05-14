@@ -236,6 +236,7 @@ alias gl='git log'
 alias lg='lazygit'
 # Headless mode aliases
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
+# alias cld='$HOME/.local/bin/claude agents'
 alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
 alias cc-commit-only='git commit --no-verify -F /tmp/commit_msg.txt'
 alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'
