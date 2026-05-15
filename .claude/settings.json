@@ -51,6 +51,7 @@
     "ask": [],
     "defaultMode": "plan"
   },
+  "model": "sonnet",
   "hooks": {
     "Stop": [
       {
@@ -73,15 +74,6 @@
       }
     ],
     "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "sh -c '[ -f \"$HOME/.ai-dev-kit/repo/.claude-plugin/check_update.sh\" ] && bash \"$HOME/.ai-dev-kit/repo/.claude-plugin/check_update.sh\"; exit 0'",
-            "timeout": 5
-          }
-        ]
-      },
       {
         "hooks": [
           {
@@ -296,20 +288,8 @@
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
   "autoUpdates": true,
-  "mcpServers": {
-    "playwright": {
-      "args": [
-        "@playwright/mcp@0.0.75"
-      ]
-    },
-    "financial-datasets": {
-      "type": "http",
-      "url": "https://mcp.financialdatasets.ai"
-    }
-  },
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   },
-  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault",
-  "model": "claude-sonnet-4-6"
+  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault"
 }

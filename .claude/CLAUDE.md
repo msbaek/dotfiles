@@ -103,7 +103,6 @@ Superpowers 미트리거 시(짧은 Q&A · 단순 수정)에도 적용되는 톤
 ### Tools (선호도)
 
 - **Syntax-aware search**: `sg --lang <lang> -p '<pattern>'`
-- **Text search**: `rg` (ripgrep) | **File finding**: `fd`
 - **Web content**: Playwright MCP first, then WebFetch (fetch/curl/wget 사용 안 함)
 - **Large files (>500 lines)**: Serena (`mcp__serena__*`). Serena 부재 시 Read with offset/limit.
 - **GitHub**: `gh` CLI via Bash (`mcp__github__*` 사용 안 함)
