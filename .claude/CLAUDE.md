@@ -134,7 +134,28 @@ Superpowers 미트리거 시(짧은 Q&A · 단순 수정)에도 적용되는 톤
 <session-start-hook>Superpowers 스킬이 활성화되어 있음을 확인하고, 모든 작업에서 관련 skill을 우선 탐색할 것.</session-start-hook>
 
 <when-plan-complete>
-계획·설계·advisor 상담이 끝나고 구현·커밋·테스트·문서 업데이트 같은 기계적 작업으로 전환되는 시점에서 `/model claude-sonnet-4-6` 전환을 능동적으로 제안. hook `~/.claude/hooks/skill-model-advisor.py`는 `ExitPlanMode`와 writing-plans/executing-plans/subagent-driven-development skills만 자동 커버하므로, 그 외 경로(일반 대화로 계획 완성된 경우 등)는 직접 안내. 사용자가 Opus 유지 결정 시 재제안 금지.
+**트리거 조건** (어느 하나라도 true → 즉시 발화):
+1. `ExitPlanMode` 호출 직후 첫 응답
+2. plan 파일(`.claude/plans/*.md` 또는 `docs/superpowers/plans/*.md`) 작성·갱신 직후 다음 turn
+3. 사용자 입력에 다음 키워드 포함: "구현해줘", "코드 작성", "commit해", "test 돌려", "PR 만들어", "push해", "배포"
+4. TodoWrite로 task list 만든 직후 첫 Edit/Write/Bash 호출 turn
+5. `/commit`·`/wrap-up`·`/session-handoff`·`/skills-audit` 등 기계적 실행 skill 호출
+
+**발화 워딩** (정확히 이대로):
+> 계획 단계 완료. 이제부터 기계적 실행 단계입니다.
+> `/model claude-sonnet-4-6` 전환을 권장합니다.
+> (Opus 유지 원하시면 "opus 유지"라고 답해주세요 — 같은 세션에서 재안내 안 함)
+
+**Skip 조건**:
+- 현재 모델이 이미 `claude-sonnet-*` 계열
+- 같은 세션에서 stickiness state file(`/tmp/claude-model-decision-${session_id}.json`)에 `keep_opus: true` 기록됨 — 또는 직전 turn에 사용자가 "opus 유지"·"그대로"·"바꾸지 마" 답변
+- `superpowers:brainstorming` skill이 직전 turn에 호출됨 (창의 단계 = Opus 적합)
+
+**Stickiness 리셋 조건** (재안내 허용):
+- 다음 skill 호출: `superpowers:brainstorming`, `superpowers:writing-plans`, `ExitPlanMode`
+- 새 세션 시작
+
+**Hook 보강**: `skill-model-advisor.py`(PreToolUse)와 `slash-command-model-advisor.py`(UserPromptSubmit) 두 hook이 세션 JSONL(`~/.claude/projects/*/<session_id>.jsonl`)에서 현재 모델을 직접 식별한다. 이미 타겟 family면 hook이 침묵하므로, **hook 출력이 나오면 무조건 추정 없이 사용자에게 그대로 안내**할 것 (모델 자기 인식 실패로 self-skip 금지). 2·3·4번 트리거는 hook 미커버 영역 → 본 규칙에 따라 직접 안내. stickiness는 UserPromptSubmit hook이 pending-marker gate로 자동 관리.
 </when-plan-complete>
 
 <when-completing-task>

@@ -51,7 +51,6 @@
     "ask": [],
     "defaultMode": "plan"
   },
-  "model": "sonnet",
   "hooks": {
     "Stop": [
       {
@@ -141,6 +140,11 @@
           {
             "type": "command",
             "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
+          },
+          {
+            "type": "command",
+            "command": "python3 /Users/msbaek/.claude/hooks/slash-command-model-advisor.py",
+            "timeout": 3
           }
         ]
       }
@@ -291,5 +295,12 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754086039192
   },
-  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault"
+  "additionalDirectories": "/Users/msbaek/DocumentsLocal/msbaek_vault",
+  "mcpServers": {
+    "playwright": {
+      "args": [
+        "@playwright/mcp@0.0.75"
+      ]
+    }
+  }
 }
