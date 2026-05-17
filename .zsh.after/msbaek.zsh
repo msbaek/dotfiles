@@ -241,15 +241,18 @@ alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "
 alias cc-commit-only='git commit --no-verify -F /tmp/commit_msg.txt'
 alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'
 
+# sub-agent 모델 감사 (cwd/branch/첫 task 요약 포함). -f BO-query / --last 20 등 인자 전달
+cc-model() { python3 "$HOME/.claude/bin/check-subagent-model.py" "$@"; }
+
 alias d2h='diff2html -s side'
 
 alias gdum='gdu -h -d 1'
 alias agfu='cargo install --git https://github.com/subinium/agf.git'
 alias find-largest-file='du -ah * | sort -rn'
+alias find_mac_addr="ifconfig en0 | grep ether | awk '{print \$2}'"
 alias listening-port='sudo lsof -PiTCP -sTCP:LISTEN'
 alias pid-by-port='sudo lsof -i TCP:'
 alias find_wifi_pwd='security find-generic-password -wa '
-
 # ── ~/bin migrated functions ──
 
 # Show all local IP addresses (loopback 제외)
