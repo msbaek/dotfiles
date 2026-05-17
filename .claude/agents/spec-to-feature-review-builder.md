@@ -67,9 +67,9 @@ Read 도구로 `markdown_path` 전체 로드. 파일 없거나 빈 파일이면 
 ### Step 2: 오늘 날짜 확인
 
 ```bash
-date +%Y%m%d
+date +%Y-%m-%d
 ```
-결과를 `today_yyyymmdd`로 저장 (HTML 파일명에 사용).
+결과를 `today`로 저장 (HTML 파일명·STORAGE_KEY·.feature 헤더 주석에 사용). 포맷은 `YYYY-MM-DD` (html-review skill과 일치).
 
 ### Step 3: HTML 템플릿 읽기
 
@@ -136,8 +136,11 @@ mkdir -p <spec-dir>/features
 
 Write 도구로 `.feature` 파일에 features 배열을 직렬화:
 ```gherkin
-# Generated from <markdown_path> by /spec-to-feature-review on <YYYY-MM-DD>
+# Generated from <markdown_path> by /spec-to-feature-review on <today>
 # 영어 키워드 + 한국어 본문 규칙 적용.
+# 주의: 이 도구는 리뷰 가독성을 우선하여 여러 Feature 블록을 단일 파일에 직렬화한다.
+#       Cucumber/Behave 등 일부 runner는 single-feature-per-file을 전제하므로,
+#       실행이 필요하면 사용자가 use case별로 별도 파일로 분리해야 한다.
 
 Feature: <use case 1 이름>
 
@@ -177,18 +180,20 @@ const REVIEW_DATA = [
       {
         id: 's1-1',
         title: 'Scenario: <primary 제목>',
-        body: '<pre><code>Given ...\nWhen ...\nThen ...</code></pre>'
+        body: '<pre><code class="gherkin">Given ...\nWhen ...\nThen ...</code></pre>'
       },
       {
         id: 's1-2',
         title: 'Scenario: <alternative 제목>',
-        body: '<pre><code>...</code></pre>'
+        body: '<pre><code class="gherkin">...</code></pre>'
       }
     ]
   },
   ...
 ];
 ```
+
+**ID 규약**: section은 `s1`, `s2`, ... — Feature 순서대로. item은 `s<N>-<M>` — Feature N의 M번째 Scenario.
 
 **이스케이프 주의**:
 - body 문자열 안의 백틱(`` ` ``) → `\``
@@ -202,18 +207,20 @@ Step 3에서 읽은 template.html의 4개 placeholder 치환:
 | placeholder | 치환값 |
 |---|---|
 | `{{TITLE}}` | `Feature Review: <basename>` |
-| `{{STORAGE_KEY}}` | `feature-review-<today_yyyymmdd>-<basename>` |
+| `{{STORAGE_KEY}}` | `feature-review-<today>-<basename>` |
 | `{{REVIEW_DATA}}` | Step 7에서 생성한 JS 배열 (raw JS, JSON.parse 불필요) |
 | `{{DEPTH}}` | `middle` |
 
+**`{{DEPTH}}`가 `middle` 고정인 이유**: Gherkin 본문은 이미 압축되어 있어 depth 차이로 분량이 늘거나 줄지 않는다. easy/hard 모드는 본 도구에서 의미가 없으므로 `middle`로 고정.
+
 ### Step 9: HTML 파일 저장 및 브라우저 열기
 
-출력 경로: `~/Desktop/feature-review-<basename>-<today_yyyymmdd>.html`
+출력 경로: `~/Desktop/feature-review-<basename>-<today>.html`
 
 1. Write 도구로 파일 저장
 2. Bash:
    ```bash
-   open ~/Desktop/feature-review-<basename>-<today_yyyymmdd>.html
+   open ~/Desktop/feature-review-<basename>-<today>.html
    ```
 
 ### Step 10: 결과 보고
@@ -223,8 +230,8 @@ Step 3에서 읽은 template.html의 4개 placeholder 치환:
 
 - 입력:    <markdown_path>
 - Gherkin: <spec-dir>/features/<basename>.feature
-- HTML:    ~/Desktop/feature-review-<basename>-<today_yyyymmdd>.html
-- Feature: {N}개 / Scenario: {M}개 (primary {N}, alternative {M-N})
+- HTML:    ~/Desktop/feature-review-<basename>-<today>.html
+- Feature: {F}개 / Scenario: {S}개 (primary {P}개, alternative {A}개; P + A = S)
 - 브라우저에서 자동으로 열렸습니다.
 
 사용법: 👍/🤔/🔁/❌ 버튼으로 시나리오별 피드백 → "Copy as next prompt"로 Claude에 붙여넣기
