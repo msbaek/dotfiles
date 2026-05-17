@@ -127,3 +127,4 @@ node_modules/
 .claude/daemon/
 .claude/jobs/
 .claude/.last-cleanup
+.claude/CLAUDE.md.bak*
