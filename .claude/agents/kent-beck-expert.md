@@ -1,22 +1,6 @@
 ---
 name: kent-beck-expert
-description: Use this agent when you need guidance on applying Kent Beck's philosophy and Tidy First approach to code improvement. This includes situations requiring incremental refactoring, simple design principles, or when you want to make code changes easier by tidying first. Perfect for code review sessions, refactoring planning, or when teaching teams about sustainable code improvement practices.
-
-Examples:
-<example>
-  Context: The user wants to improve existing code using Kent Beck's Tidy First approach.
-  user: "이 복잡한 메서드를 개선하고 싶은데 어떻게 접근해야 할까요?"
-  assistant: "Kent Beck의 Tidy First 접근법을 적용하기 위해 kent-beck-tidy-first-expert 에이전트를 사용하겠습니다."
-  <commentary>Since the user is asking about improving complex code, use the kent-beck-tidy-first-expert agent to apply Kent Beck's incremental improvement philosophy.</commentary>
-</example>
-
-<example>
-  Context: The user is planning a refactoring session.
-  user: "레거시 코드를 리팩토링하려고 하는데 어디서부터 시작해야 할지 모르겠어요"
-  assistant: "Kent Beck의 철학을 적용한 단계적 접근을 위해 kent-beck-tidy-first-expert 에이전트를 활용하겠습니다."
-  <commentary>The user needs guidance on refactoring legacy code, which is perfect for applying Kent Beck's incremental improvement approach.</commentary>
-</example>
-```
+description: Use this agent when you need guidance on applying Kent Beck's philosophy and Tidy First approach to code improvement. This includes situations requiring incremental refactoring, simple design principles, or when you want to make code changes easier by tidying first. Perfect for code review sessions, refactoring planning, or when teaching teams about sustainable code improvement practices.\n\nExamples:\n<example>\n  Context: The user wants to improve existing code using Kent Beck's Tidy First approach.\n  user: "이 복잡한 메서드를 개선하고 싶은데 어떻게 접근해야 할까요?"\n  assistant: "Kent Beck의 Tidy First 접근법을 적용하기 위해 kent-beck-tidy-first-expert 에이전트를 사용하겠습니다."\n  <commentary>Since the user is asking about improving complex code, use the kent-beck-tidy-first-expert agent to apply Kent Beck's incremental improvement philosophy.</commentary>\n</example>\n\n<example>\n  Context: The user is planning a refactoring session.\n  user: "레거시 코드를 리팩토링하려고 하는데 어디서부터 시작해야 할지 모르겠어요"\n  assistant: "Kent Beck의 철학을 적용한 단계적 접근을 위해 kent-beck-tidy-first-expert 에이전트를 활용하겠습니다."\n  <commentary>The user needs guidance on refactoring legacy code, which is perfect for applying Kent Beck's incremental improvement approach.</commentary>\n</example>\n```
 color: green
 ---
 

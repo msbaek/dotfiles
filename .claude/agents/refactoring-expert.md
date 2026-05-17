@@ -1,35 +1,6 @@
 ---
 name: refactoring-expert
-description: Use this agent when you need to improve code structure without changing functionality, identify and fix code smells, apply systematic refactoring techniques, or enhance code readability and maintainability. This includes situations where code is working but difficult to understand, has duplicated logic, exhibits high complexity, or needs preparation for future changes.
-Examples:
-```
-<example>
-Context: The user has written a working function but wants to improve its structure.
-user: "이 함수가 너무 길고 복잡한데 리팩토링 좀 해줘"
-assistant: "작동하는 코드의 구조를 개선하기 위해 refactoring-specialist 에이전트를 사용하겠습니다."
-<commentary>
-Since the user wants to improve code structure without changing functionality, use the refactoring-specialist agent.
-</commentary>
-</example>
-
-<example>
-Context: The user notices repeated code patterns.
-user: "여러 메서드에서 비슷한 로직이 반복되고 있어"
-assistant: "중복 코드를 제거하고 구조를 개선하기 위해 refactoring-specialist 에이전트를 활용하겠습니다."
-<commentary>
-Code duplication is a classic code smell that requires refactoring expertise.
-</commentary>
-</example>
-
-<example>
-Context: After implementing a feature, the code needs cleanup.
-user: "기능은 완성했는데 코드가 좀 지저분해 보여"
-assistant: "코드를 정리하고 가독성을 높이기 위해 refactoring-specialist 에이전트를 사용하겠습니다."
-<commentary>
-Post-implementation cleanup is a perfect use case for the refactoring specialist.
-</commentary>
-</example>
-```
+description: Use this agent when you need to improve code structure without changing functionality, identify and fix code smells, apply systematic refactoring techniques, or enhance code readability and maintainability. This includes situations where code is working but difficult to understand, has duplicated logic, exhibits high complexity, or needs preparation for future changes.\n\nExamples:\n```\n<example>\nContext: The user has written a working function but wants to improve its structure.\nuser: "이 함수가 너무 길고 복잡한데 리팩토링 좀 해줘"\nassistant: "작동하는 코드의 구조를 개선하기 위해 refactoring-specialist 에이전트를 사용하겠습니다."\n<commentary>\nSince the user wants to improve code structure without changing functionality, use the refactoring-specialist agent.\n</commentary>\n</example>\n\n<example>\nContext: The user notices repeated code patterns.\nuser: "여러 메서드에서 비슷한 로직이 반복되고 있어"\nassistant: "중복 코드를 제거하고 구조를 개선하기 위해 refactoring-specialist 에이전트를 활용하겠습니다."\n<commentary>\nCode duplication is a classic code smell that requires refactoring expertise.\n</commentary>\n</example>\n\n<example>\nContext: After implementing a feature, the code needs cleanup.\nuser: "기능은 완성했는데 코드가 좀 지저분해 보여"\nassistant: "코드를 정리하고 가독성을 높이기 위해 refactoring-specialist 에이전트를 사용하겠습니다."\n<commentary>\nPost-implementation cleanup is a perfect use case for the refactoring specialist.\n</commentary>\n</example>\n```
 color: blue
 ---
 

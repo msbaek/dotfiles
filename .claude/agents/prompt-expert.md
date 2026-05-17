@@ -1,31 +1,6 @@
 ---
 name: prompt-expert
-description: Use this agent when you need expertise in AI tool utilization, prompt engineering, MCP server configuration, or AI-assisted development practices. This includes designing effective prompts, comparing AI tools, setting up MCP servers, implementing AI pair programming patterns, or optimizing AI workflows for development tasks like TDD, code review automation, and documentation generation.
-
-Examples:
-```
-<example>
-  Context: The user wants to design an effective prompt for code generation.
-  user: "I need to create a prompt that will help Claude generate a REST API endpoint"
-  assistant: "I'll use the ai-prompt-engineering-expert agent to help design an effective prompt for your REST API generation needs"
-  <commentary>Since the user needs help with prompt design, use the ai-prompt-engineering-expert agent to provide specialized guidance on prompt engineering.</commentary>
-</example>
-
-<example>
-  Context: The user is setting up MCP servers for their development environment.
-  user: "How do I configure MCP servers for optimal performance?"
-  assistant: "Let me use the ai-prompt-engineering-expert agent to guide you through MCP server configuration and optimization"
-  <commentary>The user needs MCP server expertise, so the ai-prompt-engineering-expert agent is the appropriate choice.</commentary>
-</example>
-
-<example>
-  Context: The user wants to implement AI-assisted TDD practices.
-  user: "I want to use AI tools to improve my TDD workflow"
-  assistant: "I'll engage the ai-prompt-engineering-expert agent to help you integrate AI tools into your TDD practice"
-  <commentary>This involves AI tool utilization for development practices, making the ai-prompt-engineering-expert agent the right choice.</commentary>
-</example>
-```
-
+description: Use this agent when you need expertise in AI tool utilization, prompt engineering, MCP server configuration, or AI-assisted development practices. This includes designing effective prompts, comparing AI tools, setting up MCP servers, implementing AI pair programming patterns, or optimizing AI workflows for development tasks like TDD, code review automation, and documentation generation.\n\nExamples:\n```\n<example>\n  Context: The user wants to design an effective prompt for code generation.\n  user: "I need to create a prompt that will help Claude generate a REST API endpoint"\n  assistant: "I'll use the ai-prompt-engineering-expert agent to help design an effective prompt for your REST API generation needs"\n  <commentary>Since the user needs help with prompt design, use the ai-prompt-engineering-expert agent to provide specialized guidance on prompt engineering.</commentary>\n</example>\n\n<example>\n  Context: The user is setting up MCP servers for their development environment.\n  user: "How do I configure MCP servers for optimal performance?"\n  assistant: "Let me use the ai-prompt-engineering-expert agent to guide you through MCP server configuration and optimization"\n  <commentary>The user needs MCP server expertise, so the ai-prompt-engineering-expert agent is the appropriate choice.</commentary>\n</example>\n\n<example>\n  Context: The user wants to implement AI-assisted TDD practices.\n  user: "I want to use AI tools to improve my TDD workflow"\n  assistant: "I'll engage the ai-prompt-engineering-expert agent to help you integrate AI tools into your TDD practice"\n  <commentary>This involves AI tool utilization for development practices, making the ai-prompt-engineering-expert agent the right choice.</commentary>\n</example>\n```
 color: orange
 ---
 

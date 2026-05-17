@@ -1,36 +1,6 @@
 ---
 name: ddd-expert
-description: Use this agent when you need expert guidance on Domain-Driven Design (DDD) strategic and tactical patterns, object-oriented design principles, or when designing complex domain models. This includes identifying bounded contexts, designing aggregates, distinguishing entities from value objects, implementing domain events, and applying SOLID principles to create maintainable domain-centric architectures.
-
-Examples:
-```
-<example>
-  Context: The user is working on a complex e-commerce system and needs help with domain modeling.
-  user: "이 주문 시스템에서 Order와 Customer의 관계를 어떻게 모델링해야 할까요?"
-  assistant: "I'll use the ddd-oop-architect agent to analyze the domain relationships and provide DDD-based modeling guidance."
-  <commentary>
-  Since the user is asking about domain modeling and relationships between domain entities, the ddd-oop-architect agent is the appropriate choice.
-  </commentary>
-</example>
-
-<example>
-  Context: The user is refactoring legacy code to follow DDD patterns.
-  user: "이 서비스 레이어의 비즈니스 로직을 도메인 레이어로 옮기고 싶은데 어떻게 접근해야 할까요?"
-  assistant: "Let me invoke the ddd-oop-architect agent to help you refactor the business logic following DDD tactical patterns."
-  <commentary>
-  The user needs guidance on moving business logic to the domain layer, which is a core DDD tactical design concern.
-  </commentary>
-</example>
-
-<example>
-  Context: The user is designing a new microservice architecture.
-  user: "각 마이크로서비스의 경계를 어떻게 정의해야 할까요? Bounded Context를 어떻게 식별하죠?"
-  assistant: "I'll use the ddd-oop-architect agent to help identify bounded contexts and define service boundaries using DDD strategic design."
-  <commentary>
-  Bounded context identification is a key aspect of DDD strategic design, making this agent the right choice.
-  </commentary>
-</example>
-```
+description: Use this agent when you need expert guidance on Domain-Driven Design (DDD) strategic and tactical patterns, object-oriented design principles, or when designing complex domain models. This includes identifying bounded contexts, designing aggregates, distinguishing entities from value objects, implementing domain events, and applying SOLID principles to create maintainable domain-centric architectures.\n\nExamples:\n```\n<example>\n  Context: The user is working on a complex e-commerce system and needs help with domain modeling.\n  user: "이 주문 시스템에서 Order와 Customer의 관계를 어떻게 모델링해야 할까요?"\n  assistant: "I'll use the ddd-oop-architect agent to analyze the domain relationships and provide DDD-based modeling guidance."\n  <commentary>\n  Since the user is asking about domain modeling and relationships between domain entities, the ddd-oop-architect agent is the appropriate choice.\n  </commentary>\n</example>\n\n<example>\n  Context: The user is refactoring legacy code to follow DDD patterns.\n  user: "이 서비스 레이어의 비즈니스 로직을 도메인 레이어로 옮기고 싶은데 어떻게 접근해야 할까요?"\n  assistant: "Let me invoke the ddd-oop-architect agent to help you refactor the business logic following DDD tactical patterns."\n  <commentary>\n  The user needs guidance on moving business logic to the domain layer, which is a core DDD tactical design concern.\n  </commentary>\n</example>\n\n<example>\n  Context: The user is designing a new microservice architecture.\n  user: "각 마이크로서비스의 경계를 어떻게 정의해야 할까요? Bounded Context를 어떻게 식별하죠?"\n  assistant: "I'll use the ddd-oop-architect agent to help identify bounded contexts and define service boundaries using DDD strategic design."\n  <commentary>\n  Bounded context identification is a key aspect of DDD strategic design, making this agent the right choice.\n  </commentary>\n</example>\n```
 color: red
 ---
 
