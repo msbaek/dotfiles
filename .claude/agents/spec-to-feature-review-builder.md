@@ -1,24 +1,6 @@
 ---
 name: spec-to-feature-review-builder
-description: Use this agent for `/spec-to-feature-review` skill — spec/plan markdown 문서를 분석하여 use case별 Gherkin Feature 파일을 추출하고 인터랙티브 HTML 리뷰 페이지(/html-review 패턴)를 생성. 영어 Gherkin 키워드 + 한국어 본문. Sonnet-optimized.
-
-Examples:
-- <example>
-  Context: 사용자가 verbose spec markdown을 Gherkin으로 추출하여 리뷰하고 싶을 때.
-  user: "/spec-to-feature-review docs/superpowers/specs/2026-05-17-foo-design.md"
-  assistant: "spec-to-feature-review-builder agent로 use case를 추출하여 .feature와 HTML 리뷰 페이지를 생성합니다."
-  <commentary>
-  변형 A (동기 + sonnet). markdown 분석 → Gherkin 변환 → .feature 저장 → HTML 생성 → open.
-  </commentary>
-</example>
-- <example>
-  Context: plan 문서로 호출.
-  user: "/spec-to-feature-review docs/superpowers/plans/2026-05-17-foo.md"
-  assistant: "spec-to-feature-review-builder agent에 plan 파일을 전달합니다."
-  <commentary>
-  spec과 plan 모두 동일하게 처리. plan의 task별 acceptance도 use case로 추출.
-  </commentary>
-</example>
+description: Use this agent for `/spec-to-feature-review` skill — spec/plan markdown 문서를 분석하여 use case별 Gherkin Feature 파일을 추출하고 인터랙티브 HTML 리뷰 페이지(/html-review 패턴)를 생성. 영어 Gherkin 키워드 + 한국어 본문. Sonnet-optimized.\n\nExamples:\n- <example>\n  Context: 사용자가 verbose spec markdown을 Gherkin으로 추출하여 리뷰하고 싶을 때.\n  user: "/spec-to-feature-review docs/superpowers/specs/2026-05-17-foo-design.md"\n  assistant: "spec-to-feature-review-builder agent로 use case를 추출하여 .feature와 HTML 리뷰 페이지를 생성합니다."\n  <commentary>\n  변형 A (동기 + sonnet). markdown 분석 → Gherkin 변환 → .feature 저장 → HTML 생성 → open.\n  </commentary>\n</example>\n- <example>\n  Context: plan 문서로 호출.\n  user: "/spec-to-feature-review docs/superpowers/plans/2026-05-17-foo.md"\n  assistant: "spec-to-feature-review-builder agent에 plan 파일을 전달합니다."\n  <commentary>\n  spec과 plan 모두 동일하게 처리. plan의 task별 acceptance도 use case로 추출.\n  </commentary>\n</example>
 model: sonnet
 ---
 
