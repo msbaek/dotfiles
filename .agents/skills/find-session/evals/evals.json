@@ -1,0 +1,23 @@
+{
+  "skill_name": "find-session",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "지난 금요일에 102 파일 배송아이디 문제 처리한 세션 찾아줘",
+      "expected_output": "2026-04-03 BO-query 프로젝트의 세션(4c28f92c)을 찾아 상세 정보와 AI 요약을 표시",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "toss 결제 관련 작업한 세션",
+      "expected_output": "날짜/기간이 없으므로 사용자에게 시기를 물어본 후 검색 진행",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "ktown4u-masking 프로젝트에서 마스킹 필드 관련 작업한 세션 보여줘. 4월 초쯤",
+      "expected_output": "4월 1-7일 범위에서 ktown4u-masking 프로젝트의 마스킹 관련 세션을 검색하여 표시",
+      "files": []
+    }
+  ]
+}

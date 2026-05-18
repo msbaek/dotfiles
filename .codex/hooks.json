@@ -1,0 +1,99 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Skill|ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 '/Users/msbaek/dotfiles/.codex/hooks/skill-model-advisor.py'",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/msbaek/dotfiles/.codex/hooks/session-tracker.sh'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c '[ -f \"$HOME/.claude/bin/skills-log.sh\" ] && \"$HOME/.claude/bin/skills-log.sh\"; exit 0'"
+          }
+        ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/msbaek/dotfiles/.codex/hooks/session-tracker.sh'"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/msbaek/dotfiles/.codex/hooks/session-start-context.sh'",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/msbaek/dotfiles/.codex/hooks/session-tracker.sh'"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/msbaek/dotfiles/.codex/hooks/session-tracker.sh'"
+          },
+          {
+            "type": "command",
+            "command": "python3 '/Users/msbaek/dotfiles/.codex/hooks/slash-command-model-advisor.py'",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c '[ -f \"$HOME/dotfiles/bin/claude-sessions\" ] && \"$HOME/dotfiles/bin/claude-sessions\" sync; exit 0'",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "'/Users/msbaek/dotfiles/.codex/hooks/session-tracker.sh'"
+          }
+        ]
+      }
+    ]
+  }
+}

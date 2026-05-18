@@ -1,0 +1,59 @@
+[mcp_servers.context7]
+args = [
+    "-y",
+    "@upstash/context7-mcp@latest",
+]
+command = "npx"
+
+[mcp_servers.filesystem]
+args = [
+    "-y",
+    "@modelcontextprotocol/server-filesystem",
+    "/Users/msbaek/Downloads",
+    "/Users/msbaek/Documents",
+    "/Users/msbaek/temp",
+    "/Users/msbaek/dotfiles",
+    "/Users/msbaek/OneDrive - Ktown4u",
+    "/Users/msbaek/git",
+    "/Users/msbaek/DocumentsLocal",
+    "/Users/msbaek/OneDrive",
+    "/Users/msbaek/.claude",
+]
+command = "npx"
+
+[mcp_servers.git]
+args = ["mcp-server-git"]
+command = "uvx"
+
+[mcp_servers.git.env]
+GITHUB_TOKEN = "${GITHUB_TOKEN}"
+
+[mcp_servers.github]
+args = [
+    "-y",
+    "@modelcontextprotocol/server-github",
+]
+command = "npx"
+
+[mcp_servers.github.env]
+GITHUB_TOKEN = "${GITHUB_TOKEN}"
+
+[mcp_servers.playwright]
+args = ["@playwright/mcp@latest"]
+command = "npx"
+
+[shell_environment_policy]
+inherit = "core"
+
+[shell_environment_policy.set]
+BASH_DEFAULT_TIMEOUT_MS = "120000"
+BASH_MAX_TIMEOUT_MS = "600000"
+CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR = "1"
+CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD = "1"
+CLAUDE_CODE_DISABLE_TERMINAL_TITLE = "1"
+CLAUDE_CODE_MAX_OUTPUT_TOKENS = "128000"
+CLAUDE_CODE_NO_FLICKER = "1"
+DISABLE_ERROR_REPORTING = "1"
+ENABLE_LSP_TOOL = "1"
+ENABLE_TOOL_SEARCH = "auto"
+MAX_THINKING_TOKENS = "12000"
