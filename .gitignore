@@ -128,3 +128,6 @@ node_modules/
 .claude/jobs/
 .claude/.last-cleanup
 .claude/CLAUDE.md.bak*
+
+# recall skill generated artifacts
+.agents/skills/recall/output/
