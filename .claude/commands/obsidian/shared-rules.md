@@ -3,6 +3,9 @@
 이 파일은 `/obsidian:summarize-article`과 `/obsidian:summarize-youtube`에서 공통으로 참조하는 규칙이다.
 개별 스킬에서 `~/.claude/commands/obsidian/shared-rules.md`의 모든 규칙을 따른다고 명시한다.
 
+> **OFM 규칙**: vault 문서 작성 시 `~/.claude/commands/obsidian/ofm-rules.md`를 따른다.
+> wikilink: `[[folder/basename]]` / frontmatter timestamp: `YYYY-MM-DD HH:MM` (평문).
+
 ## Target Audience
 
 - 컴퓨터공학 학사/석사, 25년 이상 소프트웨어 개발 경험

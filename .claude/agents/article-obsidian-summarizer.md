@@ -101,3 +101,9 @@ source: 원본 URL
 - 빈 wikilink (존재하지 않는 노트로 링크)
 - 출력 경로가 `$VAULT_ROOT/001-INBOX/` 아님
 - 백그라운드 모드인데 progress 파일 미생성/미업데이트
+
+## OFM 규칙 참조
+
+vault 문서 작성 시 `~/.claude/commands/obsidian/ofm-rules.md`를 따른다:
+- wikilink: `[[folder/basename]]` (vault-relative, .md 없음)
+- frontmatter timestamp: `YYYY-MM-DD HH:MM` (평문, wikilink 아님)

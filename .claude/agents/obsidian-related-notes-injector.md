@@ -67,3 +67,9 @@ model: sonnet
 - daily notes를 Related Notes에 포함
 - "Uncertainty Map" 있는데 그 뒤에 삽입
 - tag/이동/author 등 범위 외 변경 발생
+
+## OFM 규칙 참조
+
+vault 문서 작성 시 `~/.claude/commands/obsidian/ofm-rules.md`를 따른다:
+- wikilink: `[[folder/basename]]` (vault-relative, .md 없음)
+- frontmatter timestamp: `YYYY-MM-DD HH:MM` (평문, wikilink 아님)

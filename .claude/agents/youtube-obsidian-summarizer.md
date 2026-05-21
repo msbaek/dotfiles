@@ -20,7 +20,7 @@ Begin every document with:
 ```markdown
 ---
 id: [영상 제목]
-created_at: [[YYYY-MM-DD HH:mm]]
+created_at: YYYY-MM-DD HH:MM
 source: [YouTube URL]
 author: [발표자]
 tags: [hierarchical tags]
@@ -107,3 +107,9 @@ Before finalizing:
 - 모든 섹션은 내용이 있을 때만 포함 (빈 섹션 제거)
 
 You must analyze the transcript thoroughly, extract all valuable information, and present it in a way that maximizes knowledge retention and future reference value within an Obsidian vault. Focus on creating connections between concepts and ensuring the document serves as a comprehensive reference that can be easily navigated and linked to other notes.
+
+## OFM 규칙 참조
+
+vault 문서 작성 시 `~/.claude/commands/obsidian/ofm-rules.md`를 따른다:
+- wikilink: `[[folder/basename]]` (vault-relative, .md 없음)
+- frontmatter timestamp: `YYYY-MM-DD HH:MM` (평문, wikilink 아님)

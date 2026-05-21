@@ -92,3 +92,9 @@ model: sonnet
 - `--dry-run`인데 실제 파일 변경 발생
 - vis-backlink-trigger skill 호출 누락 (단, `--recursive` 등 부하 우려 옵션 시 skip 사유 명시)
 - 결과 보고에 이동 전/후 경로 명시 누락
+
+## OFM 규칙 참조
+
+vault 문서 작성 시 `~/.claude/commands/obsidian/ofm-rules.md`를 따른다:
+- wikilink: `[[folder/basename]]` (vault-relative, .md 없음)
+- frontmatter timestamp: `YYYY-MM-DD HH:MM` (평문, wikilink 아님)

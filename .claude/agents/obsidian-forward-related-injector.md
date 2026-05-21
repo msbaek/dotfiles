@@ -54,3 +54,9 @@ model: sonnet
 - visd HTTP + CLI 모두 실패 → 에러 (재시도 금지, 사용자에게 daemon 상태 안내)
 - daily notes 또는 자기 자신 포함 (필터 누락)
 - backward 작업 수행 (책임 범위 위반)
+
+## OFM 규칙 참조
+
+vault 문서 작성 시 `~/.claude/commands/obsidian/ofm-rules.md`를 따른다:
+- wikilink: `[[folder/basename]]` (vault-relative, .md 없음)
+- frontmatter timestamp: `YYYY-MM-DD HH:MM` (평문, wikilink 아님)

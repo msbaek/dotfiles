@@ -64,3 +64,9 @@ model: sonnet
 - `--recursive`인데 Related Notes/backlink 단계가 skip되지 않음 (부하 발생)
 - `--recursive` 아닌데 backward backlink trigger 호출 누락
 - `--dry-run`인데 실제 파일 변경 발생
+
+## OFM 규칙 참조
+
+vault 문서 작성 시 `~/.claude/commands/obsidian/ofm-rules.md`를 따른다:
+- wikilink: `[[folder/basename]]` (vault-relative, .md 없음)
+- frontmatter timestamp: `YYYY-MM-DD HH:MM` (평문, wikilink 아님)
