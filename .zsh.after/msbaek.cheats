@@ -1,0 +1,62 @@
+# msbaek.cheats — mshelp 표시용 설명 모음
+# format: <type>\t<name>\t<description>
+# type: a=alias, f=function, e=external CLI
+# 새 항목 추가 시 반드시 탭(TAB) 구분자 사용. 정의 위치: ~/.zsh.after/msbaek.zsh
+
+# ─── Aliases ───
+a	greset	git add . ; git reset --hard HEAD
+a	ll	lsd -aFlht
+a	ls	eza (color, git, icons, sort by modified)
+a	fdm	fd --hidden --no-ignore
+a	rgm	rg --no-ignore --hidden
+a	brewu	brew upgrade; brew cleanup
+a	ta	tmux attach -t work
+a	tk	tmux kill-server
+a	vi	nvim
+a	gl	git log
+a	lg	lazygit
+a	cld	claude --dangerously-skip-permissions --teammate-mode tmux
+a	cc-commit	claude headless /commit 실행
+a	cc-commit-only	temp 파일 기반 한글 안전 commit (--no-verify)
+a	cc-push	claude headless /commit --push 실행
+a	d2h	diff2html -s side
+a	gw	ktown4u-groupware Python CLI venv 활성화
+a	gdum	gdu -h -d 1
+a	agfu	cargo install --git agf
+a	find-largest-file	현재 디렉토리에서 큰 파일 정렬
+a	find_mac_addr	en0 MAC 주소 출력
+a	listening-port	열린 LISTEN 포트 전체
+a	pid-by-port	지정 포트 점유 프로세스 (인자 필요)
+a	find_wifi_pwd	키체인에서 WiFi 비밀번호 찾기
+
+# ─── Functions ───
+f	globalias	zsh 마지막 단어를 alias로 확장
+f	duf	disk usage with light theme
+f	rm	rm을 trash로 대체 (-rf 무시, 파일만 휴지통)
+f	cc-model	sub-agent 모델 감사 (cwd/branch/첫 task 요약)
+f	get_my_ip	모든 local IP 출력 (loopback 제외)
+f	reverse_lines	클립보드 텍스트 줄 순서 뒤집기
+f	prev	fzf로 현재 디렉토리 파일 미리보기
+f	kill_by_name	이름으로 프로세스 강제 종료
+f	kill_by_port	지정 포트 점유 프로세스 강제 종료
+f	pull_br	main pull 후 지정 브랜치 pull
+f	indent_complexity	들여쓰기 기반 복잡도 측정 (Java)
+f	fsb	패턴으로 git 브랜치 fuzzy 검색 후 checkout
+f	fshow	fzf로 git log 인터랙티브 (Enter=상세, Ctrl-O=checkout)
+f	gb	git 히스토리 한 커밋 뒤로
+f	gf	git 히스토리 한 커밋 앞으로 (기본 main)
+f	matrix	터미널에 Matrix 스타일 텍스트 비
+f	disk-free	현재 디렉토리 디스크 여유 공간
+f	git-churn	최근 1년 가장 많이 변경된 상위 20 파일
+f	git-contributors	기여자별 커밋 수 순위 (merge 제외)
+f	git-buggy-files	fix/bug 키워드 커밋 자주 수정된 상위 20 파일
+f	git-timeline	월별 커밋 수 추세
+f	git-hotfixes	최근 1년 revert/hotfix/emergency
+f	ha	html-anything 폴더로 이동
+f	hadev	html-anything dev 서버 기동 (Next.js Turbopack)
+f	mshelp	cheats fzf 검색 (Enter=커맨드라인 붙여넣기)
+
+# ─── External CLI Tools ───
+# 자주 쓰는 외부 명령. 여기에 자유롭게 추가. multi-word name 가능 (예: "mo clean")
+e	btop	시스템 리소스 모니터링 (top 대체)
+e	mo clean	Free up disk space

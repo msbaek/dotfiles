@@ -250,6 +250,8 @@ cc-model() { python3 "$HOME/.claude/bin/check-subagent-model.py" "$@"; }
 
 alias d2h='diff2html -s side'
 
+# ktown4u-groupware Python CLI venv 활성화 (ktown4u-gw 명령 사용)
+alias gw='source ~/git/kt4u/ktown4u-groupware-tools/.venv/bin/activate && ktown4u-gw menu'
 alias gdum='gdu -h -d 1'
 alias agfu='cargo install --git https://github.com/subinium/agf.git'
 alias find-largest-file='du -ah * | sort -rn'
@@ -397,36 +399,38 @@ git-hotfixes() {
   git log --oneline --since="1 year ago" | grep -iE 'revert|hotfix|emergency|rollback'
 }
 
+# ── html-anything (https://github.com/nexu-io/html-anything) ──
+
+# html-anything 폴더로 이동
+ha() {
+  cd ~/git/ai-agent/html-anything || return 1
+}
+
+# html-anything dev 서버 기동 (Next.js Turbopack → http://localhost:3000)
+hadev() {
+  (cd ~/git/ai-agent/html-anything && pnpm dev "$@")
+}
+
 # ── Help ──
 
-# msbaek.zsh의 alias/function을 fzf로 검색. Enter=커맨드라인 붙여넣기
+# cheatsheet 파일(~/.zsh.after/msbaek.cheats)을 fzf로 검색.
+# 항목: alias / function / external CLI. Enter=커맨드라인 붙여넣기.
 mshelp() {
-  local file="$HOME/.zsh.after/msbaek.zsh"
+  local file="$HOME/.zsh.after/msbaek.cheats"
+  [[ -f "$file" ]] || { echo "[mshelp] not found: $file"; return 1 }
   local cmd
-  cmd=$(awk '
-    /^# ──/ { desc=""; next }
-    /^# (export|alias|eval|unalias) / { desc=""; next }
-    /^unalias / { next }
-    /^# / && !/^##/ { if (desc == "") desc=substr($0, 3); next }
-    /^[a-zA-Z][a-zA-Z0-9_-]*\(\)/ {
-      name=$0; gsub(/\(\) *\{?/, "", name)
-      if (name !~ /^_/ && desc != "")
-        printf "\033[36m%-22s\033[0m %s\n", name, desc
-      desc=""
-      next
-    }
-    /^alias [a-zA-Z]/ {
-      name=$0; sub(/^alias /, "", name); sub(/=.*/, "", name)
-      val=$0; sub(/^[^=]+=[\047\042]?/, "", val); sub(/[\047\042]?$/, "", val)
-      if (length(val) > 55) val=substr(val, 1, 52) "..."
-      if (desc != "") printf "\033[33m%-22s\033[0m %s\n", name, desc
-      else printf "\033[33m%-22s\033[0m %s\n", name, val
-      desc=""
-      next
-    }
-    /^[^#[:space:]]/ { desc="" }
+  cmd=$(awk -F'\t' '
+    /^#/ { next }
+    NF < 3 { next }
+    $1 == "a" { printf "\033[33m%-22s\033[0m %s\n", $2, $3 }
+    $1 == "f" { printf "\033[36m%-22s\033[0m %s\n", $2, $3 }
+    $1 == "e" { printf "\033[32m%-22s\033[0m %s\n", $2, $3 }
   ' "$file" | fzf --ansi \
-    --header="alias=yellow func=cyan │ Enter=커맨드라인 붙여넣기" \
+    --header="alias=yellow func=cyan ext=green │ Enter=커맨드라인 붙여넣기" \
     --preview-window=hidden --reverse)
-  [[ -n "$cmd" ]] && print -z "${cmd%% *}"
+  if [[ -n "$cmd" ]]; then
+    # 이름 컬럼(첫 22자) 추출 + ANSI 제거 + 우측 공백 trim. multi-word name(e.g. "mo clean") 지원
+    local name=$(echo "$cmd" | sed 's/\x1b\[[0-9;]*m//g' | cut -c1-22 | sed 's/[[:space:]]*$//')
+    print -z "$name"
+  fi
 }
