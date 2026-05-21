@@ -60,16 +60,14 @@ model: sonnet
 - **읽기 오류**: `UNPROCESSED-FILES.md`에 기록 후 종료
 - **사본 (`사본` 포함)**: 별도 확인. 중복이면 사용자에게 처리 방향 질문
 
-## 절차 상세 (참조 — SSoT)
+## 절차 상세 (참조 — 필요 시 on-demand Read)
 
-본문에 이미 인라인된 부분 외의 세부 규칙은 다음 파일을 단일 진실 원천으로 한다. 변경 시 이 파일들을 우선 갱신:
+이 본문에 인라인된 규칙(옵션·태그 규칙·디렉토리 매핑·결과 형식)이 단일 진실 원천이다. **작업 시작 시 외부 파일을 미리 읽지 않는다.** 다음 두 파일만 해당 단계에서 필요할 때 Read:
 
-- `~/.claude/commands/obsidian/add-tag-and-move-file.md` — 옵션·결과 형식·디렉토리 결정 흐름
-- `~/.claude/commands/obsidian/add-tag.md` — tag 카테고리·예외·hierarchy 원칙
-- `~/.claude/commands/obsidian/tagging-example.md` — 실제 문서별 tagging 사례
-- `~/.claude/commands/obsidian/shared-rules.md` — Related Notes/Atomic Note 규칙
+- `~/.claude/commands/obsidian/tagging-example.md` — 3단계(태그 설계) 시 문서별 사례가 필요하면 참조
+- `~/.claude/commands/obsidian/shared-rules.md` — 7단계(Related Notes 추가) 검색 레시피·배치 규칙
 
-작업 시작 전 위 파일을 Read로 확인해 최신 절차를 따른다.
+`add-tag-and-move-file.md`·`add-tag.md`의 내용은 위 본문에 이미 인라인됨 — 별도 Read 불필요. 정책 변경 시 본문과 해당 command 파일을 함께 갱신.
 
 ## 결과 보고 형식
 
