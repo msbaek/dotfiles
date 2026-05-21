@@ -224,8 +224,12 @@ rm() {
   fi
 }
 alias greset='git add .; git reset --hard HEAD'
-alias ll='lsd -aFlht'
-alias ls='eza --color=always --long --git --icons=always --no-user --no-permissions -s modified'
+# Format-changing aliases — interactive 셸에서만 적용.
+# non-interactive(스크립트·Claude Code Bash 등)에서는 진짜 ls/ll 이 보여야 출력 파싱이 안전.
+if [[ -o interactive ]]; then
+  alias ll='lsd -aFlht'
+  alias ls='eza --color=always --long --git --icons=always --no-user --no-permissions -s modified'
+fi
 alias fdm='fd --hidden --no-ignore'
 alias rgm='rg --no-ignore --hidden'
 alias brewu='brew upgrade; brew cleanup'
