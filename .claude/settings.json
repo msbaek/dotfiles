@@ -171,6 +171,16 @@
             "command": "/Users/msbaek/.claude/hooks/session-tracker.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/msbaek/.claude/hooks/proficiency-enqueue.sh",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "SubagentStart": [
