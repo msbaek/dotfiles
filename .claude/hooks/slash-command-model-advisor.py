@@ -30,6 +30,15 @@ EXEC_COMMANDS = {
 }
 RESET_COMMANDS = {"brainstorming"}  # rare via slash command; safety net
 
+# Harness-generated prefix when user approves a plan and implementation begins.
+# Anchored via re.match so occurrences inside the plan body don't trigger.
+PLAN_IMPL_PATTERN = re.compile(r"\s*Implement the following plan:", re.IGNORECASE)
+
+
+def is_plan_implementation(prompt):
+    """True iff this prompt is the harness-generated plan-implementation entry."""
+    return bool(PLAN_IMPL_PATTERN.match(prompt))
+
 # 'Keep Opus' intent patterns — case-insensitive Korean + English.
 # Must co-occur with a model context keyword (opus/sonnet/모델) to avoid silent matches.
 KEEP_OPUS_PATTERNS = [
@@ -160,9 +169,10 @@ def main():
                     pass
                 break
 
-    # (b) Slash command detection — recommend Sonnet for exec-class commands
+    # (b) Slash command or plan-implementation entry — recommend Sonnet
     exec_hit = commands & EXEC_COMMANDS
-    if not exec_hit:
+    plan_impl = is_plan_implementation(prompt)
+    if not exec_hit and not plan_impl:
         sys.exit(0)
 
     # Skip if already sticky
@@ -179,26 +189,38 @@ def main():
     if family_match(recommended, current):
         sys.exit(0)
 
-    cmd = sorted(exec_hit)[0]
+    label = f"/{sorted(exec_hit)[0]}" if exec_hit else "plan 구현 진입"
+
     # Pending marker — next user input may confirm stickiness
     try:
         with open(PENDING_MARKER_FMT.format(session=sid), "w") as f:
-            json.dump({"model": recommended, "label": f"/{cmd}"}, f)
+            json.dump({"model": recommended, "label": label}, f)
     except OSError:
         pass
 
     detected = f" (detected: {current})" if current else ""
-    print(f"⚠️  권장 모델: /model {recommended} (trigger: /{cmd}){detected}", file=sys.stderr)
+    print(f"⚠️  권장 모델: /model {recommended} (trigger: {label}){detected}", file=sys.stderr)
+
+    if exec_hit:
+        ctx = (
+            f"사용자가 실행 계열 slash command `{label}`를 호출했다. "
+            f"`/model {recommended}` 전환을 권장하라. "
+            f"이 안내문을 그대로 출력한 후 본문을 진행하라. "
+            f"hook이 이미 현재 모델을 JSONL에서 확인했으므로 self-skip 금지. "
+            f"사용자가 'opus 유지' 답변 시 같은 세션에서 재안내 금지."
+        )
+    else:
+        ctx = (
+            f"plan 승인 후 구현 단계에 진입했다. <when-plan-complete> 트리거 1에 해당한다. "
+            f"/model {recommended} 전환을 권장하라. "
+            f"이 안내문을 그대로 출력한 후 본문을 진행하라. "
+            f"hook이 JSONL에서 현재 모델을 확인했으므로 self-skip 금지. "
+            f"사용자가 'opus 유지' 답변 시 같은 세션에서 재안내 금지."
+        )
     print(json.dumps({
         "hookSpecificOutput": {
             "hookEventName": "UserPromptSubmit",
-            "additionalContext": (
-                f"사용자가 실행 계열 slash command `/{cmd}`를 호출했다. "
-                f"`/model {recommended}` 전환을 권장하라. "
-                f"이 안내문을 그대로 출력한 후 본문을 진행하라. "
-                f"hook이 이미 현재 모델을 JSONL에서 확인했으므로 self-skip 금지. "
-                f"사용자가 'opus 유지' 답변 시 같은 세션에서 재안내 금지."
-            )
+            "additionalContext": ctx
         }
     }))
 
