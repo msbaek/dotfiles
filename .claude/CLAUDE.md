@@ -19,66 +19,17 @@
 ### Constraints (non-negotiable)
 
 - Korean responses · English code comments · Technical terms English-first
-- Plugin 파일(~/.claude/plugins/) 직접 수정 금지 → 이 파일의 `<*-context>` 태그로만 보강
+- Plugin 파일(~/.claude/plugins/) 직접 수정 금지 → `docs/session-mechanics.md`의 `<*-context>` 태그로만 보강
 - Fast mode 사용 금지 (Max plan 미포함, extra-usage billing 발생)
 - skill에 model 지정한 경우, 그 모델로 실행하려면 sub-agent 경유 — main context는 항상 현재 세션 모델로 동작
 - 결정적 규약(tools/paths/git)은 아래 `Deterministic rules` 섹션 따름
 
 ### What "good" looks like
 
-- **Problem-first 워크플로우** (상세는 Section 2): 승인 조건 → 분해 → E2E → 개선
+- **Problem-first 워크플로우** (상세는 `docs/working-style.md`): 승인 조건 → 분해 → E2E → 개선
 - 모호하면 추측 말고 질문 — 4.7의 "literal interpretation"·"honesty" 본성 신뢰
-- 같은 가이드 두 번 받지 않음 — 새 패턴 발견 시 ai-learnings.md 즉시 업데이트
+- 같은 가이드 두 번 받지 않음 — 새 패턴 발견 시 `~/dotfiles/ai-learnings.md` 즉시 업데이트
 - 작은 commit 단위 + rollback-friendly 상태 유지
-
----
-
-## Working with me on Opus 4.7
-
-### Problem-first workflow (가장 중요)
-
-비자명한 작업은 다음 순서로. 단계 건너뛰지 말 것.
-
-1. **문제 정의** — 무엇을 / 왜 / 누구를 위해. 모호하면 질문.
-2. **승인 조건(acceptance criteria) 명시** — "끝났다"의 정의. TDD test-first의 일반화.
-3. **시나리오 분해 (Test List)** — 처리할 시나리오·슬라이스 단위로 나열 (happy path · edge cases).
-   _컴포넌트·계층 분해 아님 — 그건 4단계에서 자연스럽게 드러남._
-4. **Walking Skeleton** — 가장 단순한 시나리오를 E2E로 먼저 동작.
-   _모든 계층 연결 + 각 계층 최소 구현. 완벽주의 금지._
-   _도메인·해법 경로가 불확실하면 `spike-and-stabilize` skill로 Quick Pass 후 이 흐름으로 회귀._
-5. **슬라이스 추가로 정교화** — 한 번에 하나씩. 직전 슬라이스 동작 확인 후 다음.
-6. **전체 개선** — 모든 슬라이스 E2E 동작 후에만 ("Make it right, make it fast").
-
-**왜 분해와 E2E가 충돌 없이 결합되는가**: 분해는 _너비_(시나리오), E2E는 _깊이_(계층 관통). 두 축은 직교. "잘게 쪼갠 시나리오를 하나씩 E2E로 처리"가 결합 방식.
-
-**왜 4.7과 잘 맞는가**: literal interpretation × 승인 조건 / less default-verbose × E2E 우선 / ask don't guess × 시나리오 분해 / plan 검토 > diff 검토 × 단계 1-3.
-
-**Superpowers / TDD 매핑**:
-
-- brainstorming = ①·②·③ / writing-plans = ③·④·⑤·⑥ 명세 / executing-plans = ④·⑤·⑥ 실행
-- TDD = ② 승인 조건 → ④ 첫 test 통과 → ⑤ 다음 test → ⑥ refactor
-
-### Interaction patterns
-
-- **첫 turn 완전 명세**: 의도·제약·승인 조건·관련 파일 위치를 한 번에 제공. 여러 turn에 걸친 점진 지시는 reasoning overhead 누적.
-- **Plan 검토 > Diff 검토**: 코드 작성 전 plan 검토. 200줄 diff에서 발견되는 의도 오해는 10줄 plan에서 잡으면 30초.
-- **부정 지시 → 긍정 예시**: "X 하지 마라"보다 "Y 하기" 또는 "원하는 voice의 예시"가 더 효과적.
-- **위임 엔지니어 모드**: 라인별 지시받는 페어 프로그래머 X. 의도·제약·성공 기준을 받아 스스로 실행 방법 찾는 위임 엔지니어로 작동.
-
-### Effort & Thinking
-
-- **기본 effort**: `xhigh` (Claude Code 신규 기본값). `max`는 의도적으로만 (overthinking 위험). 작업 중 토글 가능.
-- **Adaptive thinking**: 더 많은 사고는 "신중하고 단계적으로 생각", 더 적은 사고는 "확신 안 서면 직접 응답".
-
-### Tool usage shifts (4.7 default 동작 인식)
-
-- **Tool 호출 줄어듦**: 적극적 search 원하면 "언제·왜 tool 사용" 명시.
-- **Subagent 생성 줄어듦**: 병렬 fan-out 이점 시 "같은 turn 내 여러 subagent 생성" 명시.
-
-### Skill + model boundary (사용자 발견 규약)
-
-- skill frontmatter `model` 필드는 main context 호출 시 **무시됨** — 현재 세션 모델로 실행.
-- 비용 의도(예: Haiku로 실행할 의도) 의미 있으면 **sub-agent 경유** (Agent 도구로 위임). 단순 대화는 main context OK.
 
 ---
 
@@ -123,70 +74,9 @@ Superpowers 미트리거 시(짧은 Q&A · 단순 수정)에도 적용되는 톤
 
 ---
 
-## Session lifecycle (when-\* hooks)
+## 참조
 
-<when-starting-a-new-session>
-1. `PROJECT_ROOT/.claude/plans/`에서 `YYYY-MM-DD-*` 폴더 중 INDEX.md `Status: active` 확인
-2. Active 폴더 resume point에서 재개 (없으면 root plan 파일로 fallback)
-3. 현재 상태와 다음 단계 보고
-</when-starting-a-new-session>
+상세 지침은 아래 파일로 분리(매 세션 자동 로드):
 
-<session-start-hook>Superpowers 스킬이 활성화되어 있음을 확인하고, 모든 작업에서 관련 skill을 우선 탐색할 것.</session-start-hook>
-
-<when-plan-complete>
-**트리거 조건** (어느 하나라도 true → 즉시 발화):
-1. `ExitPlanMode` 호출 직후 첫 응답
-2. plan 파일(`.claude/plans/*.md` 또는 `docs/superpowers/plans/*.md`) 작성·갱신 직후 다음 turn
-3. 사용자 입력에 다음 키워드 포함: "구현해줘", "코드 작성", "commit해", "test 돌려", "PR 만들어", "push해", "배포"
-4. TodoWrite로 task list 만든 직후 첫 Edit/Write/Bash 호출 turn
-5. `/commit`·`/wrap-up`·`/session-handoff`·`/skills-audit` 등 기계적 실행 skill 호출
-
-**발화 워딩** (정확히 이대로):
-> 계획 단계 완료. 이제부터 기계적 실행 단계입니다.
-> `/model claude-sonnet-4-6` 전환을 권장합니다.
-> (Opus 유지 원하시면 "opus 유지"라고 답해주세요 — 같은 세션에서 재안내 안 함)
-
-**Skip 조건**:
-- 현재 모델이 이미 `claude-sonnet-*` 계열
-- 같은 세션에서 stickiness state file(`/tmp/claude-model-decision-${session_id}.json`)에 `keep_opus: true` 기록됨 — 또는 직전 turn에 사용자가 "opus 유지"·"그대로"·"바꾸지 마" 답변
-- `superpowers:brainstorming` skill이 직전 turn에 호출됨 (창의 단계 = Opus 적합)
-
-**Stickiness 리셋 조건** (재안내 허용):
-- 다음 skill 호출: `superpowers:brainstorming`, `superpowers:writing-plans`, `ExitPlanMode`
-- 새 세션 시작
-
-**Hook 보강**: `skill-model-advisor.py`(PreToolUse)와 `slash-command-model-advisor.py`(UserPromptSubmit) 두 hook이 세션 JSONL(`~/.claude/projects/*/<session_id>.jsonl`)에서 현재 모델을 직접 식별한다. 이미 타겟 family면 hook이 침묵하므로, **hook 출력이 나오면 무조건 추정 없이 사용자에게 그대로 안내**할 것 (모델 자기 인식 실패로 self-skip 금지). 2·3·4번 트리거는 hook 미커버 영역 → 본 규칙에 따라 직접 안내. stickiness는 UserPromptSubmit hook이 pending-marker gate로 자동 관리.
-</when-plan-complete>
-
-<when-completing-task>
-완료 전: per-folder INDEX.md + Global INDEX.md 갱신, 다음 세션용 context 기록, 아키텍처 결정 시 ADR 제안. 의미 단위마다 commit하여 rollback-friendly 상태 유지. (superpowers `verification-before-completion` 미트리거 시의 보호망)
-</when-completing-task>
-
----
-
-## Superpowers integration
-
-`/prompt-contracts` 필수 (brainstorming·planning 시 Goal / Constraints / Failure Conditions 명시).
-
-<brainstorming-context>
-Each design: Goal / Constraints / Failure Conditions 명시. (사용자 프로파일은 Section 1 Context 참조)
-</brainstorming-context>
-
-<writing-plans-context>
-Each task: Output Format + Failure Conditions. Plan: Goal (testable) + Constraints (non-negotiable).
-</writing-plans-context>
-
-<superpowers-workflow>
-Complex tasks: brainstorming → writing-plans → executing-plans (first 3 → feedback → autonomous).
-TDD: NO PRODUCTION CODE WITHOUT FAILING TEST FIRST. ADR: 2+ alternatives → suggest ADR.
-showClearContextOnPlanAccept 대응: writing-plans 완료 후 /clear → 실행 단계 진입. subagent-driven-development 사용 시 각 Task가 자동으로 fresh context에서 실행되므로 /clear 불필요.
-</superpowers-workflow>
-
-## Diary (Session Journal)
-
-<diary>
-EVERY session: append to `~/.claude/journals/YYYY-MM.journal.md`.
-Format: `## YYYY-MM-DD HH:MM | [project] | [context]\n[2-10 lines]`
-Triggers: milestone, a-ha moment, end signal ("good night", "done", "I'm off"). NOT: "thanks", "ok".
-Rules: append-only, system clock only, sub-agents don't journal. Use `printf '...\n\n' >>` for safety.
-</diary>
+@docs/working-style.md
+@docs/session-mechanics.md
