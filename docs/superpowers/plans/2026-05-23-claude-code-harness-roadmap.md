@@ -1,0 +1,116 @@
+# Claude Code Harness Roadmap
+
+> 작성: 2026-05-23 | 상태: active
+
+## 목표 (testable)
+
+Claude Code 사용 패턴의 friction을 자동 수집·분석·개선하는 closed-loop harness 구축.
+리포트 데이터: 2,372 messages / 333 sessions / 20일 / 21 user-rejected / 72 command failed / ExitPlanMode 중단 5+회.
+
+**성공 기준**: 4주 후 friction 이벤트(user-rejected + command failed)가 현재 대비 20% 이상 감소.
+
+## 한 줄 진단
+
+skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemetry/에 402 파일로만 쌓이고 학습 루프로 환원되지 않는다**.
+
+---
+
+## 인프라 레이어 (Hook 신뢰성)
+
+### [x] Action 7: State File GC — SessionEnd Hook
+**커밋**: `68dbd48` (2026-05-23)
+- `~/.claude/hooks/session-end-cleanup.sh` 신규 생성
+- SessionEnd 시 `/tmp/claude-model-decision-{sessionId}.json` + `model-pending-*.json` 삭제
+- `proficiency/pending` 7일 초과 파일 pruning
+- settings.json SessionEnd 배열에 등록 (session-tracker → proficiency-enqueue → **cleanup**)
+- 부산물: settings.json + settings.local.json 하드코딩 절대경로 → `$HOME` 정규화
+
+### [ ] Action 6: Hook Timeout Wrapper + Error Dead Letter Queue
+**우선순위**: 🔴 High (Action 1 전제 조건)
+**예상 소요**: 30분
+
+- `session-tracker.sh`에 timeout 없음 → 전체 hook chain 블로킹 위험
+- `~/.claude/bin/run-hook-with-timeout.sh` 래퍼 작성 (~10줄)
+- 실패 시 `~/.claude/state/hook-errors/` JSON 기록
+- settings.json의 session-tracker.sh 호출에 wrapper 적용
+
+**검증**: 1주 후 `hook-errors/` 파일 수 확인 → 몰랐던 실패 패턴 발견 여부
+
+### [ ] Action 8: Hook 검증 스크립트
+**우선순위**: 🟡 Medium
+**예상 소요**: 30분
+
+- `~/.claude/bin/validate-hooks.sh` — `jq` 기반 15줄
+- hook command 파일 존재 확인
+- timeout 누락 경고
+- 하드코딩 절대경로 → `$HOME` 치환 제안
+
+---
+
+## 관찰 레이어 (데이터 수집·분석)
+
+### [ ] Action 1: Friction Telemetry 분석 파이프라인
+**우선순위**: 🟢 High (Action 6 완료 후)
+**예상 소요**: 30분
+
+- `~/.claude/telemetry/1p_failed_events.*.json` (402개) + `history.jsonl` (12,772 lines) 분석
+- `~/.claude/bin/friction-audit.py` 작성
+- 첫 단계: top-5 failed tool names + frequency 출력
+- `bin/skills-audit.py` 패턴 참조
+
+**검증**: 1주 후 top-1 friction tool fix → 다음 주 빈도 감소 확인
+
+### [ ] Action 2: Pre-flight Hook on ExitPlanMode
+**우선순위**: 🟢 High
+**예상 소요**: 30분
+
+- PreToolUse matcher `ExitPlanMode`에 `hooks/preflight-exitplan.py` 추가
+- plan 텍스트에서 agent명 추출 → `~/.claude/agents/` grep
+- 언급된 skill명 → `~/.claude/skills/` grep
+- MCP server 인증 상태 확인
+- 결손 시 stderr 경고
+
+**검증**: 1주 후 ExitPlanMode 중단율 25% → 10% 이하
+
+### [ ] Action 3: Statusline friction signal 노출
+**우선순위**: 🟢 Medium
+**예상 소요**: 30분
+
+- statusline에 `Today: 3✗ 2⊘` 형태 표시
+- `friction-audit.py --today --count-only` 모드 추가 후 statusline 스크립트에서 호출
+
+---
+
+## Strategic
+
+### [ ] Action 4: Skill Golden Test Harness (langfuse 연동)
+**우선순위**: 🟣 Strategic (별도 plan 필요)
+
+- `skills-tests/` 디렉토리 + 각 skill 마다 3-5개 golden input/output
+- 주간 sub-agent 격리 실행 + pass rate 추적
+- langfuse OTLP exporter로 trace 수집
+- 첫 대상: `/commit` skill
+
+### [ ] Action 5: Self-reflection MCP Server
+**우선순위**: 🟣 Strategic (별도 plan 필요)
+
+- Python FastAPI 기반 local MCP server
+- endpoint: `recent_friction(days)` / `skill_usage_stats(skill)` / `suggest_skill_for(intent)` / `session_recap(session_id)`
+- telemetry/ + history.jsonl + journals/ 통합 조회
+
+---
+
+## 의도적으로 무시하는 추천
+
+| 리포트 추천 | 무시 이유 |
+|---|---|
+| "Custom Skills 추가" 일반 권고 | 이미 50+ skill. 신규보다 기존 friction 측정·개선이 ROI 높음 |
+| "Hooks 사용 시작" 일반 권고 | 이미 9개 lifecycle 모두 등록됨 |
+| CLAUDE.md 추천 4개 | 현재 CLAUDE.md가 모두 커버함 |
+
+---
+
+## Resume Point
+
+**다음 시작**: Action 6 (Hook Timeout Wrapper) — `~/.claude/bin/run-hook-with-timeout.sh` 작성부터.
+참조: `~/.claude/hooks/session-tracker.sh` (timeout 없는 현황 확인)
