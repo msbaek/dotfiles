@@ -224,6 +224,7 @@ rm() {
   fi
 }
 alias greset='git add .; git reset --hard HEAD'
+alias pkm='bash ~/DocumentsLocal/msbaek_vault/.claude/pkm/dashboard.sh'
 # Format-changing aliases — interactive 셸에서만 적용.
 # non-interactive(스크립트·Claude Code Bash 등)에서는 진짜 ls/ll 이 보여야 출력 파싱이 안전.
 if [[ -o interactive ]]; then
