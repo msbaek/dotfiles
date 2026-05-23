@@ -29,7 +29,7 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 ### [x] Action 6: Hook Timeout Wrapper + Error Dead Letter Queue
 
-**커밋**: (2026-05-23)
+**커밋**: `f2636f9` (2026-05-23)
 
 - `~/.claude/bin/run-hook-with-timeout.sh` 신규 작성 (10s timeout + DLQ)
 - stdin을 temp file로 버퍼링 후 재전달 — node `readFileSync(0)` 호환
@@ -51,15 +51,14 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 ## 관찰 레이어 (데이터 수집·분석)
 
-### [ ] Action 1: Friction Telemetry 분석 파이프라인
+### [x] Action 1: Friction Telemetry 분석 파이프라인
 
-**우선순위**: 🟢 High (Action 6 완료 후)
-**예상 소요**: 30분
+**커밋**: TBD (2026-05-23)
 
-- `~/.claude/telemetry/1p_failed_events.*.json` (402개) + `history.jsonl` (12,772 lines) 분석
-- `~/.claude/bin/friction-audit.py` 작성
-- 첫 단계: top-5 failed tool names + frequency 출력
-- `bin/skills-audit.py` 패턴 참조
+- `~/.claude/bin/friction-audit.py` 작성 — 402개 telemetry 파일 파싱
+- `tengu_tool_use_error` by toolName, user-rejected, MCP/API/plugin 분리 집계
+- `--days N`, `--today`, `--count-only` (statusline 대비), `--json` 옵션
+- 결과: top-1 friction = MCP connection failed 337회 > plugin_load_failed 70회 > api_retry 189회
 
 **검증**: 1주 후 top-1 friction tool fix → 다음 주 빈도 감소 확인
 
@@ -119,5 +118,5 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 ## Resume Point
 
-**다음 시작**: Action 1 (Friction Telemetry 분석 파이프라인) — `~/.claude/bin/friction-audit.py` 작성부터.
-참조: `~/.claude/telemetry/1p_failed_events.*.json` (402개), `~/.claude/history.jsonl` (12,772 lines), `~/.claude/bin/skills-audit.py` (패턴 참조)
+**다음 시작**: Action 2 (Pre-flight Hook on ExitPlanMode) — `~/.claude/hooks/preflight-exitplan.py` 작성.
+참조: plan 텍스트에서 agent/skill명 추출 → `~/.claude/agents/`, `~/.claude/skills/` grep → 결손 시 stderr 경고
