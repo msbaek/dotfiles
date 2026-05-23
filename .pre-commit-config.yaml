@@ -28,7 +28,7 @@ repos:
       # Update Brewfile before commit
       - id: update-brewfile
         name: Update Brewfile with current packages
-        entry: .claude/hooks/update-brewfile.sh
+        entry: hooks/update-brewfile.sh
         language: script
         pass_filenames: false
         always_run: true
@@ -36,20 +36,20 @@ repos:
       # Check for hardcoded personal paths
       - id: check-hardcoded-paths
         name: Check for hardcoded personal paths
-        entry: .claude/hooks/check-hardcoded-paths.sh
+        entry: hooks/check-hardcoded-paths.sh
         language: script
         pass_filenames: false
 
       # Check for sensitive file extensions
       - id: check-sensitive-extensions
         name: Check for sensitive file extensions
-        entry: .claude/hooks/check-sensitive-files.sh
+        entry: hooks/check-sensitive-files.sh
         language: script
         pass_filenames: false
 
       # Check for API keys in env files (non-example)
       - id: check-env-files
         name: Check for actual env files
-        entry: .claude/hooks/check-env-files.sh
+        entry: hooks/check-env-files.sh
         language: script
         pass_filenames: false
