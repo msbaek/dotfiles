@@ -62,16 +62,16 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 **검증**: 1주 후 top-1 friction tool fix → 다음 주 빈도 감소 확인
 
-### [ ] Action 2: Pre-flight Hook on ExitPlanMode
+### [x] Action 2: Pre-flight Hook on ExitPlanMode
 
-**우선순위**: 🟢 High
-**예상 소요**: 30분
+**커밋**: TBD (2026-05-23)
 
-- PreToolUse matcher `ExitPlanMode`에 `hooks/preflight-exitplan.py` 추가
-- plan 텍스트에서 agent명 추출 → `~/.claude/agents/` grep
-- 언급된 skill명 → `~/.claude/skills/` grep
-- MCP server 인증 상태 확인
-- 결손 시 stderr 경고
+- `~/.claude/hooks/preflight-exitplan.py` 신규 작성
+- `subagent_type:` 값 → known agents(`~/.claude/agents/*.md`) 대조
+- `/slash-name` → known skills(`~/.claude/skills/*/` + `~/.claude/commands/`) 대조
+- prefix:skill 네임스페이스 처리 (obsidian:x → prefix `obsidian` 체크)
+- 결손 시 stderr 경고 + `additionalContext`로 Claude에 전달, 항상 allow
+- settings.json `PreToolUse[ExitPlanMode]` 등록, timeout wrapper 적용
 
 **검증**: 1주 후 ExitPlanMode 중단율 25% → 10% 이하
 
@@ -118,5 +118,5 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 ## Resume Point
 
-**다음 시작**: Action 2 (Pre-flight Hook on ExitPlanMode) — `~/.claude/hooks/preflight-exitplan.py` 작성.
-참조: plan 텍스트에서 agent/skill명 추출 → `~/.claude/agents/`, `~/.claude/skills/` grep → 결손 시 stderr 경고
+**다음 시작**: Action 3 (Statusline friction signal 노출) — statusline에 `Today: 3✗ 2⊘` 표시.
+참조: `friction-audit.py --today --count-only` 모드 → `~/claude-config/bin/claude-statusline-combined` 통합
