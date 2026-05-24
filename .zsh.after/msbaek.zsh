@@ -225,6 +225,33 @@ rm() {
 }
 alias greset='git add .; git reset --hard HEAD'
 alias pkm='bash ~/DocumentsLocal/msbaek_vault/.claude/pkm/dashboard.sh'
+
+# env Plan Harness — project-scoped plan lifecycle manager
+alias env-plan='_env_plan_router'
+
+_env_plan_router() {
+  local sub="${1:-dashboard}"
+  shift 2>/dev/null || true
+  local project_root
+  project_root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+    echo "❌ env-plan: not in a git repository"
+    return 1
+  }
+  local harness="$project_root/.claude/env"
+  if [[ ! -d "$harness" ]]; then
+    echo "❌ env-plan: no .claude/env/ harness found in $project_root"
+    return 1
+  fi
+  case "$sub" in
+    dashboard|"")  bash "$harness/dashboard.sh" ;;
+    measure)       bash "$harness/measure/plan-status.sh" ;;
+    gc)            bash "$harness/gc/plan-archive.sh" ;;
+    drop)          bash "$harness/gc/plan-archive.sh" --topic "${1:-}" ;;
+    alert)         bash "$harness/alert.sh" ;;
+    *)             echo "Usage: env-plan [dashboard|measure|gc|drop <topic>|alert]" ;;
+  esac
+}
+
 # Format-changing aliases — interactive 셸에서만 적용.
 # non-interactive(스크립트·Claude Code Bash 등)에서는 진짜 ls/ll 이 보여야 출력 파싱이 안전.
 if [[ -o interactive ]]; then
