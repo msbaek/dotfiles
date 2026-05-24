@@ -59,6 +59,13 @@ f	mshelp	cheats fzf 검색 (Enter=커맨드라인 붙여넣기)
 # ─── PKM ───
 a	pkm	vault 건강 대시보드 (INBOX 적체 / orphan ratio / alert)
 
+# ─── env-plan (Plans Harness) ───
+a	env-plan	현재 프로젝트 plan 대시보드 (stale/blocked/active 현황)
+a	env-plan measure	plan 상태 측정 후 JSONL 기록
+a	env-plan alert	임계치 초과 알림 (stale ≥1 / blocked 고령 / 미응답 마커)
+a	env-plan gc	stale·blocked plan 인터랙티브 archive 리뷰
+a	env-plan drop <topic>	단일 plan 즉시 _archived/ 로 이동 (y/N 확인 있음)
+
 # ─── External CLI Tools ───
 # 자주 쓰는 외부 명령. 여기에 자유롭게 추가. multi-word name 가능 (예: "mo clean")
 e	btop	시스템 리소스 모니터링 (top 대체)
