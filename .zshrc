@@ -74,8 +74,7 @@ ai() {
 # zsh-syntax-highlighting (must be last)
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Starship prompt
-eval "$(starship init zsh)"
+# Starship prompt — initialized in ~/.zsh.after/msbaek.zsh (with STARSHIP_CONFIG)
 
 # cc-orchestra
 source ~/.claude/skills/cc-orchestra/functions.zsh
