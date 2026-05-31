@@ -37,15 +37,16 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 - settings.json 내 `session-tracker.sh` 9개 호출 전부 wrapper 적용
 - `hook-errors/` 디렉토리는 `.claude/state/` gitignore 규칙에 자동 제외
 
-### [ ] Action 8: Hook 검증 스크립트
+### [x] Action 8: Hook 검증 스크립트
 
-**우선순위**: 🟡 Medium
-**예상 소요**: 30분
+**커밋**: `11202b2`, `69817c7` (2026-05-23)
 
-- `~/.claude/bin/validate-hooks.sh` — `jq` 기반 15줄
-- hook command 파일 존재 확인
-- timeout 누락 경고
-- 하드코딩 절대경로 → `$HOME` 치환 제안
+- `~/.claude/bin/validate-hooks.sh` — Python-in-bash 3-rule validator
+- Rule 1: 파일 존재 (토큰 루프 + sh -c 내부 regex 이중 커버)
+- Rule 2: timeout 누락 경고 (run-hook-with-timeout.sh wrapper 면제)
+- Rule 3: 하드코딩 절대경로 → `$HOME` 치환 권장
+- Exit 0/1/2 분리 (warnings-only / errors / self-failure)
+- skills-log.sh hook에 `"timeout": 5` 추가
 
 ---
 
@@ -53,7 +54,7 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 ### [x] Action 1: Friction Telemetry 분석 파이프라인
 
-**커밋**: TBD (2026-05-23)
+**커밋**: `6614594` (2026-05-23)
 
 - `~/.claude/bin/friction-audit.py` 작성 — 402개 telemetry 파일 파싱
 - `tengu_tool_use_error` by toolName, user-rejected, MCP/API/plugin 분리 집계
@@ -64,7 +65,7 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 ### [x] Action 2: Pre-flight Hook on ExitPlanMode
 
-**커밋**: TBD (2026-05-23)
+**커밋**: `9569b3d` (2026-05-23)
 
 - `~/.claude/hooks/preflight-exitplan.py` 신규 작성
 - `subagent_type:` 값 → known agents(`~/.claude/agents/*.md`) 대조
@@ -75,13 +76,14 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 **검증**: 1주 후 ExitPlanMode 중단율 25% → 10% 이하
 
-### [ ] Action 3: Statusline friction signal 노출
+### [x] Action 3: Statusline friction signal 노출
 
-**우선순위**: 🟢 Medium
-**예상 소요**: 30분
+**커밋**: `f9d6f56` (2026-05-23)
 
-- statusline에 `Today: 3✗ 2⊘` 형태 표시
-- `friction-audit.py --today --count-only` 모드 추가 후 statusline 스크립트에서 호출
+- `get_friction_count()` 함수 추가: `/tmp/friction-today-cache.txt` 5분 캐시
+- `friction-audit.py --today --count-only` 호출 → `3✗ 2⊘` 형태 표시
+- 0✗ 0⊘ 이면 표시 생략 (노이즈 제거)
+- Combine 블록 배열 기반으로 리팩토링
 
 ---
 
@@ -118,5 +120,8 @@ skills/agents/hooks 자산은 풍부하지만 **실패·마찰 신호가 telemet
 
 ## Resume Point
 
-**다음 시작**: Action 3 (Statusline friction signal 노출) — statusline에 `Today: 3✗ 2⊘` 표시.
-참조: `friction-audit.py --today --count-only` 모드 → `~/claude-config/bin/claude-statusline-combined` 통합
+**완료**: Actions 1, 2, 3, 6, 7, 8 — 인프라 + 관찰 레이어 모두 완성.
+
+**다음 시작**: Action 4 (Skill Golden Test Harness) 또는 Action 5 (Self-reflection MCP Server) — 별도 brainstorming 세션 필요.
+- Action 4: `/commit` skill golden input/output + langfuse OTLP trace
+- Action 5: Python FastAPI local MCP server + telemetry/history.jsonl/journals 통합

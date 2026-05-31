@@ -250,7 +250,7 @@ for event, entries in hooks.items():
                 warnings.append(f"[{event}] 하드코딩 경로: {cmd[:70]}")
 ```
 
-- [ ] **Step 1: 스크립트 파일 생성**
+- [x] **Step 1: 스크립트 파일 생성**
 
 `~/.claude/bin/validate-hooks.sh` 를 다음 내용으로 생성한다:
 
@@ -311,13 +311,13 @@ sys.exit(1 if errors else 0)
 PYEOF
 ```
 
-- [ ] **Step 2: 실행 권한 부여**
+- [x] **Step 2: 실행 권한 부여**
 
 ```bash
 chmod +x ~/.claude/bin/validate-hooks.sh
 ```
 
-- [ ] **Step 3: smoke test — 실행 후 출력 확인**
+- [x] **Step 3: smoke test — 실행 후 출력 확인**
 
 ```bash
 ~/.claude/bin/validate-hooks.sh; echo "exit: $?"
@@ -333,7 +333,7 @@ exit: 0
 
 (errors가 없으면 exit 0, warnings만 있으면 exit 0 — 경고는 비치명적)
 
-- [ ] **Step 4: 경고 항목 수동 수정 여부 결정**
+- [x] **Step 4: 경고 항목 수동 수정 여부 결정**
 
 `skills-log.sh` hook에 timeout을 추가하거나 wrapper로 감쌀지 결정한다.
 
@@ -360,7 +360,7 @@ exit: 0
 
 기대: `✅ All hooks valid` + `exit: 0`
 
-- [ ] **Step 5: commit**
+- [x] **Step 5: commit**
 
 ```bash
 cd ~/.claude
