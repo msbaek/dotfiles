@@ -173,7 +173,7 @@
             ]
           },
           {
-            "description": "left-opt + hjkl to arrow keys (Apple Internal Keyboard only)",
+            "description": "left-opt + hjkl to arrow keys (Apple Internal + Keychron Q60)",
             "manipulators": [
               {
                 "conditions": [
@@ -183,6 +183,11 @@
                         "vendor_id": 1452,
                         "product_id": 835,
                         "description": "apple internal keyboard"
+                      },
+                      {
+                        "vendor_id": 13364,
+                        "product_id": 448,
+                        "description": "Keychron Q60"
                       }
                     ],
                     "type": "device_if"
@@ -203,6 +208,11 @@
                         "vendor_id": 1452,
                         "product_id": 835,
                         "description": "apple internal keyboard"
+                      },
+                      {
+                        "vendor_id": 13364,
+                        "product_id": 448,
+                        "description": "Keychron Q60"
                       }
                     ],
                     "type": "device_if"
@@ -223,6 +233,11 @@
                         "vendor_id": 1452,
                         "product_id": 835,
                         "description": "apple internal keyboard"
+                      },
+                      {
+                        "vendor_id": 13364,
+                        "product_id": 448,
+                        "description": "Keychron Q60"
                       }
                     ],
                     "type": "device_if"
@@ -243,6 +258,11 @@
                         "vendor_id": 1452,
                         "product_id": 835,
                         "description": "apple internal keyboard"
+                      },
+                      {
+                        "vendor_id": 13364,
+                        "product_id": 448,
+                        "description": "Keychron Q60"
                       }
                     ],
                     "type": "device_if"
