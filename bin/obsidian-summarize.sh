@@ -56,9 +56,9 @@ validate_type() {
 get_skill_command() {
   local type="$1" url="$2"
   case "$type" in
-  youtube-en) echo "/obsidian:summarize-youtube en $url" ;;
-  youtube-kr) echo "/obsidian:summarize-youtube kr $url" ;;
-  article) echo "/obsidian:summarize-article $url" ;;
+  youtube-en) echo "/mvault-summarize-youtube en $url" ;;
+  youtube-kr) echo "/mvault-summarize-youtube kr $url" ;;
+  article) echo "/mvault-summarize-article $url" ;;
   *) return 1 ;;
   esac
 }
