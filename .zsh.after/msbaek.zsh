@@ -227,6 +227,11 @@ alias greset='git add .; git reset --hard HEAD'
 alias pkm='bash ~/DocumentsLocal/msbaek_vault/.claude/pkm/dashboard.sh'
 alias cc-dashboard='python3 ~/.claude/bin/generate-cc-dashboard.py'
 
+# ── Local LLM hardware checker (npx: no global install needed) ──
+alias llm-hw='npx llm-checker hw-detect'
+# usage: llm-rec [coding|talking|reasoning|multimodal]  default=coding
+llm-rec() { npx llm-checker recommend --category "${1:-coding}"; }
+
 # env Plan Harness — project-scoped plan lifecycle manager
 alias env-plan='_env_plan_router'
 

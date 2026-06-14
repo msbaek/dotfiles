@@ -47,6 +47,10 @@ f	hr status	데몬 실행 상태 + ready/version/uptime
 f	hr stop	데몬 완전 정지 (bootout, KeepAlive 우회)
 f	hclaude	Claude Code를 headroom proxy 경유로 실행
 
+# ─── Local LLM ───
+a	llm-hw	하드웨어 등급 감지 (CPU/RAM/GPU/VRAM → Hardware Tier)
+f	llm-rec	로컬 LLM 추천: llm-rec [coding|talking|reasoning|multimodal]
+
 # ─── PKM ───
 a	pkm	vault 건강 대시보드 (INBOX 적체 / orphan ratio / alert)
 a	cc-dashboard	900-CC/_dashboard.md 갱신 (CC 세션 Active/Paused/Completed 집계)
