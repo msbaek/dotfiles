@@ -1,0 +1,28 @@
+# Creating this file DISABLES Stow's built-in default ignore list,
+# so the GNU Stow 2.4.1 defaults are reproduced verbatim below,
+# then extended with project-only files that must never be stowed.
+
+# --- GNU Stow default ignore list (preserved) ---
+RCS
+.+,v
+
+CVS
+\.\#.+
+\.cvsignore
+
+\.svn
+_darcs
+\.git
+\.gitignore
+
+.+~
+\#.*\#
+
+^/README.*
+^/LICENSE.*
+^/COPYING
+
+# --- Project-only context: dotfiles repo CLAUDE.md must stay local ---
+# Needed as project memory when cwd=~/dotfiles, but must NOT be stowed to
+# ~/CLAUDE.md (would leak dotfiles/Stow context into every $HOME-rooted session).
+^/CLAUDE.md
