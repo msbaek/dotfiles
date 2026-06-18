@@ -281,6 +281,9 @@ alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
 # sub-agent 모델 감사 (cwd/branch/첫 task 요약 포함). -f BO-query / --last 20 등 인자 전달
 cc-model() { python3 "$HOME/.claude/bin/check-subagent-model.py" "$@"; }
 
+# Agent teams(tmux): 완료(idle)된 teammate pane 정리. -n dry-run / -a 전체
+alias cct='~/.claude/bin/cc-team-cleanup'
+
 alias d2h='diff2html -s side'
 
 # ktown4u-groupware Python CLI venv 활성화 (ktown4u-gw 명령 사용)

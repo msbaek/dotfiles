@@ -55,6 +55,9 @@ f	llm-rec	로컬 LLM 추천: llm-rec [coding|talking|reasoning|multimodal]
 a	pkm	vault 건강 대시보드 (INBOX 적체 / orphan ratio / alert)
 a	cc-dashboard	900-CC/_dashboard.md 갱신 (CC 세션 Active/Paused/Completed 집계)
 
+# ─── Claude Code ───
+a	cct	완료(idle)된 agent team teammate tmux pane 정리 (-n dry-run / -a 전체)
+
 # ─── env-plan (Plans Harness) ───
 a	env-plan	현재 프로젝트 plan 대시보드 (stale/blocked/active 현황)
 a	env-plan measure	plan 상태 측정 후 JSONL 기록
