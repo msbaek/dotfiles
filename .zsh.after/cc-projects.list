@@ -1,0 +1,10 @@
+# cj (claude project jump) 대상 프로젝트 목록.
+# 한 줄당 절대경로(또는 ~). '#' 이후·빈 줄 무시.
+~/git/kt4u/PRs
+~/git/kt4u/bo
+~/git/kt4u/plan-docs
+~/git/kt4u/isms-evidence
+~/git/kt4u/datadog
+~/qmk_firmware
+~/git/ai-agent/revfactory/webtoon-harness
+~/git/msbaek-claude-plugins

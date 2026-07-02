@@ -43,3 +43,37 @@ _cj_rows() {
       printf "%d\t%s %-26s%s\t%s\t%s\n", key, sym, name, loc, state, payload
     }' | sort -s -n -k1,1
 }
+
+# cj [query]: 프로젝트 fzf → 열림이면 그 pane 으로 점프, 닫힘이면 현재 pane 에서 cd.
+cj() {
+  local file="$HOME/.zsh.after/cc-projects.list"
+  [[ -f "$file" ]] || { echo "[cj] not found: $file"; return 1; }
+
+  # config → 주석/공백 정리 후 배열, 선두 ~ 확장
+  local -a projects
+  projects=( ${(f)"$(awk 'NF{sub(/#.*/,""); gsub(/^[ \t]+|[ \t]+$/,""); if($0!="")print}' "$file")"} )
+  projects=( ${projects/#\~/$HOME} )
+  (( ${#projects} )) || { echo "[cj] empty list: $file"; return 1; }
+
+  # 열린 pane 경로 수집 (tmux 서버 없으면 빈 문자열 → 전부 closed)
+  local tmux_data
+  tmux_data="$(tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}|#{pane_current_path}' 2>/dev/null)"
+
+  local sel
+  sel=$(_cj_match "${projects[@]}" <<< "$tmux_data" \
+        | _cj_rows \
+        | fzf --ansi --delimiter=$'\t' --with-nth=2 --query="${1:-}" \
+              --header='🟢 열림 / ⚪ 닫힘 / ⚠ 없음 │ Enter=이동 or cd' --reverse) || return
+  [ -n "$sel" ] || return
+
+  local state payload
+  state=$(printf '%s' "$sel" | cut -d$'\t' -f3)
+  payload=$(printf '%s' "$sel" | cut -d$'\t' -f4)
+  [ -n "$payload" ] || return
+
+  if [[ "$state" == "open" ]]; then
+    _cc_goto "$payload"
+  else
+    cd "$payload"
+  fi
+}
