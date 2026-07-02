@@ -13,6 +13,7 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ~/.zsh.after/msbaek.zsh
 source ~/.zsh.after/ktown4u.zsh
+source ~/.zsh.after/cw.zsh
 
 # NVM (lazy load - only loads when node/npm/nvm is first used)
 export NVM_DIR="$HOME/.nvm"
