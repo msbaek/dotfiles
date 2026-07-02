@@ -132,3 +132,4 @@ node_modules/
 
 # recall skill generated artifacts
 .agents/skills/recall/output/
+.superpowers/
