@@ -70,20 +70,24 @@ assert_eq() { [ "$1" = "$2" ] || { echo "FAIL[$3]: expected [$2] got [$1]"; fail
 
 tmux new-session -d -s cctest -x 80 -y 24
 pane=$(tmux list-panes -t cctest -F '#{pane_id}' | head -1)
+# 유효한 $TMUX 생성: 훅 내부 tmux 가 올바른 서버에 접속하려면 $TMUX 가 실제
+# 소켓을 가리켜야 함 (literal "dummy" 는 소켓 해석 실패로 set 이 무시됨).
+sock=$(tmux display-message -pt cctest '#{socket_path}')
+TM="$sock,0,0"
 
 # $TMUX 는 non-empty 여야 훅이 동작 (게이트). 타겟팅은 $TMUX_PANE 로.
-TMUX=dummy TMUX_PANE="$pane" "$HOOK" Stop
+TMUX="$TM" TMUX_PANE="$pane" "$HOOK" Stop
 assert_eq "$(tmux show -p -t "$pane" -v @cc_state)" "waiting" "Stop→waiting"
 
-TMUX=dummy TMUX_PANE="$pane" "$HOOK" UserPromptSubmit
+TMUX="$TM" TMUX_PANE="$pane" "$HOOK" UserPromptSubmit
 assert_eq "$(tmux show -p -t "$pane" -v @cc_state)" "running" "UPS→running"
 
 # SubagentStop 은 무시 → running 유지
-TMUX=dummy TMUX_PANE="$pane" "$HOOK" SubagentStop
+TMUX="$TM" TMUX_PANE="$pane" "$HOOK" SubagentStop
 assert_eq "$(tmux show -p -t "$pane" -v @cc_state)" "running" "SubagentStop 무시"
 
 # SessionEnd → 제거
-TMUX=dummy TMUX_PANE="$pane" "$HOOK" SessionEnd
+TMUX="$TM" TMUX_PANE="$pane" "$HOOK" SessionEnd
 assert_eq "$(tmux show -p -t "$pane" -v @cc_state)" "" "SessionEnd 제거"
 
 # tmux 밖(게이트) → no-op, exit 0
