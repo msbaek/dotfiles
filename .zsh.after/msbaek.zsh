@@ -269,7 +269,23 @@ alias rgm='rg --no-ignore --hidden'
 alias brewu='brew upgrade; brew cleanup'
 alias ta='tmux attach -t work'
 alias tk='tmux kill-server'
+
+# fzf로 tmux session 선택 → 전환(tmux 안) 또는 attach(밖). 새 이름 입력 시 생성.
+ts() {
+  local session
+  session=$(tmux list-sessions -F '#S' 2>/dev/null | fzf \
+    --prompt="tmux session> " --height=40% --reverse \
+    --preview 'tmux list-windows -t {} -F "#I: #W"' \
+    --print-query | tail -1)
+  [[ -z "$session" ]] && return
+
+  # TODO(human): 아래 두 가지를 처리
+  #   1) "$session" 이 없으면 detached로 생성 (tmux has-session / new-session -d)
+  #   2) tmux 안($TMUX set)이면 switch-client, 밖이면 attach 로 분기
+}
+
 alias vi='nvim'
+alias gs='git status'
 alias gl='git log'
 alias lg='lazygit'
 # Headless mode aliases
@@ -277,6 +293,12 @@ alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
 # alias hcld='ANTHROPIC_BASE_URL="http://127.0.0.1:8787" claude "$@"'
 
 # alias cld='$HOME/.local/bin/claude agents'
+
+# claude headless /commit 실행 (teammate-mode tmux pane에서)
+alias cc-commit='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit" --allowedTools "Bash,Read,Grep"'
+# temp 파일 기반 한글 안전 commit (--no-verify). /tmp/commit_msg.txt 필요
+alias cc-commit-only='git commit --no-verify -F /tmp/commit_msg.txt'
+alias cc-push='claude --dangerously-skip-permissions --teammate-mode tmux -p "/commit --push" --allowedTools "Bash,Read,Grep"'
 
 # sub-agent 모델 감사 (cwd/branch/첫 task 요약 포함). -f BO-query / --last 20 등 인자 전달
 cc-model() { python3 "$HOME/.claude/bin/check-subagent-model.py" "$@"; }
@@ -406,6 +428,77 @@ matrix() {
 # 현재 디렉토리의 디스크 여유 공간 표시 (GB/MB)
 disk-free() {
   df -k . | tail -1 | awk '{free=$4; printf "Free: %.2f GB (%.2f MB)\n", free/1024/1024, free/1024}'
+}
+
+# ── Memory ──
+
+# 여유 메모리를 GB 단위로 출력.
+# free(즉시 가용) + inactive(재사용 가능) = usable. compressed가 크면 메모리 압박 중.
+memfree() {
+  local page=16384
+  local stats
+  stats=$(vm_stat)
+  local free inactive compressed wired total
+  free=$(echo "$stats"       | awk '/Pages free/                 {gsub(/\./,"",$NF); print $NF}')
+  inactive=$(echo "$stats"   | awk '/Pages inactive/             {gsub(/\./,"",$NF); print $NF}')
+  compressed=$(echo "$stats" | awk '/Pages stored in compressor/ {gsub(/\./,"",$NF); print $NF}')
+  wired=$(echo "$stats"      | awk '/Pages wired down/           {gsub(/\./,"",$NF); print $NF}')
+  total=$(sysctl -n hw.memsize)
+  python3 -c "
+p=$page; f=$free; i=$inactive; c=$compressed; w=$wired; t=$total
+gb=lambda n: n*p/1024**3
+tg=gb(t/p)
+print(f'Total       {gb(t/p):5.1f} GB')
+print(f'Free        {gb(f):5.2f} GB  ({gb(f)/tg*100:.1f}%)  — immediately available')
+print(f'Inactive    {gb(i):5.2f} GB              — reclaimable (counts as usable)')
+print(f'Usable      {gb(f+i):5.2f} GB  ({gb(f+i)/tg*100:.1f}%)  — free + inactive')
+print(f'Compressed  {gb(c):5.1f} GB              — memory pressure indicator')
+print(f'Wired       {gb(w):5.2f} GB              — OS kernel, not reclaimable')
+"
+}
+
+# 메모리 "압박"을 진단한다. memfree(여유 관점)의 짝 — 확보가 필요한지/무엇을 줄일지 본다.
+# swap used 가 크면 확보 필요 신호. 앱 단위 합산으로 helper 프로세스를 앱으로 묶어 회수 후보를 본다.
+memcheck() {
+  echo "── 압박 지표 (swap used 가 크면 확보 필요) ──"
+  sysctl vm.swapusage | sed 's/^vm.swapusage:/Swap: /'
+  top -l 1 -s 0 | awk '/PhysMem/ {sub(/PhysMem:/,""); print "Phys: "$0}'
+  echo
+  echo "── 앱 단위 합산 메모리 top 12 (회수 후보) ──"
+  ps axo rss,comm | awk 'NR>1 {sub(/.*\//,"",$2); m[$2]+=$1}
+    END {for (a in m) printf "%7.0f MB  %s\n", m[a]/1024, a}' | sort -rn | head -12
+}
+
+# 현재 떠 있는 claude 세션을 그룹별로 분류해 본다(★=현재 세션, 절대 보호).
+#   ccps        조사만 (읽기 전용, 안전)
+#   ccps -k     정리 후보를 dry-run 으로 표시 (_cc_stale_review 기준). 실제 kill 은 안 함.
+ccps() {
+  local self=$$ sp=""
+  while [ "$self" -gt 1 ]; do
+    [ "$(ps -o comm= -p "$self" 2>/dev/null | sed 's#.*/##')" = claude ] && { sp=$self; break; }
+    self=$(ps -o ppid= -p "$self" 2>/dev/null | tr -d ' '); [ -z "$self" ] && break
+  done
+  echo "   PID     GROUP        ELAPSED    RSS      TTY      (★=현재 세션, 보호)"
+  ps -axo pid=,ppid=,tty=,etime=,rss=,comm= | awk -v sp="$sp" '
+    {c=$NF; sub(/.*\//,"",c)}
+    c=="claude" {
+      grp = ($2==1) ? "orphan" : ($3=="??" ? "background" : "interactive")
+      printf "%s %-7s %-12s %-10s %6.0fMB  %s\n", ($1==sp?"★":" "), $1, grp, $4, $5/1024, $3
+    }' | sort -k2
+  [ "$1" = "-k" ] && _cc_stale_review "$sp"
+}
+
+# TODO(human): claude 정리 후보(stale)를 판단해 dry-run 으로 출력.
+#   인자 $1 = 보호할 현재 세션 PID (절대 후보에서 제외).
+#   ccps 출력의 3그룹을 떠올려라 — interactive(열어둔 세션)/background(MCP·headless)/orphan(고아).
+#   "정리해도 되는 잔존"의 기준은 당신 워크플로우에 달려 있다:
+#     · orphan(PPID 1) 만 후보로? · background 중 etime 오래된 것? · idle 임계값?
+#   ps -axo pid=,ppid=,etime=,comm= 로 claude 행을 돌며 후보를 고르고,
+#   "would kill: <pid> (<group>, idle <etime>)" 형태로 출력만 하라.
+#   실제 kill 은 절대 하지 말 것 — 사용자가 표시된 PID 로 직접 kill <pid>.
+_cc_stale_review() {
+  local keep="$1"
+  : # TODO(human)
 }
 
 # ── Disk cleanup (OrbStack / Docker / Xcode) ──
