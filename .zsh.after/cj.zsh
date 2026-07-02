@@ -55,9 +55,9 @@ cj() {
   projects=( ${projects/#\~/$HOME} )
   (( ${#projects} )) || { echo "[cj] empty list: $file"; return 1; }
 
-  # 열린 pane 경로 수집 (tmux 서버 없으면 빈 문자열 → 전부 closed)
-  local tmux_data
-  tmux_data="$(tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}|#{pane_current_path}' 2>/dev/null)"
+  # 열린 pane 경로 수집. tmux 밖(§6.2)이면 open-detection 자체를 건너뛰어 전부 closed → cd.
+  local tmux_data=""
+  [[ -n "$TMUX" ]] && tmux_data="$(tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index}|#{pane_current_path}' 2>/dev/null)"
 
   local sel
   sel=$(_cj_match "${projects[@]}" <<< "$tmux_data" \

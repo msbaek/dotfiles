@@ -34,7 +34,8 @@ out=$(printf '%s\n' "work:1.0|$tmproot/real/PRs" | _cj_match "$tmproot/real/ghos
 
 # 여러 프로젝트 한 번에 (순서 보존)
 out=$(printf '%s\n' "work:1.0|$tmproot/real/PRs" | _cj_match "$tmproot/real/PRs" "$tmproot/real/bo")
-[ "$(echo "$out" | wc -l | tr -d ' ')" = "2" ] || { echo "FAIL multi-count: [$out]"; fail=1; }
+[ "$(echo "$out" | sed -n 1p)" = "open|work:1.0|$tmproot/real/PRs|PRs" ] || { echo "FAIL multi-line1: [$out]"; fail=1; }
+[ "$(echo "$out" | sed -n 2p)" = "closed||$tmproot/real/bo|bo" ] || { echo "FAIL multi-line2: [$out]"; fail=1; }
 
 # --- _cj_rows ---
 rows=$(printf '%s\n' \
