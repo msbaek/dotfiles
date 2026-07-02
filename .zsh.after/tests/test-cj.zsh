@@ -36,6 +36,28 @@ out=$(printf '%s\n' "work:1.0|$tmproot/real/PRs" | _cj_match "$tmproot/real/ghos
 out=$(printf '%s\n' "work:1.0|$tmproot/real/PRs" | _cj_match "$tmproot/real/PRs" "$tmproot/real/bo")
 [ "$(echo "$out" | wc -l | tr -d ' ')" = "2" ] || { echo "FAIL multi-count: [$out]"; fail=1; }
 
+# --- _cj_rows ---
+rows=$(printf '%s\n' \
+  "closed||/p/bo|bo" \
+  "missing||/p/ghost|ghost" \
+  "open|work:1.0|/p/PRs|PRs" | _cj_rows)
+
+# 정렬: 1번째 데이터행(=key 0)은 open(PRs)
+echo "$rows" | head -1 | grep -q 'PRs' || { echo "FAIL rows-sort-open-first: [$rows]"; fail=1; }
+# 기호
+echo "$rows" | grep 'PRs'   | grep -q '🟢' || { echo "FAIL rows-open-sym"; fail=1; }
+echo "$rows" | grep 'bo'    | grep -q '⚪' || { echo "FAIL rows-closed-sym"; fail=1; }
+echo "$rows" | grep 'ghost' | grep -q '⚠' || { echo "FAIL rows-missing-sym"; fail=1; }
+# open 행: state 필드(3)=open, payload 필드(4)=target
+line=$(echo "$rows" | grep 'PRs')
+[ "$(echo "$line" | cut -d$'\t' -f3)" = "open" ]     || { echo "FAIL rows-open-state: [$line]"; fail=1; }
+[ "$(echo "$line" | cut -d$'\t' -f4)" = "work:1.0" ] || { echo "FAIL rows-open-payload: [$line]"; fail=1; }
+# closed 행: payload(4)=path
+line=$(echo "$rows" | grep 'bo')
+[ "$(echo "$line" | cut -d$'\t' -f4)" = "/p/bo" ]    || { echo "FAIL rows-closed-payload: [$line]"; fail=1; }
+# missing 은 마지막(key 2)
+echo "$rows" | tail -1 | grep -q 'ghost' || { echo "FAIL rows-missing-last: [$rows]"; fail=1; }
+
 rm -rf "$tmproot"
 [ $fail -eq 0 ] && echo "ALL PASS"
 exit $fail

@@ -29,3 +29,17 @@ _cj_match() {
     fi
   done
 }
+
+# _cj_rows: stdin 'state|target|path|name' → 'sortkey\tdisplay\tstate\tpayload'.
+#   open🟢(0) → closed⚪(1) → missing⚠(2) 정렬. payload=open?target:path.
+_cj_rows() {
+  awk -F'|' '
+    {
+      state=$1; target=$2; path=$3; name=$4
+      if (state=="open")        { key=0; sym="🟢"; loc="  ("target")" }
+      else if (state=="closed") { key=1; sym="⚪"; loc="" }
+      else                      { key=2; sym="⚠"; loc="  (missing)" }
+      payload=(state=="open")?target:path
+      printf "%d\t%s %-26s%s\t%s\t%s\n", key, sym, name, loc, state, payload
+    }' | sort -s -n -k1,1
+}
