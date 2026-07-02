@@ -28,16 +28,11 @@ _cw_wid_for_session() {
     }'
 }
 
-# cw: 조회 → fzf → 이동. 자기 pane(지금 보고 있는 것)은 제외.
-# 대상이 다른 세션(=다른 ghostty 창)이면 aerospace 로 그 OS 창을 포커스(현재 창은 후면).
-cw() {
-  local sel target self="$TMUX_PANE"
-  sel=$(tmux list-panes -a -F '#{@cc_state}|#{@cc_since}|#{session_name}:#{window_index}.#{pane_index}|#{pane_current_path}|#{pane_id}' 2>/dev/null \
-        | awk -F'|' -v self="$self" '$5!=self' \
-        | _cw_rows \
-        | fzf --ansi --delimiter=$'\t' --with-nth=2 \
-              --header='🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동' --reverse) || return
-  target="${sel##*$'\t'}"
+# _cc_goto <target>: target(session:window.pane)으로 이동.
+# tmux 밖=attach, 같은 세션=tmux 전환, 다른 세션=aerospace 창 focus(fallback switch-client).
+# cw·cj 공유 이동 프리미티브. 빈 target이면 no-op.
+_cc_goto() {
+  local target="$1"
   [ -n "$target" ] || return
 
   # tmux 밖에서 실행 → 그냥 attach
@@ -62,4 +57,16 @@ cw() {
     # 열린 창 없음(detached 세션 등) → 현재 창에서 전환 fallback
     tmux switch-client -t "$target" 2>/dev/null
   fi
+}
+
+# cw: 대기 중인 claude 세션 조회 → fzf → 이동. 자기 pane(지금 보고 있는 것)은 제외.
+cw() {
+  local sel target self="$TMUX_PANE"
+  sel=$(tmux list-panes -a -F '#{@cc_state}|#{@cc_since}|#{session_name}:#{window_index}.#{pane_index}|#{pane_current_path}|#{pane_id}' 2>/dev/null \
+        | awk -F'|' -v self="$self" '$5!=self' \
+        | _cw_rows \
+        | fzf --ansi --delimiter=$'\t' --with-nth=2 \
+              --header='🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동' --reverse) || return
+  target="${sel##*$'\t'}"
+  _cc_goto "$target"
 }
