@@ -58,6 +58,9 @@ macos-titlebar-style = hidden
 background-opacity = 1
 
 # keybindings
+# quick terminal 토글 (cmd-opt-t / 커스텀 키보드 layer2-t 공용). global: = 시스템 전역
+# 이 라인 유실 시 리부팅 후 quick terminal 안 열림 (macOS Accessibility 권한 필요)
+keybind = global:cmd+alt+t=toggle_quick_terminal
 keybind = cmd+s>r=reload_config
 keybind = cmd+s>x=close_surface
 keybind = cmd+s>n=new_window
