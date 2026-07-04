@@ -94,5 +94,14 @@ echo "$log" | grep -q 'osascript'             || { echo "FAIL cwqjump-B: dismiss
 log=$(_cwqjump_calls "" "343|Ghostty|memo")
 [ -z "$log" ] || { echo "FAIL cwqjump-empty: 빈 target인데 호출됨 [$log]"; fail=1; }
 
+# --- _cwq_list: tmux list-panes → _cw_rows 파이프 (tmux stub, subshell 격리) ---
+out=$(
+  tmux() { [[ "$1" == "list-panes" ]] && printf '%s\n' \
+    "running|$fresh|s:1.0|/a/repoR|%1" "waiting|$fresh|s:2.0|/a/repoW|%2"; }
+  _cwq_list
+)
+echo "$out" | head -1 | grep -q 'repoW' || { echo "FAIL _cwq_list: waiting 최상단 아님 [$out]"; fail=1; }
+echo "$out" | grep 'repoR' | grep -q '🟢'  || { echo "FAIL _cwq_list: running 기호 누락 [$out]"; fail=1; }
+
 [ $fail -eq 0 ] && echo "ALL PASS"
 exit $fail

@@ -106,16 +106,26 @@ _cwq_jump() {
   fi
 }
 
+# _cwq_list: quick terminal agents pane 목록(모든 Claude pane, waiting-first).
+# 별도 함수인 이유: fzf reload 바인딩이 서브셸에서 목록을 재생성하려면 이름이 필요.
+_cwq_list() {
+  tmux list-panes -a -F '#{@cc_state}|#{@cc_since}|#{session_name}:#{window_index}.#{pane_index}|#{pane_current_path}|#{pane_id}' 2>/dev/null \
+    | _cw_rows
+}
+
 # cwq: quick terminal 에서 실행하는 agents pane. @cc_state 기반 대기(🔴)/작업(🟢)/idle(⚪)
-# 목록(waiting-first) → 선택 시 해당 세션으로 점프 + quick terminal 자동 닫힘. Esc/Ctrl-C 로 종료.
-# cw 와 달리 tmux 밖(quick terminal)에서 도므로 self-pane 제외가 없다.
+# 목록(waiting-first) + preview(대상 pane 최근 40줄) → 선택 시 점프 + quick terminal 닫힘.
+# Ctrl-R=목록 새로고침 · Esc/Ctrl-C=취소(루프 종료). cw 와 달리 self-pane 제외 없음.
+# reload 는 $SHELL -c 서브셸에서 돌아 _cwq_list 가 안 보이므로 cw.zsh 를 먼저 source 한다.
 cwq() {
   local sel target
   while true; do
-    sel=$(tmux list-panes -a -F '#{@cc_state}|#{@cc_since}|#{session_name}:#{window_index}.#{pane_index}|#{pane_current_path}|#{pane_id}' 2>/dev/null \
-          | _cw_rows \
-          | fzf --ansi --delimiter=$'\t' --with-nth=2 \
-                --header='🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · Esc=닫기' --reverse) || break
+    sel=$(_cwq_list \
+          | fzf --ansi --delimiter=$'\t' --with-nth=2 --reverse \
+                --header='🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · Ctrl-R=새로고침 · Esc=취소' \
+                --preview 'tmux capture-pane -pt {3} 2>/dev/null | tail -40' \
+                --preview-window=right,50% \
+                --bind "ctrl-r:reload(source $HOME/.zsh.after/cw.zsh 2>/dev/null; _cwq_list)") || break
     target="${sel##*$'\t'}"
     _cwq_jump "$target"
   done
