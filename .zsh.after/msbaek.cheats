@@ -65,6 +65,7 @@ a	cct	완료(idle)된 agent team teammate tmux pane 정리 (-n dry-run / -a 전�
 f	ts	fzf로 tmux session 선택→전환(tmux 안)/attach(밖), 없는 이름은 생성	tmux
 f	cw	대기 중 claude 세션 fzf 이동 (waiting-first)	claude
 f	cj	설정된 claude 프로젝트로 이동 (열림→pane 점프, 닫힘→cd)	claude
+f	cwq	quick terminal agents pane — 상태 목록→점프+자동 닫힘	claude
 
 # ─── env-plan (Plans Harness) ───
 a	env-plan	현재 프로젝트 plan 대시보드 (stale/blocked/active 현황)

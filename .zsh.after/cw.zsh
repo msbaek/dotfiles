@@ -105,3 +105,18 @@ _cwq_jump() {
     open -na Ghostty --args -e tmux attach -t "$sess"
   fi
 }
+
+# cwq: quick terminal 에서 실행하는 agents pane. @cc_state 기반 대기(🔴)/작업(🟢)/idle(⚪)
+# 목록(waiting-first) → 선택 시 해당 세션으로 점프 + quick terminal 자동 닫힘. Esc/Ctrl-C 로 종료.
+# cw 와 달리 tmux 밖(quick terminal)에서 도므로 self-pane 제외가 없다.
+cwq() {
+  local sel target
+  while true; do
+    sel=$(tmux list-panes -a -F '#{@cc_state}|#{@cc_since}|#{session_name}:#{window_index}.#{pane_index}|#{pane_current_path}|#{pane_id}' 2>/dev/null \
+          | _cw_rows \
+          | fzf --ansi --delimiter=$'\t' --with-nth=2 \
+                --header='🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · Esc=닫기' --reverse) || break
+    target="${sel##*$'\t'}"
+    _cwq_jump "$target"
+  done
+}
