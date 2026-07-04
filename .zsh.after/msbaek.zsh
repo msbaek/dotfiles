@@ -279,9 +279,15 @@ ts() {
     --print-query | tail -1)
   [[ -z "$session" ]] && return
 
-  # TODO(human): 아래 두 가지를 처리
-  #   1) "$session" 이 없으면 detached로 생성 (tmux has-session / new-session -d)
-  #   2) tmux 안($TMUX set)이면 switch-client, 밖이면 attach 로 분기
+  # 없는 세션 이름이면 detached로 생성
+  tmux has-session -t "$session" 2>/dev/null || tmux new-session -d -s "$session"
+
+  # tmux 안이면 switch-client, 밖이면 attach
+  if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$session"
+  else
+    tmux attach -t "$session"
+  fi
 }
 
 alias vi='nvim'
