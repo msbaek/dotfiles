@@ -72,3 +72,36 @@ cw() {
   target="${sel##*$'\t'}"
   _cc_goto "$target"
 }
+
+# _cwq_dismiss: quick terminal 을 닫는다. Ghostty 1.3.x 는 quick terminal 제어 IPC 가 없고
+# autohide 가 aerospace focus 에는 걸리지 않으므로, 전역 토글 키(cmd+alt+t=key code 17)를
+# osascript 로 합성한다. 합성 키가 불안정하면 hammerspoon 으로 교체(이 함수만 바꾸면 됨).
+_cwq_dismiss() {
+  osascript -e 'tell application "System Events" to key code 17 using {command down, option down}' 2>/dev/null
+}
+
+# _cwq_jump <target> (session:window.pane): quick terminal 전용 점프.
+# _cc_goto 와 달리 attach·cur비교 없이 항상 select → dismiss → focus.
+# 대상 세션의 ghostty 창이 있으면 aerospace focus, 없으면(detached) 새 ghostty 창에서 attach.
+_cwq_jump() {
+  local target="$1"
+  [ -n "$target" ] || return
+  local sess="${target%%:*}" win="${target%.*}"
+
+  # 대상 세션의 활성 window/pane 설정 (attach 불필요, 서버측에서 동작)
+  tmux select-window -t "$win" 2>/dev/null
+  tmux select-pane -t "$target" 2>/dev/null
+
+  # quick terminal 닫기 (aerospace focus 전에 오버레이를 걷어냄)
+  _cwq_dismiss
+
+  # 대상 세션의 ghostty 창을 aerospace 로 focus
+  local wid
+  wid=$(aerospace list-windows --all --format '%{window-id}|%{app-name}|%{window-title}' 2>/dev/null | _cw_wid_for_session "$sess")
+  if [ -n "$wid" ]; then
+    aerospace focus --window-id "$wid" 2>/dev/null
+  else
+    # 열린 창 없음(detached) → 새 ghostty 창에서 attach
+    open -na Ghostty --args -e tmux attach -t "$sess"
+  fi
+}

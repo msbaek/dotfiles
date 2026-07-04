@@ -60,5 +60,39 @@ echo "$log" | grep -q 'aerospace focus' && { echo "FAIL goto-same: 같은 세션
 echo "$log" | grep -q '^open '          && { echo "FAIL goto-same: 같은 세션인데 open 호출 [$log]"; fail=1; }
 echo "$log" | grep -q 'switch-client'   && { echo "FAIL goto-same: 같은 세션인데 switch-client 호출 [$log]"; fail=1; }
 
+# --- _cwq_jump: quick terminal 전용 점프 (tmux/aerospace/open/osascript stub) ---
+# _cwqjump_calls <target> <aerospace_windows>: stub 환경에서 _cwq_jump 실행 → 호출 로그 stdout.
+# _goto_calls 와 달리 TMUX 를 세팅하지 않는다(_cwq_jump 는 $TMUX 를 검사하지 않음).
+_cwqjump_calls() {
+  local _gtarget="$1" _gwins="$2" log; log=$(mktemp)
+  (
+    tmux()      { print -r -- "tmux $*" >>"$log"; }
+    aerospace() { print -r -- "aerospace $*" >>"$log"; [[ "$*" == *list-windows* ]] && print -r -- "$_gwins"; }
+    open()      { print -r -- "open $*" >>"$log"; }
+    osascript() { print -r -- "osascript $*" >>"$log"; }
+    _cwq_jump "$_gtarget"
+  )
+  cat "$log"; rm -f "$log"
+}
+
+# 케이스A: 대상 세션의 ghostty 창 있음 → select-window/pane + dismiss(osascript) + aerospace focus.
+#   attach/switch-client/open 은 없어야 함.
+log=$(_cwqjump_calls "memo:3.0" "343|Ghostty|memo")
+echo "$log" | grep -q 'tmux select-window -t memo:3'  || { echo "FAIL cwqjump-A: select-window 미호출 [$log]"; fail=1; }
+echo "$log" | grep -q 'tmux select-pane -t memo:3.0'  || { echo "FAIL cwqjump-A: select-pane 미호출 [$log]"; fail=1; }
+echo "$log" | grep -q 'osascript'                     || { echo "FAIL cwqjump-A: dismiss(osascript) 미호출 [$log]"; fail=1; }
+echo "$log" | grep -q 'aerospace focus'               || { echo "FAIL cwqjump-A: aerospace focus 미호출 [$log]"; fail=1; }
+echo "$log" | grep -qE 'tmux attach|switch-client|^open ' && { echo "FAIL cwqjump-A: attach/switch/open 호출됨 [$log]"; fail=1; }
+
+# 케이스B: detached(그 세션 창 없음) → select + dismiss + open 새 창. aerospace focus 없음.
+log=$(_cwqjump_calls "memo:3.0" "342|Ghostty|work")
+echo "$log" | grep -q 'open .*attach -t memo' || { echo "FAIL cwqjump-B: 새 창 open 미호출 [$log]"; fail=1; }
+echo "$log" | grep -q 'aerospace focus'       && { echo "FAIL cwqjump-B: 창 없는데 focus 호출 [$log]"; fail=1; }
+echo "$log" | grep -q 'osascript'             || { echo "FAIL cwqjump-B: dismiss 미호출 [$log]"; fail=1; }
+
+# 케이스C: 빈 target → no-op(아무 호출 없음)
+log=$(_cwqjump_calls "" "343|Ghostty|memo")
+[ -z "$log" ] || { echo "FAIL cwqjump-empty: 빈 target인데 호출됨 [$log]"; fail=1; }
+
 [ $fail -eq 0 ] && echo "ALL PASS"
 exit $fail
