@@ -279,14 +279,15 @@ ts() {
     --print-query | tail -1)
   [[ -z "$session" ]] && return
 
-  # 없는 세션 이름이면 detached로 생성
-  tmux has-session -t "$session" 2>/dev/null || tmux new-session -d -s "$session"
+  # 없는 세션 이름이면 detached로 생성 (=exact 매칭 — has-session -t 는 prefix/fnmatch
+  # 매칭이라 새 이름이 기존 세션의 접두사면 기존에 오인 매칭됨. '=' 로 정확 일치만 인정)
+  tmux has-session -t "=$session" 2>/dev/null || tmux new-session -d -s "$session"
 
-  # tmux 안이면 switch-client, 밖이면 attach
+  # tmux 안이면 switch-client, 밖이면 attach (=exact 로 대상 고정)
   if [[ -n "$TMUX" ]]; then
-    tmux switch-client -t "$session"
+    tmux switch-client -t "=$session"
   else
-    tmux attach -t "$session"
+    tmux attach -t "=$session"
   fi
 }
 
