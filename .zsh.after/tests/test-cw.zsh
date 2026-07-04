@@ -26,5 +26,39 @@ awin=$(printf '%s\n' '7051|Ghostty|work:9:2_1_198 - "msmac1" 5#,8#' '7052|Ghostt
 awin=$(printf '%s\n' '7051|Ghostty|work:9:2_1_198 - "msmac1" 5#,8#' | _cw_wid_for_session work)
 [ "$awin" = "7051" ] || { echo "FAIL: verbose work=[$awin] (기대 7051)"; fail=1; }
 
+# --- _cc_goto: 이동 프리미티브 (tmux/aerospace/open 을 stub 으로 가로채 호출만 검증) ---
+# _goto_calls <target> <cur_session> <aerospace_windows>: stub 환경에서 _cc_goto 실행 →
+#   실제로 불린 tmux/aerospace/open 명령 로그를 stdout 으로. subshell 로 stub 격리.
+_goto_calls() {
+  # 변수는 _g* prefix — _cc_goto 의 local(cur/sess/win/target)과 dynamic-scope 충돌 방지
+  local _gtarget="$1" _gcur="$2" _gwins="$3" log; log=$(mktemp)
+  (
+    export TMUX="dummy"   # tmux-내부 경로 진입용(값 무의미 — 모든 tmux 호출은 stub 이 가로챔)
+    tmux()      { print -r -- "tmux $*" >>"$log"; [[ "$*" == *display* ]] && print -r -- "$_gcur"; }
+    aerospace() { print -r -- "aerospace $*" >>"$log"; [[ "$*" == *list-windows* ]] && print -r -- "$_gwins"; }
+    open()      { print -r -- "open $*" >>"$log"; }
+    _cc_goto "$_gtarget"
+  )
+  cat "$log"; rm -f "$log"
+}
+
+# 케이스1(회귀 핵심): 다른 세션인데 그 세션의 ghostty 창이 없음(detached)
+#   → 현재 창을 덮는 switch-client 금지, 새 ghostty 창(open)으로 열어야 함
+log=$(_goto_calls "memo:3.0" "cj" "342|Ghostty|work")
+echo "$log" | grep -q 'open .*attach -t memo' || { echo "FAIL goto-detached: 새 창에서 memo 에 attach 안 함 [$log]"; fail=1; }
+echo "$log" | grep -q 'switch-client'         && { echo "FAIL goto-detached: switch-client 로 현재 창 치환됨 [$log]"; fail=1; }
+
+# 케이스2: 다른 세션 + 그 세션 ghostty 창 있음 → aerospace focus, open/switch 없음
+log=$(_goto_calls "memo:3.0" "cj" "343|Ghostty|memo")
+echo "$log" | grep -q 'aerospace focus' || { echo "FAIL goto-otherwin: aerospace focus 미호출 [$log]"; fail=1; }
+echo "$log" | grep -q '^open '          && { echo "FAIL goto-otherwin: 창 있는데 open 호출됨 [$log]"; fail=1; }
+echo "$log" | grep -q 'switch-client'   && { echo "FAIL goto-otherwin: switch-client 호출됨 [$log]"; fail=1; }
+
+# 케이스3: 같은 세션 → select 만 하고 early return (focus/open/switch 없음)
+log=$(_goto_calls "cj:1.0" "cj" "343|Ghostty|memo")
+echo "$log" | grep -q 'aerospace focus' && { echo "FAIL goto-same: 같은 세션인데 focus 호출 [$log]"; fail=1; }
+echo "$log" | grep -q '^open '          && { echo "FAIL goto-same: 같은 세션인데 open 호출 [$log]"; fail=1; }
+echo "$log" | grep -q 'switch-client'   && { echo "FAIL goto-same: 같은 세션인데 switch-client 호출 [$log]"; fail=1; }
+
 [ $fail -eq 0 ] && echo "ALL PASS"
 exit $fail

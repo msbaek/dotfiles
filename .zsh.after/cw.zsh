@@ -29,7 +29,8 @@ _cw_wid_for_session() {
 }
 
 # _cc_goto <target>: target(session:window.pane)으로 이동.
-# tmux 밖=attach, 같은 세션=tmux 전환, 다른 세션=aerospace 창 focus(fallback switch-client).
+# tmux 밖=attach, 같은 세션=tmux 전환, 다른 세션=aerospace 창 focus
+# (그 세션의 ghostty 창이 없으면=detached → 새 ghostty 창에서 attach; 현재 창은 유지).
 # cw·cj 공유 이동 프리미티브. 빈 target이면 no-op.
 _cc_goto() {
   local target="$1"
@@ -54,8 +55,9 @@ _cc_goto() {
   if [ -n "$wid" ]; then
     aerospace focus --window-id "$wid" 2>/dev/null
   else
-    # 열린 창 없음(detached 세션 등) → 현재 창에서 전환 fallback
-    tmux switch-client -t "$target" 2>/dev/null
+    # 열린 창 없음(detached 세션 등) → 새 ghostty 창에서 attach.
+    # switch-client 는 현재 창을 대상 세션으로 덮어써(치환) '현재 창 유지' 원칙을 위반하므로 금지.
+    open -na Ghostty --args -e tmux attach -t "$sess"
   fi
 }
 
