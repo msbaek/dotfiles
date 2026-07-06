@@ -74,10 +74,10 @@ cw() {
 }
 
 # _cwq_dismiss: quick terminal 을 닫는다. Ghostty 1.3.x 는 quick terminal 제어 IPC 가 없고
-# autohide 가 aerospace focus 에는 걸리지 않으므로, 전역 토글 키(cmd+alt+t=key code 17)를
+# autohide 가 aerospace focus 에는 걸리지 않으므로, 전역 토글 키(cmd+alt+6=key code 22)를
 # osascript 로 합성한다. 합성 키가 불안정하면 hammerspoon 으로 교체(이 함수만 바꾸면 됨).
 _cwq_dismiss() {
-  osascript -e 'tell application "System Events" to key code 17 using {command down, option down}' 2>/dev/null
+  osascript -e 'tell application "System Events" to key code 22 using {command down, option down}' 2>/dev/null
 }
 
 # _cwq_jump <target> (session:window.pane): quick terminal 전용 점프.
