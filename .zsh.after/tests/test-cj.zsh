@@ -83,5 +83,28 @@ line=$(echo "$out" | sed -n 4p)
 [ "$(echo "$out" | wc -l | tr -d ' ')" = "4" ] || { echo "FAIL cjload-linecount: [$out]"; fail=1; }
 rm -f "$lf"
 
+# --- _cjq_new_and_jump (tmux/_cwq_jump stub, subshell 격리) ---
+_cjqnew_calls() {
+  local _gpath="$1" _gsession="$2" _gtmuxout="$3" log; log=$(mktemp)
+  (
+    tmux()      { print -r -- "tmux $*" >>"$log"; [[ "$*" == *new-window* ]] && print -r -- "$_gtmuxout"; }
+    _cwq_jump() { print -r -- "_cwq_jump[$*]" >>"$log"; }
+    _cjq_new_and_jump "$_gpath" "$_gsession"
+  )
+  cat "$log"; rm -f "$log"
+}
+
+# 성공: new-window 가 target 반환 → 그 target 으로 _cwq_jump 호출
+log=$(_cjqnew_calls "/p/foo" "work" "work:5.0")
+echo "$log" | grep -q 'tmux new-window -t work -c /p/foo' || { echo "FAIL cjqnew-success: new-window 인자 오류 [$log]"; fail=1; }
+line=$(echo "$log" | grep '_cwq_jump')
+[ "$line" = "_cwq_jump[work:5.0]" ] || { echo "FAIL cjqnew-success: _cwq_jump target 오류 [$line]"; fail=1; }
+
+# 실패(경로 없음 등): new-window 빈 출력 → _cwq_jump 가 빈 target 으로 호출됨(가드는 _cwq_jump 자체 책임)
+log=$(_cjqnew_calls "/p/ghost" "memo" "")
+echo "$log" | grep -q 'tmux new-window -t memo -c /p/ghost' || { echo "FAIL cjqnew-fail: new-window 인자 오류 [$log]"; fail=1; }
+line=$(echo "$log" | grep '_cwq_jump')
+[ "$line" = "_cwq_jump[]" ] || { echo "FAIL cjqnew-fail: 빈 target 으로 _cwq_jump 호출 안 됨 [$line]"; fail=1; }
+
 [ $fail -eq 0 ] && echo "ALL PASS"
 exit $fail

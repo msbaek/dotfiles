@@ -102,3 +102,11 @@ cj() {
     cd "$payload"
   fi
 }
+
+# _cjq_new_and_jump <path> <session>: session 에 새 window 를 만들고 그 target 으로 _cwq_jump.
+#   new-window 실패(예: 경로 없음) 시 target 빈 문자열 → _cwq_jump 의 빈 target 가드로 no-op.
+_cjq_new_and_jump() {
+  local path="$1" session="$2" target
+  target=$(tmux new-window -t "$session" -c "$path" -P -F '#{session_name}:#{window_index}.#{pane_index}' 2>/dev/null)
+  _cwq_jump "$target"
+}
