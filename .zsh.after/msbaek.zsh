@@ -295,6 +295,8 @@ alias vi='nvim'
 alias gs='git status'
 alias gl='git log'
 alias lg='lazygit'
+# hunk diff with persistent theme (hunk 0.16 has no theme persistence; --theme must follow the subcommand)
+alias hd='hunk diff --theme github-light-high-contrast'
 # Headless mode aliases
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
 # alias hcld='ANTHROPIC_BASE_URL="http://127.0.0.1:8787" claude "$@"'

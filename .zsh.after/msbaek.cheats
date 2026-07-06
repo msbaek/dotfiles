@@ -6,6 +6,7 @@
 
 # ─── Aliases ───
 a	d2h	diff2html -s side
+a	hd	hunk diff (theme 고정: github-light-high-contrast)	git
 a	gw	ktown4u-groupware Python CLI venv 활성화
 a	gdum	gdu -h -d 1	disk
 a	agfu	cargo install --git agf
