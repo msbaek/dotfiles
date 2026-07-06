@@ -117,17 +117,24 @@ _cwq_list() {
 
 # cwq: quick terminal 에서 실행하는 agents pane. @cc_state 기반 대기(🔴)/작업(🟢)/idle(⚪)
 # 목록(waiting-first) + preview(대상 pane 최근 40줄) → 선택 시 점프 + quick terminal 닫힘.
-# Ctrl-R=목록 새로고침 · Esc/Ctrl-C=취소(루프 종료). cw 와 달리 self-pane 제외 없음.
+# r(또는 Ctrl-R)=목록 새로고침 · Esc/Ctrl-C=취소(루프 종료). cw 와 달리 self-pane 제외 없음.
 # reload 는 $SHELL -c 서브셸에서 돌아 _cwq_list 가 안 보이므로 cw.zsh 를 먼저 source 한다.
 cwq() {
   local sel target
+  local hdr='🔔 요청 / 🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · r=새로고침 · Esc=취소'
+  # reload 액션(중복 제거): r 과 Ctrl-R 양쪽에 바인딩. $HOME 은 정의 시 확장됨.
+  local rc="reload(source $HOME/.zsh.after/cw.zsh 2>/dev/null; _cwq_list)"
+  # reload 피드백: 헤더 맨 앞에 갱신 시각(⟳ HH:MM:SS)을 찍어 r 누를 때마다 눈에 띄게 변함.
+  # 좁은 quick terminal 에서 시각이 잘리지 않도록 앞에 배치(잘리면 뒤쪽 범례가 잘림).
+  local rh="transform-header(printf '⟳ %s │ %s' \"\$(date +%H:%M:%S)\" '$hdr')"
   while true; do
     sel=$(_cwq_list \
           | fzf --ansi --delimiter=$'\t' --with-nth=2 --reverse \
-                --header='🔔 요청 / 🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · Ctrl-R=새로고침 · Esc=취소' \
+                --header="$hdr" \
                 --preview 'tmux capture-pane -pt {3} 2>/dev/null | tail -40' \
                 --preview-window=right,50% \
-                --bind "ctrl-r:reload(source $HOME/.zsh.after/cw.zsh 2>/dev/null; _cwq_list)") || break
+                --bind "start:$rh" \
+                --bind "r:$rh+$rc" --bind "ctrl-r:$rh+$rc") || break
     target="${sel##*$'\t'}"
     _cwq_jump "$target"
   done
