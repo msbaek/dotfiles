@@ -1,5 +1,26 @@
 # cj — 설정된 claude 프로젝트로 이동. 열림→pane 점프, 닫힘→현재 pane 에서 cd.
-# 이동 프리미티브 _cc_goto 는 cw.zsh 에 정의(런타임에 호출).
+# 이동 프리미티브 _cc_goto/_cwq_jump 는 cw.zsh 에 정의(런타임에 호출).
+
+# _cj_load <file>: 프로젝트 목록 파일 → 'path<TAB>session' (주석/공백 제거, @memo 태그 파싱).
+#   태그 없으면 session=work. ~ 확장은 호출자 책임(기존 cj() 관례 유지).
+_cj_load() {
+  awk '
+    {
+      sub(/#.*/, "")
+      gsub(/^[ \t]+|[ \t]+$/, "")
+    }
+    /^$/ { next }
+    {
+      session = "work"
+      if ($0 ~ /[ \t]@memo[ \t]*$/) {
+        session = "memo"
+        sub(/[ \t]+@memo[ \t]*$/, "")
+        gsub(/[ \t]+$/, "")
+      }
+      print $0 "\t" session
+    }
+  ' "$1"
+}
 
 # _cj_match <expanded_path...>: 프로젝트 경로들(위치인자) + tmux 'target|path'(stdin)
 #   → 프로젝트당 'state|target|path|name' (state∈open/closed/missing).

@@ -60,5 +60,28 @@ line=$(echo "$rows" | grep 'bo')
 echo "$rows" | tail -1 | grep -q 'ghost' || { echo "FAIL rows-missing-last: [$rows]"; fail=1; }
 
 rm -rf "$tmproot"
+
+# --- _cj_load ---
+lf=$(mktemp)
+printf '%s\n' \
+  '# comment line' \
+  '~/git/kt4u/PRs' \
+  '' \
+  '~/dotfiles @memo' \
+  '~/qmk_firmware   @memo   # trailing comment' \
+  '~/weird@memo' > "$lf"
+
+out=$(_cj_load "$lf")
+line=$(echo "$out" | sed -n 1p)
+[ "$line" = $'~/git/kt4u/PRs\twork' ] || { echo "FAIL cjload-notag: [$line]"; fail=1; }
+line=$(echo "$out" | sed -n 2p)
+[ "$line" = $'~/dotfiles\tmemo' ] || { echo "FAIL cjload-tag: [$line]"; fail=1; }
+line=$(echo "$out" | sed -n 3p)
+[ "$line" = $'~/qmk_firmware\tmemo' ] || { echo "FAIL cjload-tag-messy-spacing: [$line]"; fail=1; }
+line=$(echo "$out" | sed -n 4p)
+[ "$line" = $'~/weird@memo\twork' ] || { echo "FAIL cjload-no-space-before-at: [$line]"; fail=1; }
+[ "$(echo "$out" | wc -l | tr -d ' ')" = "4" ] || { echo "FAIL cjload-linecount: [$out]"; fail=1; }
+rm -f "$lf"
+
 [ $fail -eq 0 ] && echo "ALL PASS"
 exit $fail
