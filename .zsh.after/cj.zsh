@@ -70,11 +70,15 @@ cj() {
   local file="$HOME/.zsh.after/cc-projects.list"
   [[ -f "$file" ]] || { echo "[cj] not found: $file"; return 1; }
 
-  # config → 주석/공백 정리 후 배열, 선두 ~ 확장
-  local -a projects
-  projects=( ${(f)"$(awk 'NF{sub(/#.*/,""); gsub(/^[ \t]+|[ \t]+$/,""); if($0!="")print}' "$file")"} )
+  # config → _cj_load(path\tsession) 에서 path 만 취해 배열, 선두 ~ 확장
+  local -a lines projects
+  lines=( ${(f)"$(_cj_load "$file")"} )
+  (( ${#lines} )) || { echo "[cj] empty list: $file"; return 1; }
+  local line
+  for line in "${lines[@]}"; do
+    projects+=( "${line%%$'\t'*}" )
+  done
   projects=( ${projects/#\~/$HOME} )
-  (( ${#projects} )) || { echo "[cj] empty list: $file"; return 1; }
 
   # 열린 pane 경로 수집. tmux 밖(§6.2)이면 open-detection 자체를 건너뛰어 전부 closed → cd.
   local tmux_data=""

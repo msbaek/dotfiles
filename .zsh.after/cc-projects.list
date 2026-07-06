@@ -1,18 +1,18 @@
 # cj (claude project jump) 대상 프로젝트 목록.
-# 한 줄당 절대경로(또는 ~). '#' 이후·빈 줄 무시.
+# 한 줄당 절대경로(또는 ~). '#' 이후·빈 줄 무시. 줄 끝 '@memo' 태그 → memo 세션 소속(없으면 work).
 ~/git/kt4u/PRs
 ~/git/kt4u/bo
 ~/git/kt4u/plan-docs
 ~/git/kt4u/isms-evidence
 ~/git/kt4u/datadog
-~/qmk_firmware
+~/qmk_firmware @memo
 ~/git/ai-agent/revfactory/webtoon-harness
 ~/git/msbaek-claude-plugins
-~/dotfiles
-~/claude-config
-~/git/kt4u/teams
+~/dotfiles @memo
+~/claude-config @memo
+~/git/kt4u/teams @memo
 ~/git/presentation-designer
-~/DocumentsLocal/msbaek_vault
+~/DocumentsLocal/msbaek_vault @memo
 ~/git/projects/daily-dashboard
-~/git/vault-intelligence
-~/temp
+~/git/vault-intelligence @memo
+~/temp @memo
