@@ -8,8 +8,10 @@ _cw_rows() {
     {
       state=$1; since=$2; target=$3; path=$4
       if (state=="waiting" && since!="" && (now-since) > idle_secs) state="idle"
-      key=(state=="waiting")?0:(state=="running")?1:2
-      sym=(state=="waiting")?"🔴":(state=="running")?"🟢":"⚪"
+      # 우선순위 사다리: attention(내 응답 대기) > waiting(작업완료 대기) > running(작업중) > idle.
+      # attention 은 강등하지 않는다 — 놓친 요청이 idle 로 묻히지 않도록 계속 🔔 로 최상단 유지.
+      key=(state=="attention")?0:(state=="waiting")?1:(state=="running")?2:3
+      sym=(state=="attention")?"🔔":(state=="waiting")?"🔴":(state=="running")?"🟢":"⚪"
       n=split(path,a,"/"); repo=a[n]
       printf "%d\t%s %-20s %s\t%s\n", key, sym, repo, target, target
     }' | sort -n -k1,1
@@ -68,7 +70,7 @@ cw() {
         | awk -F'|' -v self="$self" '$5!=self' \
         | _cw_rows \
         | fzf --ansi --delimiter=$'\t' --with-nth=2 \
-              --header='🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동' --reverse) || return
+              --header='🔔 요청 / 🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동' --reverse) || return
   target="${sel##*$'\t'}"
   _cc_goto "$target"
 }
@@ -122,7 +124,7 @@ cwq() {
   while true; do
     sel=$(_cwq_list \
           | fzf --ansi --delimiter=$'\t' --with-nth=2 --reverse \
-                --header='🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · Ctrl-R=새로고침 · Esc=취소' \
+                --header='🔔 요청 / 🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · Ctrl-R=새로고침 · Esc=취소' \
                 --preview 'tmux capture-pane -pt {3} 2>/dev/null | tail -40' \
                 --preview-window=right,50% \
                 --bind "ctrl-r:reload(source $HOME/.zsh.after/cw.zsh 2>/dev/null; _cwq_list)") || break
