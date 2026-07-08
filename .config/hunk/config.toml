@@ -1,0 +1,57 @@
+# hunk 전역 설정 — Atom One Light 커스텀 테마 (ghostty 일치 목표)
+# 참고: buildCustomTheme 는 `customTheme.X ?? baseTheme.X` — 명시한 키만 override, 나머지는 base 상속.
+# syntax 색은 일단 github-light 상속(규약 확정 후 조정). 배경 불투명 #fafafa (transparent 미사용).
+
+theme = "custom"
+mode  = "auto"    # auto / split / stack
+vcs   = "git"
+
+[custom_theme]
+base  = "github-light"
+label = "Atom One Light"
+
+# --- 기본 표면/텍스트 (Atom One Light) ---
+background = "#fafafa"   # 에디터 배경
+text       = "#383a42"   # 기본 전경
+muted      = "#a0a1a7"   # 흐린 텍스트/코멘트 톤
+panel      = "#f0f0f0"   # 사이드 패널
+panelAlt   = "#ebebeb"
+border     = "#e1e1e2"
+accent     = "#4078f2"   # Atom One Light 블루 (커서/링크/강조)
+accentMuted = "#9db8f5"
+
+# --- diff: 추가(초록) / 삭제(빨강) ---
+addedBg          = "#e6ffed"   # 추가 라인 배경(연한 초록)
+addedContentBg   = "#acf2bd"   # 추가 단어 강조
+addedSignColor   = "#50a14f"   # + 기호 (Atom One Light green)
+removedBg        = "#ffeef0"   # 삭제 라인 배경(연한 빨강)
+removedContentBg = "#fdb8c0"   # 삭제 단어 강조
+removedSignColor = "#e45649"   # - 기호 (Atom One Light red)
+contextBg        = "#fafafa"
+contextContentBg = "#fafafa"
+movedAddedBg     = "#e6f0ff"   # 이동(added) 연한 파랑
+movedRemovedBg   = "#fff0e6"   # 이동(removed) 연한 주황
+
+# --- 줄번호 / 선택 헝크 ---
+lineNumberBg = "#fafafa"
+lineNumberFg = "#b0b1b7"
+selectedHunk = "#dbe9f6"       # ghostty palette 0 강조색과 일치 (하이라이트 가시성)
+
+# --- 파일 상태 뱃지 색 ---
+badgeAdded   = "#50a14f"
+badgeNeutral = "#a0a1a7"
+badgeRemoved = "#e45649"
+fileNew       = "#50a14f"
+fileModified  = "#c18401"       # Atom One Light orange/yellow
+fileDeleted   = "#e45649"
+fileRenamed   = "#4078f2"
+fileUntracked = "#a0a1a7"
+
+# --- agent 리뷰 노트 색 (hunk session comment 시각) ---
+noteBackground      = "#f0f4ff"
+noteBorder          = "#4078f2"
+noteTitleBackground = "#dbe9f6"
+noteTitleText       = "#383a42"
+
+# [custom_theme.syntax] 는 규약 확정(pink/cyan/… 슬롯 vs keyword/string 토큰) 후 추가.
+# 지금은 github-light 상속. 실제 코드 diff 리뷰에서 조정.
