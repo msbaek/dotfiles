@@ -1,7 +1,7 @@
 # SP1 — hunk 테마 + git pager 통합 (dotfiles)
 
 - **Date**: 2026-07-08
-- **Status**: design approved (구현 대기)
+- **Status**: implemented (2026-07-08) — 전 acceptance criteria 통과. `.gitconfig.user` 커밋만 dotfiles-private 에서 사용자 몫으로 대기
 - **Repo scope**: `dotfiles` (+ `dotfiles-private` 소량 정리)
 - **후속**: SP2 — Claude Code agent-review 자동화 (별도 spec, `claude-config`)
 
