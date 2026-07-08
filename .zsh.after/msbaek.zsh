@@ -295,8 +295,17 @@ alias vi='nvim'
 alias gs='git status'
 alias gl='git log'
 alias lg='lazygit'
-# hunk diff with persistent theme (hunk 0.16 has no theme persistence; --theme must follow the subcommand)
-alias hd='hunk diff --theme github-light-high-contrast'
+# hunk diff — watch 모드(파일 변경 시 자동 갱신). 테마는 ~/.config/hunk/config.toml(Atom One Light)에서 로드
+alias hd='hunk diff --watch'
+# gpager: git pager 를 hunk <-> delta 런타임 토글 (파일 손편집 없이 즉시 전환/롤백)
+gpager() {
+  case "${1:-status}" in
+    hunk)   git config --global core.pager "hunk pager"; echo "git pager → hunk pager" ;;
+    delta)  git config --global core.pager "delta";       echo "git pager → delta" ;;
+    status) echo "git pager (effective): $(git config core.pager)"; echo "usage: gpager hunk|delta" ;;
+    *)      echo "usage: gpager hunk|delta|status" >&2; return 1 ;;
+  esac
+}
 # Headless mode aliases
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
 
