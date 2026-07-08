@@ -299,7 +299,6 @@ alias lg='lazygit'
 alias hd='hunk diff --theme github-light-high-contrast'
 # Headless mode aliases
 alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
-# alias hcld='ANTHROPIC_BASE_URL="http://127.0.0.1:8787" claude "$@"'
 
 # alias cld='$HOME/.local/bin/claude agents'
 
@@ -595,99 +594,4 @@ mshelp() {
     local name=$(echo "$cmd" | sed 's/\x1b\[[0-9;]*m//g' | cut -c1-22 | sed 's/[[:space:]]*$//')
     print -z "$name"
   fi
-}
-
-# ── Headroom — Claude Code 컨텍스트 압축 proxy ──
-# 데몬은 launchd(com.headroom.proxy)로 상시 기동(RunAtLoad + KeepAlive).
-# hr = 데몬 제어 래퍼, hclaude = proxy 경유 실행 스위치.
-
-# headroom 데몬 제어. usage: hr [status|start|stop|restart|log]
-hr() {
-  local sub="${1:-status}"
-  local label="com.headroom.proxy"
-  local plist="$HOME/Library/LaunchAgents/${label}.plist"
-  local log="$HOME/Library/Logs/headroom-proxy.log"
-  local domain="gui/$(id -u)"
-  local url="http://127.0.0.1:8787"
-  case "$sub" in
-    status)
-      local line=$(launchctl list | grep "$label")
-      if [[ -z "$line" ]]; then
-        echo "⏹  headroom: not loaded  (hr start 로 기동)"
-        return 1
-      fi
-      local pid=$(echo "$line" | awk '{print $1}')
-      if [[ "$pid" == "-" ]]; then
-        echo "⏸  headroom: loaded but stopped"
-      else
-        echo "▶  headroom: running (PID $pid)"
-        curl -s "$url/health" | python3 -c \
-          'import sys,json; d=json.load(sys.stdin); print("   ready=%s  version=%s  uptime=%.0fs" % (d["ready"], d["version"], d["uptime_seconds"]))' \
-          2>/dev/null || echo "   (health 아직 준비 안 됨 — warmup ~40s)"
-      fi
-      ;;
-    start)
-      # bootstrap = plist 재파싱(env 변경 반영). stop 직후 tear-down race 대비 retry+wait.
-      local n=0
-      until launchctl bootstrap "$domain" "$plist" 2>/dev/null; do
-        (( ++n > 25 )) && { echo "❌ headroom: bootstrap 실패 (이전 job 정리 안 됨?)"; return 1; }
-        sleep 0.2
-      done
-      echo "▶  headroom started"
-      ;;
-    stop)
-      # KeepAlive=true 라 launchctl stop 은 즉시 재기동 → 완전 정지는 bootout.
-      # bootout 이 0 을 반환해도 tear-down 은 비동기 → job 이 사라질 때까지 대기해야
-      # 직후 hr start 의 bootstrap 이 'already in progress' 로 깨지지 않는다.
-      launchctl bootout "$domain/$label" 2>/dev/null
-      local n=0
-      while launchctl print "$domain/$label" >/dev/null 2>&1; do
-        (( ++n > 50 )) && break   # 최대 ~10s 대기 후 포기
-        sleep 0.2
-      done
-      echo "⏹  headroom stopped"
-      ;;
-    restart)
-      # 프로세스만 재시작 (이미 로드된 plist 사용 → env/plist 변경은 미반영).
-      # 코드 무변경 재시작·hang 복구용. env 변경 반영은 hr stop 후 hr start.
-      launchctl kickstart -k "$domain/$label" && echo "🔄 headroom restarted"
-      ;;
-    log)
-      tail -f "$log"
-      ;;
-    update)
-      # headroom 업그레이드 → offline 우회 온라인 prefetch(캐시 갱신) → 데몬 재기동.
-      # 데몬(8787, offline)은 그대로 두고 임시 포트(8799)에 online 인스턴스만 띄워
-      # 캐시를 채운다. plist(env) 자체를 바꾼 게 아니라면 hr restart 로 충분.
-      echo "1/3) headroom 업그레이드..."
-      pipx upgrade headroom-ai || echo "  (업그레이드 실패/스킵 — 계속 진행)"
-
-      echo "2/3) offline 우회 온라인 prefetch (임시 포트 8799, 데몬은 계속 서비스 중)..."
-      local pport=8799
-      HF_HUB_OFFLINE=0 TRANSFORMERS_OFFLINE=0 \
-        headroom proxy --port "$pport" >/tmp/headroom-prefetch.log 2>&1 &
-      local ppid=$!
-
-      # TODO(human): prefetch 완료(모델 다운로드 끝나 ready)를 감지하고 빠져나오기.
-      #   - 신호 후보: http://127.0.0.1:$pport/health 의 "ready": true 를 폴링,
-      #     또는 /tmp/headroom-prefetch.log 에서 ready/Started 흔적 감지.
-      #   - 모델 다운로드는 수십 초~수 분 → 타임아웃을 넉넉히(예: 300초) 두고,
-      #     완료되면 즉시 / 타임아웃이면 경고 후 루프 탈출.
-      #   - 임시 프로세스 정리(kill)는 아래에서 하므로 여기서는 '대기'만 책임진다.
-
-      kill "$ppid" 2>/dev/null; wait "$ppid" 2>/dev/null
-      echo "3/3) 데몬 재기동 (새 캐시·바이너리 반영)..."
-      hr restart && hr status
-      ;;
-    *)
-      echo "Usage: hr [status|start|stop|restart|update|log]"
-      return 1
-      ;;
-  esac
-}
-
-# Claude Code 를 headroom proxy 경유로 실행 (로그·JSON 세션 압축).
-# 평소 코드 작업은 그냥 claude, 압축이 필요한 세션만 hclaude.
-hclaude() {
-  ANTHROPIC_BASE_URL="http://127.0.0.1:8787" claude "$@"
 }

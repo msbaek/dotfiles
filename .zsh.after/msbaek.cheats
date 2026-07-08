@@ -44,12 +44,6 @@ f	git-timeline	월별 커밋 수 추세
 f	git-hotfixes	최근 1년 revert/hotfix/emergency
 f	mshelp	cheats fzf 검색 (Enter=커맨드라인 붙여넣기)
 
-# ─── Headroom (Claude Code 컨텍스트 압축 proxy) ───
-f	hr	headroom 데몬 제어 (status|start|stop|restart|log)
-f	hr status	데몬 실행 상태 + ready/version/uptime
-f	hr stop	데몬 완전 정지 (bootout, KeepAlive 우회)
-f	hclaude	Claude Code를 headroom proxy 경유로 실행
-
 # ─── Local LLM ───
 a	llm-hw	하드웨어 등급 감지 (CPU/RAM/GPU/VRAM → Hardware Tier)
 f	llm-rec	로컬 LLM 추천: llm-rec [coding|talking|reasoning|multimodal]
