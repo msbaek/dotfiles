@@ -15,6 +15,9 @@
 	commit = yellow bold
 	whitespace = red reverse
 [alias]
+  # delta escape hatches — 전역 pager(hunk) 안 바꾸고 이번 1회만 delta
+  ddiff = -c core.pager=delta diff
+  dshow = -c core.pager=delta show
   # add
   # a = add                           # add
   chunkyadd = add --patch           # stage commits chunk by chunk
@@ -118,7 +121,8 @@
 	autocrlf = input
   editor = vim
   excludesfile = ~/.gitignore
-	pager = delta
+	pager = hunk pager
+	# pager = delta   # 롤백: `gpager delta` 런타임 토글, 또는 이 줄을 활성화
 [advice]
   statusHints = false
 [diff]
