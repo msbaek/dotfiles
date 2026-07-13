@@ -328,8 +328,6 @@ alias d2h='diff2html -s side'
 # ktown4u-groupware Python CLI venv 활성화 (ktown4u-gw 명령 사용)
 alias gw='source ~/git/kt4u/ktown4u-groupware-tools/.venv/bin/activate && ktown4u-gw menu'
 alias gdum='gdu -h -d 1'
-# ClearDisk: 개발자 캐시(Xcode/npm/brew/Docker 등) 정리 메뉴바 앱 (brew cask cleardisk)
-alias cleardisk='open -a ClearDisk'
 alias agfu='cargo install --git https://github.com/subinium/agf.git'
 alias find-largest-file='du -ah * | sort -rn'
 alias find_mac_addr="ifconfig en0 | grep ether | awk '{print \$2}'"
