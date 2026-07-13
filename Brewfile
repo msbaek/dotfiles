@@ -1,19 +1,21 @@
+tap "asmvik/formulae", "https://github.com/asmvik/homebrew-formulae.git"
 tap "atlassian/acli"
+tap "bysiber/cleardisk", trusted: true
 tap "databricks/tap"
 tap "detachhead/tap"
 tap "dlvhdr/formulae"
 tap "f/textream"
-tap "felixkratz/formulae"
+tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae", trusted: true
 tap "graykode/tap"
 tap "hamed-elfayome/claude-usage"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/services"
 tap "jesseduffield/lazygit"
-tap "jetbrains/utils"
+tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jstkdng/programs"
-tap "koekeishiya/formulae"
 tap "maciejwalkowiak/brew"
+tap "microsoft/inshellisense", "https://github.com/microsoft/inshellisense"
 tap "nikitabobko/tap"
 tap "njbrake/aoe"
 tap "omnisharp/omnisharp-roslyn"
@@ -34,8 +36,6 @@ brew "autojump"
 brew "cairo"
 # OpenType text shaping engine
 brew "harfbuzz"
-# New file format for still image compression
-brew "jpeg-xl"
 # Image format providing lossless and lossy compression for web images
 brew "webp"
 # Acquire AWS credentials using Google Apps
@@ -71,7 +71,7 @@ brew "ctags"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Pack, ship and run any application as a lightweight container
-brew "docker", link: false
+brew "docker"
 # Disk Usage/Free Utility - a better 'df' alternative
 brew "duf"
 # Modern, maintained replacement for ls
@@ -80,6 +80,8 @@ brew "eza"
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# New file format for still image compression
+brew "jpeg-xl"
 # Multi-format archive and compression library
 brew "libarchive"
 # Framework for layout and rendering of i18n text
@@ -136,6 +138,8 @@ brew "htop"
 brew "httpie"
 # Curl statistics made simple
 brew "httpstat"
+# Review-first terminal diff viewer for agent-authored changesets
+brew "hunk"
 # Run and Test HTTP Requests with plain text and curl
 brew "hurl"
 # Tools and libraries to manipulate images in select formats
@@ -182,8 +186,6 @@ brew "neovim"
 brew "ripgrep"
 # AI coding agent, built for the terminal
 brew "opencode"
-# Development kit for the Java programming language
-brew "openjdk@21"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # General-purpose scripting language
@@ -270,8 +272,14 @@ brew "zsh"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# A window border system for macOS
+brew "felixkratz/formulae/borders"
+# Custom macOS statusbar with shell plugin, interaction and graph support
+brew "felixkratz/formulae/sketchybar"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace"
+# Free, open-source macOS app to find and clean developer caches
+cask "bysiber/cleardisk/cleardisk"
 # Utilities designed to make common development tasks easier
 cask "devtoys"
 cask "font-batang"
@@ -291,6 +299,8 @@ cask "jordanbaird-ice"
 cask "keycastr"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+# Whisper dictation/transcription app
+cask "opensuperwhisper"
 # Replacement for Docker Desktop
 cask "orbstack"
 # Quick Look generator for Markdown files
@@ -388,8 +398,6 @@ npm "yo"
 brew "atlassian/acli/acli"
 brew "databricks/tap/databricks"
 brew "dlvhdr/formulae/diffnav"
-brew "felixkratz/formulae/borders"
-brew "felixkratz/formulae/sketchybar"
 brew "graykode/tap/abtop"
 brew "jetbrains/utils/kotlin-lsp"
 brew "jstkdng/programs/ueberzugpp"
