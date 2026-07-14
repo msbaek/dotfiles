@@ -117,24 +117,44 @@ _cwq_list() {
 
 # cwq: quick terminal 에서 실행하는 agents pane. @cc_state 기반 대기(🔴)/작업(🟢)/idle(⚪)
 # 목록(waiting-first) + preview(대상 pane 최근 40줄) → 선택 시 점프 + quick terminal 닫힘.
-# r(또는 Ctrl-R)=목록 새로고침 · Esc/Ctrl-C=취소(루프 종료). cw 와 달리 self-pane 제외 없음.
-# reload 는 $SHELL -c 서브셸에서 돌아 _cwq_list 가 안 보이므로 cw.zsh 를 먼저 source 한다.
+# r(또는 Ctrl-R)=목록 새로고침 · Esc=quick terminal 창만 닫기(cwq 는 유지, 다시 열면 이어짐)
+# · q=종료([y/N] 확인 후) · Ctrl-C=확인 없는 비상 종료. cw 와 달리 self-pane 제외 없음.
+# reload/execute 는 $SHELL -c 서브셸에서 돌아 함수가 안 보이므로 cw.zsh 를 먼저 source 한다.
 cwq() {
-  local sel target
-  local hdr='🔔 요청 / 🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · r=새로고침 · Esc=취소'
+  local out code key sel target ans
+  local hdr='🔔 요청 / 🔴 대기 / 🟢 작업 / ⚪ idle │ Enter=이동 · r=새로고침 · Esc=창닫기 · q=종료'
   # reload 액션(중복 제거): r 과 Ctrl-R 양쪽에 바인딩. $HOME 은 정의 시 확장됨.
   local rc="reload(source $HOME/.zsh.after/cw.zsh 2>/dev/null; _cwq_list)"
   # reload 피드백: 헤더 맨 앞에 갱신 시각(⟳ HH:MM:SS)을 찍어 r 누를 때마다 눈에 띄게 변함.
   # 좁은 quick terminal 에서 시각이 잘리지 않도록 앞에 배치(잘리면 뒤쪽 범례가 잘림).
   local rh="transform-header(printf '⟳ %s │ %s' \"\$(date +%H:%M:%S)\" '$hdr')"
+  # Esc: fzf abort 대신 quick terminal 창만 닫는다(dismiss 방식 변경은 _cwq_dismiss 한 곳만 수정).
+  local dq="execute-silent(source $HOME/.zsh.after/cw.zsh 2>/dev/null; _cwq_dismiss)"
   while true; do
-    sel=$(_cwq_list \
+    out=$(_cwq_list \
           | fzf --ansi --delimiter=$'\t' --with-nth=2 --reverse \
                 --header="$hdr" \
                 --preview 'tmux capture-pane -pt {3} 2>/dev/null | tail -40' \
                 --preview-window=right,50% \
+                --expect=q \
+                --bind "esc:$dq" \
                 --bind "start:$rh" \
-                --bind "r:$rh+$rc" --bind "ctrl-r:$rh+$rc") || break
+                --bind "r:$rh+$rc" --bind "ctrl-r:$rh+$rc")
+    code=$?
+    key="${out%%$'\n'*}"    # --expect 출력: 1행=누른 키(q 또는 Enter=빈 줄), 2행=선택 행
+    if [ "$key" = "q" ]; then
+      printf 'cwq 종료할까요? [y/N] '
+      read -r ans || continue           # Ctrl-D 등 입력 실패 = N
+      case "$ans" in (y|Y|yes|YES) break ;; esac
+      continue
+    fi
+    case $code in
+      (0) ;;                            # 정상 선택 → 아래에서 점프
+      (1) continue ;;                   # 매치 없음(빈 목록에서 Enter 등) → 목록 유지
+      (*) break ;;                      # 130=Ctrl-C(비상구) · 2=fzf 오류
+    esac
+    sel="${out#*$'\n'}"
+    [ -n "$sel" ] && [ "$sel" != "$out" ] || continue
     target="${sel##*$'\t'}"
     _cwq_jump "$target"
   done
