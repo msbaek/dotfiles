@@ -27,7 +27,8 @@ BREWFILE="Brewfile"
 NEW="$(mktemp)"
 MERGED="$(mktemp)"
 KEYS="$(mktemp)"
-trap 'rm -f "$NEW" "$MERGED" "$KEYS"' EXIT
+NEW_APPS="$(mktemp)"
+trap 'rm -f "$NEW" "$MERGED" "$KEYS" "$NEW_APPS"' EXIT
 
 # Fresh dump (may drop third-party tap formulae on Homebrew 6.x)
 brew bundle dump --force --file="$NEW"
@@ -104,3 +105,16 @@ else
 fi
 
 echo "✨ Brewfile update complete"
+
+# --- Applications.txt: snapshot of /Applications app names ---
+APPSFILE="Applications.txt"
+
+ls /Applications 2>/dev/null | grep '\.app$' | sort > "$NEW_APPS"
+
+if [ ! -f "$APPSFILE" ] || ! cmp -s "$NEW_APPS" "$APPSFILE"; then
+    cp "$NEW_APPS" "$APPSFILE"
+    git add "$APPSFILE"
+    echo "✅ Applications.txt updated and staged"
+else
+    echo "ℹ️  Applications.txt is already up to date"
+fi

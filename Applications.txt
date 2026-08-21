@@ -1,0 +1,86 @@
+AeroSpace.app
+AhnLab V3 Office Security.app
+AI Edge Gallery by Google.app
+AladinEbook.app
+Alfred 5.app
+AppCleaner.app
+CheatSheet.app
+Claude Code History Viewer.app
+Claude.app
+ClearDisk.app
+Codex.app
+DaisyDisk.app
+DEVONthink Pro.app
+DevToys.app
+Dia.app
+Disk Diag.app
+Flow.app
+Ghostty.app
+Goodnotes.app
+Google Chrome.app
+Hammerspoon.app
+Hancom Office HWP Viewer.app
+hanji.app
+Homerow.app
+HOP.app
+Ice.app
+iMovie.app
+Input Source Pro.app
+iShot.app
+JetBrains Toolbox.app
+JKOKSysExtInstaller.app
+KakaoTalk.app
+Karabiner-Elements.app
+Karabiner-EventViewer.app
+KBSKong.app
+KeyCastr.app
+Keynote.app
+lghub.app
+LiveAgent.app
+Messenger.app
+Microsoft Excel.app
+Microsoft PowerPoint.app
+Microsoft Remote Desktop.app
+Microsoft Teams.app
+Microsoft Word.app
+Notion.app
+Numbers Creator Studio.app
+Numbers.app
+Obsidian.app
+Okta Verify.app
+OpenSuperWhisper.app
+OpenVPN Connect.app
+OrbStack.app
+Pages.app
+Postman.app
+Presentify.app
+QLMarkdown.app
+QMK Toolbox.app
+Rectangle.app
+S-1PS.app
+S1ESP.app
+Safari.app
+ScreenFlow.app
+SecuPrint.app
+ShowyEdge.app
+Slack.app
+SnippetsLab.app
+SwitchHosts.app
+Textream.app
+TextSniper.app
+Things3.app
+Timeline 3D.app
+Twingate.app
+VIA.app
+Vial.app
+Visual Paradigm.app
+Visual Studio Code.app
+VLC.app
+Wander.app
+WorkSpaces.app
+Xcode.app
+Xmind.app
+YES24 eBook.app
+YouType.app
+Zed.app
+zoom.us.app
