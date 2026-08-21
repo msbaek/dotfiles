@@ -82,12 +82,6 @@ brew "eza"
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
-# New file format for still image compression
-brew "jpeg-xl"
-# Multi-format archive and compression library
-brew "libarchive"
-# Framework for layout and rendering of i18n text
-brew "pango"
 # Create thumbnails for your video files
 brew "ffmpegthumbnailer"
 # Lock file during command
@@ -98,10 +92,16 @@ brew "libtool"
 brew "fzf"
 # GNU awk utility
 brew "gawk"
+# New file format for still image compression
+brew "jpeg-xl"
 # Disk usage analyzer with console interface written in Go
 brew "gdu"
 # GitHub command-line tool
 brew "gh"
+# Multi-format archive and compression library
+brew "libarchive"
+# Framework for layout and rendering of i18n text
+brew "pango"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
 # Distributed revision control system
