@@ -3,7 +3,6 @@ AhnLab V3 Office Security.app
 AI Edge Gallery by Google.app
 AladinEbook.app
 Alfred 5.app
-AppCleaner.app
 CheatSheet.app
 Claude Code History Viewer.app
 Claude.app
