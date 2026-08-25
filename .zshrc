@@ -79,8 +79,5 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship prompt — initialized in ~/.zsh.after/msbaek.zsh (with STARSHIP_CONFIG)
 
-# cc-orchestra
-source ~/.claude/skills/cc-orchestra/functions.zsh
-
 # Added by JetBrains Context CLI installer
 export PATH="$PATH:/Users/msbaek/.jbcontext/bin"
