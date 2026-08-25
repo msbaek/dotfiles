@@ -184,7 +184,7 @@ export NVM_DIR="$HOME/.nvm"
 # Not sure if counts a CLI tool, because it only makes my prompt more useful
 # https://starship.rs/config/#prompt
 if command -v starship &>/dev/null; then
-  export STARSHIP_CONFIG=$HOME/github/dotfiles-latest/starship-config/active-config.toml
+  export STARSHIP_CONFIG=$HOME/.config/starship.toml
   eval "$(starship init zsh)" >/dev/null 2>&1
 fi
 
