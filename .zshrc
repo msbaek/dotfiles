@@ -61,10 +61,10 @@ function y() {
 export EDITOR="nvim"
 export CLAUDE_CODE_MAX_OUTPUT_TOKENS=128000
 
-source "~/.rm-safely" >/dev/null 2>&1
+[ -f ~/.rm-safely ] && source ~/.rm-safely
 
 # agf - AI Agent Session Finder
-eval "$(agf init zsh)"
+command -v agf >/dev/null 2>&1 && eval "$(agf init zsh)"
 
 # Private environment variables
 [ -f ~/dotfiles-private/.env.ktown4u ] && source ~/dotfiles-private/.env.ktown4u
@@ -81,3 +81,6 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Added by JetBrains Context CLI installer
 export PATH="$PATH:/Users/msbaek/.jbcontext/bin"
+
+# Mole shell completion
+if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
