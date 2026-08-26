@@ -120,7 +120,6 @@
 [core]
 	autocrlf = input
   editor = vim
-  excludesfile = ~/.gitignore
 	pager = hunk pager
 	# pager = delta   # 롤백: `gpager delta` 런타임 토글, 또는 이 줄을 활성화
 [advice]
