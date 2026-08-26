@@ -26,3 +26,14 @@ _darcs
 # Needed as project memory when cwd=~/dotfiles, but must NOT be stowed to
 # ~/CLAUDE.md (would leak dotfiles/Stow context into every $HOME-rooted session).
 ^/CLAUDE.md
+
+# --- Backup-only: not deployed by Stow ---
+# .codex is mutated at runtime by the Codex CLI (marketplace state written back
+# into config.toml), and its hooks.json points at ~/.codex, not at this repo.
+# Tracked here as a snapshot; symlinking it would make Codex dirty the repo.
+^/\.codex
+# macOS finder droppings — the default ignore list above does not cover these.
+\.DS_Store
+# ~/.claude is owned by the claude-config repo's own Stow run; this leftover
+# untracked directory must never be stowed over it.
+^/\.claude
