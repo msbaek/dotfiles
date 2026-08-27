@@ -42,7 +42,7 @@ format = "[ $duration]($style) "
 style = "bold yellow"
 
 [python]
-python_binary = ["/Users/msbaek/.pyenv/versions/3.11.7/bin/python"]
+python_binary = ["python3", "python"]
 format = '[$symbol$version]($style) '
 symbol = " "
 style = "bold yellow"

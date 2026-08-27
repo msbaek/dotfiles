@@ -1,1 +1,1 @@
-export PATH=$HOME/development/flutter/bin:$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH

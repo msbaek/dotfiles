@@ -1,3 +1,12 @@
+# Homebrew (architecture-agnostic: /opt/homebrew on arm64, /usr/local on Intel)
+if [[ -z "${HOMEBREW_PREFIX:-}" ]]; then
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+fi
+
 export PATH=$HOME/bin:$PATH
 
 # Completion system (cached - only full rebuild once per day)
@@ -9,7 +18,7 @@ else
 fi
 
 # zsh-autosuggestions
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$HOMEBREW_PREFIX"/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ~/.zsh.after/msbaek.zsh
 source ~/.zsh.after/ktown4u.zsh
@@ -48,8 +57,6 @@ update-claude-code() {
     echo "Claude Code updated to: $(claude --version)"
 }
 
-alias add_serena='~/bin/add-serena.sh'
-
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -75,12 +82,12 @@ ai() {
   OPENAI_API_KEY="$CEREBRAS_API_KEY" sgpt -s "$*"
 }
 # zsh-syntax-highlighting (must be last)
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship prompt — initialized in ~/.zsh.after/msbaek.zsh (with STARSHIP_CONFIG)
 
 # Added by JetBrains Context CLI installer
-export PATH="$PATH:/Users/msbaek/.jbcontext/bin"
+export PATH="$PATH:$HOME/.jbcontext/bin"
 
 # Mole shell completion
 if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi

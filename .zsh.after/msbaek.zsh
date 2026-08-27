@@ -1,24 +1,26 @@
+# Homebrew (architecture-agnostic: /opt/homebrew on arm64, /usr/local on Intel)
+if [[ -z "${HOMEBREW_PREFIX:-}" ]]; then
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+fi
+
 export PATH=~/bin:$PATH
 
-fpath=(/usr/local/share/zsh-completions $fpath)
-fpath=(/usr/local/share/zsh/site-functions $fpath)
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 
-export LDFLAGS="-L/usr/local/opt/zlib/lib"
-export CPPFLAGS="-I/usr/local/opt/zlib/include"
-
-export M2_HOME=/usr/local/opt/maven/libexec
-export GRADLE_HOME=/usr/local/opt/gradle/libexec
+export M2_HOME="$HOMEBREW_PREFIX/opt/maven/libexec"
+export GRADLE_HOME="$HOMEBREW_PREFIX/opt/gradle/libexec"
 
 # export MAVEN_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=n"
 
 
 # rbenv
 # eval "$(rbenv init - zsh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export PATH="$PATH:$HOME/icloud/bin"
-
-export PATH=":$PATH:$HOME/bin/ijhttp/"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
@@ -46,13 +48,12 @@ zle -N globalias
 
 export ZEPPELIN_HOME="/usr/local/zeppelin"
 # export PYSPARK_PYTHON=python3
-# export SPARK_HOME="/opt/homebrew/Cellar/apache-spark/3.3.1/libexec"
-export TOMCAT_HOME="/usr/local/apache-tomcat-8.5.64"
+# export SPARK_HOME="$HOMEBREW_PREFIX/Cellar/apache-spark/3.3.1/libexec"
 set -o vi
 
 
 # alias cat='bat --plain --wrap character'
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+[ -f "$HOMEBREW_PREFIX"/etc/profile.d/autojump.sh ] && . "$HOMEBREW_PREFIX"/etc/profile.d/autojump.sh
 
 export PYSPARK_DRIVER_PYTHON=jupyter
 export PYSPARK_DRIVER_PYTHON_OPTS='notebook'
@@ -69,8 +70,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export OH_MY_ZSH=$HOME/.oh-my-zsh/
 export ZSH_THEME="dracula"
 
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
-export HOMEBREW_PREFIX=$(brew --prefix)
+export PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"
 
 eval "$(git machete completion zsh)"  # or, if it doesn't work:
 source <(git machete completion zsh)
@@ -148,8 +148,8 @@ eval $(thefuck --alias fk)
 # -- Zoxide (better cd)
 eval "$(zoxide init zsh)"
 
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export PATH="/opt/homebrew/lib/ruby/gems/3.3.0/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/lib/ruby/gems/3.3.0/bin:$PATH"
 
 # history setup
 HISTFILE=$HOME/.zhistory
@@ -163,8 +163,8 @@ setopt hist_verify
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$HOMEBREW_PREFIX"/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # alias ls="eza --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions"
 #alias ls="eza --color=always --long --icons=always --no-user --no-permissions"
@@ -173,8 +173,6 @@ export LANG=ko_KR.UTF-8
 export LC_ALL=ko_KR.UTF-8
 eval "$(rbenv init -)"
 
-
-export PATH="/opt/homebrew/Caskroom/flutter/3.7.9/flutter/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -330,8 +328,6 @@ alias cct='~/.claude/bin/cc-team-cleanup'
 
 alias d2h='diff2html -s side'
 
-# ktown4u-groupware Python CLI venv 활성화 (ktown4u-gw 명령 사용)
-alias gw='source ~/git/kt4u/ktown4u-groupware/.venv/bin/activate && ktown4u-gw menu'
 alias gdum='gdu -h -d 1'
 alias agfu='cargo install --git https://github.com/subinium/agf.git'
 alias find-largest-file='du -ah * | sort -rn'
@@ -567,18 +563,6 @@ git-timeline() {
 # 최근 1년간 revert/hotfix/emergency/rollback 커밋 조회. 배포 안정성 평가
 git-hotfixes() {
   git log --oneline --since="1 year ago" | grep -iE 'revert|hotfix|emergency|rollback'
-}
-
-# ── html-anything (https://github.com/nexu-io/html-anything) ──
-
-# html-anything 폴더로 이동
-ha() {
-  cd ~/git/ai-agent/html-anything || return 1
-}
-
-# html-anything dev 서버 기동 (Next.js Turbopack → http://localhost:3000)
-hadev() {
-  (cd ~/git/ai-agent/html-anything && pnpm dev "$@")
 }
 
 # ── Help ──

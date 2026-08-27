@@ -11,7 +11,7 @@ set -euo pipefail
 
 VAULT_ROOT="${VAULT_ROOT:-$HOME/DocumentsLocal/msbaek_vault}"
 ERROR_LOG="$VAULT_ROOT/001-INBOX/error-list.md"
-NOTIFIER="/opt/homebrew/bin/terminal-notifier"
+NOTIFIER="$(command -v terminal-notifier || echo "${HOMEBREW_PREFIX:-/opt/homebrew}/bin/terminal-notifier")"
 SCRIPT_PATH="$(realpath "$0")"
 SHARED_LOG="/tmp/obsidian-summarize.log"
 
