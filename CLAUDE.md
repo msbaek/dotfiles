@@ -13,12 +13,11 @@ This is a personal dotfiles repository containing macOS system configurations an
 # Install dependencies via Homebrew
 brew bundle --file=Brewfile
 
-# Deploy dotfiles using GNU Stow
-stow .
+# Deploy dotfiles using GNU Stow (--no-folding is mandatory, see below)
+stow --no-folding -t ~ .
 
-# Install LazyVim (if needed)
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf .config/nvim/.git
+# Point Neovim at the config tracked in this repo
+ln -s ~/dotfiles/.config/lazy-nvim ~/.config/nvim
 ```
 
 ### Package Management
@@ -75,14 +74,27 @@ brew bundle cleanup --force
 
 ### Stow Integration
 
-The repository is designed to work with GNU Stow, which creates symlinks from the repository to the appropriate locations in the home directory. Files and directories in the root are symlinked to `~/` when running `stow .`.
+The repository is designed to work with GNU Stow, which creates symlinks from the repository to the appropriate locations in the home directory. Files and directories in the root are symlinked to `~/` when running `stow --no-folding -t ~ .`.
+
+**Always pass `--no-folding`.** Without it Stow "folds" a directory that does not yet exist in `~` into a single symlink (`~/.config -> ~/dotfiles/.config`), which makes the home path and the repository the same object. Two failures follow:
+
+- `rm -rf ~/.config/<anything>` deletes tracked files out of the repository.
+- `rm -rf ~/dotfiles` destroys gitignored assets that live under `~/.config` and are therefore absent from the remote — `~/.config/nvim`, `~/.config/gh/hosts.yml`, and similar are gone for good.
+
+`--no-folding` creates real directories and symlinks only the leaf files, keeping the two apart. It also prevents Stow from re-folding on `stow -D`.
+
+To undo an existing folded deployment, run both commands together — the home symlinks are absent in between:
+
+```bash
+stow -D -t ~ . && stow --no-folding -t ~ .
+```
 
 ## Development Workflow
 
 When making changes to configurations:
 1. Edit files in the dotfiles repository
 2. Test changes in the target environment
-3. Use `stow .` to deploy changes (Stow handles existing symlinks gracefully)
+3. Use `stow --no-folding -t ~ .` to deploy changes (Stow handles existing symlinks gracefully)
 4. Update Brewfile if new packages are added
 5. Consider compatibility across different macOS versions
 

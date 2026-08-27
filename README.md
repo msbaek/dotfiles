@@ -60,15 +60,19 @@ cat .ssh-config.example >> ~/.ssh/config
 
 ### 6. Deploy Dotfiles
 
+`--no-folding` is mandatory — see [Stow Conflicts](#stow-conflicts) for why.
+
 ```bash
-stow .
+stow --no-folding -t ~ .
 ```
 
-### 7. Install LazyVim (Optional)
+### 7. Point Neovim at the Tracked Config
+
+The LazyVim configuration is tracked in this repo as `.config/lazy-nvim`. Neovim
+reads `~/.config/nvim`, so link the two:
 
 ```bash
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf .config/nvim/.git
+ln -s ~/dotfiles/.config/lazy-nvim ~/.config/nvim
 ```
 
 ## Structure
@@ -115,7 +119,7 @@ brew bundle cleanup --force
 ```bash
 cd ~/dotfiles
 git pull
-stow .
+stow --no-folding -t ~ .
 ```
 
 ## Troubleshooting
@@ -134,7 +138,24 @@ If you see warnings about missing environment variables:
 ### Stow Conflicts
 If stow reports conflicts:
 ```bash
-stow --adopt .  # Adopt existing files
+stow --adopt --no-folding -t ~ .  # Adopt existing files
+```
+
+An app may rewrite its config as a real file between `stow -D` and the next
+`stow`, which then conflicts. Diff it against the repo copy first; if identical,
+delete it and re-stow.
+
+### Never Stow Without `--no-folding`
+
+Without it Stow folds a directory missing from `~` into a single symlink
+(`~/.config -> ~/dotfiles/.config`), making the home path and the repository the
+same object. `rm -rf ~/.config/<anything>` then deletes tracked files from the
+repo, and `rm -rf ~/dotfiles` destroys gitignored assets that only exist locally
+(`~/.config/nvim`, `~/.config/gh/hosts.yml`). To undo a folded deployment, run
+both commands together — the home symlinks are absent in between:
+
+```bash
+stow -D -t ~ . && stow --no-folding -t ~ .
 ```
 
 ## Usage with dotfiles-private
@@ -146,12 +167,14 @@ This repository works together with a private companion repository for sensitive
 ```bash
 # 1. Clone public dotfiles
 git clone https://github.com/msbaek/dotfiles ~/dotfiles
-cd ~/dotfiles && stow .
+cd ~/dotfiles && stow --no-folding -t ~ .
 brew bundle
 
 # 2. Clone private dotfiles (optional - for personal machines)
 git clone git@github.com:msbaek/dotfiles-private ~/dotfiles-private
-cd ~/dotfiles-private && stow .
+# .gitconfig.user only — stowing the whole package collides with ~/.claude,
+# and .zshrc sources the .env.* files by absolute path already.
+ln -s ~/dotfiles-private/.gitconfig.user ~/.gitconfig.user
 ```
 
 ### Graceful Degradation
