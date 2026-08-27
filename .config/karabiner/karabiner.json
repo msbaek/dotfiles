@@ -79,26 +79,9 @@
                         ]
                     },
                     {
-                        "description": "shift+space to f18 (Apple Internal Keyboard only)",
+                        "description": "shift+space to f18 (all keyboards)",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "apple internal keyboad",
-                                                "product_id": 835,
-                                                "vendor_id": 1452
-                                            },
-                                            {
-                                                "description": "Keychron Q60",
-                                                "product_id": 448,
-                                                "vendor_id": 13364
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "spacebar",
                                     "modifiers": { "mandatory": ["left_shift"] }
@@ -107,23 +90,6 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            {
-                                                "description": "apple internal keyboad",
-                                                "product_id": 835,
-                                                "vendor_id": 1452
-                                            },
-                                            {
-                                                "description": "Keychron Q60",
-                                                "product_id": 448,
-                                                "vendor_id": 13364
-                                            }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "spacebar",
                                     "modifiers": { "mandatory": ["right_shift"] }
