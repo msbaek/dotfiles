@@ -27,16 +27,19 @@ source ~/.zsh.after/cj.zsh
 source ~/.zsh.after/gj.zsh
 
 # NVM (lazy load - only loads when node/npm/nvm is first used)
+# Guard: without nvm installed the wrappers would shadow the Homebrew node/npm
 export NVM_DIR="$HOME/.nvm"
-_load_nvm() {
-  unfunction nvm node npm npx 2>/dev/null
-  [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
-}
-nvm()  { _load_nvm; nvm  "$@"; }
-node() { _load_nvm; node "$@"; }
-npm()  { _load_nvm; npm  "$@"; }
-npx()  { _load_nvm; npx  "$@"; }
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  _load_nvm() {
+    unfunction nvm node npm npx 2>/dev/null
+    source "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+  }
+  nvm()  { _load_nvm; nvm  "$@"; }
+  node() { _load_nvm; node "$@"; }
+  npm()  { _load_nvm; npm  "$@"; }
+  npx()  { _load_nvm; npx  "$@"; }
+fi
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
@@ -86,8 +89,6 @@ source "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.
 
 # Starship prompt — initialized in ~/.zsh.after/msbaek.zsh (with STARSHIP_CONFIG)
 
-# Added by JetBrains Context CLI installer
-export PATH="$PATH:$HOME/.jbcontext/bin"
 
 # Mole shell completion
 if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
