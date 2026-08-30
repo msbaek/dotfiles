@@ -8,7 +8,7 @@
 --   "iamcco/markdown-preview.nvim",
 --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 --   ft = { "markdown" },
---   build = "cd app && yarn install",
+--   build = "cd app && npx --yes yarn install",
 --   init = function()
 --     vim.g.mkdp_filetypes = { "markdown" }
 --   end,
@@ -31,7 +31,7 @@
 return {
   "iamcco/markdown-preview.nvim",
   cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
-  build = "cd app && yarn install",
+  build = "cd app && npx --yes yarn install",
   init = function()
     vim.g.mkdp_theme = "" -- 다크 테마 적용
   end,
