@@ -1,85 +1,71 @@
 AeroSpace.app
-AhnLab V3 Office Security.app
-AI Edge Gallery by Google.app
-AladinEbook.app
+Alacritty.app
 Alfred 5.app
-CheatSheet.app
-Claude Code History Viewer.app
+AppCleaner.app
+Arc.app
+Asphalt8.app
+Cakebrew.app
 Claude.app
 ClearDisk.app
-Codex.app
 DaisyDisk.app
 DEVONthink Pro.app
 DevToys.app
 Dia.app
 Disk Diag.app
-Flow.app
+feedly.app
 Ghostty.app
+Gifski.app
 Goodnotes.app
 Google Chrome.app
 Hammerspoon.app
 Hancom Office HWP Viewer.app
-hanji.app
+Hancom Office HWP.app
+Hidden Bar.app
 Homerow.app
-HOP.app
-Ice.app
 iMovie.app
-Input Source Pro.app
+IntelliJ IDEA.app
 iShot.app
-JetBrains Toolbox.app
-JKOKSysExtInstaller.app
+iStat Menus 6.app
+iTerm.app
 KakaoTalk.app
 Karabiner-Elements.app
 Karabiner-EventViewer.app
-KBSKong.app
-KeyCastr.app
 Keynote.app
-lghub.app
-LiveAgent.app
-Messenger.app
+kitty.app
 Microsoft Excel.app
+Microsoft OneNote.app
+Microsoft Outlook.app
 Microsoft PowerPoint.app
-Microsoft Remote Desktop.app
 Microsoft Teams.app
 Microsoft Word.app
 Notion.app
-Numbers Creator Studio.app
 Numbers.app
 Obsidian.app
-Okta Verify.app
-OpenSuperWhisper.app
-OpenVPN Connect.app
+OneDrive.app
 OrbStack.app
 Pages.app
-Postman.app
+Pocket.app
 Presentify.app
-QLMarkdown.app
-QMK Toolbox.app
+Pro Mouse.app
 Rectangle.app
-S-1PS.app
-S1ESP.app
+RetinaCapture.app
 Safari.app
 ScreenFlow.app
-SecuPrint.app
-ShowyEdge.app
+SKCertService.app
 Slack.app
 SnippetsLab.app
-SwitchHosts.app
-Textream.app
+Syntax Highlight.app
 TextSniper.app
+The Unarchiver.app
 Things3.app
+ThingsMacSandboxHelper.app
 Timeline 3D.app
-Twingate.app
-VIA.app
-Vial.app
-Visual Paradigm.app
-Visual Studio Code.app
+Twitter.app
+uTorrent Web.app
 VLC.app
-Wander.app
+WezTerm.app
 WorkSpaces.app
-Xcode.app
 Xmind.app
-YES24 eBook.app
 YouType.app
 Zed.app
-zoom.us.app
+ZoomMe.app
