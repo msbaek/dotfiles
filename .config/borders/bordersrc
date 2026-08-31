@@ -1,5 +1,8 @@
 #!/bin/bash
-
+#
+# https://github.com/FelixKratz/JankyBorders
+# brew services start borders
+#
 options=(
   style=round
   width=12.0
