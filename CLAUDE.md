@@ -36,7 +36,7 @@ brew bundle cleanup --force
 
 ### Core Components
 
-- **Shell Configuration**: `.zshrc`, `.zprofile`, `.zshenv` - ZSH shell setup with Oh-My-Zsh and Powerlevel10k
+- **Shell Configuration**: `.zshrc`, `.zprofile`, `.zshenv` - lightweight ZSH setup (no framework): Starship prompt, zsh-autosuggestions/zsh-syntax-highlighting via Homebrew, cached `compinit`
 - **Terminal Emulators**:
   - `.wezterm.lua` - WezTerm terminal configuration
   - `.config/ghostty/` - Ghostty terminal settings
