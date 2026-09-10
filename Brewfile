@@ -58,7 +58,9 @@ brew "git-delta"
 # Git repository organizer & rebase workflow automation tool
 brew "git-machete"
 # Open source programming language to build simple/reliable/efficient software
-brew "go", link: false
+brew "go"
+# Open-source build automation tool based on the Groovy and Kotlin DSL
+brew "gradle"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
 # Add GitHub support to git on the command-line
@@ -194,6 +196,8 @@ cask "wezterm"
 cask "youtype"
 # Multiplayer code editor
 cask "zed"
+go "github.com/danielmiessler/fabric"
+go "github.com/danielmiessler/fabric/plugins/tools/to_pdf"
 uv "serena-agent", source: "git+https://github.com/oraios/serena"
 npm "ccusage"
 
