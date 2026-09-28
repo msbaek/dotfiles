@@ -181,9 +181,11 @@ export NVM_DIR="$HOME/.nvm"
 # Starship
 # Not sure if counts a CLI tool, because it only makes my prompt more useful
 # https://starship.rs/config/#prompt
-if command -v starship &>/dev/null; then
+# Guard: re-sourcing .zshrc re-wraps zle-keymap-select and recurses (FUNCNEST error)
+if command -v starship &>/dev/null && [ -z "$__STARSHIP_INITIALIZED" ]; then
   export STARSHIP_CONFIG=$HOME/.config/starship.toml
   eval "$(starship init zsh)" >/dev/null 2>&1
+  export __STARSHIP_INITIALIZED=1
 fi
 
 # Golang environment variables
@@ -271,6 +273,8 @@ alias fdm='fd --hidden --no-ignore'
 alias rgm='rg --no-ignore --hidden'
 alias brewu='brew upgrade; brew cleanup'
 alias ta='tmux attach -t work'
+# attach to memo session; on a fresh server wait for continuum auto-restore first
+alias tmm='tmux has-session -t memo 2>/dev/null || { tmux start-server; tmux new -d -s _tmp; sleep 2; tmux kill-session -t _tmp; }; tmux attach -t memo'
 alias tk='tmux kill-server'
 
 # fzf로 tmux session 선택 → 전환(tmux 안) 또는 attach(밖). 새 이름 입력 시 생성.
