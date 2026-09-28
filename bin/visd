@@ -41,9 +41,9 @@ case "${1:---help}" in
     ;;
 
   status)
-    if curl -sf "$HEALTH_URL" > /dev/null 2>&1; then
+    if curl -sf --max-time 5 "$HEALTH_URL" > /dev/null 2>&1; then
       pid=$(cat "$PID_FILE" 2>/dev/null || echo "?")
-      info=$(curl -sf "$HEALTH_URL")
+      info=$(curl -sf --max-time 5 "$HEALTH_URL")
       docs=$(echo "$info" | jq -r '.document_count // "?"')
       indexed=$(echo "$info" | jq -r '.indexed // "?"')
       echo "✅ visd running (PID: $pid, port: $PORT)"
@@ -70,7 +70,7 @@ case "${1:---help}" in
 
   start)
     # Already running?
-    if curl -sf "$HEALTH_URL" > /dev/null 2>&1; then
+    if curl -sf --max-time 5 "$HEALTH_URL" > /dev/null 2>&1; then
       pid=$(cat "$PID_FILE" 2>/dev/null || echo "?")
       echo "visd already running (PID: $pid)"
       exit 0
@@ -86,8 +86,8 @@ case "${1:---help}" in
 
     # Wait for ready (max 60s — first start needs index building)
     for i in $(seq 1 60); do
-      if curl -sf "$HEALTH_URL" > /dev/null 2>&1; then
-        docs=$(curl -sf "$HEALTH_URL" | jq -r '.document_count // "?"')
+      if curl -sf --max-time 5 "$HEALTH_URL" > /dev/null 2>&1; then
+        docs=$(curl -sf --max-time 5 "$HEALTH_URL" | jq -r '.document_count // "?"')
         echo "visd started (PID: $pid, docs: $docs, log: $LOG_FILE)"
         exit 0
       fi
