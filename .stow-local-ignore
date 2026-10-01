@@ -37,3 +37,19 @@ _darcs
 # ~/.claude is owned by the claude-config repo's own Stow run; this leftover
 # untracked directory must never be stowed over it.
 ^/\.claude
+
+# --- Repo-internal working directories: never deployed to ~/ ---
+# IDE metadata, Superpowers session state, Playwright MCP output, and repo docs
+# exist in both dotfiles and claude-config; stowing them makes the two repos
+# conflict over the same home paths.
+^/\.idea
+^/\.superpowers
+^/\.playwright-mcp
+^/docs
+
+# --- Stray directories from unexpanded home paths: never deployed to ~/ ---
+# A tool run with cwd=~/dotfiles that fails to expand "~" (or a JVM whose
+# user.home resolves to "?") creates these literally; stowing them copies the
+# mistake into the home directory.
+^/~$
+^/\?$
