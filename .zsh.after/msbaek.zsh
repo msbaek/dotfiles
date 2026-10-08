@@ -185,7 +185,7 @@ export NVM_DIR="$HOME/.nvm"
 if command -v starship &>/dev/null && [ -z "$__STARSHIP_INITIALIZED" ]; then
   export STARSHIP_CONFIG=$HOME/.config/starship.toml
   eval "$(starship init zsh)" >/dev/null 2>&1
-  export __STARSHIP_INITIALIZED=1
+  __STARSHIP_INITIALIZED=1  # not exported: child shells (tmux panes, nested zsh) must init their own prompt
 fi
 
 # Golang environment variables
