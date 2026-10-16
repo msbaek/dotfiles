@@ -6,7 +6,7 @@ lcmd + lalt - l : skhd -k "right"
 
 # App shortcuts
 # lalt + lcmd + lctrl + lshift - a: open -a 'Arc'
-# lalt + lcmd + lctrl + lshift - a: open -a 'Dia'
+lalt + lcmd + lctrl + lshift - a: open -a 'Dia'
 lalt + lcmd + lctrl + lshift - b: open -a 'Things3'
 lalt + lcmd + lctrl + lshift - c: open -a 'Calendar'
 # lalt + lcmd + lctrl + lshift - d: open -a 'Claude'
