@@ -1,6 +1,7 @@
 command_timeout = 2000
 
 format = """
+$hostname\
 $directory\
 $git_branch\
 $git_state\
@@ -13,6 +14,11 @@ $rust\
 $cmd_duration\
 $line_break\
 $character"""
+
+[hostname]
+ssh_only = false
+format = "[$hostname]($style) "
+style = "bold green"
 
 [directory]
 truncation_length = 3
