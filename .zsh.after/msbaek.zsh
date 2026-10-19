@@ -315,7 +315,7 @@ gpager() {
 }
 # Headless mode aliases
 # alias cld='claude --dangerously-skip-permissions --teammate-mode tmux'
-alias cld='claude '
+alias cld='claude --remote-control'
 
 # alias cld='$HOME/.local/bin/claude agents'
 
