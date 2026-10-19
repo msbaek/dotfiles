@@ -103,3 +103,4 @@ e	mo status	시스템 상태 모니터링
 e	mo history	정리 활동 이력 조회
 e	mo touchid	sudo 인증에 Touch ID 설정
 e	mo update	최신 버전으로 업데이트
+f	obs	vault 외부 마크다운 파일을 Obsidian으로 열기 (open -a Obsidian)	obsidian

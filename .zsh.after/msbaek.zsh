@@ -570,6 +570,14 @@ git-hotfixes() {
   git log --oneline --since="1 year ago" | grep -iE 'revert|hotfix|emergency|rollback'
 }
 
+# ── Obsidian ──
+
+# vault 외부 마크다운 파일을 Obsidian으로 연다. 예: obs ~/notes/todo.md
+obs() {
+  [[ $# -eq 0 ]] && { echo "usage: obs <file.md> [...]"; return 1 }
+  open -a Obsidian "$@"
+}
+
 # ── Help ──
 
 # cheatsheet 파일(~/.zsh.after/msbaek.cheats)을 fzf로 검색.
