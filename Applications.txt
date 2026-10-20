@@ -5,6 +5,7 @@ AppCleaner.app
 Arc.app
 Asphalt8.app
 Cakebrew.app
+Claude Code History Viewer.app
 Claude.app
 ClearDisk.app
 DaisyDisk.app
@@ -13,6 +14,8 @@ DevToys.app
 Dia.app
 Disk Diag.app
 feedly.app
+Flow.app
+GarageBand.app
 Ghostty.app
 Gifski.app
 Goodnotes.app
@@ -22,6 +25,7 @@ Hancom Office HWP Viewer.app
 Hancom Office HWP.app
 Hidden Bar.app
 Homerow.app
+Ice.app
 iMovie.app
 IntelliJ IDEA.app
 iShot.app
@@ -30,8 +34,13 @@ iTerm.app
 KakaoTalk.app
 Karabiner-Elements.app
 Karabiner-EventViewer.app
+KeyCastr.app
+Keynote Creator Studio.app
 Keynote.app
 kitty.app
+logioptionsplus.app
+macshot.app
+MarginNote 4.app
 Microsoft Excel.app
 Microsoft OneNote.app
 Microsoft Outlook.app
@@ -39,22 +48,31 @@ Microsoft PowerPoint.app
 Microsoft Teams.app
 Microsoft Word.app
 Notion.app
+Numbers Creator Studio.app
 Numbers.app
 Obsidian.app
 OneDrive.app
+OpenSuperWhisper.app
 OrbStack.app
+Pages Creator Studio.app
 Pages.app
 Pocket.app
 Presentify.app
 Pro Mouse.app
+QLMarkdown.app
+QMK Toolbox.app
 Rectangle.app
 RetinaCapture.app
 Safari.app
+Save to Raindrop.io.app
 ScreenFlow.app
+SF Symbols.app
 SKCertService.app
 Slack.app
 SnippetsLab.app
 Syntax Highlight.app
+Tailscale.app
+Textream.app
 TextSniper.app
 The Unarchiver.app
 Things3.app
@@ -62,10 +80,13 @@ ThingsMacSandboxHelper.app
 Timeline 3D.app
 Twitter.app
 uTorrent Web.app
+Visual Studio Code.app
 VLC.app
 WezTerm.app
+Whiteboard.app
 WorkSpaces.app
 Xmind.app
+YES24_eBook.app
 YouType.app
 Zed.app
 ZoomMe.app

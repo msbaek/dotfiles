@@ -480,3 +480,52 @@ cask "syntax-highlight"
 cask "wezterm"
 npm "ccstatusline"
 uv "serena-agent", source: "git+https://github.com/oraios/serena"
+tap "devdotfast/tap"
+tap "koekeishiya/formulae", "https://github.com/asmvik/homebrew-formulae.git"
+# Global DNS propagation checker TUI
+brew "dnsglobe"
+# Cinematic Git commit replay tool
+brew "gitlogue"
+# Save disk space by cleaning non-essential files from software projects
+brew "kondo"
+# Mac App Store command-line interface
+brew "mas"
+# Terminal User Interface (TUI) to view & control docker containers
+brew "oxker"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# CLI for Git worktree management, designed for parallel AI agent workflows
+brew "worktrunk"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Application launcher and productivity software
+cask "alfred"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
+# Terminal-based web browser
+cask "terminal-browser"
+# Open-source code editor
+cask "visual-studio-code"
+# Review agent-written code changes
+cask "devdotfast/tap/whiteboard", trusted: true
+mas "Fantastical", id: 435003921
+mas "feedly", id: 865500966
+mas "Flow", id: 1423210932
+mas "GarageBand", id: 682658836
+mas "Goodnotes", id: 1444383602
+mas "iMovie", id: 408981434
+mas "KakaoTalk", id: 869223134
+mas "Keynote", id: 361285480
+mas "MarginNote 4", id: 1531657269
+mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
+mas "Presentify", id: 1507246666
+mas "Pro Mouse", id: 1505869474
+mas "Save to Raindrop.io", id: 1549370672
+mas "Slack", id: 803453959
+mas "SnippetsLab", id: 1006087419
+mas "TextSniper", id: 1528890965
+mas "Things", id: 904280696
+mas "Xmind", id: 1327661892
+cargo "sgrep", source: "https://github.com/context-dot-dev/sgrep"
+npm "@zvec/zvec-grep"
