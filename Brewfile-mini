@@ -259,6 +259,8 @@ brew "truncate", link: false
 brew "unar"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Terminal spreadsheet multitool for discovering and arranging data
+brew "visidata"
 # Generator for LS_COLORS with support for multiple color themes
 brew "vivid"
 # Executes a program periodically, showing output fullscreen
