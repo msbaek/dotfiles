@@ -22,15 +22,17 @@ ln -s ~/dotfiles/.config/lazy-nvim ~/.config/nvim
 
 ### Package Management
 ```bash
-# Update Brewfile with currently installed packages
-brew bundle dump --force
+# Add newly installed packages to Brewfile (the pre-commit hook runs this too)
+bash hooks/update-brewfile.sh
 
 # Install packages from Brewfile
 brew bundle install
 
-# Check which packages are not in Brewfile
-brew bundle cleanup --force
+# List installed packages that are not in Brewfile (--force would uninstall them)
+brew bundle cleanup
 ```
+
+One `Brewfile` is shared by every Mac (Intel MBP, Mac mini, work MacBook). Never run `brew bundle dump --force` against it: the dump contains only the current machine's packages and deletes the rest. Put machine-specific entries inside `if Hardware::CPU.intel?` blocks (Brewfile is Ruby). Removing a package is manual: `brew uninstall <pkg>`, then delete its line.
 
 ## Architecture and Structure
 
@@ -102,7 +104,7 @@ When making changes to configurations:
 
 This repo has hooks that auto-modify files (requiring re-stage after failure):
 - `end-of-file-fixer`, `trailing-whitespace` — fix formatting in-place
-- `update-brewfile` — always runs, updates Brewfile on every commit
+- `update-brewfile` — always runs; appends newly installed packages to Brewfile and new apps to Applications.txt. Add-only: never removes or rewrites existing lines. Tests: `hooks/update-brewfile.test.sh`
 - `detect-secrets`, `detect-private-key` — block commits with secrets
 
 When a hook modifies files: re-stage the changed files and commit again.

@@ -1,120 +1,87 @@
 #!/usr/bin/env bash
 
-# Update Brewfile with currently installed packages before commit.
+# Add newly installed packages to Brewfile (and new apps to Applications.txt)
+# before commit. Add-only: nothing is ever removed or rewritten.
 #
-# Homebrew 6.x note: `brew bundle dump` fails to serialize some third-party
-# tap formulae (`brew info <bare-name>` returns empty), silently dropping them
-# from the dump even though they are installed and their tap is present. A naive
-# overwrite therefore loses still-installed packages and breaks `brew bundle
-# install` reproducibility.
+# Why add-only: one Brewfile is shared by several Macs (Intel MBP, Mac mini,
+# work MacBook) whose installed sets differ. Overwriting with
+# `brew bundle dump --force` deleted every entry the committing machine lacked
+# (77b1f3a lost ~100 packages; e156d11 lost 67). Appending only what is new
+# keeps the union, and leaves hand-written comments and
+# `if Hardware::CPU.intel?` blocks intact.
 #
-# Fix: merge instead of overwrite. Take the fresh dump, then re-append any old
-# Brewfile entry the dump dropped that is *still installed*. Genuinely
-# uninstalled packages are still allowed to drop, so install/uninstall sync is
-# preserved in both directions.
+# Removing a package is manual: `brew uninstall <pkg>`, then delete its line.
 
 set -eo pipefail
 
-echo "🍺 Updating Brewfile with currently installed packages..."
+echo "🍺 Adding newly installed packages to Brewfile..."
 
-# Check if Homebrew is available
 if ! command -v brew &> /dev/null; then
     echo "❌ Homebrew not found. Skipping Brewfile update."
     exit 0
 fi
 
 BREWFILE="Brewfile"
+APPSFILE="Applications.txt"
+APPS_DIR="${APPS_DIR:-/Applications}"
 NEW="$(mktemp)"
-MERGED="$(mktemp)"
 KEYS="$(mktemp)"
+ADDED="$(mktemp)"
 NEW_APPS="$(mktemp)"
-trap 'rm -f "$NEW" "$MERGED" "$KEYS" "$NEW_APPS"' EXIT
+trap 'rm -f "$NEW" "$KEYS" "$ADDED" "$NEW_APPS"' EXIT
 
-# Fresh dump (may drop third-party tap formulae on Homebrew 6.x)
-brew bundle dump --force --file="$NEW"
+ENTRY_RE='^[[:space:]]*[a-z_]+ "'
 
-# Normalized identity for an entry line: "<type>|<basename>".
+# Normalized identity for an entry line: "<type>|<name>".
 # brew/cask compare by basename so a tap-qualified name and a bare name match.
 entry_key() {
-    local line="$1" type rest name base
+    local line="${1#"${1%%[![:space:]]*}"}" type rest name
     type=${line%% *}
     rest=${line#*\"}; name=${rest%%\"*}
     case "$type" in
-        brew|cask) base=${name##*/} ;;   # strip tap prefix
-        *)         base=$name ;;          # tap/mas/vscode: full name
+        brew|cask) name=${name##*/} ;;
     esac
-    printf '%s|%s' "$type" "$base"
+    printf '%s|%s\n' "$type" "$name"
 }
 
-# Keys already present in the fresh dump
-grep -E '^(brew|cask|tap|mas|vscode) ' "$NEW" 2>/dev/null | while IFS= read -r line; do
-    entry_key "$line"; echo
+brew bundle dump --force --file="$NEW"
+
+touch "$BREWFILE"
+# Keys already in Brewfile, including entries indented inside conditionals
+grep -E "$ENTRY_RE" "$BREWFILE" | while IFS= read -r line; do
+    entry_key "$line"
 done > "$KEYS" || true
 
-# Installed sets for the "still installed?" guard
-FORMULAE=$(brew list --formula -1 2>/dev/null || true)
-CASKS=$(brew list --cask -1 2>/dev/null || true)
-TAPS=$(brew tap 2>/dev/null || true)
-
-still_installed() {
-    local type="$1" base="$2"
-    case "$type" in
-        brew) grep -qxF "$base" <<<"$FORMULAE" ;;
-        cask) grep -qxF "$base" <<<"$CASKS" ;;
-        tap)  grep -qxF "$base" <<<"$TAPS" ;;
-        *)    return 0 ;;   # mas/vscode: preserve to be safe
-    esac
-}
-
-# Collect old entries the dump dropped but that are still installed
-PRESERVED_COUNT=0
-cp "$NEW" "$MERGED"
-if [ -f "$BREWFILE" ]; then
-    {
-        FIRST=1
-        while IFS= read -r line; do
-            key="$(entry_key "$line")"
-            grep -qxF "$key" "$KEYS" && continue        # dump already kept it
-            type=${key%%|*}; base=${key#*|}
-            still_installed "$type" "$base" || continue # genuinely uninstalled
-            if [ "$FIRST" -eq 1 ]; then
-                echo ""
-                echo "# --- preserved: brew bundle dump (Homebrew 6.x) drops these still-installed tap formulae ---"
-                FIRST=0
-            fi
-            echo "$line"
-            PRESERVED_COUNT=$((PRESERVED_COUNT + 1))
-        done < <(grep -E '^(brew|cask|tap|mas|vscode) ' "$BREWFILE" 2>/dev/null || true)
-    } >> "$MERGED"
-    # PRESERVED_COUNT updated in a subshell above; recompute for the message
-    PRESERVED_COUNT=$(grep -cE '^(brew|cask|tap|mas|vscode) ' "$MERGED" 2>/dev/null || echo 0)
-    PRESERVED_COUNT=$((PRESERVED_COUNT - $(grep -cE '^(brew|cask|tap|mas|vscode) ' "$NEW" 2>/dev/null || echo 0)))
-fi
-
-# Write + stage only if the merged result differs from the current Brewfile
-if [ ! -f "$BREWFILE" ] || ! cmp -s "$MERGED" "$BREWFILE"; then
-    cp "$MERGED" "$BREWFILE"
-    git add "$BREWFILE"
-    if [ "$PRESERVED_COUNT" -gt 0 ]; then
-        echo "✅ Brewfile updated and staged (preserved $PRESERVED_COUNT dump-dropped package(s))"
-    else
-        echo "✅ Brewfile updated and staged for commit"
+# Collect dump entries that Brewfile lacks, with their description comment
+comment=""
+while IFS= read -r line; do
+    if [[ "$line" == \#* ]]; then
+        comment="$line"
+        continue
     fi
+    if [[ "$line" =~ $ENTRY_RE ]] && ! grep -qxF "$(entry_key "$line")" "$KEYS"; then
+        [ -n "$comment" ] && echo "$comment"
+        echo "$line"
+    fi
+    comment=""
+done < "$NEW" > "$ADDED"
+
+if [ -s "$ADDED" ]; then
+    cat "$ADDED" >> "$BREWFILE"
+    git add "$BREWFILE"
+    echo "✅ Brewfile: added $(grep -cE "$ENTRY_RE" "$ADDED") package(s)"
 else
-    echo "ℹ️  Brewfile is already up to date"
+    echo "ℹ️  Brewfile already lists every installed package"
 fi
 
-echo "✨ Brewfile update complete"
+# --- Applications.txt: union of recorded and installed app names ---
+touch "$APPSFILE"
+{ cat "$APPSFILE"; ls "$APPS_DIR" 2>/dev/null | grep '\.app$'; } | sort -u > "$NEW_APPS"
 
-# --- Applications.txt: snapshot of /Applications app names ---
-APPSFILE="Applications.txt"
-
-ls /Applications 2>/dev/null | grep '\.app$' | sort > "$NEW_APPS"
-
-if [ ! -f "$APPSFILE" ] || ! cmp -s "$NEW_APPS" "$APPSFILE"; then
+if ! cmp -s "$NEW_APPS" "$APPSFILE"; then
     cp "$NEW_APPS" "$APPSFILE"
     git add "$APPSFILE"
-    echo "✅ Applications.txt updated and staged"
+    echo "✅ Applications.txt: added new app(s)"
 else
-    echo "ℹ️  Applications.txt is already up to date"
+    echo "ℹ️  Applications.txt already lists every installed app"
 fi
