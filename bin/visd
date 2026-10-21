@@ -83,7 +83,8 @@ case "${1:---help}" in
     ;;
 
   restart)
-    "$0" stop
+    # A failed stop leaves the old daemon serving; starting would only report "already running"
+    "$0" stop || exit 1
     sleep 1
     "$0" start
     ;;

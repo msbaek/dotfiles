@@ -22,7 +22,7 @@ FAKE_PID=""
 FAILURES=0
 
 cleanup() {
-  [[ -n "$FAKE_PID" ]] && kill "$FAKE_PID" 2>/dev/null
+  [[ -n "$FAKE_PID" ]] && kill -9 "$FAKE_PID" 2>/dev/null
   rm -rf "$WORK"
 }
 trap cleanup EXIT
@@ -31,16 +31,20 @@ free_port() {
   python3 -c 'import socket; s=socket.socket(); s.bind(("127.0.0.1",0)); print(s.getsockname()[1]); s.close()'
 }
 
-# Listens on the port but never accepts, so HTTP requests hang until timeout
+# Listens on the port but never accepts, so HTTP requests hang until timeout.
+# With FAKE_IGNORES_SIGTERM=1 it also survives `kill`, like a hung daemon.
 start_busy_daemon() {
-  python3 -c '
-import socket, sys, time
+  FAKE_IGNORES_SIGTERM="${FAKE_IGNORES_SIGTERM:-0}" python3 -c '
+import os, signal, socket, sys, time
+if os.environ["FAKE_IGNORES_SIGTERM"] == "1":
+    signal.signal(signal.SIGTERM, signal.SIG_IGN)
 s = socket.socket()
 s.bind(("127.0.0.1", int(sys.argv[1])))
 s.listen(16)
 time.sleep(600)
 ' "$VISD_PORT" &
   FAKE_PID=$!
+  disown "$FAKE_PID"  # suppress "Killed: 9" job notices on cleanup
   for _ in $(seq 1 50); do
     lsof -nP -t -iTCP:"$VISD_PORT" -sTCP:LISTEN >/dev/null 2>&1 && return 0
     sleep 0.1
@@ -60,7 +64,7 @@ EOF
 }
 
 setup() {
-  [[ -n "$FAKE_PID" ]] && kill "$FAKE_PID" 2>/dev/null
+  [[ -n "$FAKE_PID" ]] && kill -9 "$FAKE_PID" 2>/dev/null
   FAKE_PID=""
   rm -f "$WORK/vis-invocations" "$WORK/visd.pid"
   export VISD_PORT="$(free_port)"
@@ -138,10 +142,30 @@ test_status_reports_not_running_when_port_is_free() {
   fi
 }
 
+# A restart whose stop failed must not report success with the old daemon still serving
+test_restart_fails_without_starting_when_daemon_does_not_stop() {
+  local name="${FUNCNAME[0]}"
+  setup
+  FAKE_IGNORES_SIGTERM=1 start_busy_daemon
+  install_vis_stub
+
+  PATH="$WORK/bin:$PATH" timeout 60 "$VISD" restart > "$WORK/out" 2>&1
+  local rc=$?
+
+  if [[ $rc -eq 0 ]]; then
+    fail "$name" "exit code 0: $(cat "$WORK/out")"
+  elif grep -q "already running" "$WORK/out"; then
+    fail "$name" "ran start after failed stop: $(cat "$WORK/out")"
+  else
+    pass "$name"
+  fi
+}
+
 test_start_does_not_spawn_duplicate_when_busy_daemon_holds_port
 test_stop_kills_port_owner_when_pid_file_is_missing
 test_status_reports_busy_daemon_as_running
 test_status_reports_not_running_when_port_is_free
+test_restart_fails_without_starting_when_daemon_does_not_stop
 
 echo "---"
 if [[ $FAILURES -gt 0 ]]; then
