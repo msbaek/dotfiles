@@ -108,8 +108,40 @@ test_stop_kills_port_owner_when_pid_file_is_missing() {
   fi
 }
 
+test_status_reports_busy_daemon_as_running() {
+  local name="${FUNCNAME[0]}"
+  setup
+  start_busy_daemon
+
+  timeout 20 "$VISD" status > "$WORK/out" 2>&1
+
+  if grep -q "not running" "$WORK/out"; then
+    fail "$name" "reported busy daemon as not running: $(cat "$WORK/out")"
+  elif ! grep -q "$FAKE_PID" "$WORK/out"; then
+    fail "$name" "listener PID $FAKE_PID missing: $(cat "$WORK/out")"
+  else
+    pass "$name"
+  fi
+}
+
+# Skills auto-start the daemon only when status says "not running"
+test_status_reports_not_running_when_port_is_free() {
+  local name="${FUNCNAME[0]}"
+  setup
+
+  timeout 20 "$VISD" status > "$WORK/out" 2>&1
+
+  if grep -q "not running" "$WORK/out"; then
+    pass "$name"
+  else
+    fail "$name" "expected 'not running': $(cat "$WORK/out")"
+  fi
+}
+
 test_start_does_not_spawn_duplicate_when_busy_daemon_holds_port
 test_stop_kills_port_owner_when_pid_file_is_missing
+test_status_reports_busy_daemon_as_running
+test_status_reports_not_running_when_port_is_free
 
 echo "---"
 if [[ $FAILURES -gt 0 ]]; then
