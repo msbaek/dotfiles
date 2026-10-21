@@ -46,6 +46,7 @@ _darcs
 ^/\.superpowers
 ^/\.playwright-mcp
 ^/docs
+^/tests
 
 # --- Stray directories from unexpanded home paths: never deployed to ~/ ---
 # A tool run with cwd=~/dotfiles that fails to expand "~" (or a JVM whose
