@@ -17,6 +17,15 @@
         "color": "brightBlack"
       },
       {
+        "id": "9",
+        "type": "separator"
+      },
+      {
+        "id": "8",
+        "type": "context-percentage",
+        "color": "brightBlack"
+      },
+      {
         "id": "4",
         "type": "separator"
       },
