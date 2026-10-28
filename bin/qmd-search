@@ -30,7 +30,9 @@ fi
 if [[ "$SKIP_UPDATE" == false ]]; then
   if [[ -d "$SESSIONS_DIR" ]]; then
     actual_count=$(fd -e md . "$SESSIONS_DIR" 2>/dev/null | wc -l | tr -d ' ')
-    indexed_count=$(qmd collection list 2>/dev/null | grep "Files:" | awk '{print $2}' || echo "0")
+    # Read only the claude-sessions block: actual_count counts SESSIONS_DIR alone
+    indexed_count=$(qmd collection list 2>/dev/null | awk '/^claude-sessions /{f=1} f && /Files:/{print $2; exit}')
+    indexed_count=${indexed_count:-0}
 
     if [[ "$actual_count" -gt "$indexed_count" ]]; then
       new_files=$((actual_count - indexed_count))
