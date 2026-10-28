@@ -92,3 +92,7 @@ source "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.
 
 # Mole shell completion
 if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/msbaek/.sdkman"
+[[ -s "/Users/msbaek/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/msbaek/.sdkman/bin/sdkman-init.sh"
