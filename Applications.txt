@@ -5,6 +5,7 @@ AppCleaner.app
 Arc.app
 Asphalt8.app
 Cakebrew.app
+Catchtype.app
 Claude Code History Viewer.app
 Claude.app
 ClearDisk.app
