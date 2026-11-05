@@ -1,0 +1,10 @@
+# Ported from craftzdog/dotfiles (devaslife), adapted for a light terminal theme.
+gui:
+  mouseEvents: false
+git:
+  autoFetch: false # avoid background fetch prompting for the SSH key passphrase
+  diffRenderers:
+    # {{colorScheme}} = dark|light, detected from the terminal background
+    - command: delta --{{colorScheme}} --paging=never --line-numbers --syntax-theme={{if eq .colorScheme "light"}}OneHalfLight{{else}}OneHalfDark{{end}}
+    - name: delta side-by-side
+      command: delta --{{colorScheme}} --paging=never --side-by-side --width={{width}}
