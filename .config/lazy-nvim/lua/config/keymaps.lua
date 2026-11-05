@@ -1936,3 +1936,22 @@ if vim.fn.executable("lazygit") == 1 then
     require("agentic.lazygit").open()
   end, { desc = "Lazygit (cwd)" })
 end
+
+-- Copy visual selection as a Markdown code block with filename + line attributes
+-- (for agent prompts / Obsidian). <leader>cc is taken by LazyVim's LSP codelens.
+vim.keymap.set("x", "<leader>yc", function()
+  vim.cmd('normal! \27') -- leave visual mode so '< and '> marks are set
+  local s, e = vim.fn.line("'<"), vim.fn.line("'>")
+  local file = vim.api.nvim_buf_get_name(0)
+  if file == "" then
+    return vim.notify("Buffer has no file name", vim.log.levels.WARN)
+  end
+  local root = LazyVim.root.git()
+  local rel = file:sub(1, #root + 1) == root .. "/" and file:sub(#root + 2) or vim.fn.fnamemodify(file, ":.")
+  local short = { typescriptreact = "tsx", javascriptreact = "jsx", typescript = "ts", javascript = "js" }
+  local lang = short[vim.bo.filetype] or vim.bo.filetype
+  local lines = vim.api.nvim_buf_get_lines(0, s - 1, e, false)
+  local text = ("```%s filename=\"%s\" line=%d\n%s\n```"):format(lang, rel, s, table.concat(lines, "\n"))
+  vim.fn.setreg("+", text)
+  vim.notify(("Copied %d lines as codeblock"):format(#lines))
+end, { desc = "Yank selection as codeblock (filename+line)" })

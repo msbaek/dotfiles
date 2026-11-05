@@ -65,6 +65,34 @@ return {
       end, "Diff This")
       map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+      -- Open the file as it was at the commit that last changed this line, in a new tab
+      -- (ported from craftzdog/dotfiles <leader>go; that key is used by mini.diff here)
+      map("n", "<leader>ghO", function()
+        local async = require("gitsigns.async")
+        local cache = require("gitsigns.cache").cache
+        async.run(function()
+          local bufnr = vim.api.nvim_get_current_buf()
+          local lnum = vim.api.nvim_win_get_cursor(0)[1]
+          local bcache = cache[bufnr]
+          if not bcache then
+            return
+          end
+          bcache:get_blame(lnum)
+          local entry = bcache.blame and bcache.blame.entries and bcache.blame.entries[lnum]
+          if not entry then
+            return
+          end
+          local sha = entry.commit.sha
+          if tonumber("0x" .. sha:sub(1, 8)) == 0 then
+            vim.notify("Line not committed yet", vim.log.levels.WARN)
+            return
+          end
+          vim.cmd.tabnew()
+          require("gitsigns.actions.diffthis").show(bufnr, sha, entry.filename)
+          async.schedule()
+          pcall(vim.api.nvim_win_set_cursor, 0, { entry.orig_lnum or lnum, 0 })
+        end)
+      end, "Open File at Blamed Commit")
     end,
   },
 }
