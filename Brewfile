@@ -529,3 +529,8 @@ mas "Things", id: 904280696
 mas "Xmind", id: 1327661892
 cargo "sgrep", source: "https://github.com/context-dot-dev/sgrep"
 npm "@zvec/zvec-grep"
+tap "nikgrbn/tap"
+# Tools for and transforming and inspecting PDF files
+brew "qpdf"
+# Adds New File, Open Terminal Here and more to Finder's right-click menu
+brew "nikgrbn/tap/finder-menu", trusted: true

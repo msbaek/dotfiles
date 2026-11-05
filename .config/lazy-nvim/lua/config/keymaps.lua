@@ -1913,3 +1913,26 @@ end, { desc = "Open in Zed" })
 -- ObsidianTomorrow
 -- ObsidianYesterday
 -- ObsidianWorkspace
+
+-- Agentic coding helpers (ported from craftzdog/dotfiles, devaslife)
+-- Copy path + #L<line> so an agent prompt can point at the exact line.
+vim.keymap.set("n", "<leader>yf", function()
+  local path = vim.fn.expand("%:.") .. "#L" .. vim.fn.line(".")
+  vim.fn.setreg("+", path)
+  vim.notify("Yanked: " .. path)
+end, { desc = "Yank relative path#Lline" })
+vim.keymap.set("n", "<leader>yp", function()
+  local path = vim.fn.expand("%:p") .. "#L" .. vim.fn.line(".")
+  vim.fn.setreg("+", path)
+  vim.notify("Yanked: " .. path)
+end, { desc = "Yank absolute path#Lline" })
+
+-- lazygit: `e` opens the file in the window lazygit was launched from (see lua/agentic/lazygit.lua)
+if vim.fn.executable("lazygit") == 1 then
+  vim.keymap.set("n", "<leader>gg", function()
+    require("agentic.lazygit").open({ cwd = LazyVim.root.git() })
+  end, { desc = "Lazygit (Root Dir)" })
+  vim.keymap.set("n", "<leader>gG", function()
+    require("agentic.lazygit").open()
+  end, { desc = "Lazygit (cwd)" })
+end

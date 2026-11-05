@@ -9,6 +9,7 @@ Catchtype.app
 Claude Code History Viewer.app
 Claude.app
 ClearDisk.app
+CrewNotch.app
 DaisyDisk.app
 DEVONthink Pro.app
 DevToys.app
