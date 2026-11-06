@@ -1,3 +1,4 @@
+onboarding = false
 # ~/.config/herdr/config.toml
 # msbaek: craftzdog's herdr config merged with my tmux habits (prefix C-a).
 # Decisions: see note section 7.0. Key-name sources: (official) / (author) / (renamed by me).
@@ -7,9 +8,12 @@
 # onboarding = false
 
 [theme]
-# Follow Ghostty's ANSI palette (Atom One Light). Author uses "solarized" (dark).
-name = "terminal"
-
+# Match the pane body (Ghostty Atom One Light): one-light, no dark overrides.
+# Tried 2026-11-06: "terminal" (dim text invisible), catppuccin mocha chrome (sidebar looked odd).
+# Other built-in light themes: gruvbox-light, solarized-light, catppuccin-latte,
+# tokyo-night-day, kanagawa-lotus, rose-pine-dawn.
+name = "one-light"
+auto_switch = false
 [ui]
 pane_gaps = false                            # author
 hide_tab_bar_when_single_tab = true          # author
@@ -19,11 +23,12 @@ copy_on_select = false                       # author; same intent as my tmux Mo
 sidebar_width = 20                           # author
 window_title = "{workspace}: {terminal_title}"   # author; AeroSpace matches Ghostty windows by title
 
+status_indicators = "dots"
 [ui.toast]
-delivery = "herdr"                           # in-app toast when an agent finishes or needs input
+delivery = "herdr"
 
 [ui.sound]
-enabled = false                              # author turns off claude only; off for everything while evaluating
+enabled = true
 
 # Author: show Claude's session summary (terminal title) instead of the agent name.
 [ui.sidebar.agents.rows_by_agent]
