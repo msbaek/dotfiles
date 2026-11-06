@@ -1,0 +1,159 @@
+# ~/.config/herdr/config.toml
+# msbaek: craftzdog's herdr config merged with my tmux habits (prefix C-a).
+# Decisions: see note section 7.0. Key-name sources: (official) / (author) / (renamed by me).
+# No arrow keys anywhere: main keyboard is a keeb.io Iris SE.
+
+# Enable after the first run (integrations screen seen once).
+# onboarding = false
+
+[theme]
+# Follow Ghostty's ANSI palette (Atom One Light). Author uses "solarized" (dark).
+name = "terminal"
+
+[ui]
+pane_gaps = false                            # author
+hide_tab_bar_when_single_tab = true          # author
+tab_bar_position = "bottom"                  # author; matches the video layout
+copy_on_select = false                       # author; same intent as my tmux MouseDragEnd1Pane unbind
+# sidebar_start_collapsed = true             # author. Keep the sidebar visible while evaluating; toggle with prefix+b
+sidebar_width = 20                           # author
+window_title = "{workspace}: {terminal_title}"   # author; AeroSpace matches Ghostty windows by title
+
+[ui.toast]
+delivery = "herdr"                           # in-app toast when an agent finishes or needs input
+
+[ui.sound]
+enabled = false                              # author turns off claude only; off for everything while evaluating
+
+# Author: show Claude's session summary (terminal title) instead of the agent name.
+[ui.sidebar.agents.rows_by_agent]
+claude = [["state_icon", "machine", "workspace", "tab"], ["terminal_title_stripped"]]
+
+[terminal]
+new_cwd = "follow"                           # author; tmux -c "#{pane_current_path}"
+
+[keys]
+prefix = "ctrl+a"                            # mine (author: ctrl+t). Verify readline Ctrl+A loss (section 10.5).
+
+reload_config = "prefix+r"                   # mine + author. Default prefix+r is resize_mode, so move it:
+resize_mode   = "prefix+shift+r"             # author
+
+detach     = "prefix+d"                      # author (= tmux default)
+rename_tab = "prefix+comma"                  # author
+close_tab  = "prefix+&"                      # author (key string: author-config only)
+last_pane  = "prefix+;"                      # author
+copy_mode  = ["prefix+y", "prefix+["]        # mine (y) + author ([)
+zoom       = ["prefix+m", "prefix+z"]        # mine (m)
+
+# Focus = prefix+hjkl (author, herdr default). Resize = prefix+shift+hjkl (author, below).
+focus_pane_left  = ["prefix+h", "ctrl+shift+h"]   # author. ctrl+shift chords: Rectangle not in use
+focus_pane_down  = ["prefix+j", "ctrl+shift+j"]
+focus_pane_up    = ["prefix+k", "ctrl+shift+k"]
+focus_pane_right = ["prefix+l", "ctrl+shift+l"]
+
+# Tab order. Author: ctrl+shift+left/right. Renamed to letters (no arrows): tmux-style < and >.
+move_tab_previous = "prefix+<"               # renamed by me (unverified key name)
+move_tab_next     = "prefix+>"               # renamed by me (unverified key name)
+
+# Workspace switching (author; no arrows, kept as is)
+previous_workspace = ["ctrl+shift+[", "ctrl+{"]
+next_workspace     = ["ctrl+shift+]", "ctrl+}"]
+
+# Splits. herdr naming is inverted from tmux:
+# tmux split -h (side by side) = split_vertical, tmux split -v (stacked) = split_horizontal.
+split_vertical   = ["prefix+|", "prefix+%", "prefix+backslash"]   # author
+split_horizontal = ["prefix+minus", 'prefix+"', "prefix+_"]       # author
+
+goto = "prefix+u"                            # author; same key as my tmux-claude-hatch picker
+open_notification_target = "prefix+shift+o"  # author
+
+# Defaults kept as-is (same as tmux):
+#   prefix+c new tab, prefix+n/p next/previous tab, prefix+1..9 switch tab,
+#   prefix+w workspace picker, prefix+x close pane
+# herdr-only defaults: prefix+b toggle sidebar, prefix+? keybinding help
+# prefix+g is NOT goto here (author binds it to lazygit, below).
+
+# ---- author's custom commands ----
+
+# Open current directory in Finder
+[[keys.command]]
+key = "prefix+o"
+type = "shell"
+command = 'open "$HERDR_ACTIVE_PANE_CWD"'
+
+# Kill all other panes in the current tab (tmux: kill-pane -a)
+[[keys.command]]
+key = "prefix+e"
+type = "shell"
+command = '''herdr pane list | jq -r --arg t "$HERDR_ACTIVE_TAB_ID" --arg p "$HERDR_ACTIVE_PANE_ID" '.result.panes[] | select(.tab_id == $t and .pane_id != $p) | .pane_id' | xargs -n1 herdr pane close'''
+
+# lazygit in a new pane (author)
+[[keys.command]]
+key = "prefix+g"
+type = "pane"
+command = 'cd "$HERDR_ACTIVE_PANE_CWD" && lazygit'
+
+# tmux-pain-control style resizing (author)
+[[keys.command]]
+key = "prefix+shift+h"
+type = "shell"
+command = 'herdr pane resize --direction left --pane "$HERDR_ACTIVE_PANE_ID"'
+
+[[keys.command]]
+key = "prefix+shift+j"
+type = "shell"
+command = 'herdr pane resize --direction down --pane "$HERDR_ACTIVE_PANE_ID"'
+
+[[keys.command]]
+key = "prefix+shift+k"
+type = "shell"
+command = 'herdr pane resize --direction up --pane "$HERDR_ACTIVE_PANE_ID"'
+
+[[keys.command]]
+key = "prefix+shift+l"
+type = "shell"
+command = 'herdr pane resize --direction right --pane "$HERDR_ACTIVE_PANE_ID"'
+
+# Move the current workspace up/down in the list.
+# Author: ctrl+shift+up/down. Renamed to letters (no arrows).
+[[keys.command]]
+key = "prefix+{"                             # renamed by me (unverified key name)
+type = "shell"
+command = '"$HOME/bin/herdr-move-workspace" up'
+
+[[keys.command]]
+key = "prefix+}"                             # renamed by me (unverified key name)
+type = "shell"
+command = '"$HOME/bin/herdr-move-workspace" down'
+
+# ---- my tmux popups ----
+
+# lazygit popup (my tmux: prefix G). Coexists with author's prefix+g pane.
+[[keys.command]]
+key = "prefix+shift+g"
+type = "popup"
+command = "lazygit"
+description = "lazygit (popup)"
+width = "90%"
+height = "90%"
+
+# abtop hub (my tmux: prefix a). Unverified in popup.
+[[keys.command]]
+key = "prefix+a"
+type = "popup"
+command = "abtop"
+description = "abtop"
+width = "90%"
+height = "85%"
+
+[experimental]
+# Author (2026-11-04): replay recent pane output after a server restart/reboot.
+# Output may contain secrets or tokens; stored in ~/.config/herdr/session-history.json (not in git).
+pane_history = true
+
+# Korean IME on macOS. Whether these are needed is unverified; enable if the
+# candidate window does not follow the cursor in Claude Code, or prefix keys
+# are read as Korean jamo.
+# switch_ascii_input_source_in_prefix = true
+# reveal_hidden_cursor_for_cjk_ime = true
+# cjk_ime_agents = ["claude"]

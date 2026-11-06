@@ -534,3 +534,5 @@ tap "nikgrbn/tap"
 brew "qpdf"
 # Adds New File, Open Terminal Here and more to Finder's right-click menu
 brew "nikgrbn/tap/finder-menu", trusted: true
+# Agent multiplexer that lives in your terminal
+brew "herdr"
