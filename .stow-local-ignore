@@ -54,3 +54,6 @@ _darcs
 # mistake into the home directory.
 ^/~$
 ^/\?$
+
+# Shared installers for other macOS users (copied to /Users/Shared, not stowed)
+^/share$
