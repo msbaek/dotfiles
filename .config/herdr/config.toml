@@ -23,7 +23,7 @@ copy_on_select = false                       # author; same intent as my tmux Mo
 sidebar_width = 20                           # author
 window_title = "{workspace}: {terminal_title}"   # author; AeroSpace matches Ghostty windows by title
 
-status_indicators = "dots"
+status_indicators = "symbols"
 [ui.toast]
 delivery = "herdr"
 
