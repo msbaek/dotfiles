@@ -111,6 +111,12 @@ key = "prefix+g"
 type = "pane"
 command = 'cd "$HERDR_ACTIVE_PANE_CWD" && lazygit'
 
+# yazi in a new pane (mine, mirrors prefix+g lazygit)
+[[keys.command]]
+key = "prefix+f"
+type = "pane"
+command = 'cd "$HERDR_ACTIVE_PANE_CWD" && yazi'
+
 # tmux-pain-control style resizing (author)
 [[keys.command]]
 key = "prefix+shift+h"
@@ -152,6 +158,15 @@ key = "prefix+shift+g"
 type = "popup"
 command = "lazygit"
 description = "lazygit (popup)"
+width = "90%"
+height = "90%"
+
+# yazi popup (mine, mirrors prefix+shift+g lazygit popup)
+[[keys.command]]
+key = "prefix+shift+f"
+type = "popup"
+command = "yazi"
+description = "yazi (popup)"
 width = "90%"
 height = "90%"
 
