@@ -443,6 +443,8 @@ brew "icdiff"
 brew "leiningen"
 # GUI for vim, made for macOS
 brew "macvim"
+# Fast and simple Node.js version manager (prebuilt node; brew node has no Intel bottle)
+brew "fnm"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Easily convert Marp Markdown files into static HTML/CSS, PDF, PPT and images
@@ -537,3 +539,5 @@ brew "nikgrbn/tap/finder-menu", trusted: true
 # Agent multiplexer that lives in your terminal
 brew "herdr"
 mas "MarginNote 5", id: 1531657269
+# Incremental parsing library
+brew "tree-sitter"

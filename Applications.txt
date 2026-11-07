@@ -27,6 +27,7 @@ Hancom Office HWP Viewer.app
 Hancom Office HWP.app
 Hidden Bar.app
 Homerow.app
+HOP.app
 Ice.app
 iMovie.app
 IntelliJ IDEA.app
@@ -64,6 +65,7 @@ Presentify.app
 Pro Mouse.app
 QLMarkdown.app
 QMK Toolbox.app
+Raindrop.io.app
 Rectangle.app
 RetinaCapture.app
 Safari.app
@@ -92,4 +94,5 @@ Xmind.app
 YES24_eBook.app
 YouType.app
 Zed.app
+zoom.us.app
 ZoomMe.app

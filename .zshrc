@@ -26,19 +26,10 @@ source ~/.zsh.after/cw.zsh
 source ~/.zsh.after/cj.zsh
 source ~/.zsh.after/gj.zsh
 
-# NVM (lazy load - only loads when node/npm/nvm is first used)
-# Guard: without nvm installed the wrappers would shadow the Homebrew node/npm
-export NVM_DIR="$HOME/.nvm"
-if [ -s "$NVM_DIR/nvm.sh" ]; then
-  _load_nvm() {
-    unfunction nvm node npm npx 2>/dev/null
-    source "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
-  }
-  nvm()  { _load_nvm; nvm  "$@"; }
-  node() { _load_nvm; node "$@"; }
-  npm()  { _load_nvm; npm  "$@"; }
-  npx()  { _load_nvm; npx  "$@"; }
+# fnm (Fast Node Manager) — prebuilt node; replaces nvm/brew node (brew node has no Intel bottle,
+# so a brew upgrade of simdjson/simdutf breaks the source-built binary; see memory 2026-11-07)
+if command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
 fi
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
@@ -48,9 +39,9 @@ alias taskmaster='task-master'
 
 update-node-lts() {
     echo "Updating to latest LTS..."
-    nvm install --lts
-    nvm alias default lts/\*
-    nvm use default
+    fnm install --lts
+    fnm default lts-latest
+    fnm use default
     echo "Node.js updated to: $(node --version)"
 }
 
@@ -94,5 +85,5 @@ source "$HOMEBREW_PREFIX"/share/zsh-syntax-highlighting/zsh-syntax-highlighting.
 if output="$(mole completion zsh 2>/dev/null)"; then eval "$output"; fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/msbaek/.sdkman"
-[[ -s "/Users/msbaek/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/msbaek/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
