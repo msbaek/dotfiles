@@ -14,6 +14,12 @@ onboarding = false
 # tokyo-night-day, kanagawa-lotus, rose-pine-dawn.
 name = "one-light"
 auto_switch = false
+
+# Navigate mode (prefix+w) cursor row in the sidebar. One-light's default is too
+# faint to tell "I am navigating the sidebar" from a normal row.
+[theme.custom]
+selection_bg = "#ffd866"
+
 [ui]
 pane_gaps = false                            # author
 hide_tab_bar_when_single_tab = true          # author
@@ -73,6 +79,10 @@ split_vertical   = ["prefix+|", "prefix+%", "prefix+backslash"]   # author
 split_horizontal = ["prefix+minus", 'prefix+"', "prefix+_"]       # author
 
 goto = "prefix+u"                            # author; same key as my tmux-claude-hatch picker
+
+# Navigate mode (after prefix+w): vim keys instead of Up/Down. Enter selects, Esc cancels.
+navigate_workspace_up   = "k"
+navigate_workspace_down = "j"
 open_notification_target = "prefix+shift+o"  # author
 
 # Defaults kept as-is (same as tmux):
