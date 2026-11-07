@@ -23,7 +23,7 @@ selection_bg = "#ffd866"
 [ui]
 pane_gaps = false                            # author
 hide_tab_bar_when_single_tab = true          # author
-tab_bar_position = "bottom"                  # author; matches the video layout
+tab_bar_position = "top"                  # author; matches the video layout
 copy_on_select = false                       # author; same intent as my tmux MouseDragEnd1Pane unbind
 # sidebar_start_collapsed = true             # author. Keep the sidebar visible while evaluating; toggle with prefix+b
 sidebar_width = 20                           # author
