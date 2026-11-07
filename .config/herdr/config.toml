@@ -58,10 +58,10 @@ copy_mode  = ["prefix+y", "prefix+["]        # mine (y) + author ([)
 zoom       = ["prefix+m", "prefix+z"]        # mine (m)
 
 # Focus = prefix+hjkl (author, herdr default). Resize = prefix+shift+hjkl (author, below).
-focus_pane_left  = ["prefix+h", "ctrl+alt+h"]   # ctrl+alt: herdr docs-recommended direct chord (2026-11-07; was ctrl+shift, unverified)
-focus_pane_down  = ["prefix+j", "ctrl+alt+j"]
-focus_pane_up    = ["prefix+k", "ctrl+alt+k"]
-focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+focus_pane_left  = ["prefix+h", "ctrl+cmd+h"]   # ctrl+cmd: 2026-11-07 (was ctrl+alt; cmd delivery verified by cmd+shift+h/l workspace keys)
+focus_pane_down  = ["prefix+j", "ctrl+cmd+j"]
+focus_pane_up    = ["prefix+k", "ctrl+cmd+k"]
+focus_pane_right = ["prefix+l", "ctrl+cmd+l"]
 
 # Tab order. Author: ctrl+shift+left/right. Renamed to letters (no arrows): tmux-style < and >.
 move_tab_previous = "prefix+<"               # renamed by me (unverified key name)
