@@ -40,7 +40,8 @@ new_cwd = "follow"                           # author; tmux -c "#{pane_current_p
 [keys]
 prefix = "ctrl+a"                            # mine (author: ctrl+t). Verify readline Ctrl+A loss (section 10.5).
 
-reload_config = "prefix+r"                   # mine + author. Default prefix+r is resize_mode, so move it:
+reload_config = "prefix+r"                   # mine + author. Default prefix+r is resize_mode, so move it.
+                                             # NOTE: `herdr server reload-config` reloads the server only; direct chords (ctrl+alt+hjkl) are client keybindings and need THIS key (prefix+r) in the TUI.
 resize_mode   = "prefix+shift+r"             # author
 
 detach     = "prefix+d"                      # author (= tmux default)
@@ -51,10 +52,10 @@ copy_mode  = ["prefix+y", "prefix+["]        # mine (y) + author ([)
 zoom       = ["prefix+m", "prefix+z"]        # mine (m)
 
 # Focus = prefix+hjkl (author, herdr default). Resize = prefix+shift+hjkl (author, below).
-focus_pane_left  = ["prefix+h", "ctrl+shift+h"]   # author. ctrl+shift chords: Rectangle not in use
-focus_pane_down  = ["prefix+j", "ctrl+shift+j"]
-focus_pane_up    = ["prefix+k", "ctrl+shift+k"]
-focus_pane_right = ["prefix+l", "ctrl+shift+l"]
+focus_pane_left  = ["prefix+h", "ctrl+alt+h"]   # ctrl+alt: herdr docs-recommended direct chord (2026-11-07; was ctrl+shift, unverified)
+focus_pane_down  = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up    = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
 
 # Tab order. Author: ctrl+shift+left/right. Renamed to letters (no arrows): tmux-style < and >.
 move_tab_previous = "prefix+<"               # renamed by me (unverified key name)

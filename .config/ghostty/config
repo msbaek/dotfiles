@@ -73,3 +73,6 @@ keybind = super+d=unbind
 # keybind = super+shift+d=new_split:down
 # keybind = super+s>shift+d=new_split:down
 # keybind = super+s>d=new_split:rightb
+
+# herdr direct chords (ctrl+alt+hjkl): send option as Alt instead of composing special chars.
+macos-option-as-alt = true
