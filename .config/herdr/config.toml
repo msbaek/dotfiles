@@ -70,8 +70,8 @@ move_tab_next     = "prefix+>"               # renamed by me (unverified key nam
 # Workspace switching (author; no arrows, kept as is)
 # previous_workspace = ["ctrl+shift+[", "ctrl+{"]
 # next_workspace     = ["ctrl+shift+]", "ctrl+}"]
-previous_workspace = ["ctrl+shift+h", "ctrl+{"]
-next_workspace     = ["ctrl+shift+l", "ctrl+}"]
+previous_workspace = ["cmd+shift+h", "ctrl+{"]
+next_workspace     = ["cmd+shift+l", "ctrl+}"]
 
 # Splits. herdr naming is inverted from tmux:
 # tmux split -h (side by side) = split_vertical, tmux split -v (stacked) = split_horizontal.
