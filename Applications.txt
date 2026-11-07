@@ -43,6 +43,7 @@ kitty.app
 logioptionsplus.app
 macshot.app
 MarginNote 4.app
+MarginNote 5.app
 Microsoft Excel.app
 Microsoft OneNote.app
 Microsoft Outlook.app

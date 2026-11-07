@@ -536,3 +536,4 @@ brew "qpdf"
 brew "nikgrbn/tap/finder-menu", trusted: true
 # Agent multiplexer that lives in your terminal
 brew "herdr"
+mas "MarginNote 5", id: 1531657269
