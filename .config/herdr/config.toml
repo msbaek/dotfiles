@@ -33,7 +33,7 @@ copy_on_select = false                       # author; same intent as my tmux Mo
 sidebar_width = 20                           # author
 window_title = "{workspace}: {terminal_title}"   # author; AeroSpace matches Ghostty windows by title
 
-status_indicators = "symbols"
+status_indicators = "symbols" # dots
 [ui.toast]
 delivery = "herdr"   # mine 2026-11-08: macOS Notification Center (osascript/terminal-notifier); was "herdr" (in-app toast only). "terminal": Ghostty에 osc 데스크톱 알림 요청
 
@@ -134,6 +134,15 @@ key = "prefix+shift+v"
 type = "plugin_action"
 command = "herdr-file-viewer.open-file-viewer-tab"
 description = "file viewer (tab)"
+
+# reviewr plugin (persiyanov.reviewr, 2026-11-08): review agent diffs beside the chat, send line
+# comments to the agent input. README suggests cmd+r; kept under prefix like the other pane tools.
+# prefix+r is reload_config, so use prefix+i ("inspect").
+[[keys.command]]
+key = "prefix+i"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"
+description = "reviewr (toggle pane)"
 
 # tmux-pain-control style resizing (author)
 [[keys.command]]
