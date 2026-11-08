@@ -31,7 +31,7 @@ window_title = "{workspace}: {terminal_title}"   # author; AeroSpace matches Gho
 
 status_indicators = "symbols"
 [ui.toast]
-delivery = "system"   # mine 2026-11-08: macOS Notification Center (osascript/terminal-notifier); was "herdr" (in-app toast only). "terminal": Ghostty에 osc 데스크톱 알림 요청
+delivery = "herdr"   # mine 2026-11-08: macOS Notification Center (osascript/terminal-notifier); was "herdr" (in-app toast only). "terminal": Ghostty에 osc 데스크톱 알림 요청
 
 [ui.sound]
 enabled = true
