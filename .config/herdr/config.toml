@@ -31,7 +31,7 @@ window_title = "{workspace}: {terminal_title}"   # author; AeroSpace matches Gho
 
 status_indicators = "symbols"
 [ui.toast]
-delivery = "herdr"
+delivery = "system"   # mine 2026-11-08: macOS Notification Center (osascript/terminal-notifier); was "herdr" (in-app toast only). "terminal": Ghostty에 osc 데스크톱 알림 요청
 
 [ui.sound]
 enabled = true
@@ -116,6 +116,20 @@ command = 'cd "$HERDR_ACTIVE_PANE_CWD" && lazygit'
 key = "prefix+f"
 type = "pane"
 command = 'cd "$HERDR_ACTIVE_PANE_CWD" && yazi'
+
+# herdr-file-viewer plugin (mine, trial 2026-11-08): read-only git-aware viewer.
+# prefix+f is yazi, so use prefix+v (split) / prefix+shift+v (tab).
+[[keys.command]]
+key = "prefix+v"
+type = "plugin_action"
+command = "herdr-file-viewer.open-file-viewer"
+description = "file viewer (split)"
+
+[[keys.command]]
+key = "prefix+shift+v"
+type = "plugin_action"
+command = "herdr-file-viewer.open-file-viewer-tab"
+description = "file viewer (tab)"
 
 # tmux-pain-control style resizing (author)
 [[keys.command]]
