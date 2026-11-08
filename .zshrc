@@ -25,6 +25,7 @@ source ~/.zsh.after/ktown4u.zsh
 source ~/.zsh.after/cw.zsh
 source ~/.zsh.after/cj.zsh
 source ~/.zsh.after/gj.zsh
+source ~/.zsh.after/herdr-automatic-rename.zsh
 
 # fnm (Fast Node Manager) — prebuilt node; replaces nvm/brew node (brew node has no Intel bottle,
 # so a brew upgrade of simdjson/simdutf breaks the source-built binary; see memory 2026-11-07)

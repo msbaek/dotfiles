@@ -144,6 +144,14 @@ type = "plugin_action"
 command = "persiyanov.reviewr.toggle"
 description = "reviewr (toggle pane)"
 
+# herdr-navigator (thanhdat77, 2026-11-08): fuzzy jump to workspace/agent/session/directory.
+# README default prefix+t is taken by annotate.capture, so open=prefix+p (previous_tab default unused here).
+[[keys.command]]
+key = "prefix+p"
+type = "plugin_action"
+command = "herdr-navigator.open"
+description = "navigator (jump to anything)"
+
 # herdr-annotate lite (plannotator, 2026-11-08): comment on terminal selections, send as agent context.
 # README defaults prefix+a / prefix+m clash with abtop popup / zoom, so capture=prefix+t, copy-archive=prefix+ctrl+t, manage=prefix+shift+m.
 # Install note: GitHub release download URL returned 504; installed via
