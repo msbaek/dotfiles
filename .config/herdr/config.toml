@@ -18,7 +18,9 @@ auto_switch = false
 # Navigate mode (prefix+w) cursor row in the sidebar. One-light's default is too
 # faint to tell "I am navigating the sidebar" from a normal row.
 [theme.custom]
-selection_bg = "#ffd866"
+# 2026-11-08: was #ffd866 (yellow) — too saturated for the one-light chrome. Soft blue tint from the
+# one-light accent family: still distinct from the gray focused row and the white sidebar.
+selection_bg = "#d2e3fc"
 # Focused pane border = accent token (src/ui/panes.rs: focused -> palette.accent, else overlay0).
 # one-light accent #4078f2 is too faint next to the #a0a1a7 unfocused gray; no border-width option exists.
 # Side effect: active tab / sidebar highlight also use accent.
@@ -143,14 +145,6 @@ key = "prefix+i"
 type = "plugin_action"
 command = "persiyanov.reviewr.toggle"
 description = "reviewr (toggle pane)"
-
-# herdr-navigator (thanhdat77, 2026-11-08): fuzzy jump to workspace/agent/session/directory.
-# README default prefix+t is taken by annotate.capture, so open=prefix+p (previous_tab default unused here).
-[[keys.command]]
-key = "prefix+p"
-type = "plugin_action"
-command = "herdr-navigator.open"
-description = "navigator (jump to anything)"
 
 # herdr-annotate lite (plannotator, 2026-11-08): comment on terminal selections, send as agent context.
 # README defaults prefix+a / prefix+m clash with abtop popup / zoom, so capture=prefix+t, copy-archive=prefix+ctrl+t, manage=prefix+shift+m.
