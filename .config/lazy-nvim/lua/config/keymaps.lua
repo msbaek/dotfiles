@@ -1955,3 +1955,7 @@ vim.keymap.set("x", "<leader>yc", function()
   vim.fn.setreg("+", text)
   vim.notify(("Copied %d lines as codeblock"):format(#lines))
 end, { desc = "Yank selection as codeblock (filename+line)" })
+
+-- Increment / decrement number under cursor with + / -
+vim.keymap.set({ "n", "v" }, "+", "<C-a>", { desc = "Increment number" })
+vim.keymap.set({ "n", "v" }, "-", "<C-x>", { desc = "Decrement number" })
