@@ -144,6 +144,46 @@ type = "plugin_action"
 command = "persiyanov.reviewr.toggle"
 description = "reviewr (toggle pane)"
 
+# herdr-annotate lite (plannotator, 2026-11-08): comment on terminal selections, send as agent context.
+# README defaults prefix+a / prefix+m clash with abtop popup / zoom, so capture=prefix+t, copy-archive=prefix+ctrl+t, manage=prefix+shift+m.
+# Install note: GitHub release download URL returned 504; installed via
+#   HERDR_ANNOTATE_BIN=<gh release download asset> herdr plugin install --yes plannotator/herdr-annotate/lite
+[[keys.command]]
+key = "prefix+t"
+type = "plugin_action"
+command = "annotate.capture"
+description = "annotate text"
+
+# [[keys.command]]
+# key = "prefix+shift+a"
+# type = "plugin_action"
+# command = "annotate.copy-context"
+# description = "copy annotations as context"
+
+# [[keys.command]]
+# key = "prefix+ctrl+t"   # prefix+ctrl+a is reserved (prefix twice = literal ctrl+a)
+# type = "plugin_action"
+# command = "annotate.copy-archive"
+# description = "copy annotations as context and archive them"
+#
+[[keys.command]]
+key = "prefix+ctrl+v"
+type = "plugin_action"
+command = "annotate.paste-archive"
+description = "paste annotations into the agent's prompt and archive them"
+#
+# [[keys.command]]
+# key = "prefix+ctrl+s"
+# type = "plugin_action"
+# command = "annotate.send-archive"
+# description = "send annotations to the agent and archive them"
+#
+# [[keys.command]]
+# key = "prefix+shift+m"
+# type = "plugin_action"
+# command = "annotate.manage"
+# description = "manage annotations"
+
 # tmux-pain-control style resizing (author)
 [[keys.command]]
 key = "prefix+shift+h"
