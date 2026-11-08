@@ -19,6 +19,10 @@ auto_switch = false
 # faint to tell "I am navigating the sidebar" from a normal row.
 [theme.custom]
 selection_bg = "#ffd866"
+# Focused pane border = accent token (src/ui/panes.rs: focused -> palette.accent, else overlay0).
+# one-light accent #4078f2 is too faint next to the #a0a1a7 unfocused gray; no border-width option exists.
+# Side effect: active tab / sidebar highlight also use accent.
+accent = "#ff5f00"
 
 [ui]
 pane_gaps = false                            # author
