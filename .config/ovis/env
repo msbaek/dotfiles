@@ -1,0 +1,4 @@
+# OVIS_RUNTIME=herdr-core  # commented 2026-11-09: let Settings choose the runtime
+# OVIS_RUNTIME=herdr
+OVIS_HC_BIN=/Users/msbaek/.local/bin/hc
+OVIS_TELEMETRY=0
