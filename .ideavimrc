@@ -129,7 +129,7 @@ nnoremap gt :action GotoTest<CR>
 nnoremap gb :action Back<CR>
 nnoremap gf :action Forward<CR>
 """ Tool windows
-nnoremap <c-x> :action HideAllWindows<CR>
+nnoremap <c-m> :action HideAllWindows<CR>
 """ Running and Debugging
 """ nnoremap ,a :action RunAnything<CR>
 nnoremap <leader>cc :action RunAnything<CR>
