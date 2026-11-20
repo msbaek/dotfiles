@@ -13,6 +13,8 @@ set surround
 set cursorline
 " set ideawrite=all
 
+set visualbell
+
 set commentary
 """ The Escape button
 " map <C-c> <Esc>
