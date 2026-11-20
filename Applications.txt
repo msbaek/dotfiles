@@ -51,6 +51,7 @@ Microsoft Outlook.app
 Microsoft PowerPoint.app
 Microsoft Teams.app
 Microsoft Word.app
+NapkinUML.app
 Notion.app
 Numbers Creator Studio.app
 Numbers.app

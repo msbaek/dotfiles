@@ -541,3 +541,7 @@ brew "herdr"
 mas "MarginNote 5", id: 1531657269
 # Incremental parsing library
 brew "tree-sitter"
+# Efficient Duplicate File Finder
+brew "fclones"
+# Browse and analyze AI coding assistant history offline
+cask "jhlee0409/tap/omnilogue"
