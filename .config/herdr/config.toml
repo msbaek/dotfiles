@@ -250,6 +250,7 @@ width = "90%"
 height = "85%"
 
 [experimental]
+kitty_graphics = true
 # Author (2026-11-04): replay recent pane output after a server restart/reboot.
 # Output may contain secrets or tokens; stored in ~/.config/herdr/session-history.json (not in git).
 pane_history = true
