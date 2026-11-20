@@ -24,7 +24,8 @@ selection_bg = "#d2e3fc"
 # Focused pane border = accent token (src/ui/panes.rs: focused -> palette.accent, else overlay0).
 # one-light accent #4078f2 is too faint next to the #a0a1a7 unfocused gray; no border-width option exists.
 # Side effect: active tab / sidebar highlight also use accent.
-accent = "#ff5f00"
+# 2026-11-20: was #ff5f00 — active tab looked too loud. Muted coral keeps the border distinct from gray.
+accent = "#e07a5f"
 
 [ui]
 pane_gaps = false                            # author
