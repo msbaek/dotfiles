@@ -22,8 +22,6 @@ source "$HOMEBREW_PREFIX"/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ~/.zsh.after/msbaek.zsh
 source ~/.zsh.after/ktown4u.zsh
-source ~/.zsh.after/cw.zsh
-source ~/.zsh.after/cj.zsh
 source ~/.zsh.after/gj.zsh
 source ~/.zsh.after/herdr-automatic-rename.zsh
 

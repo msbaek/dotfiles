@@ -1,6 +1,6 @@
 # herdr 이관 2단계: tmux 기반 Claude 세션 추적 스택 비활성화 계획
 
-**Status**: planned (실행 전) · 작성 2026-11-07
+**Status**: in-progress · 작성 2026-11-07 · Task 1·4 완료, Task 2는 이동 대신 삭제로 완료 (2026-11-21) · Task 3·5 남음
 **전제**: herdr 트라이얼 확정 후 tmux를 Claude 세션 실행 환경으로 사용하지 않는다고 결정했을 때 실행한다.
 **원칙**: 파일은 삭제하지 않고 **호출 지점만 끊는다**(hook 등록 해제·alias/function 로드 중단·tmux bind 주석). 1개월 미사용 확인 후 삭제 커밋을 별도로 만든다.
 
