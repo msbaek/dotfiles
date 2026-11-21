@@ -119,6 +119,7 @@
   default = upstream
 [core]
 	autocrlf = input
+	quotepath = false
   editor = vim
 	pager = hunk pager
 	# pager = delta   # 롤백: `gpager delta` 런타임 토글, 또는 이 줄을 활성화
